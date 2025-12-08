@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="CS.ERP_MOB.Views.Frame.FrmSlider"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:general="clr-namespace:CS.ERP_MOB.General">
+    <VerticalStackLayout>
+
+        <CarouselView
+            HeightRequest="200"
+            IndicatorView="indicator"
+            ItemsSource="{Binding SliderList, Source={x:Static general:Common.mCommon}}">
+
+            <CarouselView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="1">
+                        <Frame
+                            Padding="0"
+                            BackgroundColor="Green"
+                            CornerRadius="20"
+                            HasShadow="True">
+                            <Image Aspect="AspectFill" Source="{Binding Image, Converter={StaticResource ImageURLConverter}}" />
+                        </Frame>
+                    </Grid>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+
+        </CarouselView>
+
+        <!--  Dots indicator  -->
+        <IndicatorView x:Name="indicator" HorizontalOptions="Center" />
+
+    </VerticalStackLayout>
+
+</ContentView>

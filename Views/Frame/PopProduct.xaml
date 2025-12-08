@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<rg:PopupPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:rg="clr-namespace:RGPopup.Maui.Pages;assembly=RGPopup.Maui"
+    xmlns:animation="clr-namespace:RGPopup.Maui.Animations;assembly=RGPopup.Maui"
+    x:Class ="CS.ERP_MOB.Views.Frame.PopProduct"
+    HasSystemPadding="true"
+    SystemPaddingSides="All"
+    CloseWhenBackgroundIsClicked="true">
+    <rg:PopupPage.Animation>
+        <animation:ScaleAnimation
+            PositionIn="Bottom"
+            PositionOut="Bottom"
+            DurationIn ="400"
+            DurationOut="300"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="true" />
+    </rg:PopupPage.Animation>
+    <Grid
+        x:Name="grdProduct"
+        HorizontalOptions="Start"
+        VerticalOptions  ="End"
+        ColumnSpacing    ="0"
+        Padding="70,0,0,60">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="200" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition  Width="*" />
+            <ColumnDefinition  Width="250" />
+        </Grid.ColumnDefinitions>
+        <Frame
+            Grid.Row ="0"
+            Grid.Column="1"
+            Padding="0" 
+            CornerRadius="3"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+            <StackLayout
+                x:Name="stlProduct"
+                BackgroundColor="White"
+                VerticalOptions="FillAndExpand">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1"
+                    Tapped="stlProduct_TappedAsync" />
+                </StackLayout.GestureRecognizers>
+                <!--title view-->
+                <StackLayout
+                    HorizontalOptions="FillAndExpand" 
+                    VerticalOptions="Start"
+                    Orientation="Horizontal"
+                    HeightRequest="30"
+                    BackgroundColor="{StaticResource OvaPopupTitleColor}"
+                    Padding="{StaticResource padding}">
+                    <Label
+                        Text="Product"
+                        HorizontalOptions="CenterAndExpand"/>
+                </StackLayout>
+                <!--content area-->
+                <StackLayout
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand">
+                    <ListView
+                        x:Name="ProductList"
+                        ItemsSource="{Binding ProductList}"
+                        ItemSelected="lstProduct_ItemSelected"
+                        RowHeight="60">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Frame
+                                          VerticalOptions="FillAndExpand"
+                                          HorizontalOptions="FillAndExpand"
+                                          Padding="0">
+                                        <StackLayout
+                                            Orientation="Horizontal"
+                                            VerticalOptions="Center"
+                                            Padding="10,0,10,0">
+                                            <Image
+                                                Source="{Binding logoImg}"
+                                                WidthRequest="40"
+                                                HeightRequest="40"/>
+                                            <StackLayout
+                                                Orientation="Vertical"
+                                                VerticalOptions="Center"
+                                                Padding="10,0,10,0">
+                                                <Label
+                                                    Text="{Binding ProductCode_0_50}"
+                                                    HorizontalOptions="StartAndExpand" 
+                                                    VerticalOptions="Center"
+                                                    TextColor="Gray"/>
+                                                <Label
+                                                    Text="{Binding ProductName_0_255}"
+                                                    FontSize="Small"
+                                                    HorizontalOptions="StartAndExpand" 
+                                                    VerticalOptions="Center"
+                                                    TextColor="Gray"/>
+                                            </StackLayout>
+                                        </StackLayout>
+                                      </Frame>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+            </StackLayout>
+        </Frame>
+    </Grid>
+</rg:PopupPage>

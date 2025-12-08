@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<xct:Popup 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:xct="http://schemas.microsoft.com/dotnet/2021/maui/communitytoolkit"
+           
+    Size="400,600"
+    xmlns:dg="clr-namespace:Syncfusion.Maui.DataGrid;assembly=Syncfusion.Maui.DataGrid"   
+    x:Class="CS.ERP_MOB.Views.PAY.FrmPayOpeningPopup">
+
+    <ScrollView>
+
+        <StackLayout                              
+                                VerticalOptions="FillAndExpand">
+           
+                <Grid>
+                <Picker x:Name="pikPayItemGroup" Grid.Row="0" Grid.Column="0"  IsEnabled="True" ItemDisplayBinding="{Binding DAT_EMPLOYEE.ApproveStatusName}"  Title="Select Pay Item Group" HeightRequest="50"/>
+                <Picker x:Name="pikPayItem" Grid.Row="1" Grid.Column="0"  IsEnabled="True" ItemDisplayBinding="{Binding DAT_EMPLOYEE.ApproveStatusName}"  Title="Select Pay Item" HeightRequest="50"/>
+
+                <DatePicker x:Name="FromDate" Grid.Row="2" Grid.Column="0"/>
+                <DatePicker x:Name="ToDate" Grid.Row="3" Grid.Column="0"/>
+                <Entry x:Name="entAmount" Grid.Row="4" Grid.Column="0"  Text="{Binding DAT_EMPLOYEE.CertificateName}"  Placeholder="Amount" HeightRequest="50" />
+
+            </Grid>
+
+              
+        </StackLayout>
+    </ScrollView>
+
+</xct:Popup>

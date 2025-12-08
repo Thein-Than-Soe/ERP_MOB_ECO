@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<xct:Popup 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:xct="http://schemas.microsoft.com/dotnet/2021/maui/communitytoolkit"
+           Size="400,600"
+    xmlns:dg="clr-namespace:Syncfusion.Maui.DataGrid;assembly=Syncfusion.Maui.DataGrid"
+    x:Class="CS.ERP_MOB.Views.HCM.FrmHcmContactPopup">
+    <ScrollView>
+
+        <StackLayout                              
+                                VerticalOptions="FillAndExpand">
+        
+
+            <Entry
+                            x:Name="entSearch"
+                            Placeholder="Search" 
+                           WidthRequest="200"
+                            HorizontalOptions="End"                           
+                            PlaceholderColor="{StaticResource OvaSearchInputColor}"
+                            TextColor="{StaticResource OvaSearchInputColor}"
+                            TextChanged="entSearch_TextChanged"/>
+
+        <Picker x:Name="pikContactType" IsEnabled="True" ItemDisplayBinding="{Binding DAT_APPLICANT_CONTACT.ContactTypeName}" Title="Select Contact Type"/>
+        <Entry x:Name="entName"  Text="{Binding DAT_APPLICANT_CONTACT.Name}"  Placeholder="Name"/>
+        <Entry x:Name="entPostalCode"  Text="{Binding DAT_APPLICANT_CONTACT.Phone}"  Placeholder="Postal Code"/>
+        <Picker x:Name="entMobileCode" IsEnabled="True" ItemDisplayBinding="{Binding DAT_APPLICANT_CONTACT.CountryMobileCode}"  Title="Country Code"/>
+        <Entry x:Name="entPhone"  Text="{Binding DAT_APPLICANT_CONTACT.Phone}"  Placeholder="Phone"/>
+        <Picker x:Name="entDivision" IsEnabled="True" ItemDisplayBinding="{Binding DAT_APPLICANT_CONTACT.DivisionName}"  Title="Select Division"/>
+        <Picker x:Name="entState" IsEnabled="True" ItemDisplayBinding="{Binding DAT_APPLICANT_CONTACT.StateName}"  Title="Select State"/>
+        <Picker x:Name="entCountry" IsEnabled="True" ItemDisplayBinding="{Binding DAT_APPLICANT_CONTACT.CountryName}"  Title="Select Country"/>
+
+            <Grid>
+                <Button Text="Ok" WidthRequest="100" Grid.Row="0" Grid.Column="0" ></Button>
+                <Button Text="Cancel" WidthRequest="100" Grid.Row="0" Grid.Column="1"></Button>
+            </Grid>
+
+        </StackLayout>
+    </ScrollView>
+
+</xct:Popup>

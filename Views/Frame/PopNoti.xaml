@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<rg:PopupPage
+    x:Class="CS.ERP_MOB.Views.Frame.PopNoti"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:animation="clr-namespace:RGPopup.Maui.Animations;assembly=RGPopup.Maui"
+    xmlns:general="clr-namespace:CS.ERP_MOB.General"
+    xmlns:local="clr-namespace:CS.ERP_MOB.Views.Frame"
+    xmlns:rg="clr-namespace:RGPopup.Maui.Pages;assembly=RGPopup.Maui"
+    CloseWhenBackgroundIsClicked="true"
+    HasSystemPadding="true"
+    SystemPaddingSides="All">
+
+    <rg:PopupPage.Animation>
+        <animation:MoveAnimation
+            DurationIn="400"
+            DurationOut="300"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="true"
+            PositionIn="Bottom"
+            PositionOut="Bottom" />
+    </rg:PopupPage.Animation>
+    <Grid
+        x:Name="NotiGrid"
+        Padding="0,0,0,50"
+        ColumnSpacing="0"
+        HorizontalOptions="CenterAndExpand"
+        VerticalOptions="End">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Frame
+            x:Name="PopupFrame"
+            Grid.Row="0"
+            Grid.Column="0"
+            Padding="0"
+            CornerRadius="3"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+            <StackLayout BackgroundColor="White" VerticalOptions="FillAndExpand">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="NotiTappedAsync" />
+                    <SwipeGestureRecognizer Direction="Down" Swiped="OnSwipeDown" />
+                </StackLayout.GestureRecognizers>
+                <!--  title view  -->
+                <StackLayout
+                    Padding="{StaticResource padding}"
+                    BackgroundColor="{StaticResource OvaPopupTitleColor}"
+                    HeightRequest="30"
+                    HorizontalOptions="FillAndExpand"
+                    Orientation="Vertical"
+                    VerticalOptions="Start">
+
+                    <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                        <Label
+                            AbsoluteLayout.LayoutBounds="0.5, 0.5, AutoSize, AutoSize"
+                            AbsoluteLayout.LayoutFlags="PositionProportional"
+                            HorizontalTextAlignment="Center"
+                            Text="Notifications"
+                            VerticalOptions="Center" />
+
+                        <Label
+                            AbsoluteLayout.LayoutBounds="1, 0.5, AutoSize, AutoSize"
+                            AbsoluteLayout.LayoutFlags="PositionProportional"
+                            HorizontalTextAlignment="End"
+                            Text="Read All"
+                            TextColor="{StaticResource OvaClickableColor}"
+                            VerticalOptions="Center" />
+                    </AbsoluteLayout>
+                </StackLayout>
+
+                <VerticalStackLayout Padding="3" Spacing="12">
+
+                    <!--  Tabs  -->
+                    <CollectionView
+                        ItemsLayout="HorizontalList"
+                        ItemsSource="{Binding NotiTypeList}"
+                        SelectedItem="{Binding ActiveTab}"
+                        SelectionMode="Single">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame
+                                    Margin="0,0,10,0"
+                                    Padding="3"
+                                    BackgroundColor="{Binding ., Converter={StaticResource TabColorConverter}, ConverterParameter={Binding Source={RelativeSource AncestorType={x:Type local:PopNoti}}, Path=BindingContext.ActiveTab}}"
+                                    CornerRadius="20">
+                                    <Grid>
+                                        <Button
+                                            BackgroundColor="Transparent"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type local:PopNoti}}, Path=BindingContext.SelectTabCommand}"
+                                            CommandParameter="{Binding}"
+                                            Text="{Binding NotiTypeName_0_255}"
+                                            TextColor="Black" />
+
+                                        <Frame
+                                            Padding="4"
+                                            BackgroundColor="Red"
+                                            CornerRadius="10"
+                                            HorizontalOptions="End"
+                                            IsVisible="{Binding unreadCount, Converter={StaticResource ZeroToVisibilityConverter}}"
+                                            VerticalOptions="Start">
+                                            <Label
+                                                FontSize="10"
+                                                Text="{Binding unreadCount}"
+                                                TextColor="White" />
+                                        </Frame>
+                                    </Grid>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                    <!--  Notification List  -->
+                    <CollectionView ItemsSource="{Binding FilteredNotifications}"
+                                    SelectionMode="Single"
+                SelectionChanged="CollectionView_SelectionChanged">
+                        <CollectionView.EmptyView>
+                            <Label
+                                HorizontalOptions="Center"
+                                Text="caught up!"
+                                TextColor="Gray" />
+                        </CollectionView.EmptyView>
+
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Padding="6" BackgroundColor="{Binding StatusAsk,Converter={StaticResource HighlightColorConverter}, ConverterParameter={Binding ThemeSettingNoti.HighlightColor,Source={Static Member=general:Common.mCommon}}}">
+
+                                    <VerticalStackLayout>
+                                        <Label TextColor="{Binding ThemeSettingNoti.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" 
+                                            FontSize="{Binding ThemeSettingNoti.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}" Text="{Binding SystemNotiName_0_255}" />
+
+                                        <BoxView
+                                            Margin="0,10,0,0"
+                                            BackgroundColor="#ccc"
+                                            HeightRequest="1" />
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                </VerticalStackLayout>
+            </StackLayout>
+        </Frame>
+    </Grid>
+</rg:PopupPage>

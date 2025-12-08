@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CS.ERP_MOB.Views.SYS.FrmSysApiConfigLst">
+    
+    
+  <ContentView.Content>
+        <AbsoluteLayout>
+            <AbsoluteLayout.Padding>
+                <OnPlatform x:TypeArguments="Thickness">
+                    <On Platform="iOS" Value="0,40,0,30" />
+                </OnPlatform>
+            </AbsoluteLayout.Padding>
+            <ScrollView
+                AbsoluteLayout.LayoutBounds="0,0,1,1" 
+                AbsoluteLayout.LayoutFlags="All">
+
+
+                <CollectionView 
+                    x:Name="colView" 
+                    SelectionMode="Single"
+                    Margin="20"
+                    SelectionChanged="colView_onSelectionChange">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <Frame CornerRadius="10"
+                                       BorderColor="Gray"
+                                       Padding="0"
+                                       Margin="5">
+                                    <Grid Padding="10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="2*" />
+
+                                        </Grid.ColumnDefinitions>
+
+                                        <StackLayout
+                                            Margin="2"
+                                            Grid.Row="0"
+                                            Grid.Column="0"
+                                            Orientation="Vertical">
+                                            <Label
+                                                x:Name="lblProductCode"
+                                                Text="{Binding ProductCode}"
+                                                FontSize="Large"
+                                                HorizontalTextAlignment="Start"
+                                                LineBreakMode="TailTruncation"/>
+
+
+                                        </StackLayout>
+
+                                        <StackLayout
+                                            Grid.Row="1"
+                                            Grid.Column="0"
+                                            
+                                            Orientation="Vertical">
+                                            <Label
+                                                 x:Name="lblUploadURL"
+                                                 Text ="{Binding UploadURL}"
+                                                 MaxLines="3"
+                                                 FontSize="Small"
+                                                 HorizontalTextAlignment="Start"
+                                                 LineBreakMode="TailTruncation"/>
+                                        </StackLayout>
+                                        <StackLayout 
+                                            Grid.Row="1"
+                                            Grid.Column="1"
+                                            Orientation="Vertical">
+                                            <Label
+                                                x:Name="lblAPIURL"
+                                                Text="{Binding APIURL}"
+                                                HorizontalOptions="EndAndExpand"
+                                                FontSize="Medium"
+                                                HorizontalTextAlignment="Center"/>
+                                        </StackLayout>
+
+
+                                    </Grid>
+                                </Frame>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+
+            </ScrollView>           
+            
+
+        </AbsoluteLayout>
+    </ContentView.Content>
+</ContentView>

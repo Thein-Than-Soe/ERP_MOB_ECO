@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CS.ERP_MOB.Views.SYS.FrmCountrySet"
+             xmlns:xct="http://schemas.microsoft.com/dotnet/2021/maui/communitytoolkit"
+             Visual="Material">
+    <ContentView.Content>
+        <StackLayout
+            x:Name="RootLayout"
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"
+            BackgroundColor="{StaticResource OvaSetBackgroundColor}">
+
+            <!--Header area-->
+            <StackLayout
+                VerticalOptions="Start"
+                HorizontalOptions="FillAndExpand"
+                HeightRequest="35"
+                Orientation="Horizontal"
+                BackgroundColor="LightGray"
+                Padding="{StaticResource paddingLeftRight}">
+                <Frame
+                    Padding="{StaticResource FramePaddingLeftRight}"
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="StartAndExpand"
+                    
+                    >
+                    <Label
+                        VerticalOptions ="CenterAndExpand"
+                        HorizontalOptions="Center"
+                        Text="&#xf060;"
+                        FontFamily="{StaticResource FontAwesomeSolid}"
+                        FontSize="20"
+                        TextColor="{StaticResource OvaSetTitleColor}"
+                        
+                        >
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="BackTapGestureRecognizer_Tapped"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="BackTapGestureRecognizer_Tapped"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+
+                <Frame
+                    Padding="{StaticResource FramePaddingLeftRight}"
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="End"
+                    
+                    >
+                    <Label
+                        VerticalOptions ="CenterAndExpand"
+                        HorizontalOptions="Center"
+                        Text="&#xf0fe;"
+                        FontFamily="{StaticResource FontAwesomeSolid}"
+                        FontSize="20"
+                        TextColor="{StaticResource OvaSetTitleColor}"
+                        
+                        >
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TgrNew_Tapped"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TgrNew_Tapped"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+
+            </StackLayout>
+
+            <!--content area-->
+            <StackLayout
+
+
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand"
+                Orientation="Vertical">
+                <StackLayout
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand"
+                    Padding="{StaticResource paddingLeftRight}">
+                    <Frame
+                        VerticalOptions="FillAndExpand"
+                        HorizontalOptions="FillAndExpand"
+                        Padding="{StaticResource FramePaddingLeftRightTop}">
+                        <ScrollView 
+                                VerticalOptions="FillAndExpand"
+                                HorizontalOptions="FillAndExpand">
+                            <StackLayout
+                                BindableLayout.ItemsSource="{Binding RES_COUNTRY}"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand"
+                                Orientation="Vertical">
+                                <Entry x:Name="entCode"
+                                    HorizontalOptions="FillAndExpand"
+                                       Text="{Binding RES_COUNTRY.CountryCode}"
+
+
+                                       Placeholder="Code"
+                                    Focused="Input_Focused"
+                                    Unfocused="Input_Unfocused"/>
+                                <Entry x:Name="entName"
+                                    HorizontalOptions="FillAndExpand"
+                                       Text="{Binding RES_COUNTRY.CountryName}"
+
+
+                                    Placeholder="Name"
+                                    Focused="Input_Focused"
+                                    Unfocused="Input_Unfocused"/>
+                                <Entry x:Name="entDescription"
+                                    HorizontalOptions="FillAndExpand"
+                                       Text="{Binding RES_COUNTRY.CountryDescription}"
+                                    Placeholder="Description"
+                                    Focused="Input_Focused"
+                                    Unfocused="Input_Unfocused"/>
+
+                                <Entry x:Name="entMobileCode"
+                                    HorizontalOptions="FillAndExpand"
+                                       Text="{Binding RES_COUNTRY.CountryMobileCode}"
+                                    Placeholder="CountryMobileCode"
+                                    Focused="Input_Focused"
+                                    Unfocused="Input_Unfocused"/>
+
+                                <Entry x:Name="entScheme"
+                                    HorizontalOptions="FillAndExpand"
+                                       Text="{Binding RES_COUNTRY.Scheme}"
+                                    Placeholder="Scheme"
+                                    Focused="Input_Focused"
+                                    Unfocused="Input_Unfocused"/>
+
+                                <Entry x:Name="entSuperscheme"
+                                    HorizontalOptions="FillAndExpand"
+                                       Text="{Binding RES_COUNTRY.Superscheme}"
+                                    Placeholder="Superscheme"
+                                    Focused="Input_Focused"
+                                    Unfocused="Input_Unfocused"/>
+
+                            </StackLayout>
+                        </ScrollView>
+                    </Frame>
+                </StackLayout>
+
+                <!--Footer area-->
+                <StackLayout
+                    x:Name="FooterLayout"
+                    HeightRequest="35"
+                    Orientation="Horizontal"
+                    VerticalOptions="End"
+                    Padding="{StaticResource paddingLeftRightBottom}">
+                    <StackLayout
+                        x:Name="ControlButtons"
+                        Orientation="Horizontal"
+                        VerticalOptions="FillAndExpand" 
+                        HorizontalOptions="FillAndExpand">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Frame
+                                        Padding="0"
+                                        BackgroundColor="{StaticResource OvaControlBackgroundColor}"
+                                        HorizontalOptions="FillAndExpand"
+                                        
+                                        >
+                                    <StackLayout
+                                            VerticalOptions="FillAndExpand"
+                                            HorizontalOptions="CenterAndExpand"
+                                            Orientation="Horizontal">
+                                        <!--<Image Source="{Binding btnicon}" 
+                                               WidthRequest="40"
+                                               HeightRequest="40"
+                                               HorizontalOptions="Start"/>-->
+
+                                        <Label
+                                                VerticalOptions ="Center"
+                                                Text="&#xf07a;"
+                                                FontSize="16"
+                                                FontFamily="{StaticResource FontAwesomeSolid}"
+                                                TextColor="{StaticResource OvaControlColor}"
+                                                TextTransform="None">
+                                        </Label>
+                                        <Label
+                                                VerticalOptions ="Center"
+                                                Text="{Binding text}"
+                                                FontSize="16"
+                                                TextColor="{StaticResource OvaControlColor}"
+                                                TextTransform="None">
+                                        </Label>
+                                    </StackLayout>
+
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="ControlTapGestureRecognizer_Tapped"/>
+                                    </Frame.GestureRecognizers>
+                                </Frame>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+                </StackLayout>
+
+            </StackLayout>
+
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>
+    
+    
+    

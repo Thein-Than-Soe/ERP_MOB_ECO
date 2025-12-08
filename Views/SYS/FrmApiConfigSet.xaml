@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:xct="http://schemas.microsoft.com/dotnet/2021/maui/communitytoolkit"
+             x:Class="CS.ERP_MOB.Views.SYS.FrmApiConfigSet"
+              >
+  <ContentView.Content>
+
+        <ScrollView>
+        <Frame 
+            CornerRadius="5"  
+            BorderColor="Gray" 
+            Padding="0"
+            Margin="10,10,10,10">
+
+            <StackLayout                
+                Margin="20,20,20,10">
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label
+                                                                Grid.Row="0"
+                                                                Grid.Column="0"
+                                                                
+                                                                HorizontalOptions="Start"
+                                                                Text="Product Code"/>
+
+
+                        <Entry x:Name="entCode" Grid.Row="0" Grid.Column="1"
+                       Text="{Binding ProductCode}"  
+                        MaxLength="15"/>
+
+
+                        <Label
+                                                                Grid.Row="1"
+                                                                Grid.Column="0"
+                                                                
+                                                                HorizontalOptions="Start"
+                                                                Text="Upload URL"/>
+
+                        <Entry x:Name="entUploadURL" Grid.Row="1" Grid.Column="1"  Placeholder="UploadUrl"
+                       Text="{Binding UploadURL}" />
+
+                        <Label
+                                                                Grid.Row="2"
+                                                                Grid.Column="0"
+                                                                
+                                                                HorizontalOptions="Start"
+                                                                Text="APIURL"/>
+
+                        <Entry x:Name="entAPIURL" Grid.Row="2" Grid.Column="1"
+                       Text="{Binding APIURL}" />
+
+                        <Label
+                                                                Grid.Row="3"
+                                                                Grid.Column="0"
+                                                                
+                                                                HorizontalOptions="Start"
+                                                                Text="APIProtocol"/>
+
+                        <Entry x:Name="entAPIProtocol" Grid.Row="3" Grid.Column="1"
+                       Text="{Binding APIProtocol}"  />
+
+                        <Label
+                                                                Grid.Row="4"
+                                                                Grid.Column="0"
+                                                                
+                                                                HorizontalOptions="Start"
+                                                                Text="APIServer"/>
+
+                        <Entry x:Name="entAPIServer" Grid.Row="4" Grid.Column="1"
+                       Text="{Binding APIServer}" />
+
+                        <Label
+                                                                Grid.Row="5"
+                                                                Grid.Column="0"
+                                                                
+                                                                HorizontalOptions="Start"
+                                                                Text="APIPort"/>
+
+
+                        <Entry x:Name="entAPIPort" Grid.Row="5" Grid.Column="1"
+                       Text="{Binding APIPort}"/>
+
+                        <Label
+                                                                Grid.Row="6"
+                                                                Grid.Column="0"
+                                                                
+                                                                HorizontalOptions="Start"
+                                                                Text="APIServiceName"/>
+
+                        <Entry x:Name="entAPIServiceName" Grid.Row="6" Grid.Column="1"
+                       Text="{Binding APIServiceName}" />
+
+
+                        <Label
+                                                                Grid.Row="7"
+                                                                Grid.Column="0"
+                                                                
+                                                                HorizontalOptions="Start"
+                                                                Text="ApiContentType"/>
+
+                        <Entry x:Name="entApiContentType" Grid.Row="7" Grid.Column="1"
+                       Text="{Binding ApiContentType}"  />
+
+
+                        <Label
+                                                                Grid.Row="8"
+                                                                Grid.Column="0"
+                                                                
+                                                                HorizontalOptions="Start"
+                                                                Text="ApiAcceptType"/>
+
+
+                        <Entry x:Name="entApiAcceptType" Grid.Row="8" Grid.Column="1"
+                       Text="{Binding ApiAcceptType}" />
+
+
+                        <Label
+                                                                Grid.Row="9"
+                                                                Grid.Column="0"
+                                                                
+                                                                HorizontalOptions="Start"
+                                                                Text="ApiKey"/>
+
+                        <Entry x:Name="entApiKey" Grid.Row="9" Grid.Column="1"
+                       Text="{Binding ApiKey}" />
+
+                        <Label
+                                                                Grid.Row="10"
+                                                                Grid.Column="0"
+                                                                
+                                                                HorizontalOptions="Start"
+                                                                Text="PublicKey"/>
+
+
+                        <Entry x:Name="entPublicKey" Grid.Row="10" Grid.Column="1"
+                       Text="{Binding PublicKey}"  />
+
+
+                        <Label
+                                                                Grid.Row="11"
+                                                                Grid.Column="0"
+                                                                
+                                                                HorizontalOptions="Start"
+                                                                Text="SecreteKey"/>
+
+                        <Entry x:Name="entSecreteKey" Grid.Row="11" Grid.Column="1"
+                       Text="{Binding SecreteKey}" />
+
+                        <Label
+                                                                Grid.Row="12"
+                                                                Grid.Column="0"
+                                                                
+                                                                HorizontalOptions="Start"
+                                                                Text="User"/>
+
+
+                        <Entry x:Name="entUser" Grid.Row="12" Grid.Column="1"
+                       Text="{Binding User}"
+                          IsPassword="True" />
+
+                        <Label
+                                                                Grid.Row="13"
+                                                                Grid.Column="0"
+                                                                
+                                                                HorizontalOptions="Start"
+                                                                Text="Password"/>
+
+                        <Entry x:Name="entPassword" Grid.Row="13" Grid.Column="1"
+                       Text="{Binding Password}"   
+                       IsPassword="True" />
+
+
+                        <Label
+                                                                Grid.Row="14"
+                                                                Grid.Column="0"
+                                                                
+                                                                HorizontalOptions="Start"
+                                                                Text="Sequence"/>
+
+                        <Entry x:Name="entSequence" Grid.Row="14" Grid.Column="1"
+                       Text="{Binding Sequence}"
+                       Keyboard="Numeric"   MaxLength="5"/>
+
+                        <Button Text="Save" Grid.Row="15" Grid.Column="0"
+                        x:Name="btnSave"
+                        HorizontalOptions="FillAndExpand"
+                        Clicked="btnSave_onClick" />
+
+                        <Button Text="Cancel" Grid.Row="15" Grid.Column="1"
+                        x:Name="btnCancel"
+                        HorizontalOptions="FillAndExpand"
+                        Clicked="btnCancel_onClick" />
+
+                    </Grid>
+                      
+                
+            </StackLayout>
+     
+        </Frame>
+
+
+
+
+        </ScrollView>
+
+    </ContentView.Content>
+</ContentView>

@@ -1,0 +1,502 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net8.0-android;net8.0-ios;net8.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net8.0-windows10.0.19041.0</TargetFrameworks>
+		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
+		<!-- <TargetFrameworks>$(TargetFrameworks);net9.0-tizen</TargetFrameworks> -->
+
+		<!-- Note for MacCatalyst:
+		The default runtime is maccatalyst-x64, except in Release config, in which case the default is maccatalyst-x64;maccatalyst-arm64.
+		When specifying both architectures, use the plural <RuntimeIdentifiers> instead of the singular <RuntimeIdentifier>.
+		The Mac App Store will NOT accept apps with ONLY maccatalyst-arm64 indicated;
+		either BOTH runtimes must be indicated or ONLY macatalyst-x64. -->
+		<!-- For example: <RuntimeIdentifiers>maccatalyst-x64;maccatalyst-arm64</RuntimeIdentifiers> -->
+
+		<OutputType>Exe</OutputType>
+		<RootNamespace>CS.ERP_MOB_ECO</RootNamespace>
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+
+		<!-- Display name -->
+		<ApplicationTitle>CS.ERP_MOB_ECO</ApplicationTitle>
+
+		<!-- App Identifier -->
+		<ApplicationId>com.ovaerp.cs.erp_mob_eco</ApplicationId>
+		<!-- Versions -->
+		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+		<ApplicationVersion>1</ApplicationVersion>
+
+		<!-- To develop, package, and publish an app to the Microsoft Store, see: https://aka.ms/MauiTemplateUnpackaged -->
+		<WindowsPackageType>None</WindowsPackageType>
+
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">15.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">15.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android|AnyCPU'">
+		<AndroidPackageFormat>apk</AndroidPackageFormat>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-android|AnyCPU'">
+		<EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- App Icon -->
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+
+		<!-- Splash Screen -->
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+
+		<!-- Images -->
+		<MauiImage Include="Resources\Images\*" />
+		<MauiImage Update="Resources\Images\dotnet_bot.png" Resize="True" BaseSize="300,185" />
+
+		<!-- Custom Fonts -->
+		<MauiFont Include="Resources\Fonts\*" />
+
+		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<AndroidResource Remove="Services\WMS\**" />
+		<AndroidResource Remove="ViewsModel\ATT\**" />
+		<AndroidResource Remove="ViewsModel\CRM\**" />
+		<AndroidResource Remove="ViewsModel\HCM\**" />
+		<AndroidResource Remove="ViewsModel\PAY\**" />
+		<AndroidResource Remove="ViewsModel\POS\**" />
+		<AndroidResource Remove="Views\ATT\**" />
+		<AndroidResource Remove="Views\CRM\**" />
+		<AndroidResource Remove="Views\HCM\**" />
+		<AndroidResource Remove="Views\PAY\**" />
+		<AndroidResource Remove="Views\POS\**" />
+		<Compile Remove="Services\WMS\**" />
+		<Compile Remove="ViewsModel\ATT\**" />
+		<Compile Remove="ViewsModel\CRM\**" />
+		<Compile Remove="ViewsModel\HCM\**" />
+		<Compile Remove="ViewsModel\PAY\**" />
+		<Compile Remove="ViewsModel\POS\**" />
+		<Compile Remove="Views\ATT\**" />
+		<Compile Remove="Views\CRM\**" />
+		<Compile Remove="Views\HCM\**" />
+		<Compile Remove="Views\PAY\**" />
+		<Compile Remove="Views\POS\**" />
+		<EmbeddedResource Remove="Services\WMS\**" />
+		<EmbeddedResource Remove="ViewsModel\ATT\**" />
+		<EmbeddedResource Remove="ViewsModel\CRM\**" />
+		<EmbeddedResource Remove="ViewsModel\HCM\**" />
+		<EmbeddedResource Remove="ViewsModel\PAY\**" />
+		<EmbeddedResource Remove="ViewsModel\POS\**" />
+		<EmbeddedResource Remove="Views\ATT\**" />
+		<EmbeddedResource Remove="Views\CRM\**" />
+		<EmbeddedResource Remove="Views\HCM\**" />
+		<EmbeddedResource Remove="Views\PAY\**" />
+		<EmbeddedResource Remove="Views\POS\**" />
+		<MauiCss Remove="Services\WMS\**" />
+		<MauiCss Remove="ViewsModel\ATT\**" />
+		<MauiCss Remove="ViewsModel\CRM\**" />
+		<MauiCss Remove="ViewsModel\HCM\**" />
+		<MauiCss Remove="ViewsModel\PAY\**" />
+		<MauiCss Remove="ViewsModel\POS\**" />
+		<MauiCss Remove="Views\ATT\**" />
+		<MauiCss Remove="Views\CRM\**" />
+		<MauiCss Remove="Views\HCM\**" />
+		<MauiCss Remove="Views\PAY\**" />
+		<MauiCss Remove="Views\POS\**" />
+		<MauiXaml Remove="Services\WMS\**" />
+		<MauiXaml Remove="ViewsModel\ATT\**" />
+		<MauiXaml Remove="ViewsModel\CRM\**" />
+		<MauiXaml Remove="ViewsModel\HCM\**" />
+		<MauiXaml Remove="ViewsModel\PAY\**" />
+		<MauiXaml Remove="ViewsModel\POS\**" />
+		<MauiXaml Remove="Views\ATT\**" />
+		<MauiXaml Remove="Views\CRM\**" />
+		<MauiXaml Remove="Views\HCM\**" />
+		<MauiXaml Remove="Views\PAY\**" />
+		<MauiXaml Remove="Views\POS\**" />
+		<None Remove="Services\WMS\**" />
+		<None Remove="ViewsModel\ATT\**" />
+		<None Remove="ViewsModel\CRM\**" />
+		<None Remove="ViewsModel\HCM\**" />
+		<None Remove="ViewsModel\PAY\**" />
+		<None Remove="ViewsModel\POS\**" />
+		<None Remove="Views\ATT\**" />
+		<None Remove="Views\CRM\**" />
+		<None Remove="Views\HCM\**" />
+		<None Remove="Views\PAY\**" />
+		<None Remove="Views\POS\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Remove="Route\Att_Route.cs" />
+		<Compile Remove="Route\Crm_Route.cs" />
+		<Compile Remove="Route\Hcm_Route.cs" />
+		<Compile Remove="Route\Pay_Route.cs" />
+		<Compile Remove="Route\Wms_Route.cs" />
+		<Compile Remove="ViewsModel\Frame\VmlDiscussion.cs" />
+		<Compile Remove="Views\Frame\FrmSubscriptionPayment.xaml.cs" />
+		<Compile Remove="Views\Frame\PopCheckOut.xaml.cs" />
+		<Compile Remove="Views\Frame\PopLiveChat.xaml.cs" />
+		<Compile Remove="Views\Frame\PopStockDetail.xaml.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<MauiXaml Remove="Views\Frame\FrmSubscriptionPayment.xaml" />
+		<MauiXaml Remove="Views\Frame\PopCheckOut.xaml" />
+		<MauiXaml Remove="Views\Frame\PopLiveChat.xaml" />
+		<MauiXaml Remove="Views\Frame\PopStockDetail.xaml" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="akgul.Maui.DataGrid" Version="4.0.6" />
+		<PackageReference Include="CommunityToolkit.Maui" Version="9.1.1" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.2" />
+		<PackageReference Include="FreshMvvm.Maui" Version="0.0.4" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.0-rc.1.24431.7" />
+		<PackageReference Include="Microsoft.Identity.Client" Version="4.66.1" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0-rc.1.24431.7" />
+		<PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.2.14" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="RGPopup.Maui" Version="1.1.2" />
+		<PackageReference Include="SQLite" Version="3.13.0" />
+		<PackageReference Include="sqlite-net-pcl" Version="1.9.172" />
+		<PackageReference Include="Syncfusion.Maui.Core" Version="27.1.58" />
+		<PackageReference Include="Syncfusion.Maui.DataGrid" Version="27.1.58" />
+		<PackageReference Include="Syncfusion.Maui.Popup" Version="27.1.58" />
+		<PackageReference Include="Syncfusion.Maui.TabView" Version="27.1.58" />
+		<PackageReference Include="System.Private.Uri" Version="4.3.2" />
+		<PackageReference Include="TouchEffect.Maui" Version="7.0.0" />
+		<PackageReference Include="UraniumUI.Material" Version="2.11.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Models\" />
+		<Folder Include="Resources\Messages\" />
+		<Folder Include="Services\ACC\" />
+		<Folder Include="DB\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="CHARS.HR.BOL">
+			<HintPath>Libraries\CHARS.HR.BOL.dll</HintPath>
+		</Reference>
+		<Reference Include="CHARS.HR.COMMON">
+			<HintPath>Libraries\CHARS.HR.COMMON.dll</HintPath>
+		</Reference>
+		<Reference Include="CS.ERP.BOL">
+			<HintPath>Libraries\CS.ERP.BOL.dll</HintPath>
+		</Reference>
+		<Reference Include="CS.ERP.EML">
+			<HintPath>Libraries\CS.ERP.EML.exe</HintPath>
+		</Reference>
+		<Reference Include="CS.ERP.PL">
+			<HintPath>Libraries\CS.ERP.PL.dll</HintPath>
+		</Reference>
+		<Reference Include="Newtonsoft.Json">
+			<HintPath>Libraries\Newtonsoft.Json.dll</HintPath>
+		</Reference>
+		<Reference Include="stdole">
+			<HintPath>Libraries\stdole.dll</HintPath>
+		</Reference>
+		<Reference Include="Stripe.net">
+			<HintPath>Libraries\Stripe.net.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<MauiXaml Include="Views\POS\FrmPosSaleInvoiceLst.xaml" />
+		<Compile Include="ViewsModel\POS\VmlSalesInvoice.cs" />
+		<Compile Include="Views\POS\ActionPopup.xaml.cs">
+			<DependentUpon>ActionPopup.xaml</DependentUpon>
+		</Compile>
+		<Compile Include="Views\POS\FrmPosSaleInvoiceLst.xaml.cs" />
+		<Compile Include="Views\POS\FrmPosSaleInvoicePop.xaml.cs">
+			<DependentUpon>FrmPosSaleInvoicePop.xaml</DependentUpon>
+		</Compile>
+		<Compile Include="Views\POS\OptionsPopup.xaml.cs">
+			<DependentUpon>OptionsPopup.xaml</DependentUpon>
+		</Compile>
+		<MauiXaml Include="Views\POS\FrmPosSaleInvoiceSet.xaml">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</MauiXaml>
+		<Compile Include="Views\POS\FrmPosSaleInvoiceSet.xaml.cs" />
+		<MauiXaml Include="Views\POS\FrmPosSaleInvoicePop.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Include="Views\POS\ActionPopup.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Include="Views\POS\OptionsPopup.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+	</ItemGroup>
+	<ItemGroup>
+		<Compile Include="ViewsModel\POS\VmlSalesQuotation.cs" />
+		<MauiXaml Include="Views\POS\FrmPosSaleQuotationLst.xaml" />
+		<Compile Include="Views\POS\FrmPosSaleQuotationLst.xaml.cs" />
+		<Compile Include="Views\POS\FrmPosSaleQuotationPop.xaml.cs">
+			<DependentUpon>FrmPosSaleQuotationPop.xaml</DependentUpon>
+		</Compile>
+		<MauiXaml Include="Views\POS\FrmPosSaleQuotationPop.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Include="Views\POS\FrmPosSaleQuotationSet.xaml">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</MauiXaml>
+		<Compile Include="Views\POS\FrmPosSaleQuotationSet.xaml.cs" />		
+	</ItemGroup>
+
+	<ItemGroup>
+		<MauiAsset Update="Resources\Raw\Message_EN.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</MauiAsset>
+	</ItemGroup>
+
+	<ItemGroup>
+		<MauiXaml Update="Views\CHT\FrmChtAgendaLst.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\CHT\FrmChtAgendaSet.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\CHT\FrmChtBookmarkLst.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\CHT\FrmChtBookmarkSet.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\CHT\FrmChtCallLst.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\CHT\FrmChtCallMediaLst.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\CHT\FrmChtCallMediaSet.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\CHT\FrmChtCallSet.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\CHT\FrmChtChatLst.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\CHT\FrmChtChatMediaLst.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\CHT\FrmChtChatMediaSet.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\CHT\FrmChtChatSet.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\CHT\FrmChtContactLst.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\CHT\FrmChtContactSet.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\CHT\FrmChtDocLst.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\CHT\FrmChtDocSet.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\CHT\FrmChtMeetingLst.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\CHT\FrmChtMeetingSet.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\CHT\FrmChtMentionLst.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\CHT\FrmChtMentionSet.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\CHT\FrmChtNoteLst.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\CHT\FrmChtNoteSet.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\CHT\FrmChtParticipantLst.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\CHT\FrmChtParticipantSet.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\CHT\FrmChtScheduleLst.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\CHT\FrmChtScheduleSet.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\CHT\FrmChtVBoardLst.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\CHT\FrmChtVBoardSet.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+	</ItemGroup>
+
+	<!-- <ItemGroup>
+		<None Remove="CS.ERP.PL" />
+		<None Remove="CS.ERP.BOL" />
+		<None Remove="CHARS.HR.COMMON" />
+		<None Remove="Services\ATT\" />
+		<None Remove="Services\PAY\" />
+		<None Remove="Services\CRM\" />
+		<None Remove="Services\ACC\" />
+		<None Remove="Services\WMS\" />
+		<None Remove="DB\" />
+		<None Remove="Route\" />
+		<None Remove="Views\ATT\" />
+		<None Remove="Views\PAY\" />
+		<None Remove="Views\CRM\" />
+		<None Remove="Views\WMS\" />
+		<None Remove="Views\ACC\" />
+		<None Remove="ViewsModel\ACC\" />
+		<None Remove="ViewsModel\CRM\" />
+		<None Remove="ViewsModel\ATT\" />
+		<None Remove="ViewsModel\PAY\" />
+		<None Remove="ViewsModel\WMS\" />
+		<None Remove="Models\Frame\" />
+		<None Remove="Models\POS\" />
+		<None Remove="Models\SYS\" />
+		<None Remove="BadgeView" />
+		<None Remove="Models\HCM\" />
+		<None Remove="Models\ATT\" />
+		<None Remove="Models\PAY\" />
+		<None Remove="Models\CRM\" />
+		<None Remove="Models\WMS\" />
+		<None Remove="Models\ACC\" />
+	</ItemGroup> -->
+
+	<!-- <ItemGroup>
+		<EmbeddedResource Update="BottomTabItem.xaml">
+			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="MainPage.xaml">
+			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="MainPageDetail.xaml">
+			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="MenuPage.xaml">
+			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Views\ACC\FrmAccAccountLst.xaml">
+			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Views\ACC\FrmAccAccountSet.xaml">
+			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Views\ACC\FrmAccGeneralLedgerLst.xaml">
+			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Views\ACC\FrmAccPeriodLst.xaml">
+			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Views\ACC\FrmAccPeriodSet.xaml">
+			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Views\Frame\ChangePasswordPage.xaml">
+			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Views\Frame\HomePage.xaml">
+			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+
+		<MauiXaml Update="Views\Frame\PopDiscussion.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Frame\PopNoti.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Frame\PopProduct.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Frame\PopSetting.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Frame\PopUserProfile.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\SYS\FrmAccessLst.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\SYS\FrmAccessSet.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\SYS\FrmApiConfigLst.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\SYS\FrmApiConfigSet.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\SYS\FrmCountryLst.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\SYS\FrmCountrySet.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\SYS\FrmSysApiConfigLst.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\SYS\FrmSysMyBillingLst.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\SYS\FrmSysMyOrderLst.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\SYS\FrmSysMyPaymentLst.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\SYS\FrmSysMyTransactionLst.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\SYS\OvaListFormCartView.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+	</ItemGroup> -->
+
+	<!-- <ItemGroup>
+	  <None Update="Libraries\CHARS.HR.BOL.dll">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Libraries\CHARS.HR.COMMON.dll">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Libraries\CS.ERP.BOL.dll">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Libraries\CS.ERP.EML.exe">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Libraries\CS.ERP.PL.dll">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Libraries\Newtonsoft.Json.dll">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Libraries\stdole.dll">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Libraries\Stripe.net.dll">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>-->
+
+	<ItemGroup>
+		<PackageReference Update="Microsoft.Maui.Controls.Compatibility" Version="9.0.0" />
+	</ItemGroup>
+</Project>

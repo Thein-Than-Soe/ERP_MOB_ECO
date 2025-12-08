@@ -1,0 +1,259 @@
+﻿using CS.ERP.PL.POS.DAT;
+using CS.ERP.PL.SYS.DAT;
+using CS.ERP_MOB.General;
+using CS.ERP_MOB.ViewsModel.POS;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+using Microsoft.Maui.Controls;
+
+
+namespace CS.ERP_MOB.Views.POS
+{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class FrmPosCustomerLst : ContentView
+    {
+
+        #region "Declaring"
+        VmlCustomer mVmlCustomer;
+        #endregion
+        #region "Constructor"
+        public FrmPosCustomerLst()
+        {
+            try
+            {
+                InitializeComponent();
+                BindingContext = mVmlCustomer = new VmlCustomer();
+                mVmlCustomer.mJSN_REQ_CUSTOMER.REQ_AUTHORIZATION = Common.mCommon.REQ_AUTHORIZATION;
+                mVmlCustomer.mJSN_REQ_CUSTOMER.RES_CUSTOMER.Add(new RES_CUSTOMER()); 
+                mVmlCustomer.getCustomer();
+                switchLanguage();
+            }
+            catch (Exception ex)
+            {
+                throw ex.InnerException;
+            }
+
+        }
+        #endregion
+        #region "Private Mehtod"
+        public void switchLanguage()
+        {
+            try
+            {
+                switch (Common.mCommon.UserSetting.LanguageAsk)
+                {
+                    case "1"://English
+                        {
+                            entSearch.Placeholder = "Search";
+                            TabActive.Text = "Active (" + mVmlCustomer.CustomerActiveList.Count + ")";
+                            TabInActive.Text = "InActive (" + mVmlCustomer.CustomerInActiveList.Count + ")";
+                            TabAll.Text = "All (" + mVmlCustomer.CustomerList.Count + ")";
+                        }
+                        break;
+                    case "2"://Myanmar
+                        {   
+                            Common.mCommon.SelectedMenu.Text = "၀ယ်ယူသူ";
+                            entSearch.Placeholder = "ရှာဖွေရန်";
+                            TabActive.Text = "အသုံးပြု  (" + mVmlCustomer.CustomerInActiveList.Count + ")";
+                            TabInActive.Text = "အသုံးမပြု (" + mVmlCustomer.CustomerInActiveList.Count + ")";
+                            TabAll.Text = "အားလုံး (" + mVmlCustomer.CustomerList.Count + ")";
+
+                            AcCode.Title = "ကုဒ်";
+                            AcName.Title = "အမည်";
+                            AcPhone.Title = "ဖုန်းနံပါတ်";
+                            AcEmail.Title = "အီးမေးလ်";
+
+                            ICode.Title = "ကုဒ်";
+                            IName.Title = "အမည်";
+                            IPhone.Title = "ဖုန်းနံပါတ်";
+                            IEmail.Title = "အီးမေးလ်";
+
+                            ACode.Title = "ကုဒ်";
+                            AName.Title = "အမည်";
+                            APhone.Title = "ဖုန်းနံပါတ်";
+                            AEmail.Title = "အီးမေးလ်";
+                        }
+                        break;
+                    default:
+                        {
+                            entSearch.Placeholder = "Search";
+                            TabActive.Text = "Active (" + mVmlCustomer.CustomerActiveList.Count + ")";
+                            TabInActive.Text = "InActive (" + mVmlCustomer.CustomerInActiveList.Count + ")";
+                            TabAll.Text = "All (" + mVmlCustomer.CustomerList.Count + ")";
+
+                        }
+                        break;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex.InnerException;
+            }
+        }
+        #endregion
+        #region "Event"
+        private void TgrNew_Tapped(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!Common.bindMenu("access-set"))
+                {
+                    Common.mCommon.SelectedMenu = new RES_MENU { ProductAsk = "1", Text = "FrmAdmin", MenuUrl = "FrmAdmin", logoImg = "" };
+                    MessagingCenter.Send<Application, string>(Application.Current, "ToastMessage", ApplicationMessage.Message.MenuAccessRight);
+                }
+                Common.routeMenu(Common.mCommon.SelectedMenu);
+
+
+                //if (Common.bindMenu("access-set"))
+                //{
+                //    Common.routeMenu("access-set", "Access Entry");
+                //}
+                //else
+                //{
+                //    MessagingCenter.Send<Application, string>(Application.Current, "ToastMessage", "no access right");
+                //}
+            }
+            catch (Exception ex)
+            {
+                throw ex.InnerException;
+            }
+        }
+        private void entSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                if (entSearch.Text != null && entSearch.Text != "")
+                {
+                    mVmlCustomer.searchData(e.NewTextValue);
+                }
+                else
+                {
+                    mVmlCustomer.searchData("");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex.InnerException;
+            }
+
+        }
+        private void lstView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            try
+            {
+                var l_RES_CUSTOMER = (RES_CUSTOMER)e.SelectedItem;
+                if (l_RES_CUSTOMER != null)
+                {
+                    if (!Common.bindMenu("access-set"))
+                    {
+                        Common.mCommon.SelectedMenu = new RES_MENU { ProductAsk = "1", Text = "FrmAdmin", MenuUrl = "FrmAdmin", logoImg = "" };
+                        MessagingCenter.Send<Application, string>(Application.Current, "ToastMessage", ApplicationMessage.Message.MenuAccessRight);
+                    }
+                    Common.routeMenu(Common.mCommon.SelectedMenu);
+
+                    //if (Common.bindMenu("access-set"))
+                    //{
+                    //    Common.routeMenuStr("access-set", "Access Entry", l_RES_CUSTOMER.Ask) ;
+                    //}
+                    //else
+                    //{
+                    //    MessagingCenter.Send<Application, string>(Application.Current, "ToastMessage", "no access right");
+                    //}
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex.InnerException;
+            }
+
+        }
+        private void grdView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            try
+            {
+                var l_RES_CUSTOMER = (RES_CUSTOMER)e.SelectedItem;
+                if (l_RES_CUSTOMER != null)
+                {
+                    if (!Common.bindMenu("access-set"))
+                    {
+                        Common.mCommon.SelectedMenu = new RES_MENU { ProductAsk = "1", Text = "FrmAdmin", MenuUrl = "FrmAdmin", logoImg = "" };
+                        MessagingCenter.Send<Application, string>(Application.Current, "ToastMessage", ApplicationMessage.Message.MenuAccessRight);
+                    }
+                    Common.routeMenu(Common.mCommon.SelectedMenu);
+
+
+                    //if (Common.bindMenu("access-set"))
+                    //{
+                    //    Common.routeMenuStr("access-set", "Access Entry", l_RES_CUSTOMER.Ask);
+                    //}
+                    //else
+                    //{
+                    //    MessagingCenter.Send<Application, string>(Application.Current, "ToastMessage", "no access right");
+                    //}
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex.InnerException;
+            }
+
+        }
+        private void TgrCardView_Tapped(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!Common.bindMenu("access-set"))
+                {
+                    Common.mCommon.SelectedMenu = new RES_MENU { ProductAsk = "1", Text = "FrmAdmin", MenuUrl = "FrmAdmin", logoImg = "" };
+                    MessagingCenter.Send<Application, string>(Application.Current, "ToastMessage", ApplicationMessage.Message.MenuAccessRight);
+                }
+                Common.routeMenu(Common.mCommon.SelectedMenu);
+
+                //if (Common.bindMenu("access-set"))
+                //{
+                //    Common.routeMenu("access-set", "Access Entry");
+                //}
+                //else
+                //{
+                //    MessagingCenter.Send<Application, string>(Application.Current, "ToastMessage", "no access right");
+                //}
+            }
+            catch (Exception ex)
+            {
+                throw ex.InnerException;
+            }
+        }
+        private void TgrRefresh_Tapped(object sender, EventArgs e)
+        {
+            try
+            {
+                entSearch.Text = "";
+                mVmlCustomer.getCustomer();
+            }
+            catch (Exception ex)
+            {
+                throw ex.InnerException;
+            }
+
+        }
+        private void TgrDisplayColumn_Tapped(object sender, EventArgs e)
+        {
+            try
+            {
+                //mVmlCustomer.GetAccessData();
+            }
+            catch (Exception ex)
+            {
+                throw ex.InnerException;
+            }
+
+        }
+
+        #endregion
+    }
+}

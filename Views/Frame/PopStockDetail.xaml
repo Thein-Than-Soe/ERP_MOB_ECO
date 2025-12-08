@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<pages:PopupPage
+    xmlns ="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x ="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:animations  ="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    x:Class="CS.ERP_MOB.Views.Frame.PopStockDetail"
+    HasSystemPadding ="true"
+    SystemPaddingSides="All"
+    CloseWhenBackgroundIsClicked="true">
+    <pages:PopupPage.Animation>
+        <animations:MoveAnimation
+            PositionIn="Bottom"
+            PositionOut="Bottom"
+            DurationIn  ="400"
+            DurationOut ="300"
+            EasingIn ="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="true" />
+    </pages:PopupPage.Animation>
+    <Grid
+        x:Name="ProductGrid"
+        HorizontalOptions="CenterAndExpand"
+        VerticalOptions  ="CenterAndExpand"
+        ColumnSpacing    ="0"
+        Padding="50,0,0,50">
+        <Grid.RowDefinitions>
+            <RowDefinition  Height="250" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition  Width="*" />
+            <ColumnDefinition  Width="250" />
+        </Grid.ColumnDefinitions>
+        <Frame 
+            Grid.Row ="0"
+            Grid.Column ="1"
+            Padding="0" 
+            CornerRadius="3"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+            <StackLayout
+                BackgroundColor="White"
+                VerticalOptions="FillAndExpand">
+                <!--title view-->
+                <StackLayout 
+                    HorizontalOptions="FillAndExpand" 
+                    VerticalOptions="Start"
+                    Orientation="Horizontal"
+                    HeightRequest="30"
+                    BackgroundColor="{StaticResource OvaPopupTitleColor}"
+                    Padding="{StaticResource padding}">
+                    <Label Text="Stock Detail" HorizontalOptions="CenterAndExpand"/>
+                </StackLayout>
+                <!--content area-->
+                <StackLayout
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand">
+                </StackLayout>
+            </StackLayout>
+        </Frame>
+    </Grid>
+</pages:PopupPage>

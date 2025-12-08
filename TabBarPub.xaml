@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="CS.ERP_MOB.TabBarPub"
+    xmlns:controls="clr-namespace:CS.ERP_MOB"
+    xmlns:ext="clr-namespace:CS.ERP_MOB.Extensions">
+    <ContentView.Content>
+        <Grid
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"
+            Padding="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Tab Items -->
+            <Grid
+                Grid.Row="0"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <controls:TabItem
+                    x:Name="home"
+                    Caption="{Binding Source={ext:LanguageExtension Key=SYS.Common.loading}, Path=Value}"
+                    IconSource="company_logo.png"
+                    BadgeCount="0"
+                    Selected="{Binding HomeSelected}"
+                    TapCommand="{Binding HomeCommand}"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand"
+                    Grid.Column="0" />
+
+                <!--<controls:TabItem
+                    x:Name="setting"
+                    Caption="Setting"
+                    IconSource="more.png"
+                    BadgeCount="0"
+                    Selected="{Binding Settingselected}"
+                    TapCommand="{Binding SettingCommand}"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand"
+                    Grid.Column="1" />-->
+            </Grid>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<pages:PopupPage
+    xmlns ="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x ="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages ="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    x:Class="CS.ERP_MOB.Views.Frame.PopLiveChat"
+    HasSystemPadding="true"
+    SystemPaddingSides="All"
+    CloseWhenBackgroundIsClicked="true">
+    <pages:PopupPage.Animation>
+        <animations:MoveAnimation
+            PositionIn="Bottom"
+            PositionOut="Bottom"
+            DurationIn="400"
+            DurationOut="300"
+            EasingIn  ="SinOut"
+            EasingOut ="SinIn"
+            HasBackgroundAnimation="true" />
+    </pages:PopupPage.Animation>
+    <Grid
+        x:Name="LiveChatGrid"
+        HorizontalOptions="FillAndExpand"
+        VerticalOptions ="FillAndExpand"
+        ColumnSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition  Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition   Width="*" />
+        </Grid.ColumnDefinitions>
+        <Frame 
+            Grid.Row="0"
+            Grid.Column="0"
+            CornerRadius="3"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand"
+            Padding="0">
+            <StackLayout
+                BackgroundColor="White"
+                Grid.Row       ="0"
+                Grid.Column    ="1"
+                VerticalOptions="FillAndExpand">
+                <!--title view-->
+                <StackLayout 
+                    HorizontalOptions="FillAndExpand" 
+                    VerticalOptions="Start"
+                    Orientation="Horizontal"
+                    HeightRequest="30"
+                    BackgroundColor="{StaticResource OvaPopupTitleColor}"
+                    Padding="{StaticResource padding}">
+                    <Label
+                        x:Name="lblTitle"
+                        Text="Live Chat"
+                        VerticalOptions="Center"
+                        HorizontalOptions="CenterAndExpand"/>
+                    <StackLayout
+                        Orientation="Horizontal">
+                        <Label
+                            x:Name="lblMinized"
+                            Text="--" 
+                            VerticalOptions="Center" 
+                            HorizontalOptions="Center"
+                            Padding="5,0,5,0">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer   Tapped="lblMinized__Tapped"   NumberOfTapsRequired="1" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Label
+                            x:Name="lblClose"
+                            Text="X" VerticalOptions="Center" 
+                            HorizontalOptions="End"
+                            Padding="5,0,5,0">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer  Tapped="lblClose_Tapped" NumberOfTapsRequired="1" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+                </StackLayout>
+                <!--content area-->
+            </StackLayout>
+        </Frame>
+    </Grid>
+</pages:PopupPage>

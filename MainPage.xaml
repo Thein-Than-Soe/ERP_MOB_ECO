@@ -1,0 +1,520 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="CS.ERP_MOB.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:general="clr-namespace:CS.ERP_MOB.General"
+    xmlns:tabbar="clr-namespace:CS.ERP_MOB"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:views="clr-namespace:CS.ERP_MOB.Views.Frame"
+    NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="0,0,0,0" />
+            <On Platform="Android" Value="0,0,0,0" />
+        </OnPlatform>
+    </ContentPage.Padding>
+    <ContentView>
+        <ContentView.GestureRecognizers>
+            <TapGestureRecognizer Tapped="Page_Tapped" />
+        </ContentView.GestureRecognizers>
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
+            <!--  customize title view  -->
+            <StackLayout
+                Grid.Row="0"
+                Grid.Column="0"
+                Padding="{StaticResource padding}"
+                BackgroundColor="{Binding ThemeSettingBanner.PropertiesBgColor, Source={x:Static general:Common.mCommon}}"
+                VerticalOptions="FillAndExpand">
+                <Grid
+                    x:Name="PublicTitleView"
+                    Padding="0"
+                    IsVisible="{Binding UserLoggedOut, Source={x:Static general:Common.mCommon}}"
+                    VerticalOptions="CenterAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label
+                        Padding="10,0,5,0"
+                        FontFamily="{StaticResource FontAwesomeSolid}"
+                        FontSize="{StaticResource HomeTitleFontSize}"
+                        Text="&#xf0c9;"
+                        TextColor="White"
+                        VerticalOptions="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding MenuCommand}" NumberOfTapsRequired="1" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <!--<Image
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        HorizontalOptions="Start"
+                        VerticalOptions  ="Center"
+                        HeightRequest="25"
+                        WidthRequest="30"
+                        Source="company_logo.png">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding MenuCommand}"
+                                NumberOfTapsRequired="1" />
+                        </Image.GestureRecognizers>
+                    </Image>-->
+
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        FontSize="{StaticResource HomeTitleFontSize}"
+                        HorizontalOptions="StartAndExpand"
+                        Text="{Binding Title}"
+                        TextColor="{StaticResource OvaFrontColor}"
+                        VerticalOptions="Center" />
+                    <StackLayout
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        HorizontalOptions="End"
+                        Orientation="Horizontal"
+                        Spacing="10"
+                        VerticalOptions="Center">
+                        <StackLayout
+                            HorizontalOptions="StartAndExpand"
+                            Orientation="Horizontal"
+                            Spacing="5"
+                            VerticalOptions="FillAndExpand">
+                            <Label
+                                FontFamily="{StaticResource FontAwesomeSolid}"
+                                Text="&#xf234;"
+                                TextColor="{StaticResource OvaFrontColor}"
+                                VerticalOptions="Center" />
+                            <Label
+                                x:Name="SignUp"
+                                Text="Sign up"
+                                TextColor="{StaticResource OvaFrontColor}"
+                                VerticalOptions="Center" />
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TgrSignUp_Tapped" />
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <StackLayout
+                            HorizontalOptions="StartAndExpand"
+                            Orientation="Horizontal"
+                            Spacing="5"
+                            VerticalOptions="FillAndExpand">
+                            <Label
+                                FontFamily="{StaticResource FontAwesomeSolid}"
+                                Text="&#xf2f6;"
+                                TextColor="{StaticResource OvaFrontColor}"
+                                VerticalOptions="Center" />
+                            <Label
+                                x:Name="SignIn"
+                                Text="Sign in"
+                                TextColor="{StaticResource OvaFrontColor}"
+                                VerticalOptions="Center" />
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TgrSignIn_Tapped" />
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </StackLayout>
+                </Grid>
+                <Grid
+                    x:Name="PrivateTitleView"
+                    IsVisible="{Binding UserLoggedIn, Source={x:Static general:Common.mCommon}}"
+                    VerticalOptions="CenterAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Padding="10,0,5,0"
+                        FontFamily="{StaticResource FontAwesomeSolid}"
+                        FontSize="{StaticResource HomeTitleFontSize}"
+                        Text="&#xf0c9;"
+                        TextColor="White"
+                        VerticalOptions="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding MenuCommand}" NumberOfTapsRequired="1" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <!--<Image
+                        Grid.Row ="0"
+                        Grid.Column ="0"
+                        HorizontalOptions="Start"
+                        VerticalOptions  ="Center"
+                        HeightRequest="25"
+                        WidthRequest="30"
+                        Source="company_logo.png">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding MenuCommand}"
+                                NumberOfTapsRequired="1" />
+                        </Image.GestureRecognizers>
+                    </Image>-->
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        FontSize="{StaticResource HomeTitleFontSize}"
+                        HorizontalOptions="StartAndExpand"
+                        Text="{Binding Title}"
+                        TextColor="{StaticResource OvaFrontColor}"
+                        VerticalOptions="Center" />
+                    <StackLayout
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        Padding="0,0,0,0"
+                        HorizontalOptions="End"
+                        Orientation="Horizontal"
+                        VerticalOptions="Center">
+                        <!--  Search  -->
+                        <Frame
+                            Padding="5"
+                            BackgroundColor="Transparent"
+                            IsVisible="{Binding RegionSettingBannerSearch.RegionVisibilityAsk, Source={x:Static general:Common.mCommon}}">
+                            <Label
+                                BackgroundColor="Transparent"
+                                FontFamily="{StaticResource FontAwesomeSolid}"
+                                FontSize="{StaticResource HomeTitleFontSize}"
+                                HorizontalOptions="Center"
+                                Text="&#xf002;"
+                                TextColor="{StaticResource OvaFrontColor}"
+                                VerticalOptions="Center" />
+                        </Frame>
+                        <!--  AI  -->
+                        <Frame
+                            Padding="5"
+                            BackgroundColor="Transparent"
+                            IsVisible="{Binding RegionSettingBannerAI.RegionVisibilityAsk, Converter={StaticResource StringToBoolConverter}, Source={x:Static general:Common.mCommon}}">
+                            <Label
+                                BackgroundColor="Transparent"
+                                FontFamily="{StaticResource FontAwesomeSolid}"
+                                FontSize="{StaticResource HomeTitleFontSize}"
+                                HorizontalOptions="Center"
+                                Text="&#xf544;"
+                                TextColor="{StaticResource OvaFrontColor}"
+                                VerticalOptions="Center" />
+                        </Frame>
+                        <!--  Order  -->
+                        <Frame
+                            Padding="5"
+                            BackgroundColor="Transparent"
+                            IsVisible="{Binding RegionSettingBannerOrder.RegionVisibilityAsk, Converter={StaticResource StringToBoolConverter}, Source={x:Static general:Common.mCommon}}">
+                            <Label
+                                BackgroundColor="Transparent"
+                                FontFamily="{StaticResource FontAwesomeSolid}"
+                                FontSize="{StaticResource HomeTitleFontSize}"
+                                HorizontalOptions="Center"
+                                Text="&#xf49e;"
+                                TextColor="{StaticResource OvaFrontColor}"
+                                VerticalOptions="Center" />
+                        </Frame>
+                        <!--  Shopping Cart  -->
+                        <Frame
+                            Padding="5"
+                            BackgroundColor="Transparent"
+                            IsVisible="{Binding RegionSettingBannerShoppingCart.RegionVisibilityAsk, Converter={StaticResource StringToBoolConverter}, Source={x:Static general:Common.mCommon}}">
+                            <Label
+                                BackgroundColor="Transparent"
+                                FontFamily="{StaticResource FontAwesomeSolid}"
+                                FontSize="{StaticResource HomeTitleFontSize}"
+                                HorizontalOptions="Center"
+                                Text="&#xf217;"
+                                TextColor="{StaticResource OvaFrontColor}"
+                                VerticalOptions="Center" />
+                        </Frame>
+                        <!--  Wishlist  -->
+                        <Frame
+                            Padding="5"
+                            BackgroundColor="Transparent"
+                            IsVisible="{Binding RegionSettingBannerWishlist.RegionVisibilityAsk, Converter={StaticResource StringToBoolConverter}, Source={x:Static general:Common.mCommon}}">
+                            <Label
+                                BackgroundColor="Transparent"
+                                FontFamily="{StaticResource FontAwesomeSolid}"
+                                FontSize="{StaticResource HomeTitleFontSize}"
+                                HorizontalOptions="Center"
+                                Text="&#xf004;"
+                                TextColor="{StaticResource OvaFrontColor}"
+                                VerticalOptions="Center" />
+                        </Frame>
+                        <StackLayout IsVisible="{Binding RegionSettingBannerProfile.RegionVisibilityAsk, Converter={StaticResource StringToBoolConverter}, Source={x:Static general:Common.mCommon}}" VerticalOptions="Center">
+                            <Frame Padding="0" CornerRadius="40">
+                                <Image
+                                    HeightRequest="30"
+                                    Source="{Binding User.ProfilePicture, Source={x:Static general:Common.mCommon}}"
+                                    VerticalOptions="Center"
+                                    WidthRequest="30">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding UserProfileCommand}" NumberOfTapsRequired="1" />
+                                    </Image.GestureRecognizers>
+                                </Image>
+                            </Frame>
+                        </StackLayout>
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+            <AbsoluteLayout Grid.Row="1" Grid.Column="0">
+                <StackLayout
+                    AbsoluteLayout.LayoutBounds="0,0,1,1"
+                    AbsoluteLayout.LayoutFlags="All"
+                    Orientation="Vertical">
+
+                    <!--  alert message area  -->
+                    <StackLayout HeightRequest="20" IsVisible="{Binding ApplicationAlert, Source={x:Static general:Common.mCommon}}">
+                        <Frame
+                            Padding="0"
+                            BackgroundColor="{StaticResource OvaErrColor}"
+                            CornerRadius="0"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="Center">
+                            <Label
+                                x:Name="AlertMessage"
+                                HorizontalOptions="Center"
+                                Text="No Connection to Webserver!"
+                                TextColor="{StaticResource OvaFrontColor}" />
+                        </Frame>
+                    </StackLayout>
+
+                    <!--  flyout area  -->
+                    <StackLayout VerticalOptions="FillAndExpand">
+                        <ContentView
+                            x:Name="CView"
+                            Content="{Binding CvWorkingArea}"
+                            VerticalOptions="FillAndExpand" />
+                    </StackLayout>
+                </StackLayout>
+
+                <!--  toast message area  -->
+                <StackLayout
+                    AbsoluteLayout.LayoutBounds="0,1,1,0.05"
+                    AbsoluteLayout.LayoutFlags="All"
+                    BackgroundColor="{StaticResource OvaAlertColor}"
+                    HeightRequest="30"
+                    IsVisible="{Binding FormAlert, Source={x:Static general:Common.mCommon}}"
+                    Orientation="Horizontal">
+                    <Grid
+                        ColumnSpacing="0"
+                        HorizontalOptions="FillAndExpand"
+                        RowSpacing="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Frame
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Padding="0"
+                            BackgroundColor="{StaticResource OvaAlertColor}"
+                            CornerRadius="0"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand">
+                            <Label
+                                HorizontalOptions="Center"
+                                Text="{Binding FormAlertMessage, Source={x:Static general:Common.mCommon}}"
+                                VerticalOptions="CenterAndExpand" />
+                        </Frame>
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            HorizontalOptions="End"
+                            HorizontalTextAlignment="Center"
+                            Text="X"
+                            VerticalOptions="Center"
+                            WidthRequest="70">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CloseToastCommand}" NumberOfTapsRequired="1" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
+                </StackLayout>
+
+                <!--  Float Right  -->
+                <StackLayout
+                    AbsoluteLayout.LayoutBounds="1,1,50,120"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    InputTransparent="False"
+                    IsVisible="{Binding RegionSettingFloatRight.RegionVisibilityAsk, Converter={StaticResource StringToBoolConverter}, Source={x:Static general:Common.mCommon}}">
+                    <StackLayout
+                        Padding="0"
+                        BindableLayout.ItemsSource="{Binding FloatRightList, Source={x:Static general:Common.mCommon}}"
+                        InputTransparent="False"
+                        Spacing="10"
+                        VerticalOptions="End">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Frame
+                                        Padding="0"
+                                        BackgroundColor="{Binding ThemeSettingFloatRight.PropertiesBgColor, Source={x:Static general:Common.mCommon}}"
+                                        CornerRadius="25"
+                                        HasShadow="False"
+                                        HeightRequest="50"
+                                        HorizontalOptions="End"
+                                        VerticalOptions="Center"
+                                        WidthRequest="50">
+                                        <Frame.Behaviors>
+                                            <toolkit:TouchBehavior
+                                                LongPressCompleted="FloatRight_LongPressCompleted"
+                                                LongPressDuration="800"
+                                                ShouldMakeChildrenInputTransparent="True" />
+                                        </Frame.Behaviors>
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="FloatRight_Tapped" />
+                                        </Frame.GestureRecognizers>
+
+                                        <Label
+                                            FontFamily="{StaticResource FontAwesomeSolid}"
+                                            FontSize="30"
+                                            HorizontalOptions="Center"
+                                            InputTransparent="True"
+                                            Text="{Binding Icon, Converter={StaticResource IconConverter}}"
+                                            TextColor="{Binding ThemeSettingFloatRight.PropertiesFontColor, Source={x:Static general:Common.mCommon}}"
+                                            VerticalOptions="Center" />
+                                    </Frame>
+
+                                    <!--  ❌ Delete Button  -->
+                                    <Frame
+                                        Padding="0"
+                                        BackgroundColor="Red"
+                                        CornerRadius="9"
+                                        HeightRequest="18"
+                                        HorizontalOptions="End"
+                                        IsVisible="{Binding CostCenterCode_0_50, Converter={StaticResource StringToBoolConverter}}"
+                                        TranslationX="-30"
+                                        TranslationY="-9"
+                                        VerticalOptions="Start"
+                                        WidthRequest="18">
+                                        <Label
+                                            FontSize="10"
+                                            HorizontalOptions="Center"
+                                            Text="✕"
+                                            TextColor="White"
+                                            VerticalOptions="Center">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="CloseButton_FloatRight" />
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                    </Frame>
+                                </Grid>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+                </StackLayout>
+                <!--  Float Left  -->
+                <StackLayout
+                    x:Name="ShareButton"
+                    AbsoluteLayout.LayoutBounds="0,1,60,550"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    HorizontalOptions="Start"
+                    IsVisible="{Binding RegionSettingFloatLeft.RegionVisibilityAsk, Converter={StaticResource StringToBoolConverter}, Source={x:Static general:Common.mCommon}}"
+                    Orientation="Vertical"
+                    VerticalOptions="End">
+
+                    <!--  Vertical social buttons container (hidden initially)  -->
+                    <StackLayout
+                        x:Name="ShareList"
+                        Padding="0"
+                        BindableLayout.ItemsSource="{Binding FloatLeftList, Source={x:Static general:Common.mCommon}}"
+                        IsVisible="True"
+                        Spacing="10"
+                        VerticalOptions="End">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Frame
+                                        Padding="0"
+                                        BackgroundColor="{Binding ThemeSettingFloatLeft.PropertiesBgColor, Source={x:Static general:Common.mCommon}}"
+                                        CornerRadius="25"
+                                        HasShadow="True"
+                                        HeightRequest="50"
+                                        WidthRequest="50">
+                                        <Frame.Behaviors>
+                                            <toolkit:TouchBehavior
+                                                LongPressCompleted="FloatLeft_LongPressCompleted"
+                                                LongPressDuration="800"
+                                                ShouldMakeChildrenInputTransparent="True" />
+                                        </Frame.Behaviors>
+                                        <Label
+                                            FontFamily="{StaticResource FontAwesomeBrands}"
+                                            FontSize="28"
+                                            HorizontalOptions="Center"
+                                            Text="{Binding Icon, Converter={StaticResource IconConverter}}"
+                                            TextColor="{Binding ThemeSettingFloatLeft.PropertiesFontColor, Source={x:Static general:Common.mCommon}}"
+                                            VerticalOptions="Center" />
+                                    </Frame>
+                                    <!--  ❌ Delete Button  -->
+                                    <Frame
+                                        Padding="0"
+                                        BackgroundColor="Red"
+                                        CornerRadius="9"
+                                        HeightRequest="18"
+                                        HorizontalOptions="End"
+                                        IsVisible="{Binding CostCenterCode_0_50, Converter={StaticResource StringToBoolConverter}}"
+                                        TranslationX="-30"
+                                        TranslationY="-9"
+                                        VerticalOptions="Start"
+                                        WidthRequest="18">
+                                        <Label
+                                            FontSize="10"
+                                            HorizontalOptions="Center"
+                                            Text="✕"
+                                            TextColor="White"
+                                            VerticalOptions="Center">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="CloseButton_FloatLeft" />
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                    </Frame>
+                                </Grid>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+
+                    <!--  Main Floating Share Button  -->
+                    <Frame
+                        x:Name="BtnMainShare"
+                        Padding="0"
+                        BackgroundColor="{Binding ThemeSettingFloatLeft.PropertiesBgColor, Source={x:Static general:Common.mCommon}}"
+                        CornerRadius="27.5"
+                        HasShadow="True"
+                        HeightRequest="55"
+                        HorizontalOptions="Center"
+                        VerticalOptions="End"
+                        WidthRequest="55">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="BtnMainShare_Tapped" />
+                        </Frame.GestureRecognizers>
+                        <Label
+                            FontFamily="{StaticResource FontAwesomeSolid}"
+                            FontSize="28"
+                            HorizontalOptions="Center"
+                            Text="&#xF142;"
+                            TextColor="{Binding ThemeSettingFloatLeft.PropertiesFontColor, Source={x:Static general:Common.mCommon}}"
+                            VerticalOptions="Center" />
+                    </Frame>
+
+                </StackLayout>
+
+            </AbsoluteLayout>
+            <!--  <tabbar:BottomTabControl  -->
+            <tabbar:TabBarPub
+                Grid.Row="2"
+                Grid.Column="0"
+                BackgroundColor="{Binding UserSetting.ActionBarBgColor, Source={x:Static general:Common.mCommon}}"
+                IsVisible="{Binding UserLoggedOut, Source={x:Static general:Common.mCommon}}" />
+            <tabbar:TabBar
+                Grid.Row="2"
+                Grid.Column="0"
+                BackgroundColor="{Binding UserSetting.ActionBarBgColor, Source={x:Static general:Common.mCommon}}"
+                IsVisible="{Binding UserLoggedIn, Source={x:Static general:Common.mCommon}}" />
+
+        </Grid>
+    </ContentView>
+
+</ContentPage>

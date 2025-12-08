@@ -1,0 +1,6148 @@
+{  
+  "WMS":{
+    "Common":{
+      "loading":"加載中",
+      "grid":{
+        "emptydatastring": "无数据显示", 
+        "pagergotopagestring": "转至页面：", 
+        "pagershowrowsstring": "显示行列"
+      },
+      "btnName":{
+        "Search":"搜索",
+        "Less":"较少",
+        "More":"更多",
+        "NewRow":"添加新行",
+        "DownloadTemplate":"下載模板",
+        "UploadTemplate":"上傳 csv",
+        "Clear":"清除"
+      },
+      "btnTooltip":{
+        "Home":"点击返回主页",
+        "Back": "点击返回",
+        "ColumnShowHide":"單擊以顯示或隱藏列",
+        "ChangeView":"点击更改列表视图",
+        "Search":"点击搜索",
+        "Less":"点击隐藏更多",
+        "More":"点击使用更多条件搜索",
+        "NewRow":"單擊以添加新行",
+        "DownloadTemplate":"點擊下載",
+        "UploadTemplate":"点击上传"
+      },
+      "view":{
+        "GridView":"網格視圖",
+        "WebView":"網頁視圖",
+        "CardView":"卡片視圖"
+      },
+      "plh":{
+        "Search":"在此处输入搜索",
+        "Select":"选择"
+      },
+      "confirm":{        
+        "Delete": "是否要放弃更改？",
+        "Void": "你确定要作废吗?",
+        "Active": "您確定要激活嗎?",
+        "Inactive": "您確定要停用嗎?",
+        "New": "是否要放弃更改?"
+      },
+      "ifo":{
+        "Search":"結果將顯示"
+      }
+    },
+    "Setup":{ 
+      "lbl":{
+        "Code":"代码",
+        "Name":"姓名",
+        "Description":"描述",
+        "Status":"状态",
+        "Sequence":"顺序",
+        "Remark":"备注",
+        "Remove":"消除",
+        "TD":"TD",
+        "User":"用户"
+      }, 
+      "plh":{
+        "Code":"代码",
+        "Name":"姓名",
+        "Description":"描述",
+        "Status":"状态",
+        "Sequence":"顺序",
+        "Remark":"备注",
+        "Remove":"消除",
+        "TD":"TD",
+        "User":"用户"
+      },
+      "ifo":{
+        "Title":"更多信息:",
+        "Code":"這是代碼，強制性的。最大字符數 - 50",
+        "Name":"這是名稱，必填。最大字符數 - 255",
+        "Description":"這是描述，可選。最大字符數 - 500",
+        "Sequence":"這是序列，可選.",
+        "Remark":"這是備註，可選."
+      },
+      "rule":{
+        "Code":"需要代碼.",
+        "Name":"姓名為必填項.",
+        "Min":"最小字符為",
+        "Max":"最大字符數為",
+        "Sequence":"序列不能小於零."
+      },
+      "impAlert":{
+        "Code":"在添加新行之前，需要填寫代碼.",
+        "Name":"添加新行之前，需要填寫名稱.",
+        "Stock": "在添加新行之前，需要選擇庫存",
+        "Location": "添加新線路之前，需要選擇位置",
+        "InventorySchedule":"添加新行之前，需要選擇庫存計劃"
+      }
+    },
+    "InventorySchedule":{
+      "lbl":{
+        "Frequency":"频率",
+        "NotiDate":"备注 日期",
+        "ScheduleStatus":"日程状态"
+      },
+      "ifo":{
+        "Frequency":"这是频率，可选.",
+        "NotiDate":"这是通知日期，可选.",
+        "ScheduleStatus":"这是计划状态，可选."
+      }
+    } ,
+    "InventoryCounter":{
+      "lbl":{
+        "InventorySchedule":"庫存表",
+        "Location":"地点",
+        "Stock":"商品",
+        "UOM":"计量单位",
+        "QTY":"数量",
+        "TotalQTY":"总数量"
+      },
+      "ifo":{
+        "InventorySchedule":"這是庫存計劃，可選.",
+        "Location":"这是位置，可选.",
+        "Stock":"這是庫存，可選.",
+        "UOM":"这是 计量单位，可选.",
+        "QTY":"这是数量，可选.",
+        "TotalQTY":"这是总数量，可选."
+      },
+      "rule":{
+        "InventorySchedule":"需要庫存表",
+        "Location":"位置为必填项."
+      }
+    },
+    "InventoryLocation":{
+      "lbl":{
+        "Stock":"商品",
+        "Location":"地点",
+        "Type":"类型",
+        "QTY":"数量",
+        "Base":"根据",
+        "Length":"长度",
+        "Weight":"重量",
+        "CapacityWeight":"容量 重量",
+        "LocationStatus":"位置狀態"
+      },
+      "ifo":{
+        "Stock":"這是庫存，可選.",
+        "Location":"这是位置，可选.",
+        "Type":"这是类型，可选.",
+        "QTY":"这是数量，可选.",
+        "Base":"这是基础，可选.",
+        "Length":"这是长度，可选.",
+        "Weight":"这是重量，可选.",
+        "CapacityWeight":"這是容量重量，可選.",
+        "LocationStatus":"這是位置狀態，可選."
+
+      },
+      "rule":{
+        "Stock":"需要庫存.",
+        "Location":"位置为必填项."
+      }
+    },
+    "PickList":{
+      "lbl":{
+        "PickListType":"选择列表类型",
+        "CreatedDate":"创建日期",
+        "PickupDate":"挑个日子",
+        "FinishedDate":"完成日期",
+        "PickupStatus":"取件状态",
+        "Stock":"商品",
+        "AddtoList":"添加到列表",
+        "Tnc":"条款&条件",
+        "Discount":"折扣",
+        "Company":"公司",
+        "StartDate":"开始日期",
+        "EndDate":"结束日期",
+        "QTY":"数量",
+        "UOM":"计量单位",
+        "SN":"序列号",
+        "SaleDate":"发售日期",
+        "Total":"总金额",
+        "ContactPhone":"电话号码",
+        "SalePerson":"营业员",
+        "ParentCode":"引用代码",
+        "PickListNo":"选货清单编号",
+        "PickListName":"选择列表名称",
+        "BrowseTransaction":"浏览交易"
+      },
+      "plh":{
+        "PickListType":"选择列表类型",
+        "PickupStatus":"取件状态"
+      },
+      "ifo":{
+          "PickListType":"这是选择列表类型，可选.",
+          "CreatedDate":"这是创建日期，可选.",
+          "PickupDate":"这是取件日期，可选.",
+          "FinishedDate":"这是完成日期，可选.",
+          "PickupStatus":"这是取件状态，可选.",
+          "Stock":"这是销售库存，可选.",
+          "StockBrowse":"这是股票浏览交易，可选."
+      },
+      "btnTooltip":{
+        "AddtoList":"点我添加列表"
+      }
+    },
+    "PickListPost":{
+      "lbl":{
+        "PickListToAccPosting":"选择列表到帐户过帐",
+        "Company":"公司",
+        "Account":"帐户",
+        "PostingFigure":"发图",
+        "Confirm":"确认",
+        "Cancel":"取消",
+        "Debit":"借方",
+        "Credit":"信用"
+      }
+    },
+    "ScheduleStatus":[
+     {"code": "1", "description": "是的" },
+     { "code": "0", "description": "不" }
+     ],
+     "PickListBrowse":{
+      "lbl":{
+      "IssueNo":"发行数量",
+      "StartDate":"开始日期",
+      "EndDate":"结束日期",
+      "Type":"类型",
+      "UOM":"计量单位",
+      "QTY":"数量",
+      "Location":"地点",
+      "Total":"总金额",
+      "ContactPhone":"电话号码",
+      "Contact":"联系人姓名",
+      "Customer":"客户",
+      "Date":"日期",
+      "Company":"公司 ",
+      "Transaction":"交易"
+     }
+    }
+  },
+  "POS":{
+    "Common":{
+      "loading":"加载中",
+      "grid":{
+        "emptydatastring": "无数据显示", 
+        "pagergotopagestring": "转至页面：", 
+        "pagershowrowsstring": "显示行列："
+      },
+      "btnName":{
+        "Search":"搜索",
+        "Less":" 较少",
+        "More":" 更多",
+        "NewRow":"添加新行",
+        "DownloadTemplate":"下載模板",
+        "UploadTemplate":"上傳 csv",
+        "Clear":"清除"
+      },
+      "btnTooltip":{
+        "Home":"点击返回主页",
+        "Back": "点击返回",
+        "ColumnShowHide":"單擊以顯示或隱藏列",
+        "ChangeView":"点击更改列表视图",
+        "Search":"点击搜索",
+        "Less":"点击隐藏更多",
+        "More":"点击搜索更多条件",
+        "NewRow":"点击增新",
+        "DownloadTemplate":"點擊下載",
+        "UploadTemplate":"点击上传",
+        "AddtoList":"点我添加列表",
+        "Upload":"点击上传",
+        "Clear":"單擊以清除所有條件",
+        "Edit":"点击编辑"
+      },
+      "view":{
+        "GridView":"網格視圖",
+        "WebView":"網頁視圖",
+        "CardView":"卡片視圖"
+      },
+      "plh":{
+        "Search":"在此处输入搜索",
+        "Select":"选择"
+      },
+      "confirm":{        
+        "Delete": "是否要放弃更改?",
+        "Void": "你确定要作废吗?",
+        "Active": "您確定要激活嗎?",
+        "Inactive": "您確定要停用嗎?",
+        "New": "是否要放弃更改?"
+      },
+      "ifo":{
+        "Search":"結果將顯示"
+      }
+    },
+    "Setup":{ 
+      "lbl":{
+        "Code":"代码",
+        "Name":"姓名",
+        "Description":"描述",
+        "Status":"状态",
+        "Sequence":"顺序",
+        "Remark":"备注",
+        "Remove":"消除",
+        "TD":"TD",
+        "User":"用户"
+      }, 
+      "plh":{
+        "Code":"代码",
+        "Name":"姓名",
+        "Description":"描述",
+        "Status":"状态",
+        "Sequence":"顺序",
+        "Remark":"备注",
+        "Remove":"消除",
+        "TD":"TD",
+        "User":"用户"
+        
+      },
+      "ifo":{
+        "Title":"更多信息:",
+        "Code":"這是代碼，強制性的。最大字符數 - 50",
+        "Name":"這是名稱，必填。最大字符數 - 255",
+        "Description":"這是描述，可選。最大字符數 - 500",
+        "Sequence":"這是序列，可選.",
+        "Remark":"這是備註，可選."
+      },
+      "rule":{
+        "Code":"需要代碼.",
+        "Name":"姓名為必填項.",
+        "Min":"最小字符為",
+        "Max":"最大字符數為",
+        "Sequence":"序列不能小於零."
+      },
+      "impAlert":{
+        "Code":"在添加新行之前，需要填寫代碼.",
+        "Name":"添加新行之前，需要填寫名稱."
+      }
+    } ,
+    "RemarkTnc":{
+      "lbl":{
+      "Company":"公司 ",
+      "Location":"地点",
+      "CostCenter":"成本中心",
+      "Terms":"条款&条件"
+    },
+    "ifo":{
+      "Company":"這是公司，可選.",
+      "Location":"这是位置，可选.",
+      "CostCenter":"这是成本中心，可选.",
+      "Terms":"这是条款和条件，可选."
+    }
+  },
+    "CompanyPaymentType":{
+      "lbl":{
+        "Company":"公司",
+        "PaymentType":"支付方式"
+      },
+      "ifo":{
+        "Company":"這是公司，可選.",
+        "PaymentType":"這是付款類型，可選."
+      },
+      "rule":{
+        "Company":"公司為必填項",
+        "PaymentType":"添加索赔模板详细信息."
+      }
+    } ,
+    "HitPay":{
+      "lbl":{
+        "URL":"网址",
+        "Server":"服务器",
+        "AuthType":"验证类型",
+        "APIValue":"API值",
+        "APIKey":"API密钥",
+        "User":"用户",
+        "Password":"密码",
+        "PublicKey":"公钥",
+        "SecreteKey":"秘钥",
+        "Salt":"盐",
+        "Company":"公司"
+      },
+      "plh":{
+        "Server":"服务器",
+        "APIKey":"API密钥",
+        "Salt":"盐"
+      },
+      "ifo":{
+        "Server":"这是服务器",
+        "APIKey":"这是 API 密钥",
+        "Salt":"这是盐，可选.",
+        "Company":"這是公司，可選."
+      },
+      "rule":{
+        "URL":"网址为必填项",
+        "APIKey":"需要 API 密钥"
+      }
+    },
+    "StockCategory":{
+        "lbl":{
+          "SetParent":"设置父级",
+          "Level":"等级",
+          "LinkAsk1":"链接询问 1",
+          "LinkAsk2":"链接询问 2",
+          "LinkAsk3":"链接询问 3",
+          "CategoryLink":"分类链接",
+          "CategoryURL":"类别网址",
+          "ParentCategory":" 家长类别:"
+        },
+        "ifo":{
+           "SetParent":"这是设置父项，可选.",
+           "Level":"这是级别，可选.",
+           "LinkAsk1":"这是 链接询问 1，可选.",
+           "LinkAsk2":"这是 链接询问 2，可选.",
+           "LinkAsk3":"这是 链接询问 3，可选.",
+           "CategoryLink":"这是库存类别链接，可选.",
+           "CategoryURL":"这是库存类别 URl，可选."
+        },
+        "plh":{
+          "LinkAsk1":"链接询问 1",
+          "LinkAsk2":"链接询问 2",
+          "LinkAsk3":"链接询问 3",
+          "CategoryLink":"分类链接",
+          "CategoryURL":"类别网址"
+        }
+    },
+    "GST":{
+      "lbl":{
+        "StartDate":"开始日期",
+        "EndDate":"结束日期",
+        "GSTRate":"消费税率"
+      },
+      "ifo":{
+        "StartDate":"这是开始日期，可选.",
+        "EndDate":"这是结束日期，可选.",
+        "GSTRate":"这是消费税税率，可选."
+      }
+
+    },
+    "Stripe":{
+      "lbl":{
+        "StripeServer":"服务器",
+        "StripeAuthType":"验证类型",
+        "StripeAPIKey":"API密钥",
+        "StripeAPIValue":"API值",
+        "StripeUser":"用户",
+        "StripePassword":"密码",
+        "StripeSecretKey":" 秘钥",
+        "StripePublicKey":"公钥"
+
+      },
+      "plh":{
+        "StripeServer":"服务器",
+        "StripeAuthType":"验证类型",
+        "StripeAPIKey":"API密钥",
+        "StripeAPIValue":"API值",
+        "StripeUser":"用户",
+        "StripePassword":"密码",
+        "StripePublicKey":"公钥",
+        "StripeSecretKey":"秘钥"
+      },
+      "ifo":{
+        "StripeServer":"这是条纹服务器，可选.",
+        "StripeAuthType":"这是身份验证类型，可选.",
+        "StripeAPIKey":"这是 API 密钥，可选.",
+        "StripeAPIValue":"这是 API 值，可选.",
+        "StripeUser":"这是用户，可选.",
+        "StripePassword":"这是密码，可选.",
+        "StripePublicKey":"这是公钥，可选.",
+        "StripeSecretKey":"这是密钥，可选."
+
+      },
+      "rule":{
+        "StripeServer":"需要服务器",
+        "StripeAuthType":"身份验证类型为必填项"
+      }
+    } ,
+    "StockRating":{
+       "lbl":{
+        "Rate":"率",
+        "User":"用户"
+       },
+       "ifo":{
+        "Rate":"这是费率，可选."
+       }
+    },
+    "PickupPoint":{
+      "lbl":{
+        "Country":"国家",
+        "State":"州属",
+        "City":"城市"
+      },
+      "ifo":{
+        "Country":"这是国家，可选.",
+        "City":"这是城市，可选.",
+        "State":"这是状态，可选"
+      }
+    },
+    "PriceLabelCompanyTemplate":{
+      "lbl":{
+        "Company":"公司",
+        "Template":"模板",
+        "TemplateName":"模板名称",
+        "View":"预览",
+        "Clear":"清除",
+        "CompanyLogo":"公司标志",
+        "StockCode":"股票代码",
+        "StockName":"股票名称",
+        "StockDesc":"库存描述",
+        "StockPrice":"股票价格",
+        "Barcode":"条形码",
+        "ReferenceNo":"參考編號"
+      },
+      "ifo":{
+        "Company":"這是公司，可選.",
+        "Template":"这是模板，可选.",
+        "TemplateName":"这是模板名称，可选.",
+        "CompanyLogo":"这是公司徽标，可选.",
+        "CompanyName":"这是公司名称，可选.",
+        "StockCode":"这是股票代码，可选.",
+        "StockName":"这是股票名称，可选.",
+        "StockDesc":"这是库存描述，可选.",
+        "StockPrice":"这是股票价格，可选.",
+        "Barcode":"這是條形碼，可選.",
+        "ReferenceNo":"这是参考号，可选"
+
+      },
+      "plh":{
+        "Company":"公司",
+        "Template":"模板"
+      }
+
+    },
+    "PriceLabelTemplate":{
+        "lbl":{
+          "TemplateName":"模板名称",
+          "Template":"模板",
+          "W":"W",
+          "H":"H",
+          "L":"L",
+          "V":"V",
+          "View":"预览",
+          "Clear":"清除",
+          "CompanyLogo":"公司标志",
+          "CompanyName":"公司名称",
+          "F-Size":"F 尺寸",
+          "F-Name":"F-名称",
+          "F-Style":"F型",
+          "W-Style":"W型",
+          "StockCode":"股票代码",
+          "StockName":"股票名称",
+          "StockDescription":"库存说明",
+          "StockPrice":"股票价格",
+          "Barcode":"条形码",
+          "ReferenceNo":"參考編號",
+          "Requirement":"要求",
+          "TemplateWidth":"模板宽度",
+          "TemplateHeight":"模板高度",
+          "CompanyLogoLength":"公司标志长度",
+          "CompanyLogoWidth":"公司标志宽度",
+          "CompanyLogoVerticalAlign":"公司标志宽度",
+          "CompanyLogoHorizontalAlign":"公司徽标 H 对齐",
+          "CompanyNameFontSize":"公司名称字体大小",
+          "CompanyNameFont":"公司名称字体 ",
+          "CompanyNameFontStyle":"公司名称字体样式",
+          "CompanyNameVerticalAlign":"公司名称 V-Align",
+          "CompanyNameHorizontalAlign":"公司名称 H-Align",
+          "CompanyNameWordStyle":"公司名称字型",
+          "StockCodeFontSize":"股票代码字体大小",
+          "StockCodeFont":"股票代码字体 ",
+          "StockCodeFontStyle":"股票代码字体样式",
+          "StockCodeVerticalAlign":"股票代码垂直对齐名称",
+          "StockCodeHorizontalAlign":"股票代码 H-Align",
+          "StockCodeWordStyle":"股票代码字型",
+          "StockNameFontSize":"股票名称字体大小",
+          "StockNameFont":"股票名称字体",
+          "StockNameFontStyle":"股票名称字体样式",
+          "StockNameVerticalAlign":"库存名称 V-Align",
+          "StockNameHorizontalAlign":"库存名称 H-Align",
+          "StockNameWordStyle":"股票名称字型",
+          "StockDescriptionFontSize":"库存描述字体大小",
+          "StockDescriptionFont":"股票描述字体",
+          "StockDescriptionFontStyle":"库存描述字体样式",
+          "StockDescriptionVerticalAlign":"库存描述 V 对齐",
+          "StockDescriptionHorizontalAlign":"库存描述 H 对齐",
+          "StockDescriptionWordStyle":"库存描述文字样式",
+          "StockPriceFontSize":"股价字体大小",
+          "StockPriceFont":"股票价格字体 ",
+          "StockPriceFontStyle":"股票价格字体样式",
+          "StockPriceVerticalAlign":"股价V形对齐",
+          "StockPriceHorizontalAlign":"股价 H 对齐",
+          "StockPriceWordStyle":"股票价格文字样式",
+          "BarcodeType":"条码类型",
+          "BarcodeHeight":"条码高度",
+          "BarcodeWidth":"条码宽度"
+        },
+        "ifo":{
+          "TemplateName":"这是模板名称，可选.",
+          "Template":"这是模板，可选.",
+          "CompanyLogo":"这是公司徽标，可选.",
+          "CompanyName":"这是公司名称，可选.",
+          "StockCode":"这是股票代码，可选.",
+          "StockName":"这是股票名称，可选.",
+          "StockDescription":"这是库存描述，可选.",
+          "StockPrice":"这是股票价格，可选.",
+          "Barcode":"這是條形碼，可選.",
+          "ReferenceNo":"這是參考號，可選."
+        },
+        "plh":{
+          "TempalteCode":"001",
+          "TemplateName":"模板",
+          "TemplateDescription":"模板说明",
+          "ReferenceNo":"參考編號"
+        }
+    },
+    "Location":{
+      "lbl":{
+        "Company":"公司 ",
+        "Zone":"区",
+        "DimensionUOM":"尺寸单位",
+        "Type":"类型",
+        "Base":"根据",
+        "Level":"等级",
+        "Length":"长度",
+        "URL":"URL",
+        "Width":"宽度",
+        "Barcode":"条形码",
+        "WeightUOM":"重量单位",
+        "GPSLT":"GPLST",
+        "CapacityWeight":"容量 重量",
+        "GPSLG":"GPSLG",
+        "Address":"地址",
+        "SetParentLocation":"设置父位置",
+        "SelectParentLocation":"选择父位置:",
+        "LocationURL":"位置网址",
+        "SizeUOM":"尺寸计量单位" 
+
+
+      },
+      "ifo":{
+        "Company":"這是公司，可選.",
+        "Zone":"这是区域，可选.",
+        "DimensionUOM":"这是尺寸单位，可选.",
+        "Type":"这是位置类型，可选.",
+        "Base":"这是基础，可选.",
+        "Level":"这是级别，可选.",
+        "URL":"这是网址，可选.",
+        "Width":"这是宽度，可选.",
+        "Barcode":"這是條形碼，可選.",
+        "WeightUOM":"这是重量，可选.",
+        "GPLST":"这是 GPLST，可选.",
+        "CapacityWeight":"這是容量重量，可選.",
+        "GPLSG":"这是 GPLSG，可选.",
+        "Address":"这是位置地址，可选."
+      },
+      "plh":{
+        "Code":"001",
+        "Name":"新加坡",
+        "LocationURL":"http://ovaspace.com",
+        "Desc":"实龙岗",
+        "Remark":"备注"
+      }
+    },
+    "SalesCommissionTier":{
+        "lbl":{
+          "FromAmount":"从金额",
+          "ToAmount":"金额",
+          "Percentage":"百分比",
+          "FixedAmount":"固定值",
+          "FixedAmountToDeduct":"固定扣除金额",
+          "FromDate":"從日期",
+          "ToDate":"迄今为止"
+        },
+        "ifo":{
+          "FromAmount":"这是起始金额，可选.",
+          "ToAmount":"这是金额，可选.",
+          "Percentage":"这是百分比，可选.",
+          "FixedAmount":"这是固定金额，可选.",
+          "FixedAmountToDeduct":"这是固定扣除金额，可选.",
+          "FromDate":"这是起始日期，可选.",
+          "ToDate":" 这是迄今为止的内容，可选."
+        }
+    },
+    "SalesCommissionPeriod":{
+        "lbl":{
+          "PeriodType":"期间类型",
+          "StartDate":"开始日期",
+          "EndDate":"结束日期"
+        },
+        "ifo":{
+          "PeriodType":"这是周期类型，可选.",
+          "StartDate":"这是开始日期，可选.",
+          "EndDate":"这是结束日期，可选."
+        }
+    },
+    "SalesCommissionLayer":{
+      "lbl":{
+        "FromAmount":"从金额 ",
+        "ToAmount":"至金额",
+        "Rate":"速度",
+        "FromDate":"從日期",
+        "ToDate":"迄今为止"
+      },
+      "ifo":{
+        "FromAmount":"这是起始金额，可选.",
+        "ToAmount":"这是金额，可选.",
+        "Rate":"这是费率，可选.",
+        "FromDate":"这是起始日期，可选.",
+        "ToDate":"这是迄今为止的信息，可选."
+      }
+
+    },
+    "UOM":{
+      "lbl":{
+        "UOMType":"计量单位类型",
+        "Default":"默认设置",
+        "ExchangeRate":"汇率"
+      },
+      "ifo":{
+        "UOMType":"这是计量单位类型，可选.",
+        "Default":"这是默认的，可选的.",
+        "ExchangeRate":"这是汇率，可选."
+      }
+    },
+    "SalesInvoiceJunOva":{
+      "lbl":{
+        "Browse":"浏览",
+        "Stock":"股票名称",
+        "DueDate":"持续日期",
+        "GST":"GST",    
+        "StockCode":"股票代码",
+        "Invoice":"发票",
+        "Customer":"客户",
+        "Contact":"联系人姓名",
+        "StockName":"股票名称",
+        "Barcode":"条形码",
+        "BrowseTransaction":"浏览交易",
+        "AddtoList":"添加到列表",
+        "File":"文件",
+        "View":"预览",
+        "Clear":"清除",
+        "InvoiceDate":"发票日期",
+        "CollectionDate":"订单领取日期",
+        "Document":"文件编号.",
+        "SubTotal":"小总计",
+        "Discount":"折扣",
+        "RoundOff":"取整",
+        "GrandTotal":"累計",
+        "TotalAmountExcelGST":"总金额 Excel",
+        "Tnc":"条款&条件",
+        "DiscountType":"T",
+        "DiscountRate":"R",
+        "Price":"价钱",
+        "Qty":"数量",
+        "UOM":"计量单位",
+        "Currency":"货币",
+        "DiscountAmt":"折扣金额",
+        "Amount":"数量",
+        "Company":"公司",
+        "Location":"地点",
+        "CostCenter":"成本中心",
+        "Remark":"备注",
+        "Terms":"条款&条件",
+        "InvoiceNo":"发票号码.",
+        "StartDate":"开始日期",
+        "EndDate":"结束日期",
+        "GSTAmt":"消费税金额.",
+        "OutstandingAmt":"未偿还金额.",
+        "GSTEntitleAmt":"商品及服务税权利金额",
+        "PostingStatus":"發帖狀態",
+        "Deposit":"订金",
+        "SN":"SN",
+        "SaleDate":"发售日期",
+        "Total":"总金额",
+        "ContactPhone":"电话号码",
+        "SalePerson":"营业员",
+        "ParentCode":"引用代码",
+        "PickListNo":"选货清单编号.",
+        "PickListName":"选择列表名称"
+        
+      },
+      "ifo":{
+        "Customer":"這是客戶，可選.",
+        "Contact":"這是聯繫方式，可選.",
+        "Stock":"這是庫存，可選.",
+        "Barcode":"這是條形碼，可選.",
+        "StockBrowse":"这是股票浏览交易，可选.",
+        "File":"這是文件上傳，可選.",
+        "InvoiceDate":"这是发票日期，可选.",
+        "CollectionDate":"这是收集日期，可选.",
+        "DocumentNo":"这是文件编号，可选.",
+        "Company":"這是公司，可選.",
+        "Location":"这是位置，可选.",
+        "CostCenter":"这是成本中心，可选.",
+        "Remark":"這是備註，可選.",
+        "Terms":"条款&条件"
+      },
+      "rules":{
+        "Customer":"无效客户.",
+        "Stock":"添加库存商品.",
+        "DiscountRate":"折扣率或百分比无效"
+      } ,
+      "btnTooltip":{
+        "InvoiceView":"更改为发票视图",
+        "PostingView":"更改为发布视图"
+      }
+    },
+    "SalesInquiryJunOva":{
+      "lbl":{
+        "Inquiry":"询价单",
+        "Customer":"客户",
+        "Contact":"联系人姓名",
+        "StockName":"股票名称",
+        "Barcode":"条形码",
+        "BrowseTransaction":"浏览交易",
+        "AddtoList":"添加到列表",
+        "File":"文件",
+        "View":"预览",
+        "Clear":"清除",
+        "EnquiryDate":"查询日期",
+        "CollectionDate":"订单领取日期",
+        "Document":"文件编号.",
+        "SubTotal":"小总计",
+        "Discount":"折扣",
+        "RoundOff":"取整",
+        "GrandTotal":"累計",
+        "TotalAmountExcelGST":"总金额 Excel",
+        "Tnc":"条款&条件",
+        "DiscountType":"T",
+        "DiscountRate":"R",
+        "Price":"价钱",
+        "Qty":"数量",
+        "UOM":"计量单位",
+        "Currency":"货币",
+        "DiscountAmt":"折扣金额.",
+        "Amount":"数量",
+        "Company":"公司",
+        "Location":"地点",
+        "CostCenter":"成本中心",
+        "Remark":"备注",
+        "Terms":"条款&条件",
+        "EnquiryNo":"询价编号.",
+        "StartDate":"开始日期",
+        "EndDate":"结束日期",
+        "GSTAmt":"消费税金额.",
+        "OutstandingAmt":"未偿还金额.",
+        "GSTEntitleAmt":"商品及服务税 (GST) 权利金额.",
+        "PostingStatus":"發帖狀態",
+        "Deposit":"订金",
+        "SN":"SN",
+        "SaleDate":"发售日期",
+        "Total":"总金额",
+        "ContactPhone":"电话号码",
+        "SalePerson":"营业员",
+        "ParentCode":"引用代码"
+        
+      },
+      "ifo":{
+        "Customer":"這是客戶，可選.",
+        "Contact":"這是聯繫方式，可選.",
+        "Stock":"這是庫存，可選.",
+        "Barcode":"這是條形碼，可選.",
+        "StockBrowse":"这是股票浏览交易，可选.",
+        "File":"這是文件上傳，可選.",
+        "EnquiryDate":"这是查询日期，可选.",
+        "CollectionDate":"这是收集日期，可选.",
+        "DocumentNo":"这是文件编号，可选.",
+        "Company":"這是公司，可選.",
+        "Location":"这是位置，可选.",
+        "CostCenter":"这是成本中心，可选.",
+        "Remark":"這是備註，可選.",
+        "Terms":"条款&条件"
+      },
+      "rules":{
+        "Customer":"无效客户.",
+        "Stock":"添加库存商品.",
+        "DiscountRate":"折扣率或百分比无效"
+      } ,
+      "btnTooltip":{
+        "InvoiceView":"更改为发票视图",
+        "PostingView":"更改为发布视图"
+      }
+    },
+    "SalesInvoiceBrowse":{
+      "lbl":{
+        "Transaction":"交易",
+        "Type":"类型",
+        "StartDate":"开始日期",
+        "EndDate":"结束日期",
+        "Customer":"客户",
+        "Date":"日期",
+        "Contact":"联系人姓名",
+        "ContactPhone":"电话号码",
+        "Total":"总金额",
+        "LatestPrice":"最新价格",
+        "OldPrice":"旧价格",
+        "QTY":"数量.",
+        "UOM":"计量单位",
+        "DiscountType":"T",
+        "DiscountRate":"R",
+        "DiscountAmount":"折扣金额.",
+        "TotalAmount":"数量"
+      },
+      "plh":{
+        "Customer":"选择"
+      }
+    },
+    "SaleStockSearch":{
+      "lbl":{
+      "StockSearch":"库存搜索",
+      "ImageView":"图像视图",
+      "Image":"图像",
+      "Type":"类型",
+      "Price":"价钱",
+      "StockOnHandQty":"现有数量."
+    },
+    "plh":{
+      "Search":"在此处输入搜索"
+    }
+  },
+  "GSTType":[
+    {"code": "E", "description": "电子独家" },
+    { "code": "I", "description": "我-包容性" }
+ ],
+     "SalesBillingJunBrowse":{
+      "lbl":{
+        "Transaction":"交易",
+        "Type":"类型",
+        "StartDate":"开始日期",
+        "EndDate":"结束日期",
+        "Customer":"客户",
+        "Date":"日期",
+        "Contact":"联系人姓名",
+        "ContactPhone":"电话号码",
+        "Total":"总金额",
+        "Settlement":"结算",
+        "Outstanding":"拖欠款项",
+        "Discount":"折扣",
+        "LastPrice":"最新价格",
+        "OldPrice":"旧价格",
+        "Qty":"数量.",
+        "UOM":"计量单位",
+        "DiscountType":"T",
+        "DiscountRate":"R",
+        "DiscountAmount":"折扣金额",
+        "Amount":"数量"
+      }
+     },
+     "SalesBillingJunOva":{
+      "lbl":{
+        "BillingNo":"账单号码",
+        "SaleDate":"发售日期",
+        "Customer":"客户",
+        "StartDate":"开始日期",
+        "EndDate":"结束日期",
+        "Contact":"联系人姓名",
+        "ParentCode":"引用代码",
+        "PaymentTerm":"付款条件",
+        "PaymentType":"支付方式",
+        "BrowseTransaction":"浏览交易",
+        "File":"文件",
+        "View":"看法",
+        "Clear":"清除",
+        "Company":"公司 ",
+        "ContactPhone":"电话号码",
+        "GSTAmt":"消费税金额.",
+        "BillingDate":"账单日期",
+        "DueDate":"到期日",
+        "DocumentNo":"文件编号.",
+        "SubTotal":"小总计",
+        "Billing":"计费",
+        "Discount":"折扣",
+        "GST":"消费税",
+        "RoundOff":"取整",
+        "GrandTotal":"累計",
+        "Tnc":"条款&条件",
+        "TotalAmountExcelGST":"总金额 Excel",
+        "ContactPh":"电话号码",
+        "Currency":"货币",
+        "DisAmt":"折扣金额",
+        "GStAmt":"消费税金额.",
+        "Total":"累計",
+        "Settlement":"结算",
+        "Outstanding":"拖欠款项",
+        "Remove":"消除"
+      },
+      "ifo":{
+        "Customer":"這是客戶，可選.",
+        "Contact":"這是聯繫方式，可選.",
+        "PaymentTerm":"类型",
+        "PaymentType":"這是付款類型，可選.",
+        "Browse":"这是浏览交易，可选。",
+        "File":"這是文件上傳，可選.",
+        "BillingDate":"这是账单日期，可选。",
+        "DueDate":"这是截止日期，可选。",
+        "DocumentNo":"这是文档编号，可选。"
+      }
+     },
+     "SaleStockBrowse":{
+      "lbl":{
+      "Title":"交易",
+      "Type":"类型",
+      "StartDate":"开始日期",
+      "EndDate":"结束日期",
+      "Customer":"客户",
+      "OK":"好的",
+      "Cancel":"取消",
+      "Error":"錯誤.",
+      "Date":"日期",
+      "ContactPhone":"电话号码",
+      "GrandTotal":"累計",
+      "LatestPrice":"最新价格",
+      "Discount":"折扣",
+      "OldPrice":"旧价格",
+      "Qty":"数量.",
+      "UOM":"计量单位",
+      "DiscountType":"T",
+      "DiscountRate":"R",
+      "DiscountAmount":"折扣金额",
+      "Amount":"数量"
+     },
+     "plh":{
+      "Select":"选择",
+      "Customer":"客户"
+     }
+    },
+    "SalesAllInOneBrowse":{
+      "lbl":{
+        "Transaction":"交易",
+        "Type":"类型",
+        "StartDate":"开始日期",
+        "EndDate":"结束日期",
+        "Customer":"客户",
+        "OK":"好的",
+        "Cancel":"取消",
+        "Error":"錯誤.",
+        "Date":"日期",
+        "ContactPhone":"电话号码",
+        "GrandTotal":"累計",
+        "LatestPrice":"最新价格",
+        "Discount":"折扣",
+        "OldPrice":"旧价格",
+        "Qty":"数量.",
+        "UOM":"计量单位",
+        "DiscountType":"T",
+        "DiscountRate":"R",
+        "DiscountAmount":"折扣金额",
+        "Amount":"数量"
+        },
+      "plh":{
+        "Customer":"客户"
+      }
+    },
+    "SalesAllInOneOva":{
+      "lbl":{
+        "StockName":"股票名称",
+        "StartDate":"开始日期",
+        "EndDate":"结束日期",
+        "Customer":"客户",
+        "Date":"日期",
+        "ParentCode":"引用代码",
+        "Company":"公司 ",
+        "SalePerson":"营业员",
+        "Contact":"联系人姓名",
+        "ContactPhone":"电话号码",
+        "Deposit":"订金",
+        "OutstandingAmt":"未偿还金额.",
+        "GrandTotal":"累計",
+        "Discount":"折扣",
+        "LatestPrice":"最新价格",
+        "OldPrice":"旧价格",
+        "QTY":"数量",
+        "UOM":"计量单位",
+        "DiscountType":"T",
+        "DiscountRate":"R",
+        "DiscountAmount":"折扣金额",
+        "Barcode":"条形码",
+        "Amount":"数量",
+        "Invoice":"发票",
+        "Billing":"计费",
+        "Inquiry":"询价单",
+        "Quotation":"引述",
+        "Order":"命令",
+        "Return":"返回",
+        "BrowseTransaction":"浏览交易",
+        "AddToList":"添加到列表",
+        "File":"文件",
+        "View":"看法",
+        "Clear":"清除",
+        "CollectionDate":"订单领取日期",
+        "Document":"文件编号.",
+        "PaymentTerm":"付款条件",
+        "PaymentType":"支付方式",
+        "DepositAmt":"定金额.",
+        "RemainingBalance":"保持平衡",
+        "Tender":"投标",
+        "Change":"改变",
+        "TransactionDate":"交易日期 ",
+        "Bank":"银行 ",
+        "ChequeNo":"支票号码.",
+        "ChequeDate":"检查日期",
+        "TransactionFee":"手续费"
+      },
+      "ifo":{
+        "Customer":"這是客戶，可選.",
+        "Contact":"這是聯繫方式，可選.",
+        "StockName":"这是股票名称，可选。",
+        "Barcode":"這是條形碼，可選.",
+        "StockBrowse":"这是股票浏览交易，可选。",
+        "CollectionDate":"这是收集日期，可选。",
+        "SaleDate":"这是销售日期，可选。",
+        "DocumentNo":"这是文件编号，可选."
+        
+      }
+    },
+    "CustomerAdd":{
+      "lbl":{
+        "CustomerAdd":"客户添加"
+      }
+    },
+    "SalesOrderJunOva":{
+      "lbl":{
+      "Order":"命令",
+      "Customer":"客户",
+      "Contact":"联系人姓名",
+      "StockName":"股票名称",
+      "Barcode":"条形码",
+      "BrowseTransaction":"浏览交易",
+      "AddToList":"添加到列表",
+      "File":"File",
+      "View":"View",
+      "Clear":"清除",
+      "SalesDate":"销售日期",
+      "CollectionDate":"订单领取日期",
+      "Document":"文件编号.",
+      "SubTotal":"小总计",
+      "Discount":"折扣",
+      "GST":"GST",
+      "RoundOff":"取整",
+      "GrandTotal":"累計",
+      "TotalAmountExcelGST":"总金额 Excel",
+      "Tnc":"条款&条件",
+      "Price":"价钱",
+      "Currency":"货币",
+      "Qty":"数量.",
+      "UOM":"计量单位",
+      "DiscountType":"T",
+      "DiscountRate":"R",
+      "DisAmt":"折扣金额",
+      "Amount":"数量",
+      "OrderNo":"订单号。",
+      "StartDate":"开始日期",
+      "EndDate":"结束日期",
+      "OrderDate":"订购日期",
+      "CollDate":"订单领取日期",
+      "ParentCode":"引用代码",
+      "Company":"公司 ",
+      "SalePerson":"营业员",
+      "DiscountAmt":"折扣金额",
+      "GSTAmt":"消费税金额.",
+      "Total":"总金额",
+      "QTY":"数量",
+      "ContactPhone":"电话号码"
+      
+    },
+    "ifo":{
+      "Customer":"這是客戶，可選.",
+      "Contact":"這是聯繫方式，可選.",
+      "Stock":"這是庫存，可選.",
+      "Barcode":"這是條形碼，可選.",
+      "StockBrowse":"这是股票浏览交易，可选.",
+      "File":"這是文件上傳，可選.",
+      "SalesDate":"这是销售日期，可选.",
+      "CollectionDate":"这是收集日期，可选.",
+      "DocumentNo":"这是文件编号，可选."
+    }
+  },
+  "SalesOrderBrowse":{
+    "lbl":{
+      "Transaction":"交易",
+      "Type":"类型",
+      "StartDate":"开始日期",
+      "EndDate":"结束日期",
+      "Customer":"客户",
+      "OK":"OK",
+      "Cancel":"取消",
+      "Error":"錯誤.",
+      "Date":"Date",
+      "Contact":"联系人姓名",
+      "ContactPhone":"电话号码",
+      "GrandTotal":"累計",
+      "LatestPrice":"最新价格",
+      "Discount":"折扣",
+      "OldPrice":"旧价格",
+      "Qty":"数量.",
+      "UOM":"计量单位",
+      "DiscountType":"T",
+      "DiscountRate":"R",
+      "DiscountAmount":"折扣金额",
+      "Amount":"数量"
+    },
+    "plh":{
+      "Customer":"客户"
+    }
+  },
+  "SalesQuotationJunOva":{
+    "lbl":{
+      "SaleDate":"发售日期",
+      "Quotation":"引述",
+      "Customer":"客户",
+      "Contact":"联系人姓名",
+      "StockName":"股票名称",
+      "Barcode":"条形码",
+      "BrowseTransaction":"浏览交易",
+      "AddToList":"添加到列表",
+      "File":"File",
+      "View":"View",
+      "Clear":"清除",
+      "QuotationDate":"报价日期",
+      "CollectionDate":"订单领取日期",
+      "Document":"文件编号.",
+      "SubTotal":"小总计",
+      "Discount":"折扣",
+      "GST":"消费税",
+      "RoundOff":"取整",
+      "GrandTotal":"累計",
+      "TotalAmountExcelGST":"总金额 Excel",
+      "Tnc":"条款&条件",
+      "Price":"价钱",
+      "Currency":"货币",
+      "Qty":"数量.",
+      "UOM":"计量单位",
+      "DiscountType":"T",
+      "DiscountRate":"R",
+      "DisAmt":"折扣金额",
+      "Amount":"数量",
+      "QuotationNo":"报价单号",
+      "StartDate":"开始日期",
+      "EndDate":"结束日期",
+      "OrderDate":"订购日期",
+      "CollDate":"订单领取日期",
+      "ParentCode":"引用代码",
+      "Company":"公司 ",
+      "SalePerson":"营业员",
+      "DiscountAmt":"折扣金额",
+      "GSTAmt":"消费税金额.",
+      "Total":"总金额",
+      "QTY":"数量",
+      "ContactPhone":"电话号码"
+    },
+    "ifo":{
+      "Customer":"這是客戶，可選.",
+      "Contact":"這是聯繫方式，可選.",
+      "Stock":"這是庫存，可選.",
+      "Barcode":"這是條形碼，可選.",
+      "StockBrowse":"这是股票浏览交易，可选.",
+      "File":"這是文件上傳，可選.",
+      "QuotationDate":"这是报价日期，可选.",
+      "CollectionDate":"这是收集日期，可选.",
+      "DocumentNo":"这是文件编号，可选."
+    }
+  },
+  "SalesQuotationBrowse":{
+    "lbl":{
+      "Transaction":"交易",
+      "Type":"类型",
+      "StartDate":"开始日期",
+      "EndDate":"结束日期",
+      "Customer":"客户",
+      "OK":"好的",
+      "Cancel":"取消",
+      "Error":"錯誤.",
+      "Date":"日期",
+      "ContactPhone":"电话号码",
+      "GrandTotal":"累計",
+      "LatestPrice":"最新价格",
+      "Discount":"折扣",
+      "OldPrice":"旧价格",
+      "Qty":"数量.",
+      "UOM":"计量单位",
+      "DiscountType":"T",
+      "DiscountRate":"R",
+      "DiscountAmount":"折扣金额",
+      "Amount":"数量"
+    },
+    "plh":{
+      "Customer":"客户"
+    }
+  },
+  "SalesCounterJunOva":{
+    "lbl":{
+      "Invoice":"发票",
+      "Customer":"客户",
+      "Contact":"联系人姓名",
+      "StockName":"股票名称",
+      "Barcode":"条形码",
+      "BrowseTransaction":"浏览交易",
+      "AddtoList":"添加到列表",
+      "File":"文件",
+      "View":"看法",
+      "Clear":"清除",
+      "InvoiceDate":"发票日期",
+      "CollectionDate":"订单领取日期",
+      "Document":"文件编号.",
+      "SubTotal":"小总计",
+      "Discount":"折扣",
+      "RoundOff":"取整",
+      "GrandTotal":"累計",
+      "TotalAmountExcelGST":"总金额 Excel",
+      "Tnc":"条款&条件",
+      "DiscountType":"T",
+      "DiscountRate":"R",
+      "Price":"价钱",
+      "Qty":"数量",
+      "UOM":"计量单位",
+      "Currency":"货币",
+      "DiscountAmt":"折扣金额",
+      "Amount":"数量",
+      "Company":"公司",
+      "Location":"地点",
+      "CostCenter":"成本中心",
+      "Remark":"备注",
+      "Terms":"条款&条件",
+      "InvoiceNo":"发票号码.",
+      "StartDate":"开始日期",
+      "EndDate":"结束日期",
+      "GSTAmt":"消费税金额.",
+      "OutstandingAmt":"未偿还金额.",
+      "GSTEntitleAmt":"商品及服务税 (GST) 权利金额.",
+      "PostingStatus":"發帖狀態",
+      "Deposit":"订金",
+      "SN":"SN",
+      "SaleDate":"发售日期",
+      "Total":"总金额",
+      "ContactPhone":"电话号码",
+      "SalePerson":"营业员",
+      "ParentCode":"引用代码"
+      
+    },
+    "ifo":{
+      "Customer":"這是客戶，可選.",
+      "Contact":"這是聯繫方式，可選.",
+      "Stock":"這是庫存，可選.",
+      "Barcode":"這是條形碼，可選.",
+      "StockBrowse":"这是股票浏览交易，可选.",
+      "File":"這是文件上傳，可選.",
+      "InvoiceDate":"这是发票日期，可选.",
+      "CollectionDate":"这是收集日期，可选.",
+      "DocumentNo":"这是文件编号，可选.",
+      "Company":"這是公司，可選.",
+      "Location":"这是位置，可选.",
+      "CostCenter":"这是成本中心，可选.",
+      "Remark":"這是備註，可選.",
+      "Terms":"条款&条件"
+    },
+    "rules":{
+      "Customer":"无效客户.",
+      "Stock":"添加库存商品.",
+      "DiscountRate":"折扣率或百分比无效"
+    } ,
+    "btnTooltip":{
+      "InvoiceView":"更改为发票视图",
+      "PostingView":"更改为发布视图"
+    }
+  },
+
+  "SalesReturnJunOva": {
+    "lbl": {
+      "Browse":"Browse",
+      "DueDate":"DueDate",
+      "StockCode":"股票代码",
+      "StockName":"股票名称",
+      "Return": "退货",
+      "Customer": "客户",
+      "Contact": "联系人",
+      "ReturnDate": "退货日期",
+      "Reason": "原因",
+      "BrowseTransaction": "浏览交易",
+      "AddToList": "添加到列表",
+      "File": "文件",
+      "View": "查看",
+      "Clear": "清除",
+      "CollectionDate": "收款日期",
+      "PaymentType": "付款类型",
+      "Tender": "投标",
+      "Bank": "银行",
+      "ChequeNo": "支票号码",
+      "ChequeDate": "支票日期",
+      "CardNo": "卡号",
+      "TransactionNo": "交易编号",
+      "TransactionDate": "交易日期",
+      "VoucherNo": "凭证号",
+      "VoucherDate": "凭证日期",
+      "ReadQR": "读取二维码",
+      "RefTranNo": "参考交易编号",
+      "Date": "日期",
+      "Change": "找零",
+      "Document": "文件编号",
+      "SubTotal": "小计",
+      "Discount": "折扣",
+      "GST": "消费税",
+      "RoundOff": "四舍五入",
+      "GrandTotal": "总计",
+      "TotalAmountExcelGST": "总金额（含税）",
+      "Tnc": "条款和条件",
+      "Price": "价格",
+      "Currency": "货币",
+      "Qty": "数量",
+      "UOM": "计量单位",
+      "DiscountType": "折扣类型",
+      "DiscountRate": "折扣率",
+      "DisAmt": "折扣金额",
+      "DeductionType": "扣减类型",
+      "DeductionRate": "扣减率",
+      "DeductionAmount": "扣减金额",
+      "GSTType": "消费税类型",
+      "Amount": "金额",
+      "OrderNo": "订单编号",
+      "StartDate": "开始日期",
+      "EndDate": "结束日期",
+      "OrderDate": "订单日期",
+      "CollDate": "收款日期",
+      "ParentCode": "上级代码",
+      "Company": "公司",
+      "SalePerson": "销售人员",
+      "DiscountAmt": "折扣金额",
+      "GSTAmt": "消费税金额",
+      "Total": "总计",
+      "QTY": "数量",
+      "ContactPhone": "联系电话",
+      "PostingStatus": "过账状态",
+      "Status": "状态",
+      "EntitleAmt": "应得金额",
+      "Remark": "备注"
+    },
+    "ifo": {
+      "Customer": "这是客户，可选项。",
+      "Contact": "这是联系人，可选项。",
+      "Stock": "这是库存，可选项。",
+      "Barcode": "这是条形码，可选项。",
+      "StockBrowse": "这是库存浏览交易，可选项。",
+      "File": "这是文件上传，可选项。",
+      "SalesDate": "这是销售日期，可选项。",
+      "CollectionDate": "这是收款日期，可选项。",
+      "DocumentNo": "这是文件编号，可选项。"
+    }
+  }
+,
+  "PurchaseBillingOva":{
+    "lbl":{
+        "Supplier":"供应商" ,
+        "SubTotal":"小总计",
+        "InvoiceNo":"Invoice No.",
+        "DiscountAmt":"折扣金额",
+        "Contact":"联系人姓名",
+        "PaymentTerm":"付款条件",
+        "PaymentType":"支付方式",
+        "BrowseTransaction":"浏览交易"  ,
+        "File":"文件",
+        "View":"看法",
+        "Clear":"清除",
+        "BillingDate":"账单日期",
+        "DueDate":"到期日",
+        "Document":"文档",
+        "InvoiceTotal":"发票总计",
+        "Billing":"计费",
+        "Discount":"折扣",
+        "RoundOff":"取整",
+        "GrandTotal":"累計",
+        "TotalAmountExcelGST":"总金额 Excel",
+        "Tnc":"条款&条件",
+        "PurchaseDate":"购买日期",
+        "ContactPh":"电话号码",
+        "Currency":"货币",
+        "DisAmt":"折扣金额",
+        "GSTAmt":"消费税金额.",
+        "Total":"总金额",
+        "Settlement":"结算",
+        "Outstanding":"拖欠款项",
+        "Company":"公司 ",
+        "StartDate":"开始日期",
+        "EndDate":"结束日期",
+        "BillingNo":"帐单号",
+        "ParentCode":"引用代码"
+
+    },
+    "ifo":{
+      "Supplier":"這是供應商，可選.",
+      "Contact":"這是聯繫方式，可選.",
+      "PaymentTerm":"这是付款期限，可选.",
+      "PaymentType":"這是付款類型，可選.",
+      "Browse":"这是浏览交易，可选.",
+      "File":"這是文件上傳，可選.",
+      "BillingDate":"这是账单日期，可选.",
+      "DueDate":"这是截止日期，可选.",
+      "DocumentNo":"这是文件编号，可选."
+    }
+  },
+  "PurchaseInvoiceOva":{
+    "lbl":{
+      "Invoice":"发票",
+      "Company":"公司 ",
+      "ContactPh":"电话号码",
+      "Supplier":"供应商",
+      "Contact":"联系人姓名",
+      "Stock":"Stock",
+      "Barcode":"条形码",
+      "BrowseTransaction":"浏览交易",
+      "AddtoList":"添加到列表",
+      "File":"文件",
+      "View":"看法",
+      "Clear":"清除",
+      "InvoiceDate":"发票日期",
+      "CollectionDate":"订单领取日期",
+      "Document":"文件编号.",
+      "SubTotal":"小总计",
+      "Discount":"折扣",
+      "RoundOff":"取整",
+      "GrandTotal":"累計",
+      "TotalAmountExcelGST":"总金额 Excel",
+      "Tnc":"条款&条件",
+      "Price":"价钱",
+      "Currency":"货币",
+      "QTY":"数量",
+      "UOM":"计量单位",
+      "DiscountType":"T",
+      "DiscountRate":"R",
+      "DiscountAmt":"折扣金额",
+      "Amount":"数量",
+      "InvoiceNo":"发票号码.",
+      "StartDate":"开始日期",
+      "EndDate":"结束日期",
+      "PurchaseType":"购买类型",
+      "EntitlaAmount":"授权金额.",
+      "GSTAmt":"消费税金额.",
+      "Total":"总金额",
+      "PostingStatus":"發帖狀態",
+      "ParentCode":"引用代码"
+    },
+    "ifo":{
+      "Supplier":"這是供應商，可選.",
+      "Contact":"這是聯繫方式，可選.",
+      "Stock":"這是採購庫存，可選.",
+      "Barcode":"這是條形碼，可選.",
+      "StockBrowse":"这是股票浏览交易，可选.",
+      "File":"這是文件上傳，可選.",
+      "InvoiceDate":"这是发票日期，可选.",
+      "CollectionDate":"这是收集日期，可选.",
+      "DocumentNo":"这是文件编号，可选."
+    }
+  },
+  "PurchaseOrderOva":{
+    "lbl":{
+      "Order":"命令",
+      "OrderNo":"订单号.",
+      "Company":"公司 ",
+      "StartDate":"开始日期",
+      "EndDate":"结束日期",
+      "Supplier":"供应商",
+      "Contact":"联系人姓名",
+      "Stock":"商品",
+      "Barcode":"条形码",
+      "BrowseTransaction":"浏览交易",
+      "AddtoList":"添加到列表",
+      "File":"File",
+      "View":"View",
+      "Clear":"清除",
+      "OrderDate":"订购日期",
+      "CollectionDate":"订单领取日期",
+      "Document":"文件编号.",
+      "SubTotal":"小总计",
+      "Discount":"折扣",
+      "RoundOff":"取整",
+      "GrandTotal":"累計",
+      "TotalAmountExcelGST":"总金额 Excel",
+      "Tnc":"条款&条件",
+      "Price":"价钱",
+      "Currency":"货币",
+      "QTY":"数量",
+      "UOM":"计量单位",
+      "DiscountType":"T",
+      "DiscountRate":"R",
+      "DiscountAmt":"折扣金额",
+      "Amount":"数量",
+      "ParentCode":"引用代码",
+      "ContactPh":"电话号码",
+      "GSTAmt":"消费税金额.",
+      "Total":"总金额"
+       },
+    "ifo":{
+      "Supplier":"這是供應商，可選.",
+      "Contact":"這是聯繫方式，可選.",
+      "Stock":"這是採購庫存，可選.",
+      "Barcode":"這是條形碼，可選.",
+      "StockBrowse":"这是股票浏览交易，可选.",
+      "File":"這是文件上傳，可選.",
+      "OrderDate":"这是订单日期，可选.",
+      "CollectionDate":"这是收集日期，可选.",
+      "DocumentNo":"这是文件编号，可选."
+    }
+  },
+  "PurchasePaymentOva": {
+    "lbl": {
+      "Payment": "支付",
+      "Supplier": "供应商",
+      "Contact": "联系人姓名",
+      "PayDate": "发薪日期",
+      "PadiBy": "由...支付",
+      "BrowseTransaction": "浏览交易",
+      "File": "文件",
+      "View": "看法",
+      "Clear": "清除",
+      "Document": "文件编号.",
+      "PaymentTerm": "付款条件",
+      "PaymentType": "支付方式",
+      "DepositAmt": "定金额.",
+      "RemainingBalance": "保持平衡",
+      "Tender": "投标",
+      "Change": "改变",
+      "Bank": "银行 ",
+      "ChequeNo": "支票号码.",
+      "ChequeDate": "检查日期",
+      "TransactionFee": "手续费 ",
+      "CardNo": "卡号。",
+      "TransactionNo": "交易编号.",
+      "TransactionDate": "交易日期 ",
+      "VoucherNo": "优惠券编号",
+      "VoucherDate": "凭证日期",
+      "ReadQR": "读取二维码",
+      "RefTranNo": "参考编号",
+      "Date": "日期",
+      "SubTotal": "小总计",
+      "Discount": "折扣",
+      "RoundOff": "取整",
+      "GrandTotal": "累計",
+      "TotalAmountExcelGST": "总金额 Excel",
+      "Tnc": "条款&条件",
+      "PurchaseDate": "购买日期",
+      "ContactPh": "电话号码",
+      "Currency": "货币",
+      "Deposit": "订金",
+      "Outstanding": "拖欠款项",
+      "Total": "总金额",
+      "StartDate": "开始日期",
+      "EndDate": "结束日期",
+      "Company": "公司 "
+    },
+    "ifo": {
+      "Supplier": "這是供應商，可選.",
+      "Contact": "這是聯繫方式，可選.",
+      "RecievedDate": "這是收到日期，可選.",
+      "PaidBy": "这是付费方式，可选.",
+      "StockBrowse": "这是股票浏览交易，可选.",
+      "File": "這是文件上傳，可選.",
+      "DocumentNo": "这是文件编号，可选."
+    },
+    "btnTooltip":{
+      "ReadQRCode":"点我阅读二维码"
+    }
+  },
+  "PurchaseQuotationOva":{
+    "lbl":{
+      "Quotation":"引述",
+      "Supplier":"供应商",
+      "Contact":"联系人姓名",
+      "Stock":"商品",
+      "Barcode":"条形码",
+      "BrowseTransaction":"浏览交易",
+      "AddtoList":"添加到列表",
+      "File":"File",
+      "View":"View",
+      "Clear":"清除",
+      "QuotationDate":"报价日期",
+      "CollectionDate":"订单领取日期",
+      "Document":"文件编号.",
+      "SubTotal":"小总计",
+      "Discount":"折扣",
+      "RoundOff":"取整",
+      "GrandTotal":"累計",
+      "TotalAmountExcelGST":"总金额 Excel",
+      "Tnc":"条款&条件",
+      "Price":"价钱",
+      "Currency":"货币",
+      "QTY":"数量",
+      "UOM":"计量单位",
+      "DiscountType":"T",
+      "DiscountRate":"R",
+      "DiscountAmt":"折扣金额",
+      "Amount":"数量",
+      "QuotationNo":"报价单号.",
+      "Company":"公司 ",
+      "StartDate":"开始日期",
+      "EndDate":"结束日期",
+      "ContactPh":"电话号码"
+    },
+    "ifo":{
+      "Supplier":"這是供應商，可選.",
+      "Contact":"這是聯繫方式，可選.",
+      "Stock":"這是採購庫存，可選.",
+      "Barcode":"這是條形碼，可選.",
+      "StockBrowse":"这是股票浏览交易，可选.",
+      "File":"這是文件上傳，可選.",
+      "QuotationDate":"这是报价日期，可选.",
+      "CollectionDate":"这是收集日期，可选.",
+      "DocumentNo":"这是文件编号，可选."
+    }
+  },
+  "PurchaseRequestionOva":{
+    "lbl":{
+      "Requisition":"征用",
+      "StockName":"股票名称",
+      "Barcode":"条形码",
+      "RequestionDate":"请求日期",
+      "Document":"文档",
+      "File":"文件",
+      "View":"看法",
+      "Clear":"清除",
+      "AddtoList":"添加到列表",
+      "Tnc":"条款&条件",
+      "QTY":"数量",
+      "UOM":"计量单位",
+      "RequistionNo":"请求编号",
+      "Company":"公司 ",
+      "Location":"地点",
+      "StartDate":"开始日期",
+      "EndDate":"结束日期"
+    },
+    "ifo":{
+      "Barcode":"這是條形碼，可選.",
+      "RequestDate":"这是请求日期，可选.",
+      "File":"這是文件上傳，可選.",
+      "Stock":"這是採購庫存，可選."
+    }
+  },
+  "PurchaseReturnOva":{
+    "lbl":{
+      "Return":"返回",
+      "Supplier":"供应商",
+      "Contact":"联系人姓名",
+      "ReturnDate":"归期",
+      "Reason":"原因",
+      "BrowseTransaction":"浏览交易",
+      "File":"文件",
+      "View":"看法",
+      "Clear":"清除",
+      "CollectionDate":"订单领取日期",
+      "Document":"文档",
+      "SubTotal":"小总计",
+      "Discount":"折扣",
+      "Deduction":"扣除",
+      "RoundOff":"取整",
+      "GrandTotal":"累計",
+      "TotalAmountExcelGST":"总金额 Excel",
+      "Tnc":"条款&条件",
+      "Price":"价钱",
+      "Currency":"货币",
+      "QTY":"数量",
+      "UOM":"计量单位",
+      "DiscountType":"T",
+      "DiscountRate":"R",
+      "Amount":"数量",
+      "ReturnNo":"返回编号",
+      "Company":"公司 ",
+      "StartDate":"开始日期",
+      "EndDate":"结束日期",
+      "TargetedDate":"目标日期",
+      "ParentCode":"引用代码",
+      "ContactPh":"电话号码",
+      "DisAmt":"折扣金额",
+      "GSTAmt":"消费税金额.",
+      "Total":"总金额"
+    },
+    "ifo":{
+      "Supplier":"這是供應商，可選.",
+      "Contact":"這是聯繫方式，可選.",
+      "ReturnDate":"这是返回日期，可选.",
+      "Reason":"這是原因，可選.",
+      "CollectionDate":"这是收集日期，可选.",
+      "DocumentNo":"这是文件编号，可选.",
+      "File":"這是文件上傳，可選.",
+      "Stock":"這是採購庫存，可選."
+    }
+  },
+  "FinishedGoods":{
+    "lbl":{
+      "Stock":"商品",
+      "Barcode":"条形码",
+      "ProductionDate":"生产日期",
+      "BrowseTransactions":"浏览交易",
+      "DocumentNo":"文件编号.",
+      "File":"文件",
+      "View":"看法",
+      "Clear":"清除",
+      "Tnc":"条款&条件",
+      "ProductionNo":"生产编号",
+      "Location":"地点",
+      "FinishedGoodsCode":"成品代码",
+      "FinishedGoodsDate":"成品日期",
+      "Company":"公司 ",
+      "Qty":"数量.",
+      "UOM":"计量单位",
+      "AddtoList":"添加到列表"
+
+    },
+    "ifo":{
+      "Stock":"這是庫存，可選.",
+      "Barcode":"這是條形碼，可選.",
+      "ProductionDate":"这是生产日期，可选.",
+      "BrowseTransactions":"这是浏览交易，可选.",
+      "DocumentNo":"这是文件编号，可选.",
+      "File":"這是文件上傳，可選."
+    }
+  },
+  "Customer": {
+    "lbl": {
+      "Email": "电子邮件",
+      "Mobile": "手机号码",
+      "View": "查看",
+      "Clear": "清除",
+      "General": "一般",
+      "Address": "地址",
+      "ContactPerson": "联系人",
+      "Payment": "支付",
+      "NickName": "昵称",
+      "RegisterDate": "注册日期",
+      "BusinessType": "业务类型",
+      "Industry": "行业",
+      "CustomerType": "客户类型",
+      "PriceBand": "价格带",
+      "DiscountGroup": "折扣组",
+      "Currency": "货币",
+      "TaxRegID": "税务注册号",
+      "UEN": "统一企业编号",
+      "Scheme": "方案",
+      "Peppol": "Peppol",
+      "Superscheme": "超级方案",
+      "Country": "国家",
+      "Tel1": "电话1",
+      "Tel2": "电话2",
+      "State": "州",
+      "City": "城市",
+      "Website": "网站",
+      "PostalCode": "邮政编码",
+      "Facebook": "Facebook",
+      "Floor": "楼层",
+      "Youtube": "Youtube",
+      "UnitNumber": "单元号码",
+      "LinkedIn": "LinkedIn",
+      "Fax": "传真",
+      "Twitter": "Twitter",
+      "PaymentType": "支付类型",
+      "PaymentTerm": "支付条款",
+      "BranchName": "分行名称",
+      "CustomerAccountNo": "客户账号",
+      "CustomerBank": "客户银行",
+      "HouseBank": "总行",
+      "Sendlogincriteria": "发送登录准则",
+      "Type": "类型",
+      "Title": "标题",
+      "Contact": "联系方式",
+      "SameasCompanyAddress": "同公司地址",
+      "ContactName": "联系人姓名",
+      "ContactType": "联系人类型",
+      "Department": "部门",
+      "JobTitle": "职务",
+      "LanAccent": "语言口音",
+      "Gender": "性别",
+      "Profession": "职业",
+      "DateofBirth": "出生日期",
+      "Nationality": "国籍",
+      "MartialStatus": "婚姻状况"
+    },
+    "ifo": {
+      "Email": "这是客户的电子邮件，可选。",
+      "Mobile": "这是客户的手机号码，可选。",
+      "UploadProfile": "这是客户的上传资料，可选。",
+      "NickName": "这是客户的昵称，可选。",
+      "RegisterDate": "这是注册日期，可选。",
+      "BusinessType": "这是业务类型，可选。",
+      "Industry": "这是行业，可选。",
+      "CsutomerType": "这是客户类型，可选。",
+      "PriceBand": "这是价格带，可选。",
+      "DiscountGroup": "这是折扣组，可选。",
+      "Currency": "这是货币，可选。",
+      "TaxRegID": "这是税务注册号，可选。",
+      "UEN": "这是统一企业编号，可选。",
+      "Scheme": "这是方案，可选。",
+      "Peppol": "这是Peppol，可选。",
+      "Superscheme": "这是超级方案，可选。",
+      "Country": "这是国家，可选。",
+      "Tel1": "这是电话1，可选。",
+      "State": "这是州，可选",
+      "Tel2": "这是电话2，可选。",
+      "City": "这是城市，可选。",
+      "Website": "这是网站，可选。",
+      "PostalCode": "这是邮政编码，可选。",
+      "Facebook": "这是Facebook，可选。",
+      "Floor": "这是楼层，可选。",
+      "Youtube": "这是Youtube，可选。",
+      "UnitNumber": "这是单元号码，可选。",
+      "LinkedIn": "这是LinkedIn，可选。",
+      "Address": "这是地址，可选。",
+      "Fax": "这是传真，可选。",
+      "Twitter": "这是Twitter，可选。",
+      "ContactName": "这是联系人姓名，可选。",
+      "ContactType": "这是联系人类型，可选。",
+      "Department": "这是部门，可选。",
+      "JobTitle": "这是职务，可选。",
+      "LanAccent": "这是语言口音，可选。",
+      "Gender": "这是性别，可选。",
+      "Profession": "这是职业，可选。",
+      "DateofBirth": "这是出生日期，可选。",
+      "Nationality": "这是国籍，可选。",
+      "MartialStatus": "这是婚姻状况，可选。"
+    },
+    "plh": {
+      "Address": "街道名称，\n建筑名称，\n#楼层号-单元号"
+    },
+    "rule": {
+      "Email": "电子邮件是必需的。"
+    }
+  },
+  "SalesPaymentJunOva": {
+    "lbl": {
+      "InvBill": "发票/账单",
+      "PaymentCode": "支付代码",
+      "PayCode": "支付代码",
+      "Code": "代码",
+      "Date": "日期",
+      "Parent": "父级",
+      "Term": "期限",
+      "Type": "类型",
+      "SalesType": "销售类型",
+      "Currency": "货币",
+      "Total": "总计",
+      "Settlement": "结算",
+      "Deposit": "存款",
+      "OutstandingAmt": "未结清",
+      "Status": "状态",
+      "PostingStatus": "发布状态",
+      "Remark": "备注",
+      "Company": "公司",
+      "Location": "位置",
+      "CostCenter": "成本中心",
+      "Customer": "子公司经营者",
+      "Contact": "联系方式",
+      "ContactPhone": "联系电话",
+      "StockName": "库存名称",
+      "Barcode": "条形码",
+      "BrowseTransaction": "浏览交易",
+      "Route": "路径",
+      "AddtoList": "添加到列表",
+      "File": "文件",
+      "View": "查看",
+      "Clear": "清除",
+      "PayBy": "支付方式",
+      "PayDate": "支付日期",
+      "CollectionDate": "到期日",
+      "Document": "文档号",
+      "SubTotal": "小计",
+      "Discount": "折扣",
+      "RoundOff": "四舍五入",
+      "GrandTotal": "总计",
+      "TotalAmountExcelGST": "总金额（不含GST）",
+      "Tnc": "条款和条件",
+      "DiscountType": "折扣类型",
+      "DiscountRate": "折扣率",
+      "Price": "价格",
+      "Qty": "数量",
+      "UOM": "计量单位",
+      "DiscountAmt": "折扣金额",
+      "Amount": "金额",
+      "GSTAmt": "GST金额",
+      "Terms": "条款和条件",
+      "StartDate": "开始日期",
+      "EndDate": "结束日期",
+      "PaymentTerm": "付款条件",
+      "PaymentType": "付款方式",
+      "DepositAmt": "存款金额",
+      "RemainingBalance": "剩余余额",
+      "TransactionNo": "交易号",
+      "TransactionDate": "交易日期",
+      "Tender": "投标",
+      "Change": "找零",
+      "Bank": "银行",
+      "ChequeNo": "支票号码",
+      "ChequeDate": "支票日期",
+      "TransactionFee": "交易费用",
+      "CardNo": "卡号",
+      "VoucherNo": "凭证号",
+      "VoucherDate": "凭证日期",
+      "ReadQR": "读取QR码",
+      "RefTranNo": "参考/交易号",
+      "ViewHitPayLink": "查看Hit Pay链接",
+      "LateFee": "滞纳金",
+      "InvoiceNo": "发票号",
+      "SaleDate": "销售日期",
+      "ItemDescription": "商品描述",
+      "AccuralMethod": "计提方法"
+    },
+    "ifo": {
+      "Customer": "这是子公司经营者，必填。",
+      "Contact": "这是联系方式，可选。",
+      "Stock": "这是库存，可选。",
+      "Barcode": "这是条形码，可选。",
+      "StockBrowse": "这是库存浏览交易，可选。",
+      "File": "这是文件上传，可选。",
+      "InvoiceDate": "这是发票日期，可选。",
+      "CollectionDate": "这是到期日，可选。",
+      "DocumentNo": "这是文档号，可选。",
+      "Company": "这是公司，可选。",
+      "Location": "这是位置，可选。",
+      "CostCenter": "这是成本中心，可选。",
+      "Remark": "这是备注，可选。",
+      "Terms": "条款和条件",
+      "PaidBy": "这是支付者，可选。",
+      "PayTerm": "这是付款条件，可选。",
+      "PayType": "这是付款方式，可选。",
+      "ChequeBank": "这是支票银行，可选。",
+      "ChequeNo": "这是支票号码，可选。",
+      "ChequeDate": "这是支票日期，可选。",
+      "Tender": "这是投标，可选。",
+      "Change": "这是找零，可选。",
+      "CreditBank": "这是信用银行，可选。",
+      "CardNo": "这是卡号，可选。",
+      "TransactionFee": "这是交易费用，可选。",
+      "TransactionNo": "这是交易号，可选。",
+      "TransactionDate": "这是交易日期，可选。",
+      "VoucherNo": "这是凭证号，可选。",
+      "VoucherDate": "这是凭证日期，可选。",
+      "RefTranNo": "这是参考/交易号，可选。",
+      "Date": "这是日期，可选。",
+      "DepositAmt": "这是存款金额，可选。",
+      "RemainingBalance": "这是剩余余额，可选。"
+    },
+    "rules": {
+      "Customer": "无效的客户。",
+      "Stock": "添加库存项目。",
+      "DiscountRate": "无效的折扣率或百分比"
+    },
+    "btnTooltip": {
+      "InvoiceView": "切换到发票视图",
+      "PostingView": "切换到发布视图",
+      "More": "点击查看更多",
+      "Less": "点击隐藏更多",
+      "QRCode": "点击读取QR码"
+    }
+  }, 
+  "Stock": {
+    "lbl": {
+      "Code": "代码",
+      "Name": "名称",
+      "Description": "描述",
+      "Company": "公司",
+      "Type": "类型",
+      "OnHoldQty": "暂时保留数量",
+      "OnHandQty": "现有数量",
+      "ReorderQty": "重新订购数量",
+      "MaxQty": "最大数量",
+      "Status": "状态",
+      "Sequence": "顺序",
+      "Remark": "备注"
+    },
+    "ifo": {
+      "Stock": "这是库存。",
+      "Barcode": "这是条形码，可选。",
+      "Reason": "这是原因。",
+      "TransferDate": "这是转移日期。",
+      "TransferType": "这是转移类型。",
+      "TransferStatus": "这是转移状态。",
+      "BrowseTransaction": "这是浏览交易。",
+      "FromLocation": "这是从位置，可选。",
+      "ToLocation": "这是到位置，可选。",
+      "DocumentNo": "这是文档号，可选。",
+      "File": "这是文件上传，可选。"
+    }
+  },
+
+  "CreditNote": {
+    "lbl": {
+      "InvBill": "发票/账单",
+      "PaymentCode": "支付代码",
+      "PayCode": "付款代码",
+      "Code": "代码",
+      "Name": "名称",
+      "Description": "描述",
+      "Date": "日期",
+      "Parent": "上级",
+      "Term": "条款",
+      "Type": "类型",
+      "SalesType": "销售类型",
+      "Currency": "货币",
+      "Total": "总计",
+      "Settlement": "结算",
+      "Deposit": "存款",
+      "OutstandingAmt": "未付余额",
+      "Status": "状态",
+      "PostingStatus": "过账状态",
+      "Remark": "备注",
+      "Company": "公司",
+      "Location": "位置",
+      "CostCenter": "成本中心",
+      "Customer": "子公司业主",
+      "Contact": "联系人",
+      "ContactPhone": "联系电话",
+      "StockName": "库存名称",
+      "Barcode": "条形码",
+      "BrowseTransaction": "浏览交易",
+      "Route": "路线",
+      "AddtoList": "添加到列表",
+      "File": "文件",
+      "View": "查看",
+      "Clear": "清除",
+      "PayBy": "支付方式",
+      "PayDate": "支付日期",
+      "CollectionDate": "到期日期",
+      "Document": "文件编号",
+      "SubTotal": "小计",
+      "Discount": "折扣",
+      "RoundOff": "四舍五入",
+      "GrandTotal": "总计",
+      "TotalAmountExcelGST": "总金额（含税）",
+      "Tnc": "条款和条件",
+      "DiscountType": "折扣类型",
+      "DiscountRate": "折扣率",
+      "Price": "价格",
+      "Qty": "数量",
+      "UOM": "计量单位",
+      "DiscountAmt": "折扣金额",
+      "Amount": "金额",
+      "GSTAmt": "消费税金额",
+      "Terms": "条款和条件",
+      "StartDate": "开始日期",
+      "EndDate": "结束日期",
+      "PaymentTerm": "付款条件",
+      "PaymentType": "付款类型",
+      "DepositAmt": "存款金额",
+      "RemainingBalance": "剩余余额",
+      "TransactionNo": "交易编号",
+      "TransactionDate": "交易日期",
+      "Tender": "投标",
+      "Change": "找零",
+      "Bank": "银行",
+      "ChequeNo": "支票号码",
+      "ChequeDate": "支票日期",
+      "TransactionFee": "交易费用",
+      "CardNo": "卡号",
+      "VoucherNo": "凭证号",
+      "VoucherDate": "凭证日期",
+      "ReadQR": "读取二维码",
+      "RefTranNo": "参考/交易编号",
+      "ViewHitPayLink": "查看 Hit Pay 链接",
+      "LateFee": "滞纳金",
+      "InvoiceNo": "发票编号",
+      "SaleDate": "销售日期",
+      "ItemDescription": "商品描述",
+      "AccuralMethod": "应计方法"
+    },
+    "ifo": {
+      "Customer": "这是子公司业主，必填项。",
+      "Contact": "这是联系人，可选项。",
+      "Stock": "这是库存，可选项。",
+      "Barcode": "这是条形码，可选项。",
+      "StockBrowse": "这是库存浏览交易，可选项。",
+      "File": "这是文件上传，可选项。",
+      "InvoiceDate": "这是发票日期，可选项。",
+      "CollectionDate": "这是到期日期，可选项。",
+      "DocumentNo": "这是文件编号，可选项。",
+      "Company": "这是公司，可选项。",
+      "Location": "这是位置，可选项。",
+      "CostCenter": "这是成本中心，可选项。",
+      "Remark": "这是备注，可选项。",
+      "Terms": "条款和条件",
+      "PaidBy": "这是支付人，可选项。",
+      "PayTerm": "这是付款条件，可选项。",
+      "PayType": "这是付款类型，可选项。",
+      "ChequeBank": "这是支票银行，可选项。",
+      "ChequeNo": "这是支票号码，可选项。",
+      "ChequeDate": "这是支票日期，可选项。",
+      "Tender": "这是投标，可选项。",
+      "Change": "这是找零，可选项。",
+      "CreditBank": "这是信用银行，可选项。",
+      "CardNo": "这是卡号，可选项。",
+      "TransactionFee": "这是交易费用，可选项。",
+      "TransactionNo": "这是交易编号，可选项。",
+      "TransactionDate": "这是交易日期，可选项。",
+      "VoucherNo": "这是凭证号，可选项。",
+      "VoucherDate": "这是凭证日期，可选项。",
+      "RefTranNo": "这是参考/交易编号，可选项。",
+      "Date": "这是日期，可选项。",
+      "DepositAmt": "这是存款金额，可选项。",
+      "RemainingBalance": "这是剩余余额，可选项。"
+    },
+    "rules": {
+      "Customer": "无效的客户。",
+      "Stock": "添加库存项目。",
+      "DiscountRate": "无效的折扣率或百分比"
+    },
+    "btnTooltip": {
+      "InvoiceView": "切换到发票视图",
+      "PostingView": "切换到过账视图",
+      "More": "点击查看更多",
+      "Less": "点击隐藏更多",
+      "QRCode": "点击读取二维码"
+    }
+  }
+
+  }, 
+  "SYS":{
+    "Common":{
+      "loading":"加載中",
+      "grid":{
+        "emptydatastring": "无数据显示", 
+        "pagergotopagestring": "转至页面：", 
+        "pagershowrowsstring": "显示行列"
+      },
+      "btnName":{
+        "Search":"搜索",
+        "Less":"较少",
+        "More":"更多",
+        "Clear":"清除",
+        "NewRow":"添加新行",
+        "DownloadTemplate":"下載模板",
+        "UploadTemplate":"上傳 csv"
+      },
+      "btnTooltip":{
+        "Home":"点击返回主页",
+        "Back": "点击返回",
+        "ColumnShowHide":"單擊以顯示或隱藏列",
+        "ChangeView":"点击更改列表视图",
+        "Search":"点击搜索",
+        "Less":"点击隐藏更多",
+        "More":"点击使用更多条件搜索",
+        "Clear":"單擊以清除所有條件",
+        "NewRow":"單擊以添加新行",
+        "DownloadTemplate":"點擊下載",
+        "UploadTemplate":"点击上传"
+      },
+      "view":{
+        "GridView":"網格視圖",
+        "WebView":"網頁視圖",
+        "CardView":"卡片視圖"
+      },
+      "plh":{
+        "Search":"在此处输入搜索"
+      },
+      "confirm":{        
+        "Delete": "是否要放弃更改？",
+        "Void": "你确定要作废吗?",
+        "Active": "您確定要激活嗎?",
+        "Inactive": "您確定要停用嗎?",
+        "New": "是否要放弃更改?"
+      },
+      "ifo":{
+        "Search":"結果將顯示"
+      }
+    },
+    "Setup":{ 
+      "lbl":{
+        "Code":"代码",
+        "Name":"姓名",
+        "Description":"描述",
+        "Status":"状态",
+        "Sequence":"顺序",
+        "Remark":"备注",
+        "Remove":"消除",
+        "TD":"TD",
+        "User":"用户",
+        "View":"View",
+        "Clear":"清除"
+      }, 
+      "plh":{
+        "Code":"代码",
+        "Name":"姓名",
+        "Description":"描述",
+        "Status":"状态",
+        "Sequence":"顺序",
+        "Remark":"备注",
+        "Remove":"消除",
+        "TD":"TD",
+        "User":"用户",
+        "Select":"选择"
+      },
+      "ifo":{
+        "Title":"更多信息:",
+        "Code":"這是代碼，強制性的。最大字符數 - 50",
+        "Name":"這是名稱，必填。最大字符數 - 255",
+        "Description":"這是描述，可選。最大字符數 - 500",
+        "Sequence":"這是序列，可選.",
+        "Remark":"這是備註，可選."
+      },
+      "rule":{
+        "Code":"需要代碼.",
+        "Name":"姓名為必填項.",
+        "Min":"最小字符為",
+        "Max":"最大字符數為",
+        "Sequence":"序列不能小於零."
+      },
+      "impAlert":{
+        "Code":"在添加新行之前，需要填寫代碼.",
+        "Name":"添加新行之前，需要填寫名稱."
+      }
+    },
+    "AlertItem":{
+      "lbl":{
+        "AlertItemType":"警报项目类型",
+        "AlertType":"警报类型",
+        "BeatType":"节拍类型",
+        "Procedure":"程序"
+      },
+      "ifo":{
+        "AlertItemType":"这是警报项目类型，可选.",
+        "AlertType":"这是警报类型，可选.",
+        "BeatType":"这是节拍类型，可选.",
+        "Procedure":"这是程序，可选."
+      }
+    },
+    "AD":{
+        "lbl":{
+          "Product":"产品 ",
+          "Photo":"照片",
+          "Link":"关联",
+          "StartDate":"开始日期",
+          "EndDate":"结束日期",
+          "View":"看法",
+          "Clear":"清除"
+        },
+        "ifo":{
+          "Product":"这是产品，可选.",
+          "Photo":"这是照片，可选.",
+          "Link":"这是链接，可选.",
+          "StartDate":"这是开始日期，可选.",
+          "EndDate":"这是结束日期，可选."
+        },
+        "plh":{
+          "Link" : "http://ovaspace.com"
+        }
+    },
+    "Promotion":{
+        "lbl":{
+          "Product":"产品 ",
+          "StockCode":"股票代码",
+          "OriginalPrice":"原价",
+          "Price":"价钱",
+          "Currency":"货币",
+          "UOM":"计量单位",
+          "StartDate":"开始日期",
+          "EndDate":"结束日期",
+          "View":"看法",
+          "Clear":"清除"
+        },
+        "ifo":{
+          "Product":"这是产品，可选.",
+          "StockCode":"这是股票代码，可选.",
+          "OriginalPrice":"这是原价，可选.",
+          "Price":"这是价格，可选.",
+          "UOM":"这是 计量单位，可选.",
+          "Currency":"這是貨幣，可選.",
+          "StartDate":"这是开始日期，可选.",
+          "EndDate":"这是结束日期，可选."
+        }
+    },
+    "Company":{
+        "lbl":{
+          "Logo":"标识",
+          "View":"看法",
+          "Clear":"清除",
+          "InquiryTnc":"询价 跨国公司",
+          "QuotationTnc":"报价 跨国公司",
+          "OrderTnc":"订购总公司",
+          "CompanyType":"公司类型",
+          "InvoiceTnc":"发票跨国公司",
+          "CompanyGroup":"公司集团",
+          "BillingTnc":"帐单公司",
+          "Phone":"电话",
+          "PaymentTnc":"支付跨国公司",
+          "Ext":"分机",
+          "ReturnTnc":"返回总核细胞数",
+          "Fax":"传真",
+          "WelcomeWord":"欢迎词",
+          "Email":"电子邮件",
+          "ThanksWord":"感谢词",
+          "ExternalEmail":"外部电子邮件",
+          "Slogan":"口号",
+          "InternalEmail":"内部电子邮件",
+          "Website":"网站",
+          "Country":"国家",
+          "Faccebok":"Facebook",
+          "State":"州属",
+          "LinkedIn":"LinkedIn",
+          "City":"城市",
+          "Youtube":"Youtube",
+          "ReceiptLogo":"接待标志",
+          "Twitter":"Twitter",
+          "TaxRegNo":"税号",
+          "Whatsapp":"Whatsapp",
+          "TaxRegDoc":"TaxRegDoc 文档",
+          "Viber":"Viber",
+          "PostalCode":"邮政编码",
+          "TaxRegSDate":"税务登记日期",
+          "Floor":"地面",
+          "TaxRegExpDate":"Tac 注册到期日期",
+          "UnitNumber":"单位编号",
+          "RegStartDate":"注册开始日期",
+          "UEN":"UEN",
+          "OfficeHour":"办公时间",
+          "Address":"地址"
+        },
+        "ifo":{
+          "Logo":"这是徽标，可选.",
+          "InquiryTnc":"这是查询 Tnc，可选.",
+          "QuotationTnc":"这是 TNC 报价，可选.",
+          "OrderTnc":"这是订单 Tnc，可选.",
+          "CompanyType":"这是公司类型，可选.",
+          "InvoiceTnc":"这是发票 Tnc，可选.",
+          "CompanyGroup":"这是公司组，可选.",
+          "BillingTnc":"这是帐单公司，可选.",
+          "Phone":"这是电话，可选。",
+          "PaymentTnc":"这是 付款跨国公司，可选.",
+          "Ext":"这是分机，可选.",
+          "ReturnTnc":"这是返回总核细胞数，可选.",
+          "Fax":"这是传真，可选.",
+          "WelcomWord":"这是欢迎词，可选.",
+          "Email":"这是电子邮件，可选.",
+          "ThanksWord":"这是感谢词，可选.",
+          "ExternalEmail":"这是外部电子邮件，可选.",
+          "Slogan":"这是口号，可选.",
+          "InternalEmail":"这是内部电子邮件，可选.",
+          "Website":"这是网站，可选.",
+          "Country":"这是国家，可选.",
+          "Facebook":"这是 Facebook，可选.",
+          "State":"这是状态，可选",
+          "LinkedIn":"这是 LinkedIn，可选.",
+          "City":"这是城市，可选.",
+          "Youtube":"这是 YouTube，可选.",
+          "ReceiptLogo":"这是收据徽标，可选.",
+          "Twitter":"这是 Twitter，可选.",
+          "TaxRegNo":"这是税号，可选.",
+          "Whatsapp":"这是 Whatsapp，可选.",
+          "TaxRegDoc":"这是税务登记文件，可选.",
+          "Viber":"这是 Viber，可选.",
+          "PostalCode":"这是邮政编码，可选.",
+          "TaxRegSDate":"这是税务登记日期，可选 ",
+          "Floor":"这是楼层，可选.",
+          "TaxRegExpDate":"这是税务登记到期日期，可选.",
+          "UnitNumber":"这是单元号，可选.",
+          "RegStartDate":"这是注册开始日期，可选.",
+          "UEN":"这是 UEN，可选.",
+          "OfficeHour":"这是办公时间，可选.",
+          "Addresss":"这是地址，可选."
+        
+        }
+    },
+    "State":{
+      "lbl":{
+        "Country":"国家"
+      },
+      "ifo":{
+        "Country":"这是国家，可选."
+      }
+    },
+    "CompanyWorkingHour":{
+      "lbl":{
+        "Company":"公司",
+        "Day":"天",
+        "FromWorkingHour": "从工作时间开始",
+        "ToWorkingHour":"至工作时间"
+      },
+      "ifo":{
+        "Company":"這是公司，可選.",
+        "Day":"今天是白天，可选.",
+        "FromWorkingHour": "这是从工作时间开始的，可选.",
+        "ToWorkingHour": "这是工作时间，可选."
+      },
+      "rule":{
+        "Company":"公司為必填項",
+        "Day":"需要当天"
+      }
+    },
+    "CSVTemplate":{
+      "lbl":{
+        "Product":"产品",
+        "Menu":"菜单",
+        "Template":"模板",
+        "CSVTemplateFile":"CSV 模板文件"
+      },
+      "ifo":{
+        "Product":"这是产品，可选.",
+        "Menu":"这是菜单，可选.",
+        "Template":"这是模板，可选.",
+        "CSVTemplateFile":"这是 CSV 模板文件，可选."
+      },
+      "rule":{
+        "Product":"产品为必填项",
+        "Menu":"菜单为必填项"
+    }},
+    "Bank":{
+      "lbl":{
+        "Product":"产品 "
+      },
+      "ifo":{
+        "Product":"T这是产品，可选."
+      }
+    },
+    "Category":{
+      "lbl":{
+        "StockCategoryLevel":"等级 ",
+        "ParentCategory":" 家长类别:",
+        "StockCategoryURL":"类别网址",
+        "StockCategoryLink":"分类链接",
+        "LinkAsk1":"链接询问 1",
+        "LinkAsk2":"链接询问 2",
+        "LinkAsk3":"链接询问 3",
+        "Product":"产品",
+        "SetParent":"设置父级"
+      },
+      "ifo":{
+        "StockCategoryLevel":"这是类别级别，可选. ",
+        "ParentCategory":" 这是父类别，可选.",
+        "StockCategoryURL":"这是类别 URL，可选.",
+        "StockCategoryLink":"这是类别链接，可选.",
+        "LinkAsk1":"这是 链接询问 1，可选.",
+        "LinkAsk2":"这是 链接询问 2，可选.",
+        "LinkAsk3":"这是 链接询问 3，可选.",
+        "Product":"这是产品，可选.",
+        "SetParent":"这是设置父级，可选."
+      }
+    },
+    "ShoopingRate":{
+      "lbl":{
+        "FromRange":"从范围",
+        "ToRange": "估计"
+      },
+      "ifo":{
+        "FromRange": "这是来自范围，可选.",
+        "ToRange": "这是到范围，可选."
+      }
+    },
+    "SaleCommissionPeriod":{
+      "lbl":{
+        "PeriodType":"期间类型"
+      },
+      "ifo":{
+        "PeriodType":"这是周期类型，可选."      }
+    },
+    "Menu":{
+      "lbl":{
+        "SetParentMenu":"设置父菜单",
+        "Product":"产品",
+        "MenuType":"菜单类型",
+        "MenuUrl":"菜单网址",
+        "MenuIcon":"菜单图标",
+        "SelectParentMenu":"选择父菜单:",
+        "ParentID":"家长 ID"
+      },
+      "ifo":{
+        "SetParentMenu":"这是设置父菜单，可选.",
+        "Product":"这是产品，可选.",
+        "MenuType":"这是菜单类型，可选." ,
+        "MenuUrl": "这是菜单 URL，可选.",
+        "MenuIcon":"这是菜单图标，可选."
+      },
+      "plh":{
+        "MenuUrl":"pos-sale-order",
+        "MenuIcon":"fa-shopping-cart"
+      },
+      "rule":{
+        "Product":"产品为必填项"
+      }
+    },
+    "MenuGroup":{
+      "lbl":{
+        "SelectMenu":"选择菜单",
+        "Product":"产品"
+      },
+      "plh":{
+         "Code" : "类型代码：例如.001",
+          "Name" : "类型名称：例如.Public",
+          "Description" : "类型描述：例如.Public",
+          "Remark" : "型号 备注"
+      },
+      "rules":{
+        "Code":"需要代碼。長度不超過25.",
+        "Name": "姓名為必填項。長度不超過255."
+      }
+    },
+    "ReportTemplate":{
+      "lbl":{
+        "ReportTemplateType":"报告模板类型",
+        "Product":"产品 ",
+        "ReferenceNo":"參考編號",
+        "ReferenceDetail":"參考詳情",
+        "ReferenceDocument":"參考文件",
+        "ReferenceDate":"參考日期"
+      },
+      "ifo":{
+        "ReportTemplateType":"这是报告模板类型，可选.",
+        "Product":"这是产品，可选.",
+        "ReferenceNo":"這是參考號，可選.",
+        "ReferenceDetail":"这是参考详细信息，可选.",
+        "ReferenceDocument":"這是參考文檔，可選.",
+        "ReferenceDate":"這是參考日期，可選."
+      },
+      "plh":{
+        "ReferenceNo":"参考编号",
+        "ReferenceDetail":"參考詳情"
+      }
+    },
+    "ReportTemplateCompanyJun":{
+      "lbl":{
+        "Company":"公司 ",
+        "TemplateType":"模板类型",
+        "Product":"产品 ",
+        "ReportTemplate":"报告模板"
+      },
+      "ifo":{
+        "Company":"這是公司，可選."
+      }
+    } ,
+    "MailTemplate":{
+      "lbl":{
+        "MailTemplateType":"邮件模板类型",
+        "Product":"产品",
+        "ReferenceNo":"參考編號",
+        "ReferenceDetail":"參考詳情",
+        "ReferenceDocument":"參考文件",
+        "ReferenceDate":"參考日期"
+      },
+      "ifo":{
+        "MailTemplateType":"这是邮件模板类型，可选.",
+        "Product":"这是产品，可选.",
+        "ReferenceNo":"這是參考號，可選.",
+        "ReferenceDetail":"这是参考详细信息，可选.",
+        "ReferenceDocument":"這是參考文檔，可選.",
+        "ReferenceDate":"這是參考日期，可選."
+      },
+      "plh":{
+        "ReferenceNo":"参考编号",
+        "ReferenceDetail":"參考詳情"
+      }
+    },
+    "MailTemplateCompanyJun":{
+      "lbl":{
+        "Company":"公司 ",
+        "TemplateType":"模板类型",
+        "Product":"产品 ",
+        "MailTemplate":"邮件模板"
+      },
+      "ifo":{
+        "Company":"這是公司，可選."
+      }
+    } ,
+    "PromotionSeasonal":{
+      "lbl":{
+        "Type":"类型",
+        "Price":"价钱",
+        "OnHandQty":"现有数量.",
+        "ImageView":"图像视图",
+        "StockSearch":"库存搜索"
+      }
+    },
+    "DefaultUserSetting":{
+      "lbl":{
+        "DomainName":"域名",
+        "TaskBarFStyle":"任务栏F样式",
+        "TaskBarFName":"任务栏 F 名称",
+        "TaskBarBgColor":"任务栏背景颜色",
+        "TaskBarFSize":"任务栏大小",
+        "TaskBarFColor":"任务栏颜色",
+        "ActionBarFName":"操作栏 F 名称",
+        "ActionBarFSize":"操作栏 F 尺寸",
+        "ActionBarFColor":"操作栏颜色",
+        "ActionBarFStyle":"操作栏 F 型",
+        "ActionBarBgColor":"操作栏背景颜色",
+        "ContentHeaderFName":"内容标题 F 名称",
+        "ContentHeaderFSize":"内容头文件大小",
+        "ContentHeaderFColor":"内容标题 F 颜色",
+        "ContentHeaderFStyle":"内容标题 F 样式",
+        "ContentHeaderBgColor":"内容标题背景颜色",
+        "ContentBodyFName":"内容正文 F 名称",
+        "ContentBodyFSize":"内容正文 F 尺寸",
+        "ContentBodyFColor":"内容正文颜色",
+        "ContentBodyFStyle":"内容正文 F 风格",
+        "ContentBodyBgColor":"内容正文背景颜色",
+        "ContentFooterFName":"内容页脚 F 名称",
+        "ContentFooterFSize":"内容页脚 F 尺寸",
+        "ContentFooterFStyle":"内容页脚 F 样式",
+        "ContentFooterFColor":"内容页脚 F 颜色",
+        "ContentFooterBgColor":"内容页脚背景颜色",
+        "HightlightFName":"突出显示 F 名称",
+        "HightlightFSize":"突出显示 F 尺寸",
+        "HightlightFColor":"高亮F颜色",
+        "HightlightFStyle":"突出显示 F 样式",
+        "HightlightBgColor":"突出显示背景颜色",
+        "SwipeButtonFName":"滑动按钮 F 名称",
+        "SwipeButtonFSize":"滑动按钮 F 尺寸",
+        "SwipeButtonFColor":"滑动按钮 F 颜色",
+        "SwipeButtonFStyle":"滑动按钮 F 型",
+        "SwipeButtonBgColor":"滑动按钮背景颜色",
+        "ButtonFName":"按钮 F 名称",
+        "ButtonFSize":"纽扣 F 尺寸",
+        "ButtonFColor":"按钮F颜色",
+        "ButtonFStyle":"按钮F样式",
+        "ButtonBgColor":"按钮背景颜色",
+        "ClickableLinkFName":"可点击的链接 F 名称",
+        "ClickableLinkFSize":"点击可链接 F 尺寸",
+        "ClickableLinkFColor":"可点击的链接F颜色",
+        "ClickableLinkFStyle":"可点击链接F风格",
+        "ClickableLinkBgColor":"可点击的链接背景颜色",
+        "CardViewFName":"卡片视图 F 名称",
+        "CardViewFSize":"卡片视图 F 尺寸",
+        "CardViewFColor":"卡片视图 F 色",
+        "CardViewFStyle":"卡片视图 F 风格",
+        "CardViewBgColor":"卡片视图背景颜色",
+        "CardViewCHFName":"卡视图CH F 名称",
+        "CardViewCHFSize":"卡片视图 CH F 尺寸",
+        "CardViewCHFColor":"卡片视图 CH F 颜色",
+        "CardViewCHFStyle":"卡片视图 CH F 风格",
+        "CardViewCBFName":"卡片视图 CB F 名称",
+        "CardViewCBFSize":"卡视图 Cb F 尺寸",
+        "CardViewCBFColor":"卡片视图 CB F 颜色",
+        "CardViewCBFStyle":"卡片视图 CB F 风格",
+        "CardViewCBBgColor":"卡片视图 CB 背景颜色",
+        "CardViewCFFName":"卡视图 CF F 名称",
+        "CardViewCFFSize":"卡片视图 CF F 尺寸",
+        "CardViewCFFColor":"卡片视图 CF F 颜色",
+        "CardViewCFFStyle":"卡片视图 CF F 风格",
+        "CardViewCFBgColor":"卡视图 CF 背景颜色"
+      },
+      "ifo":{
+        "DomainName":"这是域名，可选.",
+        "TaskBarFStyle":"这是任务栏 F 样式，可选.",
+        "TaskBarFName":"这是任务栏 F 名称，可选.",
+        "TaskBarBgColor":"这是任务栏背景颜色，可选.",
+        "TaskBarFSize":"这是任务栏 F 大小，可选.",
+        "TaskBarFColor":"这是任务栏 F 颜色，可选.",
+        "ActionBarFName":"这是操作栏 F 名称，可选.",
+        "ActionBarFSize":"这是操作栏 F 尺寸，可选.",
+        "ActionBarFColor":"这是操作栏 F 颜色，可选.",
+        "ActionBarFStyle":"这是操作栏 F 样式，可选.",
+        "ActionBarBgColor":"这是操作栏背景颜色，可选.",
+        "ContentHeaderFName":"这是内容标题 F 名称，可选.",
+        "ContentHeaderFSize":"这是内容标题 F 大小，可选.",
+        "ContentHeaderFColor":"这是内容标题 F 颜色，可选.",
+        "ContentHeaderFStyle":"这是内容标题 F 样式，可选.",
+        "ContentHeaderBgColor":"这是内容标题背景颜色，可选.",
+        "ContentBodyFName":"这是内容主体 F 名称，可选.",
+        "ContentBodyFSize":"这是内容正文 F 尺寸，可选.",
+        "ContentBodyFColor":"这是内容正文 F 颜色，可选.",
+        "ContentBodyFStyle":"这是内容正文 F 样式，可选.",
+        "ContentBodyBgColor":"这是内容主体背景颜色，可选.",
+        "ContentFooterFName":"这是内容页脚 F 名称，可选.",
+        "ContentFooterFSize":"这是内容页脚 F 尺寸，可选.",
+        "ContentFooterFStyle":"这是内容页脚 F 样式，可选.",
+        "ContentFooterFColor":"这是内容页脚 F 颜色，可选.",
+        "ContentFooterBgColor":"这是内容页脚背景颜色，可选.",
+        "HightlightFName":"这是突出显示的 F 名称，可选.",
+        "HightlightFSize":"这是Hightlight F号，可选.",
+        "HightlightFColor":"这是高亮 F 颜色，可选.",
+        "HightlightFStyle":"这是Hightlight F风格，可选.",
+        "HightlightBgColor":"这是高亮背景颜色，可选.",
+        "SwipeButtonFName":"这是滑动按钮 F 名称，可选.",
+        "SwipeButtonFSize":"这是滑动按钮 F 尺寸，可选.",
+        "SwipeButtonFColor":"这是滑动按钮 F 颜色，可选.",
+        "SwipeButtonFStyle":"这是滑动按钮 F 样式，可选.",
+        "SwipeButtonBgColor":"这是滑动按钮背景颜色，可选.",
+        "ButtonFName":"这是按钮 F 名称，可选.",
+        "ButtonFSize":"这是按钮 F 尺寸，可选.",
+        "ButtonFColor":"这是按钮 F 颜色，可选.",
+        "ButtonFStyle":"这是按钮 F 样式，可选.",
+        "ButtonBgColor":"这是按钮背景颜色，可选。",
+        "ClickableLinkFName":"这是可点击的链接 F 名称，可选.",
+        "ClickableLinkFSize":"这是可点击的链接 F 尺寸，可选.",
+        "ClickableLinkFColor":"这是可点击的链接 F 颜色，可选.",
+        "ClickableLinkFStyle":"这是可点击链接 F 样式，可选.",
+        "ClickableLinkBgColor":"这是可点击的链接背景颜色，可选.",
+        "CardViewFName":"这是卡片视图 FName，可选.",
+        "CardViewFSize":"这是卡片视图 FSize，可选.",
+        "CardViewFColor":"这是卡片视图 FColor，可选.",
+        "CardViewFStyle":"这是卡片视图 FStyle，可选.",
+        "CardViewBgColor":"这是卡片视图背景颜色，可选.",
+        "CardViewCHFName":"这是卡片视图 CH FName，可选.",
+        "CardViewCHFSize":"这是卡片视图 CH FSize，可选.",
+        "CardViewCHFColor":"这是卡片视图 CH FColor，可选.",
+        "CardViewCHFStyle":"这是卡片视图 CH FStyle，可选.",
+        "CardViewCBFName":"这是卡片视图 CB FName，可选.",
+        "CardViewCBFSize":"这是卡片视图 Cb FSize，可选.",
+        "CardViewCBFColor":"这是卡片视图 CB FColor，可选.",
+        "CardViewCBFStyle":"这是卡片视图 CB FStyle，可选.",
+        "CardViewCBBgColor":"这是卡片视图 CB Bg 颜色，可选.",
+        "CardViewCFFName":"这是卡视图 CF FName，可选.",
+        "CardViewCFFSize":"这是卡片视图 CF FSize，可选.",
+        "CardViewCFFColor":"这是卡片视图 CF FColor，可选.",
+        "CardViewCFFStyle":"这是 卡片视图CF FStyle，可选.",
+        "CardViewCFBgColor":"这是卡片视图 CF 背景颜色，可选."
+      }
+    },
+    "CompanyBank":{
+      "lbl":{
+        "Company":"公司 ",
+        "Bank":"银行",
+        "BranchCode":"分行代码",
+        "BranchName":"分店名称",
+        "Currency":"货币",
+        "SwiftCode":"迅速代码",
+        "BankAccount":"银行账户",
+        "AccountName":"帐户名称",
+        "PaynowUEN":"立即付款UEN"
+      },
+      "ifo":{
+        "Company":"這是公司，可選.",
+        "Bank":"這是銀行，可選.",
+        "BranchCode":"这是分支代码，可选.",
+        "BranchName":"这是分支名称，可选.",
+        "Currency":"這是貨幣，可選.",
+        "SwiftCode":"这是 迅速代码，可选.",
+        "BankAccount":"这是银行账户，可选.",
+        "PaynowUEN":"这是立即付款 UEN，可选.",
+        "AccountName":"这是帐户名称，可选."
+      },
+      "plh":{
+        "BranchCode":"分行代码",
+        "BranchName":"分店名称",
+        "SwiftCode":"迅速名称",
+        "BankAccount":"银行账户",
+        "AccountName":"帐户名称",
+        "PaynowUEN":"佩诺大学网络"
+      }
+    } ,
+    "City":{
+      "lbl":{
+        "State":"状态"
+      },
+      "ifo":{
+        "State":"这是状态，可选."
+      }
+    },
+    "TableLink":{
+      "lbl":{
+        "Link":"关联"
+      },
+      "plh":{
+        "Link":"pos-stock-set",
+        "Name":"[dbo].[SPP_STOCK]",
+        "Description":"SPP_STOCK"
+      },
+      "ifo":{
+        "Link":"这是链接，可选."
+      }
+    },
+    "TranCode":{
+      "lbl":{
+        "RunningDigit":"运行数字",
+        "Prefix":"Prefix",
+        "PrefixDivider":"前缀分隔符",
+        "Suffix":"Suffix",
+        "SuffixDivider":"后缀分隔符"
+      },
+      "ifo":{
+        "RunningDigit":"这是连续数字，可选.",
+        "Prefix":"这是前缀，可选.",
+        "PrefixDivider":"这是前缀分隔符，可选.",
+        "Suffix":"这是后缀，可选.",
+        "SuffixDivider":"这是后缀分隔符，可选."
+      },
+      "plh":{
+        "Prefix":"字首",
+        "PrefixDivider":"前缀分隔符",
+        "Suffix":"后缀",
+        "SuffixDivider":"后缀分隔符"
+      },
+      "rule":{
+        "Prefix":"需要前缀."
+      }
+    },
+    "MailConfig":{
+      "lbl":{
+        "Host":"主持人",
+        "DomainName":"域名",
+        "MailServer":"邮件服务器",
+        "ServiceInternal":"服务内部",
+        "UserID":"用户ID",
+        "Password":"密码 ",
+        "Port":"港口",
+        "EnabledSSL":"已启用 SSL",
+        "IsBodyHTML":"正文是 HTML",
+        "ServerPath":"服务器路径"
+      },
+      "plh":{
+      "Host" : "主持人",
+      "Domain" : "领域",
+      "Server" : "服务器",
+      "UserID" : "用户ID",
+      "Password" : "密码",
+      "ServerPath" : "服务器路径"
+      },
+      "ifo":{
+        "Host":"这是主机，可选.",
+        "DomainName":"这是域名，可选.",
+        "MailServer":"这是邮件服务器，可选.",
+        "ServiceInternal":"这是内部服务，可选.",
+        "UserID":"这是用户 ID，可选.",
+        "Password":"这是密码，可选. ",
+        "Port":"这是端口，可选.",
+        "EnabledSSL":"这是启用 SSL，可选.",
+        "IsBodyHTML":"这是正文 HTML，可选.",
+        "ServerPath":"这是服务器路径，可选."
+      },
+      "rule":{
+        "Host":"需要主机.",
+        "Domain":"域名为必填项."
+      }
+    },
+    "CategoryJun":{
+      "lbl":{
+      "Category":"类别"
+      },
+      "ifo":{
+        "Category":"这是类别，可选."
+      }
+    },
+    "Product":{
+      "lbl":{
+        "Phone":"电话",
+        "Email":"电子邮件",
+        "Facebook":"Facebook",
+        "LinkedIn":"LinkedIn",
+        "Twitter":"Twitter",
+        "Youtube":"Youtube",
+        "Logo":"标识",
+        "Icon":"图标",
+        "Fax":"传真",
+        "Website":"网站",
+        "FBLink":"FB关联",
+        "TwitterLink":"Twitter 关联",
+        "YoutubeLink":"Youtube 关联"
+      },
+      "ifo":{
+        "Phone":"这是电话，可选。",
+        "Email":"这是电子邮件，可选.",
+        "Facebook":"这是 Facebook，可选.",
+        "LinkedIn":"这是 LinkedIn，可选.",
+        "Twitter":"这是 Twitter，可选.",
+        "Youtube":"这是 Youtube，可选.",
+        "Logo":"这是 图标，可选.",
+        "Icon":"这是 图标，可选.",
+        "Fax":"这是 传真，可选.",
+        "Website":"这是 网站，可选."
+      },
+      "plh":{
+        "Code": "001",
+        "Name": "Public",
+        "Desc": "Public",
+        "Status": "选择状态",
+        "Remark": "备注",
+        "ProductEmail": "Type test@gmail.com",
+        "ProductPhone": "Type 5687899",
+        "ProductFbUrl": "https://facebook.com/ovaspace",
+        "ProductLinkInUrl": "https://linkin.com",
+        "ProductTwitterUrl": "https://twitter.com",
+        "ProductWebsiteUrl": "http://ovaspace.com",
+        "ProductFax": "9er938493",
+        "ProductYoutubeUrl": "https://youtube.com",
+        "ProductLogo": "",
+        "ProductIcon": "Tye fa fa-search"
+      },
+      "rules":{
+        "Code":"需要代碼。長度不超過25.",
+        "Name":"姓名為必填項。長度不超過255."
+      }
+    },
+    "Function":{
+      "lbl":{
+        "ControlUrl":"控制网址",
+        "ControlIcon":"控制图标",
+        "Product":"产品 ",
+        "MenuName":"菜单名称",
+        "Menu":"菜单"
+      },
+      "ifo":{
+        "ControlUrl":"这是控制网址，可选.",
+        "ControlIcon":"这是控制图标，可选.",
+        "Product":"这是产品，可选."
+      },
+      "plh":{
+        "ControlUrl":"btnEdit_onClick",
+        "ControlIcon":"fa-shopping-cart"
+      }
+    },
+    "FunctionGroup":{
+      "lbl":{
+        "SelectFunctions":"选择功能",
+        "ControlName":"控件名称",
+        "ControlUrl":"控制网址",
+        "MenuName":"菜单名称",
+        "ProductName":"产品名称",
+        "ControlGroupCode":"控制组代码",
+        "ControlGroupName":"控制组名称",
+        "ControlGroupDescription":"控制组描述."
+      }
+    },
+    "SeasonalItem":{
+      "lbl":{
+        "StockCode":"股票代码",
+        "OriginalPrice":"原价",
+        "Currency":"货币",
+        "Price":"价钱",
+        "StartDate":"开始日期",
+        "EndDate":"结束日期",
+        "Product":"产品"
+      },
+      "ifo":{
+        "StockCode":"这是股票代码，可选.",
+        "OriginalPrice":"这是原价，可选.",
+        "Currency":"這是貨幣，可選.",
+        "StartDate":"这是开始日期，可选.",
+        "Price":"这是价格，可选.",
+        "EndDate":"这是结束日期，可选.",
+        "Product":"这是产品，可选."
+      }
+    },
+    "Brief":{
+      "lbl":{
+        "Photo":"照片",
+        "Link":"关联"
+      },
+      "ifo":{
+        "Photo":"这是照片，可选.",
+        "Link":"这是链接，可选."
+      },
+      "plh":{
+        "Link":"http://ovaspace.com"
+      }
+    },
+    "UserCompany":{
+      "lbl":{
+        "User":"用户",
+        "Company":"公司",
+        "UserName":"用户名",
+        "CompanyName":"公司名称"
+      },
+      "ifo":{
+        "User":"这是用户，可选.",
+        "Company":"這是公司，可選."
+      }
+    },
+    "User":{
+      "lbl":{
+        "UserProfile":"用户资料",
+        "UserID":"用户ID",
+        "Phone":"P电话",
+        "Email":"电子邮件",
+        "Password":"密码 ",
+        "TransactionType":"交易类型",
+        "Access":"使用权",
+        "Product":"产品 ",
+        "MenuGroup":"菜单组",
+        "ControlGroup":"控制组"
+      },
+      "ifo":{
+        "UserProfile":"这是用户个人资料，可选.",
+        "UserID":"这是用户 ID，可选.",
+        "Phone":"这是电话，可选。",
+        "Email":"这是电子邮件，可选.",
+        "Password":"这是密码，可选.",
+        "TransactionType":"这是交易类型，可选.",
+        "Access":"这是访问权限，可选."
+      },
+      "plh":{
+        "UserID":"Admin",
+        "Phone":"123456789",
+        "Email":"sale@ovaspace.com"
+      }
+    },
+    "VersionControl":{
+      "lbl":{
+        "Version":"版本",
+        "Product":"产品",
+        "ReleasedDate":"发布日期",
+        "ReleasedBy":"被释放",
+        "UpgradedDate":"升级日期",
+        "UpgradedBy":"升级者",
+        "Result":"结果",
+        "VersionStatus":"版本状态"
+      }
+    },
+    "QukSetup":{
+      "lbl":{
+        "Logo":"Logo",
+        "View":"View",
+        "Clear":"清除",
+        "CompanyName":"公司名称",
+        "RegStartDate":"注册开始日期",
+        "Email":"电子邮件",
+        "IndustrialType":"工业型",
+        "PaymentType":"支付方式",
+        "UsedCurrency":"使用的货币",
+        "DefaultCurrency":"默认货币",
+        "Country":"国家",
+        "State":"状态",
+        "City":"城市",
+        "PostalCode":"邮政编码",
+        "Retrieve":"取回",
+        "FloorUnit":"楼层单位",
+        "Address":"地址",
+        "Tnc":"条款&条件",
+        "BankName":"银行名",
+        "Bank":"银行 ",
+        "Monday":"周一",
+        "Tuesday":"周二",
+        "Wednesday":"周三",
+        "Thursday":"周四",
+        "Friday":"星期五",
+        "Saturday":"周六",
+        "Sunday":"星期日",
+        "ViewDetail":"查看详情",
+        "Next":"下一个",
+        "Previous":"以前的",
+        "Finish":"结束",
+        "AllowToAccess":"允许访问",
+        "CountryMobileCode":"国家移动电话代码",
+        "Phone":"电话",
+        "ShowinPublic":"公开展示",
+        "CategoryName":"分类名称",
+        "Currency":"货币",
+        "Price":"价钱",
+        "PartnerType":"合作伙伴类型",
+        "BranchCode":"分行代码",
+        "BranchName":"分店名称",
+        "SwiftCode":"迅速代码",
+        "BankAccount":"银行账户",
+        "PaynowUEN":"佩诺大学网络",
+        "BankAccountName":"银行账户名称"
+      } ,
+      "ifo":{
+        "Logo":"这是徽标，可选.",
+        "CompanyName":"这是公司名称，可选.",
+        "RegStartDate":"这是注册开始日期，可选.",
+        "Email":"这是电子邮件，可选.",
+        "IndustrialType":"这是工业型，可选。",
+        "PaymentType":"這是付款類型，可選.",
+        "UsedCurrency":"这是使用的货币，可选.",
+        "DefaultCurrency":"这是默认货币，可选.",
+        "Country":"这是国家，可选.",
+        "State":"这是状态，可选",
+        "City":"这是城市，可选.",
+        "PostalCode":"这是邮政编码，可选.",
+        "FloorUnit":"这是楼层单位，可选.",
+        "Address":"这是地址，可选",
+        "Tnc":"这是条款和条件，可选.",
+        "Monday":"今天是星期一，可选.",
+        "Tuesday":"今天是星期二，可选.",
+        "Wednesday":"今天是星期三，可选.",
+        "Thursday":"今天是星期四，可选.",
+        "Friday":"今天是星期五，可选.",
+        "Saturday":"今天是星期六，可选.",
+        "Sunday":"今天是周日，可选."
+      } ,
+      "plh":{
+        "CompanyName":"公司名称",
+        "Email":"sale@ovaspace.com"
+      } 
+    },
+    "TransactionLog":{
+      "lbl":{
+        "BrowserType":"浏览器类型",
+        "DeviceName":"设备名称",
+        "IPAddress":"IP地址",
+        "Location":"地点",
+        "Menu":"菜单",
+        "Control":"控制",
+        "Product":"产品",
+        "Subscriber":"Subscriber",
+        "User":"用户",
+        "Date":"日期"
+      }
+    },
+    "Notification":{
+      "lbl":{
+        "User":"用户",
+        "Product":"产品 ",
+        "Menu":"菜单",
+        "Control":"控制",
+        "NotiURL":"伯爵笔记",
+        "NotiIcon":"通知图标",
+        "Icon":"图标",
+        "URL":"网址"
+      },
+      "ifo":{
+        "User":"这是用户，可选.",
+        "Product":"这是产品，可选.",
+        "Menu":"这是菜单，可选.",
+        "Control":"这是控制，可选.",
+        "NotiURL":"这是伯爵笔记，可选.",
+        "NotiIcon":"这是通知图标，可选."
+      },
+      "plh":{
+        "NotiURL":"user-set",
+        "NotiIcon":"fa fa-search"
+      }
+    },
+    "SubSettlement":{
+      "lbl":{
+        "PaymentType":"支付方式",
+        "StartDate":"开始日期",
+        "EndDate":"结束日期",
+        "PaymentTerm":"付款条件",
+        "PayDate":"发薪日期",
+        "Amount":"数量"
+      },
+      "btnName":{
+        "Refresh":"刷新"
+      }
+    },
+    "UserSetting": {
+      "lbl": {
+        "User": "用户",
+        "Product": "产品",
+        "DefaultProduct": "默认产品",
+        "Language": "语言",
+        "General": "基本资料",
+        "Sound": "声音",
+        "NewTabSwitchProduct": "新选项卡切换产品",
+        "DateTimeFormat": "日期时间格式",
+        "NotiOnOff": "通知开关",
+        "Confirm": "确认",
+        "EFNewConfirm": "EF 新确认",
+        "TENewConfirm": "TE 新确认",
+        "EFVoidConfirm": "EF 作废确认",
+        "TEVoidConfirm": "TE 作废确认",
+        "EFDeleteConfirm": "EF 删除确认",
+        "TEDeleteConfirm": "TE 删除确认",
+        "Alert": "警报",
+        "ADNotiAlert": "AD 通知警报",
+        "ADSMSAlert": "AD 短信警报",
+        "ADMailAlert": "AD 邮件警报",
+        "PromotionNotiAlert": "促销通知警报",
+        "PromotionSMSAlert": "促销短信警报",
+        "PromotionMailAlert": "促销邮件警报",
+        "SeasonalNotiAlert": "季节通知警报",
+        "SeasonalSMSAlert": "季节短信警报",
+        "SeasonalMailAlert": "季节邮件警报",
+        "Display": "显示",
+        "MessageDisplayTime": "消息显示时间",
+        "MessageDisplayOrder": "消息显示顺序",
+        "NotiDisplayOrder": "通知显示顺序",
+        "LFDisplayOrder": "LF 显示顺序",
+        "TLDisplayOrder": "TL 显示顺序",
+        "LFDisplayRecord": "LF 显示记录",
+        "TLDisplayPeriod": "TL 显示周期",
+        "LFDisplayPeriod": "LF 显示周期",
+        "LFPeriodType": "LF 周期类型",
+        "TLPeriodType": "TL 周期类型",
+        "LFSearchType": "LF 搜索类型",
+        "TLSearchType": "TL 搜索类型",
+        "RoundingandDecimalPlace": "舍入和小数位",
+        "PriceDecimalPlace": "价格小数位",
+        "PriceRound": "价格舍入",
+        "QTYDecimalPlace": "数量小数位",
+        "QTYRound": "数量舍入",
+        "AmountDecimalPlace": "金额小数位",
+        "AmountRound": "金额舍入",
+        "PercentageDecimalPlace": "百分比小数位",
+        "PercentageRound": "百分比舍入",
+        "TaxDecimalPlace": "税金小数位",
+        "TaxRound": "税金舍入",
+        "DiscountRateDecimalPlace": "折扣小数位",
+        "DiscountRateRound": "折扣率舍入",
+        "DiscountAmountDecimalPlace": "折扣金额小数位",
+        "DiscountAmountRound": "折扣金额舍入",
+        "SubtotalDecimalPlace": "小计小数位",
+        "SubtotalRound": "小计舍入",
+        "GrandTotalDecimalPlace": "总计小数位",
+        "GrandTotalRound": "总计舍入",
+        "Auto": "自动",
+        "FontFamily": "字体",
+        "SalesReturnAutoPayment": "销售退货支付",
+        "SalesReturnRecieved": "销售退货接收",
+        "SalesInvoicePayment": "销售发票支付",
+        "SalesInvoiceIssue": "销售发票问题",
+        "PurchaseReturnPayment": "采购退货支付",
+        "PurchaseReturnIssue": "采购退货问题",
+        "AssemblyRecieved": "组装接收",
+        "AssemblyIssue": "组装问题",
+        "DisassemblyRecieved": "拆卸接收",
+        "DisassemblyIssue": "拆卸问题",
+        "ProductionIssue": "生产问题",
+        "ProductionRecieved": "生产接收",
+        "PurchaseInvoiceRecieved": "采购发票接收",
+        "ActionBarFName": "操作栏字体名称",
+        "ActionBarFSize": "操作栏字体大小",
+        "ActionBarFColor": "操作栏字体颜色",
+        "ActionBarFStyle": "操作栏字体样式",
+        "ActionBarBgColor": "操作栏背景颜色",
+        "ContentHeaderFName": "内容标题字体名称",
+        "ContentHeaderFSize": "内容标题字体大小",
+        "ContentHeaderFColor": "内容标题字体颜色",
+        "ContentHeaderFStyle": "内容标题字体样式",
+        "ContentHeaderBgColor": "内容标题背景颜色",
+        "ContentBodyFName": "内容正文",
+        "ContentBodyFSize": "内容正文字体大小",
+        "ContentBodyFColor": "内容正文字体颜色",
+        "ContentBodyFStyle": "内容正文字体样式",
+        "ContentBodyBgColor": "内容正文背景颜色",
+        "ContentFooterFName": "内容页脚字体名称",
+        "ContentFooterFSize": "内容页脚字体大小",
+        "ContentFooterFColor": "内容页脚字体颜色",
+        "ContentFooterFStyle": "内容页脚字体样式",
+        "ContentFooterBgColor": "内容页脚背景颜色",
+        "HighlightFName": "突出显示字体名称",
+        "HighlightFSize": "突出显示字体大小",
+        "HighlightFColor": "突出显示字体颜色",
+        "HighlightFStyle": "突出显示字体样式",
+        "HighlightBgColor": "突出显示背景颜色",
+        "SwipeButtonFName": "滑动按钮字体名称",
+        "SwipeButtonFSize": "滑动按钮字体大小",
+        "SwipeButtonFColor": "滑动按钮字体颜色",
+        "SwipeButtonFStyle": "滑动按钮字体样式",
+        "SwipeButtonBgColor": "滑动按钮背景颜色",
+        "ButtonFName": "按钮字体名称",
+        "ButtonFSize": "按钮字体大小",
+        "ButtonFColor": "按钮字体颜色",
+        "ButtonFStyle": "按钮字体样式",
+        "ButtonBgColor": "按钮背景颜色",
+        "ClickableLinkFName": "可点击链接字体名称",
+        "ClickableLinkFSize": "可点击链接字体大小",
+        "ClickableLinkFColor": "可点击链接字体颜色",
+        "ClickableLinkFStyle": "可点击链接字体样式",
+        "ClickableLinkBgColor": "可点击链接背景颜色",
+        "CardViewFName": "卡片视图字体名称",
+        "CardViewFSize": "卡片视图字体大小",
+        "CardViewFColor": "卡片视图字体颜色",
+        "CardViewFStyle": "卡片视图字体样式",
+        "CardViewBgColor": "卡片视图背景颜色",
+        "CardViewCHFName": "卡片视图页眉字体名称",
+        "CardViewCHFSize": "卡片视图页眉字体大小",
+        "CardViewCHFColor": "卡片视图页眉字体颜色",
+        "CardViewCHFStyle": "卡片视图页眉字体样式",
+        "CardViewCHBgColor": "卡片视图页眉背景颜色",
+        "CardViewCBFName": "卡片视图内容主体字体名称",
+        "CardViewCBFSize": "卡片视图内容主体字体大小",
+        "CardViewCBFColor": "卡片视图内容主体字体颜色",
+        "CardViewCBFStyle": "卡片视图内容主体字体样式",
+        "CardViewCBBgColor": "卡片视图内容主体背景颜色",
+        "CardViewCFFName": "卡片视图页脚字体名称",
+        "CardViewCFFSize": "卡片视图页脚字体大小",
+        "CardViewCFFColor": "卡片视图页脚字体颜色",
+        "CardViewCFFStyle": "卡片视图页脚字体样式",
+        "CardViewCFBgColor": "卡片视图页脚背景颜色",
+        "TaskBarFName": "任务栏字体名称",
+        "TaskBarBgColor": "任务栏背景颜色",
+        "TaskBarFSize": "任务栏字体大小",
+        "TaskBarFStyle": "任务栏字体样式",
+        "TaskBarFColor": "任务栏字体颜色"
+      },
+      "ifo": {
+        "User": "用户（可选）",
+        "Product": "产品（可选）",
+        "Sound": "声音（可选）",
+        "Language": "语言（可选）",
+        "NewTabSwitchProduct": "新标签切换产品（可选）",
+        "DefaultProduct": "默认产品（可选）",
+        "DateTimeFormat": "日期时间格式（可选）",
+        "NotiOnOff": "通知开关（可选）",
+        "EFNewConfirm": "EF新确认（可选）",
+        "TENewConfirm": "TE新确认（可选）",
+        "EFVoidConfirm": "EF作废确认（可选）",
+        "TEVoidConfirm": "TE作废确认（可选）",
+        "EFDeleteConfirm": "EF删除确认（可选）",
+        "TEDeleteConfirm": "TE删除确认（可选）",
+        "ADNotiAlert": "AD通知警报（可选）",
+        "ADSMSAlert": "AD短信警报（可选）",
+        "ADMailAlert": "AD邮件警报（可选）",
+        "PromotionNotiAlert": "促销通知警报（可选）",
+        "PromotionSMSAlert": "促销短信警报（可选）",
+        "PromotionMailAlert": "促销邮件警报（可选）",
+        "SeasonalNotiAlert": "季节通知警报（可选）",
+        "SeasonalSMSAlert": "季节短信警报（可选）",
+        "SeasonalMailAlert": "季节邮件警报（可选）",
+        "MessageDisplayTime": "消息显示时间（可选）",
+        "MessageDisplayOrder": "消息显示顺序（可选）",
+        "NotiDisplayOrder": "通知显示顺序（可选）",
+        "LFDisplayOrder": "LF显示顺序（可选）",
+        "TLDisplayOrder": "TL显示顺序（可选）",
+        "LFDisplayRecord": "LF显示记录（可选）",
+        "TLDisplayPeriod": "TL显示周期（可选）",
+        "LFDisplayPeriod": "LF显示周期（可选）",
+        "LFPeriodType": "LF周期类型（可选）",
+        "TLPeriodType": "TL周期类型（可选）",
+        "LFSearchType": "LF搜索类型（可选）",
+        "TLSearchType": "TL搜索类型（可选）",
+        "PriceDecimalPlace": "价格小数位数（可选）",
+        "PriceRound": "价格舍入（可选）",
+        "QTYDecimalPlace": "数量小数位数（可选）",
+        "QTYRound": "数量舍入（可选）",
+        "AmountDecimalPlace": "金额小数位数（可选）",
+        "AmountRound": "金额舍入（可选）",
+        "PercentageDecimalPlace": "百分比小数位数（可选）",
+        "PercentageRound": "百分比舍入（可选）",
+        "TaxDecimalPlace": "税金小数位数（可选）",
+        "TaxRound": "税金舍入（可选）",
+        "DiscountRateDecimalPlace": "折扣率小数位数（可选）",
+        "DiscountRateRound": "折扣率舍入（可选）",
+        "DiscountAmountDecimalPlace": "折扣金额小数位数（可选）",
+        "DiscountAmountRound": "折扣金额舍入（可选）",
+        "SubtotalDecimalPlace": "小计小数位数（可选）",
+        "SubtotalRound": "小计舍入（可选）",
+        "GrandTotalDecimalPlace": "总计小数位数（可选）",
+        "GrandTotalRound": "总计舍入（可选）",
+        "SalesReturnAutoPayment": "销售退货自动支付（可选）",
+        "SalesReturnRecieved": "销售退货收到（可选）",
+        "SalesInvoicePayment": "销售发票支付（可选）",
+        "SalesInvoiceIssue": "销售发票发出（可选）",
+        "PurchaseReturnPayment": "采购退货支付（可选）",
+        "PurchaseReturnIssue": "采购退货发出（可选）",
+        "AssemblyRecieved": "组装收到（可选）",
+        "AssemblyIssue": "组装发出（可选）",
+        "DisassemblyRecieved": "拆卸收到（可选）",
+        "DisassemblyIssue": "拆卸发出（可选）",
+        "ProductionIssue": "生产发出（可选）",
+        "ProductionRecieved": "生产收到（可选）",
+        "PurchaseInvoiceRecieved": "采购发票收到（可选）",
+        "ActionBarFName": "操作栏字体名称（可选）",
+        "ActionBarFSize": "操作栏字体大小（可选）",
+        "ActionBarFColor": "操作栏字体颜色（可选）",
+        "ActionBarFStyle": "操作栏字体样式（可选）",
+        "ActionBarBgColor": "操作栏背景颜色（可选）",
+        "ContentHeaderFName": "内容头部字体名称（可选）",
+        "ContentHeaderFSize": "内容头部字体大小（可选）",
+        "ContentHeaderFColor": "内容头部字体颜色（可选）",
+        "ContentHeaderFStyle": "内容头部字体样式（可选）",
+        "ContentHeaderBgColor": "内容头部背景颜色（可选）",
+        "ContentBodyFName": "内容正文字体名称（可选）",
+        "ContentBodyFSize": "内容正文字体大小（可选）",
+        "ContentBodyFColor": "内容正文字体颜色（可选）",
+        "ContentBodyFStyle": "内容正文字体样式（可选）",
+        "ContentBodyBgColor": "内容正文背景颜色（可选）",
+        "ContentFooterFName": "内容页脚字体名称（可选）",
+        "ContentFooterFSize": "内容页脚字体大小（可选）",
+        "ContentFooterFColor": "内容页脚字体颜色（可选）",
+        "ContentFooterFStyle": "内容页脚字体样式（可选）",
+        "ContentFooterBgColor": "内容页脚背景颜色（可选）",
+        "HighlightFName": "高亮字体名称（可选）",
+        "HighlightFSize": "高亮字体大小（可选）",
+        "HighlightFColor": "高亮字体颜色（可选）",
+        "HighlightFStyle": "高亮字体样式（可选）",
+        "HighlightBgColor": "高亮背景颜色（可选）",
+        "SwipeButtonFName": "滑动按钮字体名称（可选）",
+        "SwipeButtonFSize": "滑动按钮字体大小（可选）",
+        "SwipeButtonFColor": "滑动按钮字体颜色（可选）",
+        "SwipeButtonFStyle": "滑动按钮字体样式（可选）",
+        "SwipeButtonBgColor": "滑动按钮背景颜色（可选）",
+        "ButtonFName": "按钮字体名称（可选）",
+        "ButtonFSize": "按钮字体大小（可选）",
+        "ButtonFColor": "按钮字体颜色（可选）",
+        "ButtonFStyle": "按钮字体样式（可选）",
+        "ButtonBgColor": "按钮背景颜色（可选）",
+        "ClickableLinkFName": "可点击链接字体名称（可选）",
+        "ClickableLinkFSize": "可点击链接字体大小（可选）",
+        "ClickableLinkFColor": "可点击链接字体颜色（可选）",
+        "ClickableLinkFStyle": "可点击链接字体样式（可选）",
+        "ClickableLinkBgColor": "可点击链接背景颜色（可选）",
+        "CardViewFName": "卡片视图字体名称（可选）",
+        "CardViewFSize": "卡片视图字体大小（可选）",
+        "CardViewFColor": "卡片视图字体颜色（可选）",
+        "CardViewFStyle": "卡片视图字体样式（可选）",
+        "CardViewBgColor": "卡片视图背景颜色（可选）",
+        "CardViewCHFName": "卡片视图CH字体名称（可选）",
+        "CardViewCHFSize": "卡片视图CH字体大小（可选）",
+        "CardViewCHFColor": "卡片视图CH字体颜色（可选）",
+        "CardViewCHFStyle": "卡片视图CH字体样式（可选）",
+        "CardViewCHBgColor": "卡片视图CH背景颜色（可选）",
+        "CardViewCBFName": "卡片视图CB字体名称（可选）",
+        "CardViewCBFSize": "卡片视图CB字体大小（可选）",
+        "CardViewCBFColor": "卡片视图CB字体颜色（可选）",
+        "CardViewCBFStyle": "卡片视图CB字体样式（可选）",
+        "CardViewCBBgColor": "卡片视图CB背景颜色（可选）",
+        "CardViewCFFName": "卡片视图CF字体名称（可选）",
+        "CardViewCFFSize": "卡片视图CF字体大小（可选）",
+        "CardViewCFFColor": "卡片视图CF字体颜色（可选）",
+        "CardViewCFFStyle": "卡片视图CF字体样式（可选）",
+        "CardViewCFBgColor": "卡片视图CF背景颜色（可选）",
+        "TaskBarFName": "任务栏字体名称（可选）",
+        "TaskBarFSize": "任务栏字体大小（可选）",
+        "TaskBarBgColor": "任务栏背景颜色（可选）",
+        "TaskBarFColor": "任务栏字体颜色（可选）",
+        "TaskBarFStyle": "任务栏字体样式（可选）"
+      }
+    },
+    "SubPlan":{
+      "lbl":{
+        "PlanCode":"计划代码",
+        "PlanName":"计划名称",
+        "SubscriberType":"订户类型",
+        "Price":"价格",
+        "Duration":"持续时间（天）",
+        "DurationName":"持续时间名称",
+        "NotifyDay":"通知日",
+        "PriceName":"价格名称",
+        "URL":"网址",
+        "PlanDetail":"计划详情",
+        "ProductName":"产品名称",
+        "MenuGroupName":"菜单组名称",
+        "ControlGroupName":"控制组名称",
+        "PlanType":"计划类型"
+      },
+      "ifo":{
+        "PlanCode":"这是计划代码，可选.",
+        "PlanName":"这是计划名称，可选.",
+        "SubscriberType":"这是订阅者类型，可选.",
+        "Price":"价格",
+        "Duration":"这是持续时间（天），可选.",
+        "DurationName":"这是持续时间名称，可选.",
+        "NotifyDay":"这是通知日，可选.",
+        "PriceName":"这是价格名称，可选.",
+        "URL":"这是网址，可选."
+      }
+    },
+    "Subscriber":{
+      "lbl":{
+        "Email":"电子邮件",
+        "SubscriberType":"订户类型",
+        "MobilePhone":"手机",
+        "RegistrationDate":"注册日期",
+        "ExpireDate":"到期日期",
+        "SubscriberFee":"订阅费"
+      }
+    },
+    "SubPayment":{
+      "lbl":{
+        "PaymentCode":"付款码",
+        "PaymentType":"支付方式",
+        "PaymentTerm":"付款条件",
+        "Subscriber":"订户",
+        "SubscriptionFee":"订阅费",
+        "TransactionCode":"交易代码",
+        "StartDate":"开始日期",
+        "EndDate":"结束日期",
+        "PostingStatus":"發帖狀態"
+      }
+    }
+  },
+  "ACC":{
+    "Common":{
+      "loading":"加載中",
+      "grid":{
+        "emptydatastring": "无数据显示", 
+        "pagergotopagestring": "转至页面：", 
+        "pagershowrowsstring": "显示行列"
+      },
+      "btnName":{
+        "Search":"搜索",
+        "Less":"较少",
+        "More":"更多",
+        "NewRow":"添加新行",
+        "DownloadTemplate":"下載模板",
+        "UploadTemplate":"上傳 csv",
+        "Clear":"清除"
+      },
+      "btnTooltip":{
+        "Home":"点击返回主页",
+        "Back": "点击返回",
+        "ColumnShowHide":"單擊以顯示或隱藏列",
+        "ChangeView":"点击更改列表视图",
+        "Search":"点击搜索",
+        "Less":"点击隐藏更多",
+        "More":"点击使用更多条件搜索",
+        "NewRow":"單擊以添加新行",
+        "DownloadTemplate":"點擊下載",
+        "UploadTemplate":"点击上传"
+      },
+      "view":{
+        "GridView":"網格視圖",
+        "WebView":"網頁視圖",
+        "CardView":"卡片視圖",
+        "WebStandard":"网络标准",
+        "WebAdvanced":"网络高级版",
+        "Grid":"网格",
+        "Web":"网络",
+        "WebDetail":"网页详情",
+        "AssetView":"资产视图",
+        "NetAssetView":"净资产视图"
+      },
+      "plh":{
+        "Search":"在此处输入搜索"
+      },
+      "confirm":{        
+        "Delete": "是否要放弃更改?",
+        "Void": "你确定要作废吗?",
+        "Active": "您確定要激活嗎?",
+        "Inactive": "您確定要停用嗎?",
+        "New": "是否要放弃更改?"
+      },
+      "ifo":{
+        "Search":"結果將顯示"
+      }
+    },
+    "Setup":{ 
+      "lbl":{
+        "Code":"代码",
+        "Name":"姓名",
+        "Description":"描述",
+        "Status":"状态",
+        "Sequence":"顺序",
+        "Remark":"备注",
+        "Remove":"消除",
+        "TD":"TD",
+        "User":"用户"
+      }, 
+      "plh":{
+        "Code":"代码",
+        "Name":"姓名",
+        "Description":"描述",
+        "Status":"状态",
+        "Sequence":"顺序",
+        "Remark":"备注",
+        "Remove":"消除",
+        "TD":"TD",
+        "User":"用户"
+      },
+      "ifo":{
+        "Title":"更多信息:",
+        "Code":"這是代碼，強制性的。最大字符數 - 50",
+        "Name":"這是名稱，必填。最大字符數 - 255",
+        "Description":"這是描述，可選。最大字符數 - 500",
+        "Sequence":"這是序列，可選.",
+        "Remark":"這是備註，可選."
+      },
+      "rule":{
+        "Code":"需要代碼.",
+        "Name":"姓名為必填項.",
+        "Min":"最小字符為",
+        "Max":"最大字符數為",
+        "Sequence":"序列不能小於零."
+      },
+      "impAlert":{
+        "Code":"在添加新行之前，需要填寫代碼.",
+        "Name":"添加新行之前，需要填寫名稱."
+      }
+    },
+    "AccountPeriod":{
+      "lbl":{
+        "PeriodType":"期间类型",
+        "PeriodMethod":"周期法",
+        "Company":"公司 ",
+        "FromDate":"從日期",
+        "ToDate":"迄今为止"
+      },
+      "ifo":{
+        "PeriodType":"这是周期类型，可选.",
+        "PeriodMethod":"这是周期方法，可选.",
+        "Company":"這是公司，可選.",
+        "FromDate":"这是起始日期，可选.",
+        "ToDate":"这是迄今为止的信息，可选."
+      }
+    },
+    "BankStatement":{
+      "lbl":{
+        "Bank":"银行 ",
+        "BankAccountName":"銀行賬戶名稱",
+        "TransactionDate":"交易日期 ",
+        "TrasactionNo":"交易數量 ",
+        "Payee":"收款人 ",
+        "AccountNature":"賬戶性質",
+        "Amount":"数量",
+        "Currency":"货币",
+        "ReconcileStatus":"協調狀態",
+        "ReferenceDocument":"參考文件"
+      },
+      "ifo":{
+        "Bank":"這是銀行，可選.",
+        "BankAccountName":"這是銀行賬戶名稱，可選.",
+        "TransactionDate":"這是交易日期，可選.",
+        "TransactionNo":"這是交易編號，可選.",
+        "Payee":"這是收款人，可選.",
+        "AccountNature":"這是帳戶性質，可選.",
+        "Amount":"這是金額，可選.",
+        "Currency":"這是貨幣，可選.",
+        "ReconcileStatus":"這是重新協調狀態，可選.",
+        "ReferenceDocument":"這是參考文檔，可選."
+      },
+    "rule":{
+      "Bank":"需要銀行",
+      "Currency":"貨幣為必填項",
+      "BankAccount":"需要銀行賬戶"
+    }
+  },
+  "Benefit":{
+    "lbl":{
+      "BenefitType":"福利类型",
+      "Company":"公司 ",
+      "SubmitDate":"提交日期",
+      "BenefitAmount":"福利金额",
+      "Reason":"原因",
+      "ReferenceNo":"參考編號",
+      "ReferenceDocument":"參考文件",
+      "PostingStatus":"發帖狀態",
+      "ApproveDate":"批准日期"
+    },
+    "ifo":{
+      "BenefitType":"這是福利類型，可選.",
+      "Company":"這是公司，可選.",
+      "SubmitDate":"這是提交日期，可選.",
+      "BenefitAmount":"這是福利金額，可選.",
+      "Reason":"這是原因，可選.",
+      "ReferenceNo":"這是參考號，可選.",
+      "ReferenceDocument":"這是參考文檔，可選.",
+      "PostingStatus":"這是發布狀態，可選.",
+      "ApproveDate":"這是批准日期，可選."   
+    },
+    "rule":{
+      "BenefitType":"福利類型為必填項",
+      "Company":"公司為必填項"
+    }
+  },
+  "TaxPayable":{
+    "lbl":{
+      "TaxationType":"稅收類型",
+      "Company":"公司 ",
+      "SubmitDate":"提交日期",
+      "TaxationAmount":"税额",
+      "Reason":"原因",
+      "ReferenceNo":"參考編號",
+      "ReferenceDocument":"參考文件",
+      "PostingStatus":"發帖狀態",
+      "ApproveDate":"批准日期"
+    },
+    "ifo":{
+      "TaxationType":"這是稅收類型，可選.",
+      "Company":"這是公司，可選.",
+      "SubmitDate":"這是提交日期，可選.",
+      "TaxationAmount":"這是稅額，可選.",
+      "Reason":"這是原因，可選.",
+      "ReferenceNo":"這是參考號，可選.",
+      "ReferenceDocument":"這是參考文檔，可選.",
+      "PostingStatus":"這是發帖狀態, 可選.",
+      "ApproveDate":"這是批准日期，可選."   
+    },
+    "rule":{
+      "TaxationType":"稅收類型為必填項",
+      "Company":"需要公司"
+    }
+  },
+  "PettyCashLog":{
+    "lbl":{
+      "Company":"公司 ",
+      "AccountNature":"賬戶性質",
+      "PaymentType":"付款方式",
+      "Amount":"数量",
+      "Payee":"收款人",
+      "Purpose":"目的",
+      "ApprovedBy":"由...批准",
+      "Currency":"货币"
+    },
+    "ifo":{
+      "Company":"這是公司，可選.",
+      "AccountNature":"這是帳戶性質，可選.",
+      "PaymentType":"這是付款類型，可選.",
+      "Amount":"這是金額，可選.",
+      "Payee":"这是收款人，可选.",
+      "Purpose":"这是目的，可选.",
+      "ApprovedBy":"这是批准者，可选.",
+      "Currency":"這是貨幣，可選."
+    },
+    "plh":{
+      "Purpose":"目的"
+    }  
+  },
+  "PostingBatch":{
+    "lbl":{
+      "AccountPosting":"帐户过帐",
+      "Parent":"家长",
+      "ParentType":"父类型"
+    }
+  },
+  "StandardCOA":{
+    "lbl":{
+      "IndustrialType":"工业型"
+    },
+    "ifo":{
+      "IndustrialType":"这是工业型，可选."
+    }
+  },
+  "AccountLink":{
+    "lbl":{
+      "AccountLinkDetail":"帐户链接详细信息",
+      "Account":"帐户",
+      "AccountNature":"賬戶性質",
+      "AttachFileName":"附加文件名",
+      "ReferenceNo":"參考編號",
+      "ReferenceDate":"參考日期",
+      "LinkType":"链接类型",
+      "PostingFigure":"发图",
+      "Product":"产品 ",
+      "Company":"公司"
+    },
+    "ifo":{
+      "Product":"这是产品，可选.",
+      "Company":"這是公司，可選."
+    }
+  },
+  "PostingFigure":{
+    "lbl":{
+      "ParentType":"父类型"
+    }
+  },
+  "AccountType":{
+    "lbl":{
+      "BalanceSheetType":"資產負債表類型",
+      "ProfitLossType":"盈利虧損類型",
+      "AccountNature":"賬戶性質"
+    },
+    "ifo":{
+      "BalanceSheetType":"這是資產負債表類型，可選.",
+      "ProfitLossType":"這是利潤損失類型，可選.",
+      "AccountNature":"這是帳戶性質，可選."
+    }
+  },
+  "ChartOfAccount":{
+    "lbl":{
+      "Account":"帐户",
+      "AccountDescription":"账户说明",
+      "AccountType":"帐户类型",
+      "AccountNature":"賬戶性質",
+      "Company":"公司 ",
+      "Currency":"货币",
+      "Amount":"数量",
+      "EndDate":"结束日期"
+    }
+  },
+  "GeneralLedger":{
+    "lbl":{
+      "Currency":"货币",
+      "Debit":"借方",
+      "Credit":"信用",
+      "Company":"公司 ",
+      "AccountType":"帐户类型",
+      "Account":"帐户",
+      "StartDate":"开始日期",
+      "EndDate":"结束日期"
+    }
+  },
+  "TrialBalance":{
+    "lbl":{
+      "Company":"公司 ",
+      "Currency":"货币",
+      "Period":"时期",
+      "EndDate":"结束日期",
+      "ComparePeriod":"比较期间",
+      "AccountType":"帐户类型",
+      "AccountNature":"賬戶性質",
+      "FirstDebit":"第一期",
+      "FirstCredit":"第一学分",
+      "SecondAmtDebit":"第二期",
+      "SecondAmtCredit":"第二学分",
+      "ThirdAmtDebit":"第三期",
+      "ThirdAmtCredit":"第三学分",
+      "Debit":"借方",
+      "Credit":"信用",
+      "Total":"总金额",
+      "Amount":"数量"
+    }
+  },
+  "ProfitLoss":{
+    "lbl":{
+      "Currency":"货币",
+      "Amount":"数量",
+      "TotalAmount":"总金额",
+      "FirstAmount":"第一金额",
+      "Type":"类型",
+      "SecondAmount":"第二金额",
+      "ThirdAmount":"第三金额",
+      "Company":"公司",
+      "Period":"时期",
+      "EndDate":"结束日期",
+      "ComparePeriod":"比较期间",
+      "FirstPeriod":"第一期",
+      "SecondPeriod":"第二期",
+      "ThirdPeriod":"第三期",
+      "SalesRevenue":"销售收入",
+      "CostOfGoodsSold":"销售成本",
+      "GrossProfit":"毛利",
+      "OhterIncomes":"其他收入",
+      "OtherExpense":"其他费用",
+      "OperatingProfit":"营业利润",
+      "FiananceCost":"财务成本",
+      "ProfitBeforeTax":"税前利润",
+      "IncomeTax":"所得税",
+      "ProfitLoss":"利润损失"
+    }
+  },
+  "BalanceSheet":{
+    "lbl":{
+      "AccountType":"帐户类型",
+      "Company":"公司 ",
+      "AccountNature":"賬戶性質",
+      "Currency":"货币",
+      "Amount":"数量",
+      "FirstAmount":"第一期",
+      "SecondAmount":"第二期",
+      "ThirdAmount":"第三期",
+      "Period":"时期",
+      "EndDate":"结束日期",
+      "ComparePeriod":"比较期间",
+      "TotalFixedAsset":"固定资产总额",
+      "ProvisionForDepreciation":"折旧准备",
+      "TotalCurrentAsset":"流动资产总额",
+      "TotalNonCurrentLiabilities":"非流动负债总额",
+      "TotalCurrentLiabilities":"流动负债总额",
+      "TotalLiabilities":"负债总额",
+      "TotalCapital":"总资本",
+      "TotalRetainedEarnings":"留存收益总额",
+      "TotalEquity":"总股本",
+      "TotalEquityandLiabilities":"股本及负债总额"
+    }
+  },
+  "AccountOpening":{
+    "lbl":{
+      "Company":"公司",
+      "Account":"帐户",
+      "TransactionDate":"交易日期",
+      "AccountNature":"賬戶性質",
+      "Currency":"货币",
+      "Amount":"数量"
+    },
+    "ifo":{
+      "Company":"這是公司，可選.",
+      "Account":"這是帳戶，可選.",
+      "TransactionDate":"這是交易日期，可選.",
+      "AccountNature":"這是帳戶性質，可選.",
+      "Currency":"這是貨幣，可選.",
+      "Amount":"這是金額，可選."
+    }
+  },
+  "Setting":{
+    "lbl":{
+      "Company":"公司",
+      "PeriodEndClosing":"期末結算"
+    },
+    "ifo":{
+      "Company":"這是公司，可選.",
+      "PeriodEndClosing":"這是期末結賬，可選."
+    }
+  }
+  },
+  "ATT":{
+    "Common":{
+      "loading":"加載中",
+      "grid":{
+        "emptydatastring": "无数据显示", 
+        "pagergotopagestring": "转至页面：", 
+        "pagershowrowsstring": "显示行列"
+      },
+      "btnName":{
+        "Search":"搜索",
+        "Less":"较少",
+        "More":"更多",
+        "NewRow":"添加新行",
+        "DownloadTemplate":"下載模板",
+        "UploadTemplate":"上傳 csv",
+        "Clear":"清除"
+      },
+      "btnTooltip":{
+        "Home":"点击返回主页",
+        "Back": "点击返回",
+        "ColumnShowHide":"單擊以顯示或隱藏列",
+        "ChangeView":"点击更改列表视图",
+        "Search":"点击搜索",
+        "Less":"点击隐藏更多",
+        "More":"点击使用更多条件搜索",
+        "NewRow":"單擊以添加新行",
+        "DownloadTemplate":"點擊下載",
+        "UploadTemplate":"点击上传"
+      },
+      "view":{
+        "GridView":"網格視圖",
+        "WebView":"網頁視圖",
+        "CardView":"卡片視圖"
+      },
+      "plh":{
+        "Search":"在此处输入搜索"
+      },
+      "confirm":{        
+        "Delete": "是否要放弃更改",
+        "Void": "你确定要作废吗?",
+        "Active": "您確定要激活嗎?",
+        "Inactive": "您確定要停用嗎?",
+        "New": "是否要放弃更改?"
+      },
+      "ifo":{
+        "Search":"結果將顯示"
+      }
+    },
+    "Setup":{ 
+      "lbl":{
+        "Code":"代码",
+        "Name":"姓名",
+        "Description":"描述",
+        "Status":"状态",
+        "Sequence":"顺序",
+        "Remark":"备注",
+        "Remove":"消除",
+        "TD":"TD",
+        "User":"用户",
+        "SelectAll":"Select All"
+      }, 
+      "plh":{
+        "Code":"代码",
+        "Name":"姓名",
+        "Description":"描述",
+        "Status":"状态",
+        "Sequence":"顺序",
+        "Remark":"备注",
+        "Remove":"消除",
+        "TD":"TD",
+        "User":"用户"
+      },
+      "ifo":{
+        "Title":"更多信息:",
+        "Code":"這是代碼，強制性的。最大字符數 - 50",
+        "Name":"這是名稱，必填。最大字符數 - 255",
+        "Description":"這是描述，可選。最大字符數 - 500",
+        "Sequence":"這是序列，可選.",
+        "Remark":"這是備註，可選."
+      },
+      "rule":{
+        "Code":"需要代碼.",
+        "Name":"姓名為必填項.",
+        "Min":"最小字符為",
+        "Max":"最大字符數為",
+        "Sequence":"序列不能小於零."
+      },
+      "impAlert":{
+        "Code":"在添加新行之前，需要填寫代碼.",
+        "Name":"添加新行之前，需要填寫名稱."
+      }
+    },
+    "AttendanceInOut":{
+      "lbl":{
+        "Employee":"員工",
+        "InOut":"进出",
+        "FingerID":"手指 ID",
+        "AttendanceType":"考勤类型",
+        "FromDate":"入出日期",
+        "InventorySchedule":"庫存表",
+        "Location":"地点",
+        "Stock":"商品"
+      },
+      "ifo":{
+        "Employee":"這是員工，可選.",
+        "InOut":"這是輸入輸出，可選.",
+        "FingerID":"这是手指 ID，可选.",
+        "AttendanceType":"这是考勤类型，可选.",
+        "FromDate":"这是过时的，可选的."
+      },
+      "plh":{
+        "FingerID":"手指 ID"
+      },
+      "rule":{
+        "Employee":"員工為必填項",
+        "InOut":"需要输入输出"
+      }
+    } ,
+    "EmployeeAbsentRequest":{
+      "lbl":{
+        "Employee":"員工",
+        "FromDateTime":"开始日期时间",
+        "ToDateTime":"至今时间",
+        "AbsentHours":"缺勤时间",
+        "Reason":"原因",
+        "ReferenceNo":"參考編號",
+        "ReferenceDocument":"參考文件",
+        "ApproveStatus":"批准状态",
+        "RequestDate":"查询日期",
+        "ConfirmedDate":"确认日期"
+      },
+      "ifo":{
+        "Employee":"這是員工，可選.",
+        "FromDateTime":"这是起始日期时间，可选.",
+        "ToDateTime":"这是迄今为止的时间，可选.",
+        "AbsentHours":"这是缺席时间，可选.",
+        "Reason":"這是原因，可選.",
+        "ReferenceNo":"這是參考號，可選.",
+        "ReferenceDocument":"這是參考文檔，可選.",
+        "ApporveStatus":"这是批准状态，可选.",
+        "RequestDate":"这是请求日期，可选.",
+        "ConfimredDate":"这是确认日期，可选."
+      },
+      "rule":{
+        "Employee":"員工為必填項",
+        "Status":"状态为必填项"
+      }
+    } ,
+    "EmployeeEarlyOutRequest":{
+      "lbl":{
+        "Employee":"員工",
+        "FromDateTime":"开始日期时间",
+        "ToDateTime":" 至今时间",
+        "EarlyOutHours":"提早下班时间",
+        "Reason":"原因",
+        "ReferenceNo":"參考編號",
+        "ReferenceDocument":"參考文件",
+        "ApproveStatus":"批准状态",
+        "RequestDate":"查询日期",
+        "ConfirmedDate":"确认日期"
+      },
+      "ifo":{
+        "Employee":"這是員工，可選.",
+        "FromDateTime":"这是起始日期时间，可选.",
+        "ToDateTime":"这是迄今为止的时间，可选.",
+        "EarlyOutHours":"这是早出时间，可选.",
+        "Reason":"這是原因，可選.",
+        "ReferenceNo":"這是參考號，可選.",
+        "ReferenceDocument":"這是參考文檔，可選.",
+        "ApporveStatus":"这是批准状态，可选.",
+        "RequestDate":"这是请求日期，可选.",
+        "ConfimredDate":"这是确认日期，可选."
+      },
+      "rule": {
+        "Employee": "員工為必填項",
+        "Status": "状态为必填项"
+      }
+    },
+    "EmployeeInOutRequest": {
+      "lbl": {
+        "Employee": "員工",
+        "CheckIn": "报到 ",
+        "CheckOut": "查看",
+        "InOutHours": "下班时间",
+        "Reason": "原因",
+        "ReferenceNo": "參考編號",
+        "ReferenceDocument": "參考文件",
+        "ApproveStatus": "批准状态",
+        "RequestDate": "查询日期",
+        "ConfirmedDate": "确认日期"
+      },
+      "ifo": {
+        "Employee": "這是員工，可選.",
+        "CheckIn": "这是登记入住，可选.",
+        "CheckOut": "这是结账，可选.",
+        "EarlyOutHours": "这是早出时间，可选.",
+        "Reason": "這是原因，可選.",
+        "ReferenceNo": "這是參考號，可選.",
+        "ReferenceDocument": "這是參考文檔，可選.",
+        "ApporveStatus": "这是批准状态，可选.",
+        "RequestDate": "这是请求日期，可选.",
+        "ConfimredDate": "这是确认日期，可选."
+      },
+      "rule": {
+        "Employee": "員工為必填項"
+      }
+    },
+    "EmployeeLateRequest": {
+      "lbl": {
+        "Employee": "員工",
+        "FromDateTime": "开始日期时间",
+        "ToDateTime": "至今时间",
+        "LateHours": "深夜",
+        "Reason": "原因",
+        "ReferenceNo": "參考編號",
+        "ReferenceDocument": "參考文件",
+        "ApproveStatus": "批准状态",
+        "RequestDate": "查询日期",
+        "ConfirmedDate": "确认日期"
+      },
+      "ifo": {
+        "Employee": "這是員工，可選.",
+        "FromDateTime": "这是起始日期时间，可选。",
+        "ToDateTime": "这是手指 ID，可选。",
+        "LateHours": "这是深夜，可选。",
+        "Reason": "這是原因，可選.",
+        "ReferenceNo": "這是參考號，可選.",
+        "ReferenceDocument": "這是參考文檔，可選.",
+        "ApporveStatus": "这是批准状态，可选.",
+        "RequestDate": "这是请求日期，可选.",
+        "ConfimredDate": "这是确认日期，可选."
+      },
+      "rule": {
+        "Employee": "員工為必填項",
+        "Status": "状态为必填项"
+      }
+    },
+    "EmployeeOTRequest": {
+      "lbl": {
+        "Employee": "員工",
+        "FromDateTime": "开始日期时间",
+        "ToDateTime": "至今时间",
+        "OTHours": "加班时间",
+        "Reason": "原因",
+        "ReferenceNo": "參考編號",
+        "ReferenceDocument": "參考文件",
+        "ApproveStatus": "批准状态",
+        "RequestDate": "查询日期",
+        "ConfirmedDate": "确认日期"
+      },
+      "ifo": {
+        "Employee": "這是員工，可選.",
+        "FromDateTime": "这是起始日期时间，可选。",
+        "ToDateTime": "这是手指 ID，可选。",
+        "OTHours": "这是加班时间，可选。",
+        "Reason": "這是原因，可選.",
+        "ReferenceNo": "這是參考號，可選.",
+        "ReferenceDocument": "這是參考文檔，可選.",
+        "ApporveStatus": "这是批准状态，可选.",
+        "RequestDate": "这是请求日期，可选.",
+        "ConfimredDate": "这是确认日期，可选."
+      },
+      "rule": {
+        "Employee": "員工為必填項",
+        "Status": "状态为必填项"
+      }
+    },
+    "Device": {
+      "lbl": {
+        "Gate": "门",
+        "DeviceType": "设备类型",
+        "IP": "IP ",
+        "UserID": "用户ID",
+        "Password": "密码 ",
+        "CardUser": "持卡人",
+        "AttendanceRecord": "出席记录",
+        "SerialNo": "序列号",
+        "Firmware": "固件",
+        "ConnectDate": "连接日期",
+        "DeviceStatus": "设备状态",
+        "FaceCapacity": "面部容量",
+        "FingerCapacity": "手指容量",
+        "PasswordCapacity": "密码容量",
+        "UserCapacity": "用户容量"
+      },
+      "ifo": {
+        "DeviceType": "设备类型，可选。",
+        "Gate": "门禁，可选。",
+        "IP": "IP地址，可选。",
+        "UserID": "用户ID，可选。",
+        "Password": "密码，可选。",
+        "CardUser": "卡用户，可选。",
+        "AttendanceRecord": "考勤记录，可选。",
+        "SerialNo": "序列号，可选。",
+        "Firmware": "固件，可选。",
+        "ConnectDate": "连接日期，可选。",
+        "DeviceStatus": "设备状态，可选。",
+        "FaceCapacity": "人脸容量，可选。",
+        "FingerCapacity": "指纹容量，可选。",
+        "PasswordCapacity": "密码容量，可选。",
+        "UserCapacity": "用户容量，可选。"
+      },
+      "plh": {
+        "IP": "IP地址",
+        "UserID": "用户ID",
+        "Password": "密码",
+        "DeviceStatus": "设备状态",
+        "SerialNo": "序列号",
+        "PasswordCapacity": "密码容量",
+        "Firmware": "固件",
+        "UserCapacity": "用户容量"
+      }
+    },
+    "OnDuty": {
+      "lbl": {
+        "Employee": "员工",
+        "InOut": "进出",
+        "OnDutyType": "上班类型",
+        "FromDate": "从日期",
+        "ToDate": "迄今为止"
+      },
+      "ifo": {
+        "Empoyee": "这是员工，可选。",
+        "InOut": "这是输入输出，可选。",
+        "OnDutyType": "这是上班类型，可选。",
+        "FromDate": "这是起始日期，可选。",
+        "ToDate": "这是迄今为止的信息，可选。"
+      }
+    },
+    "Roaster": {
+      "lbl": {
+        "RoasterType": "烘焙机类型",
+        "FromDate": "從日期",
+        "ToDate": "迄今为止"
+      },
+      "ifo": {
+        "RoasterType": "这是排班类型，可选。",
+        "FromDate": "这是起始日期，可选。",
+        "ToDate": "这是迄今为止的信息，可选。"
+      }
+    },
+    "CompanyShift": {
+      "lbl": {
+        "Company": "公司 ",
+        "CompanyType": "公司类型",
+        "Email": "电子邮件",
+        "Phone": "电话",
+        "Address": "地址"
+      },
+      "ifo": {
+        "Company": "這是公司，可選.",
+        "CompanyType": "这是公司类型，可选。",
+        "Email": "这是电子邮件，可选.",
+        "Phone": " 这是电话，可选。",
+        "Address": "这是地址，可选。"
+      }
+    },
+    "Shift": {
+      "lbl": {
+        "Time": "时间",
+        "In": "上班",
+        "Out": "下班",
+        "SameDateofIn0Out": "同一天的上下班时间",
+        "OTGap": "加班间隔（分钟）",
+        "ShiftType": "班次类型",
+        "OTCap": "加班上限（分钟）",
+        "Before": "之前",
+        "After": "之后",
+        "InLate": "上班迟到（分钟）",
+        "OTCalculationGap": "加班计算间隔",
+        "INC": "包含",
+        "EXC": "不包含",
+        "EarlyOut": "下班早退（分钟）",
+        "Absence": "缺勤（分钟）"
+      },
+      "ifo": {
+        "Time": "这是时间，可选。",
+        "ShiftType": "这是班次类型，可选。"
+      }
+    },
+    "EmployeeAttendanceRecord": {
+      "lbl": {
+        "StartDate": "开始日期",
+        "EndDate": "结束日期"
+      }
+    },
+    "EmployeeAttendance": {
+      "lbl": {
+        "EmployeeAttendanceProcess": "员工考勤流程",
+        "Employee": "员工",
+        "ApproveStatus": "审批状态",
+        "RequestType": "请求类型",
+        "StartDate": "开始日期",
+        "EndDate": "结束日期"
+      }
+    }
+  },
+  "CRM": {
+    "Common": {
+      "loading": "加載中",
+      "grid": {
+        "emptydatastring": "无数据显示",
+        "pagergotopagestring": "转至页面",
+        "pagershowrowsstring": "显示行列"
+      },
+      "btnName": {
+        "Search": "搜索",
+        "Less": "较少",
+        "More": "更多",
+        "NewRow": "添加新行",
+        "DownloadTemplate": "下載模板",
+        "UploadTemplate": "上傳 csv",
+        "Clear": "清除"
+      },
+      "btnTooltip": {
+        "Home": "点击返回主页",
+        "Back": "点击返回",
+        "ColumnShowHide": "單擊以顯示或隱藏列",
+        "ChangeView": "点击更改列表视图",
+        "Search": "点击搜索",
+        "Less": "点击隐藏更多",
+        "More": "点击使用更多条件搜索",
+        "NewRow": "單擊以添加新行",
+        "DownloadTemplate": "點擊下載",
+        "UploadTemplate": "点击上传"
+      },
+      "view": {
+        "GridView": "網格視圖",
+        "WebView": "網頁視圖",
+        "CardView": "卡片視圖",
+        "UserView": "用户视图",
+        "PivotStatusView": "透视状态视图",
+        "PivotAssignView": "透视分配视图"
+      },
+      "plh": {
+        "Search": "在此处输入搜索",
+        "Select": "选择"
+      },
+      "confirm": {
+        "Delete": "是否要放弃更改",
+        "Void": "你确定要作废吗?",
+        "Active": "您確定要激活嗎?",
+        "Inactive": "您確定要停用嗎?",
+        "New": "是否要放弃更改?"
+      },
+      "ifo": {
+        "Search": "結果將顯示"
+      }
+    },
+    "Setup": {
+      "lbl": {
+        "Code": "代码",
+        "Name": "姓名",
+        "Description": "描述",
+        "Status": "状态",
+        "Sequence": "顺序",
+        "Remark": "备注",
+        "Remove": "消除",
+        "TD": "TD",
+        "User": "用户"
+      },
+      "plh": {
+        "Code": "代码",
+        "Name": "姓名",
+        "Description": "描述",
+        "Status": "状态",
+        "Sequence": "顺序",
+        "Remark": "备注",
+        "Remove": "消除",
+        "TD": "TD",
+        "User": "用户"
+      },
+      "ifo": {
+        "Title": "更多信息:",
+        "Code": "這是代碼，強制性的。最大字符數 - 50",
+        "Name": "這是名稱，必填。最大字符數 - 255",
+        "Description": "這是描述，可選。最大字符數 - 500",
+        "Sequence": "這是序列，可選.",
+        "Remark": "這是備註，可選."
+      },
+      "rule": {
+        "Code": "需要代碼.",
+        "Name": "姓名為必填項.",
+        "Min": "最小字符為",
+        "Max": "最大字符數為",
+        "Sequence": "序列不能小於零."
+      },
+      "impAlert": {
+        "Code": "在添加新行之前，需要填寫代碼.",
+        "Name": "添加新行之前，需要填寫名稱."
+      }
+    },
+    "PointDefining": {
+      "lbl": {
+        "TicketType": "门票类型",
+        "Complexity": "复杂",
+        "FromPoint": "从点",
+        "ToPoint": "至点"
+      },
+      "ifo": {
+        "TicketType": "这是门票类型，可选",
+        "Complexity": "这是复杂的，可选的.",
+        "FromPoint": "这是起始点，可选.",
+        "ToPoint": "这是至点，可选."
+      }
+    },
+    "Grade": {
+      "lbl": {
+        "EvaluationType": "评价类型",
+        "FromRange": "从范围",
+        "ToRange": "估计"
+      },
+      "ifo": {
+        "EvaluationType": "这是评估类型，可选。",
+        "FromRange": "这是起始范围，可选。",
+        "ToRange": "这是结束范围，可选。"
+      }
+    },
+    "EvaluationPeriod": {
+      "lbl": {
+        "EvaluationType": "评估类型",
+        "FromDate": "从日期",
+        "ToDate": "迄今为止"
+      },
+      "ifo": {
+        "EvaluationType": "这是评估类型，可选。",
+        "FromDate": "这是起始日期，可选。",
+        "ToDate": "这是迄今为止的信息，可选。"
+      }
+    },
+    "Product": {
+      "lbl": {
+        "Phone": "电话",
+        "Email": "电子邮件",
+        "Facebook": "Facebook",
+        "LinkedIn": "LinkedIn",
+        "Twitter": "Twitter",
+        "Youtube": "Youtube",
+        "Logo": "标识",
+        "Icon": "图标",
+        "Fax": "Fax",
+        "Website": "Website",
+        "FBLink": "FB 关联",
+        "TwitterLink": "Twitter 关联",
+        "YoutubeLink": "Youtube 关联",
+        "CountryMobileCode": "国家移动电话代码",
+        "View": "预览",
+        "Clear": "清除"
+      },
+      "ifo": {
+        "Phone": "电话，可选。",
+        "Email": "电子邮件，可选。",
+        "Facebook": "Facebook，可选。",
+        "LinkedIn": "LinkedIn，可选。",
+        "Twitter": "Twitter，可选。",
+        "Youtube": "Youtube，可选。",
+        "Logo": "Logo，可选。",
+        "Icon": "Icon，可选。",
+        "Fax": "传真，可选。",
+        "Website": "网址，可选。"
+      },
+      "plh": {
+        "Code": "001",
+        "Name": "公共",
+        "Description": "公共",
+        "Status": "选择状态",
+        "Remark": "备注",
+        "ProductEmail": "输入 test@gmail.com",
+        "ProductPhone": "输入 5687899",
+        "ProductFbUrl": "https://facebook.com/ovaspace",
+        "ProductLinkInUrl": "https://linkin.com",
+        "ProductTwitterUrl": "https://twitter.com",
+        "ProductWebsiteUrl": "http://ovaspace.com",
+        "ProductFax": "输入 9er938493",
+        "ProductYoutubeUrl": "https://youtube.com",
+        "ProductLogo": "",
+        "ProductIcon": "输入 fa fa-search"
+      },
+      "rules": {
+        "Code": "需要代码。长度不超过25。",
+        "Name": "姓名为必填项。长度不超过255。",
+        "Email": "不合规电邮。"
+      }
+    },
+    "TicketSurvey": {
+      "lbl": {
+        "UserName": "用户姓名",
+        "TicketName": "工单名称",
+        "SurveyName": "调查名称",
+        "SurveyDate": "调查日期",
+        "SurveyQuestion": "调查问题",
+        "GivenRate": "给予评分",
+        "Comment": "评论"
+      }
+    },
+    "DiscussionSurvey": {
+      "lbl": {
+        "UserName": "用户姓名",
+        "DiscussionName": "讨论名称",
+        "SurveyName": "调查名称",
+        "SurveyDate": "调查日期",
+        "SurveyQuestion": "调查问题",
+        "GivenRate": "给予评分",
+        "Comment": "评论"
+      }
+    },
+    "ProductModule": {
+      "lbl": {
+        "Product": "产品 "
+      },
+      "ifo": {
+        "Product": "这是产品，可选。"
+      }
+    },
+    "HelpDesk": {
+      "lbl": {
+        "TicketDetail": "门票详情",
+        "ReferenceNo": "參考編號",
+        "AttachFile": "附加文件",
+        "PageName": "页面名称",
+        "Requirement": "要求",
+        "OpenDate": "开放日期",
+        "Solution": "解决方案",
+        "Life": "生活",
+        "Priority": "优先事项",
+        "Quote": "引用",
+        "Remove": "消除"
+      },
+      "ifo": {
+        "TicketDetail": "工单详情，可选。",
+        "ReferenceNo": "这是参考号，可选。",
+        "AttachFile": "附加文件，可选。",
+        "PageName": "页面名称，可选。"
+      },
+      "plh": {
+        "TicketDetail": "工单详情",
+        "ReferenceNo": "参考编号",
+        "PageName": "页面名称"
+      }
+    },
+    "TicketLog": {
+      "lbl": {
+        "TicketDetail": "工单详情",
+        "Project": "项目",
+        "Product": "产品",
+        "ProductModule": "产品模块",
+        "TicketType": "工单类型",
+        "Priority": "优先级",
+        "ReferenceNo": "参考编号",
+        "OpenDate": "开启日期",
+        "TargetDate": "目标日期",
+        "AttachFile": "附加文件",
+        "PageName": "页面名称"
+      },
+      "ifo": {
+        "TicketDetail": "这是工单详情，可选。",
+        "Project": "这是项目，可选。",
+        "Product": "这是产品，可选。",
+        "ProductModule": "这是产品模块，可选。",
+        "TicketType": "这是工单类型，可选。",
+        "Priority": "这是优先级，可选。",
+        "ReferenceNo": "这是参考号，可选。",
+        "OpenDate": "这是开启日期，可选。",
+        "TargetDate": "这是目标日期，可选。",
+        "AttachFile": "这是附加文件，可选。",
+        "PageName": "这是页面名称，可选。"
+      },
+      "plh": {
+        "TicketDetail": "门票详情",
+        "Project": "项目",
+        "Product": "产品",
+        "ProductModule": "产品模块",
+        "PageName": "页面名称",
+        "ReferenceNo": "参考编号"
+      }
+    },
+    "Survey": {
+      "lbl": {
+        "SurveyType": "调查类型",
+        "SurveyQuestion": "调查问题",
+        "Rating": "评分"
+      },
+      "ifo": {
+        "SurveyType": "这是调查类型，可选。",
+        "Rating": "这是评分，可选。"
+      }
+    },
+    "UserGuide": {
+      "lbl": {
+        "UserGuideDetail": "用户指南详情",
+        "DetailName": "详情名称",
+        "DetailDescription": "详情描述",
+        "ReferenceNo": "参考编号",
+        "AttachFile": "附加文件",
+        "YouTubeURL": "YouTube链接",
+        "Caution": "注意事项",
+        "Hint": "提示",
+        "KeyNote": "重点提示",
+        "ParentName": "父级名称",
+        "Level": "级别",
+        "Type": "类型",
+        "Product": "产品",
+        "Project": "项目",
+        "SelectParentMenu": "选择父级菜单：",
+        "SetParentMenu": "设置父级菜单",
+        "AddFile": "添加文件",
+        "RemoveFile": "移除文件",
+        "Save": "保存",
+        "Cancel": "取消"
+      },
+      "ifo": {
+        "DetailName": "这是详情名称，可选。",
+        "DetailDescription": "这是详情描述，可选。",
+        "ReferenceNo": "这是参考号，可选。",
+        "AttachFile": "这是附加文件，可选。",
+        "YouTubeURL": "这是YouTube链接，可选。",
+        "Caution": "这是注意事项，可选。",
+        "Hint": "这是提示，可选。",
+        "KeyNote": "这是重点提示，可选。"
+      }
+    },
+    "ProjectPhase": {
+      "lbl": {
+        "ProjectPhase": "项目阶段",
+        "Phase": "阶段",
+        "Product": "产品",
+        "Module": "模块"
+      },
+      "ifo": {
+        "Phase": "这是阶段，可选。",
+        "Product": "这是产品，可选。",
+        "Module": "这是模块，可选。"
+      }
+    },
+    "ProjectStakeholder": {
+      "lbl": {
+        "ProjectStakeholder": "项目相关者",
+        "Phone": "电话",
+        "Email": "电子邮件",
+        "Position": "职位",
+        "Department": "部门",
+        "Role": "角色",
+        "StakeholderType": "相关者类型"
+      },
+      "ifo": {
+        "Phone": "这是电话，可选。",
+        "Email": "这是电子邮件，可选。",
+        "Position": "这是职位，可选。",
+        "Department": "这是部门，可选。",
+        "Role": "角色",
+        "StakeholderType": "这是相关者类型，可选。"
+      },
+      "plh": {
+        "Email": "电子邮件",
+        "Position": "职位",
+        "Department": "部门",
+        "Role": "角色"
+      }
+    },
+    "UpdateTicket": {
+      "lbl": {
+        "AssignTo": "分配给",
+        "OpenDate": "开启日期",
+        "TargetDate": "目标日期",
+        "Requirement": "需求",
+        "Note": "备注",
+        "Project": "项目",
+        "Openedby": "开启者",
+        "Product": "产品",
+        "ProductModule": "产品模块",
+        "TicketType": "工单类型",
+        "Priority": "优先级",
+        "EvaluationPeriod": "评估期间",
+        "Soulution": "解决方案",
+        "ReleasedVersion": "发布版本",
+        "PageName": "页面名称"
+      }
+    },
+    "ChatSupporter": {
+      "lbl": {
+        "Chat": "聊天",
+        "Calls": "通话",
+        "Contacts": "联系人姓名",
+        "Bookmarks": "书签",
+        "Mentions": "提及",
+        "Open": "打开",
+        "Close": "关闭",
+        "Removed": "移除",
+        "EndChat": "结束聊天",
+        "Remove": "移除",
+        "RequestEndChat": "请求结束聊天",
+        "Quote": "引用",
+        "Forward": "转发",
+        "Bookmark": "添加书签",
+        "Email": "电子邮件",
+        "Phone": "电话",
+        "IPAddress": "IP地址",
+        "Location": "地点"
+      }
+    },
+    "Customer": {
+      "lbl": {
+        "Email": "电子邮件",
+        "Mobile": "手机",
+        "View": "预览",
+        "Clear": "清除",
+        "General": "基本资料",
+        "Address": "地址",
+        "ContactPerson": "联系人",
+        "Payment": "付款",
+        "NickName": "昵称",
+        "RegisterDate": "注册日期",
+        "BusinessType": "业务类型",
+        "Industry": "行业",
+        "CustomerType": "客户类型",
+        "PriceBand": "价格区间",
+        "DiscountGroup": "折扣组",
+        "Currency": "货币",
+        "TaxRegID": "税务登记号",
+        "UEN": "统一工商登记号",
+        "Scheme": "方案",
+        "Peppol": "Peppol",
+        "Superscheme": "Superscheme",
+        "Country": "国家",
+        "Tel1": "电话1",
+        "Tel2": "电话2",
+        "State": "省份/州",
+        "City": "城市",
+        "Website": "网站",
+        "PostalCode": "邮政编码",
+        "Facebook": "Facebook",
+        "Floor": "楼层",
+        "Youtube": "Youtube",
+        "UnitNumber": "单元号",
+        "LinkedIn": "LinkedIn",
+        "Fax": "传真",
+        "Twitter": "Twitter",
+        "PaymentType": "支付方式",
+        "PaymentTerm": "付款条件",
+        "BranchName": "分支机构名称",
+        "CustomerAccountNo": "客户账号",
+        "CustomerBank": "客户银行",
+        "HouseBank": "主办银行",
+        "Sendlogincriteria": "发送登录准则",
+        "Type": "类型",
+        "Title": "称谓",
+        "Contact": "联系人姓名",
+        "SameasCompanyAddress": "同公司地址",
+        "ContactName": "联系人姓名",
+        "ContactType": "联系人类型",
+        "Department": "部门",
+        "JobTitle": "职称",
+        "LanAccent": "语言口音",
+        "Gender": "性别",
+        "Profession": "职业",
+        "DateofBirth": "出生日期",
+        "Nationality": "国籍",
+        "MartialStatus": "婚姻状况"
+      },
+      "ifo": {
+        "Email": "这是客户电子邮件，可选。",
+        "Mobile": "这是客户手机，可选。",
+        "UploadProfile": "这是客户上传资料，可选。",
+        "NickName": "这是客户昵称，可选。",
+        "RegisterDate": "这是注册日期，可选。",
+        "BusinessType": "这是业务类型，可选。",
+        "Industry": "这是行业，可选。",
+        "CustomerType": "这是客户类型，可选。",
+        "PriceBand": "这是价格区间，可选。",
+        "DiscountGroup": "这是折扣组，可选。",
+        "Currency": "这是货币，可选。",
+        "TaxRegID": "这是税务登记号，可选。",
+        "UEN": "这是统一工商登记号，可选。",
+        "Scheme": "这是方案，可选。",
+        "Peppol": "这是Peppol，可选。",
+        "Superscheme": "这是Superscheme，可选。",
+        "Country": "这是国家，可选。",
+        "Tel1": "这是电话1，可选。",
+        "State": "这是省份/州，可选。",
+        "Tel2": "这是电话2，可选。",
+        "City": "这是城市，可选。",
+        "Website": "这是网站，可选。",
+        "PostalCode": "这是邮政编码，可选。",
+        "Facebook": "这是Facebook，可选。",
+        "Floor": "这是楼层，可选。",
+        "Youtube": "这是Youtube，可选。",
+        "UnitNumber": "这是单元号，可选。",
+        "LinkedIn": "这是LinkedIn，可选。",
+        "Address": "这是地址，可选。",
+        "Fax": "这是传真，可选。",
+        "Twitter": "这是Twitter，可选。",
+        "ContactName": "这是联系人姓名，可选。",
+        "ContactType": "这是联系人类型，可选。",
+        "Department": "这是部门，可选。",
+        "JobTitle": "这是职称，可选。",
+        "LanAccent": "这是语言口音，可选。",
+        "Gender": "这是性别，可选。",
+        "Profession": "这是职业，可选。",
+        "DateofBirth": "这是出生日期，可选。",
+        "Nationality": "这是国籍，可选。",
+        "MartialStatus": "这是婚姻状况，可选。"
+      },
+      "plh": {
+        "Address": "街道名称,\n建筑物名称,\n#楼层号-单元号"
+      },
+      "rule": {
+        "Email": "需要电子邮件。"
+      }
+    },
+    "Project": {
+      "lbl": {
+        "ProjectCode": "项目代码",
+        "ProjectName": "项目名",
+        "StartDate": "开始日期",
+        "EndDate": "结束日期",
+        "AttachFile": "附加文件",
+        "Product": "产品 ",
+        "Phase": "阶段",
+        "Stakeholder": "利益相关者",
+        "PhaseName": "阶段名称",
+        "ModuleName": "模块名称",
+        "FileAttachment": "文件附件"
+      },
+      "ifo": {
+        "ProjectCode": "这是项目代码，可选。",
+        "ProjectName": "这是项目名称，可选。",
+        "StartDate": "这是开始日期，可选。",
+        "EndDate": "这是结束日期，可选。",
+        "AttachFile": "这是附加文件，可选。"
+      },
+      "rule": {
+        "Date": "失效日期。"
+      }
+    }
+  },
+  "HCM": {
+    "Common": {
+      "loading": "加載中",
+      "grid": {
+        "emptydatastring": "无数据显示",
+        "pagergotopagestring": "转至页面:",
+        "pagershowrowsstring": "显示行列"
+      },
+      "btnName": {
+        "Search": "搜索",
+        "Less": "较少",
+        "More": "更多",
+        "NewRow": "添加新行",
+        "DownloadTemplate": "下載模板",
+        "UploadTemplate": "上傳 csv",
+        "Clear": "清除"
+      },
+      "btnTooltip": {
+        "Home": "点击返回主页",
+        "Back": "点击返回",
+        "ColumnShowHide": "單擊以顯示或隱藏列",
+        "ChangeView": "点击更改列表视图",
+        "Search": "点击搜索",
+        "Less": "点击隐藏更多",
+        "More": "点击使用更多条件搜索",
+        "NewRow": "單擊以添加新行",
+        "DownloadTemplate": "點擊下載",
+        "UploadTemplate": "点击上传"
+      },
+      "view": {
+        "GridView": "網格視圖",
+        "WebView": "網頁視圖",
+        "CardView": "卡片視圖"
+      },
+      "plh": {
+        "Search": "在此处输入搜索"
+      },
+      "confirm": {
+        "Delete": "是否要放弃更改？",
+        "Void": "你确定要作废吗?",
+        "Active": "您確定要激活嗎?",
+        "Inactive": "您確定要停用嗎?",
+        "New": "是否要放弃更改?"
+      },
+      "ifo": {
+        "Search": "結果將顯示"
+      }
+    },
+    "Setup": {
+      "lbl": {
+        "Code": "代码",
+        "Name": "姓名",
+        "Description": "描述",
+        "Status": "状态",
+        "Sequence": "顺序",
+        "Remark": "备注",
+        "Remove": "消除",
+        "TD": "TD",
+        "User": "用户"
+      },
+      "plh": {
+        "Code": "代码",
+        "Name": "姓名",
+        "Description": "描述",
+        "Status": "状态",
+        "Sequence": "顺序",
+        "Remark": "备注",
+        "Remove": "消除",
+        "TD": "TD",
+        "User": "用户"
+      },
+      "ifo": {
+        "Title": "更多信息:",
+        "Code": "這是代碼，強制性的。最大字符數 - 50",
+        "Name": "這是名稱，必填。最大字符數 - 255",
+        "Description": "這是描述，可選。最大字符數 - 500",
+        "Sequence": "這是序列，可選.",
+        "Remark": "這是備註，可選."
+      },
+      "rule": {
+        "Code": "需要代碼.",
+        "Name": "姓名為必填項.",
+        "Min": "最小字符為",
+        "Max": "最大字符數為",
+        "Sequence": "序列不能小於零."
+      },
+      "impAlert": {
+        "Code": "在添加新行之前，需要填寫代碼.",
+        "Name": "添加新行之前，需要填寫名稱."
+      }
+    },
+    "Safety": {
+      "lbl": {
+        "IsNeedReturn": "需要退货"
+      },
+      "ifo": {
+        "IsNeedReturn": "這是需要退貨，可選."
+      }
+    },
+    "KPIFactor": {
+      "lbl": {
+        "Question": "問題 ",
+        "Answer": "回答"
+      },
+      "ifo": {
+        "Question": "這是問題，可選.",
+        "Answer": "這是答案，可選."
+      },
+      "plh": {
+        "Question": "問題",
+        "Answer": "回答"
+      }
+    },
+    "Punishment": {
+      "lbl": {
+        "PunishmentType": "懲罰類型 ",
+        "PunishmentNote": "處罰說明"
+      },
+      "ifo": {
+        "PunishmentType": "這是懲罰類型，可選.",
+        "PunishmentNote": "這是處罰單，可選."
+      },
+      "plh": {
+        "PunishmentNote": "處罰說明"
+      }
+    },
+    "Reward": {
+      "lbl": {
+        "RewardType": "奖励类型 ",
+        "RewardNote": "奖励备注"
+      },
+      "ifo": {
+        "RewardType": "这是奖励类型，可选.",
+        "RewardNote": "这是奖励单，可选."
+      },
+      "plh": {
+        "RewardNote": "奖励备注"
+      }
+    },
+    "JobOfferForm": {
+      "lbl": {
+        "Applicant": "申请人 ",
+        "Designation": "指定",
+        "ContactPerson": "联络人",
+        "Employee": "员工姓名",
+        "Company": "公司",
+        "Department": "部门",
+        "Section": "部分",
+        "EffectiveDate": "生效日期"
+      },
+      "ifo": {
+        "Applicant": "申请人",
+        "Designation": "职位",
+        "ContactPerson": "联系人",
+        "Company": "公司",
+        "Department": "部门",
+        "Section": "部门",
+        "EffectiveDate": "生效日期",
+        "OfficeAddress": "办公地址",
+        "Employee": "员工"
+      },
+      "plh": {
+        "OfficeAddress": "生效日期"
+      },
+      "rule": {
+        "Applicant": "申请人为必填项",
+        "Designation": "需要指定"
+      }
+    },
+    "JobVacancy": {
+      "lbl": {
+        "Company": "公司",
+        "Employee": "员工姓名",
+        "Designation": "职位",
+        "EmploymentType": "雇佣类型",
+        "License": "许可证",
+        "HRContact": "人力资源联系人",
+        "JD": "职位说明书",
+        "SkillSet": "技能要求",
+        "Education": "教育背景",
+        "AcademicQualification": "学历要求",
+        "Experience": "工作经验",
+        "Knowledge": "专业知识",
+        "Requirement": "职位要求",
+        "OtherQualification": "其他资格",
+        "VacancyAvailability": "职位空缺情况"
+      },
+      "ifo": {
+        "Company": "公司，可选",
+        "Employee": "员工，可选",
+        "Designation": "职位，可选",
+        "EmploymentType": "雇佣类型，可选",
+        "License": "许可证，可选",
+        "HRContact": "人力资源联系人，可选",
+        "JD": "职位说明书，可选",
+        "SkillSet": "技能要求，可选",
+        "Education": "教育背景，可选",
+        "AcademicQualification": "学历要求，可选",
+        "Experience": "工作经验，可选",
+        "Knowledge": "专业知识，可选",
+        "Requirement": "职位要求，可选",
+        "OtherQualification": "其他资格，可选",
+        "VacancyAvailability": "职位空缺情况，可选"
+      },
+      "plh": {
+        "License": "许可证",
+        "HRContact": "人力资源联系人",
+        "JD": "职位说明书",
+        "SkillSet": "技能要求",
+        "Education": "教育背景",
+        "AcademicQualification": "学历要求",
+        "Experience": "工作经验",
+        "Knowledge": "专业知识",
+        "Requirement": "职位要求",
+        "OtherQualification": "其他资格"
+      },
+      "rule": {
+        "Company": "公司為必填項",
+        "Designation": "需要指定"
+      }
+    },
+    "Leave": {
+      "lbl": {
+        "LeaveType": "请假类型",
+        "LeaveForward": "请假转发",
+        "LeaveRefund": "请假退款",
+        "AllowDays": "允许天数",
+        "PreRequestDate": "预请求日期"
+      },
+      "ifo": {
+        "LeaveType": "这是请假类型，可选。",
+        "LeaveForward": "这是请假转发，可选。",
+        "LeaveRefund": "这是请假退款，可选。",
+        "AllowDays": "这是允许天数，可选。",
+        "PreRequestDate": "这是预请求日期，可选。"
+      }
+    },
+    "UOM": {
+      "lbl": {
+        "UOMType": "计量单位类型",
+        "Default": "默认设置",
+        "ExchangeRate": "默认设置"
+      },
+      "ifo": {
+        "UOMType": "这是计量单位类型，可选.",
+        "Default": "这是默认的，可选的.",
+        "ExchangeRate": "这是汇率，可选."
+      }
+    }
+  },
+  "PAY":{
+    "Common":{
+      "loading":"加載中",
+      "grid":{
+        "emptydatastring": "无数据显示", 
+        "pagergotopagestring": "转至页面", 
+        "pagershowrowsstring": "显示行列:"
+      },
+      "btnName":{
+        "Search":"搜索",
+        "Less":"较少",
+        "More":"更多",
+        "NewRow":"添加新行",
+        "DownloadTemplate":"下載模板",
+        "UploadTemplate":"上傳 csv",
+        "Clear":"清除"
+      },
+      "btnTooltip":{
+        "Home":"点击返回主页",
+        "Back": "点击返回",
+        "ColumnShowHide":"單擊以顯示或隱藏列",
+        "ChangeView":"点击更改列表视图",
+        "Search":"点击搜索",
+        "Less":"点击隐藏更多",
+        "More":"点击使用更多条件搜索",
+        "NewRow":"單擊以添加新行",
+        "DownloadTemplate":"點擊下載",
+        "UploadTemplate":"点击上传"
+      },
+      "view":{
+        "GridView":"網格視圖",
+        "WebView":"網頁視圖",
+        "CardView":"卡片視圖"
+      },
+      "plh":{
+        "Search":"在此处输入搜索"
+      },
+      "confirm":{        
+        "Delete": "是否要放弃更改？",
+        "Void": "你确定要作废吗?",
+        "Active": "您確定要激活嗎?",
+        "Inactive": "您確定要停用嗎?",
+        "New": "是否要放弃更改?"
+      },
+      "ifo":{
+        "Search":"結果將顯示"
+      }
+    },
+    "Setup":{ 
+      "lbl":{
+        "Code":"代码",
+        "Name":"姓名",
+        "Description":"描述",
+        "Status":"状态",
+        "Sequence":"顺序",
+        "Remark":"备注",
+        "Remove":"消除",
+        "TD":"TD",
+        "User":"用户"
+      }, 
+      "plh":{
+        "Code":"代码",
+        "Name":"姓名",
+        "Description":"描述",
+        "Status":"状态",
+        "Sequence":"顺序",
+        "Remark":"备注",
+        "Remove":"消除",
+        "TD":"TD",
+        "User":"用户"
+      },
+      "ifo":{
+        "Title":"更多信息:",
+        "Code":"這是代碼，強制性的。最大字符數 - 50",
+        "Name":"這是名稱，必填。最大字符數 - 255",
+        "Description":"這是描述，可選。最大字符數 - 500",
+        "Sequence":"這是序列，可選.",
+        "Remark":"這是備註，可選."
+      },
+      "rule":{
+        "Code":"需要代碼.",
+        "Name":"姓名為必填項.",
+        "Min":"最小字符為",
+        "Max":"最大字符數為",
+        "Sequence":"序列不能小於零."
+      },
+      "impAlert":{
+        "Code":"在添加新行之前，需要填寫代碼.",
+        "Name":"添加新行之前，需要填寫名稱."
+      }
+    },
+    "ContributionRate":{
+      "lbl":{
+        "ContributionType":"贡献类型",
+        "PayItem":"付费项目",
+        "EERateType":"EE 费率类型",
+        "FromDate":"從日期",
+        "ToDate":"迄今为止",
+        "FromWages":"从工资来看",
+        "ToWages":"工资",
+        "MonthlyContribution":"每月供款"
+      },
+      "ifo":{
+        "ContributionType":"这是贡献类型，可选.",
+        "PayItem":"这是付费项目，可选.",
+        "EERateType":"这是 EE 费率类型，可选.",
+        "FromDate":"这是起始日期，可选.",
+        "ToDate":"这是迄今为止的信息，可选.",
+        "FromWages":"这是来自工资，可选.",
+        "ToWages":"这是工资，可选.",
+        "MonthlyContribution":"这是每月供款，可选."
+      },
+      "rule":{
+       "ContributionType":"贡献类型为必填项",
+       "PayItem":"付费项目为必填项"
+      }
+    } ,
+    "FWLRate":{
+      "lbl":{
+        "FWLServiceType":"飞航服务类型",
+        "FWLTier":"FWL 层",
+        "EERateType":"EE 费率类型",
+        "MonthlyRate":"月费",
+        "DailyRate":"每日汇率"
+      },
+      "ifo":{
+        "FWLServiceType":"这是 FWL 服务类型，可选.",
+        "FWLTier":"这是 FWL 层，可选.",
+        "EERateType":"这是 EE 费率类型，可选.",
+        "MonthlyRate":"这是月费，可选.",
+        "DailyRate":"这是每日费率，可选."
+        },
+      "rule":{
+       "FWLServiceType":"FWL 服务类型为必填项",
+       "FWLTier":"FWL Ter 为必填项"
+      }
+    },
+    "IncomeTaxRate":{
+      "lbl":{
+        "FromAmount":"从金额 ",
+        "ToAmount":"至金额",
+        "Percentage":"百分比",
+        "FixedAmount":"固定值",
+        "FixedAmountToDeduct":"固定扣除金额",
+        "FromDate":"從日期",
+        "ToDate":"迄今为止"
+      },
+      "ifo":{
+        "FromAmount":"这是起始金额，可选.",
+        "ToAmount":"这是金额，可选.",
+        "Percentage":"这是百分比，可选.",
+        "FixedAmount":"这是固定金额，可选.",
+        "FixedAmountToDeduct":"这是固定扣除金额，可选.",
+        "FromDate":"这是起始日期，可选.",
+        "ToDate":"这是迄今为止的信息，可选."
+      }
+    },
+    "SDLRate":{
+      "lbl":{
+        "Rate":"速度  ",
+        "CeilingAmount":"上限金额",
+        "MinAmount":"最低金额",
+        "MaxAmount":"最大金额"
+      },
+      "ifo":{
+        "Rate":"这是费率，可选.",
+        "CeilingAmount":"这是上限金额，可选.",
+        "MinAmount":"这是最低金额，可选.",
+        "MaxAmount":"这是最大金额，可选."
+      },
+      "rule":{
+       "Rate":"费率为必填项",
+       "CeilingAmount":"上限金额为必填项"
+      }
+    } ,
+    "ExemptionRate":{
+      "lbl":{
+        "ExemptionRateType":"豁免率类型 ",
+        "AmountPerParent":"每名家长的金额",
+        "AmountPerSpouse":"每名配偶的金额",
+        "AmountPerChild":"每个孩子的金额",
+        "MinAmount":"最低金额",
+        "FromDate":"從日期",
+        "ToDate":"迄今为止"
+      },
+      "ifo":{
+        "ExemptionRateType":"这是免税率类型，可选.",
+        "AmountPerParent":"这是每位家长的金额，可选.",
+        "AmountPerSpouse":"这是每名配偶的金额，可选.",
+        "AmountPerChild":"这是每个孩子的金额，可选.",
+        "MinAmount":"这是最低金额，可选.",
+        "FromDate":"这是起始日期，可选.",
+        "ToDate":"这是迄今为止的信息，可选."
+      }
+    },
+    "SSBRate":{
+      "lbl":{
+        "Currency":"货币",
+        "WagesFrom":"从工资来看",
+        "WagesTo":"工资",
+        "EERateType":"EE 费率类型",
+        "EERate":"EE率",
+        "EEMinAmount":"EE 最低金额",
+        "EEMaxAmount":"EE 最大金额",
+        "ERRateType":"ER 费率类型",
+        "ERRate":"ER 费率",
+        "ERMinAmount":"这是 ER 最低金额，可选.",
+        "ERMaxAmount":"这是 ER 最大金额，可选."
+      },
+      "ifo":{
+        "Currency":"這是貨幣，可選.",
+        "WagesFrom":"这是工资来源，可选.",
+        "WagesTo":"这是工资至，可选.",
+        "EERateType":"这是 EE 费率类型，可选.",
+        "EERate":"这是 EE 费率，可选.",
+        "EEMinAmount":"这是 EE 最低金额，可选.",
+        "EEMaxAmount":"这是 EE 最大金额，可选.",
+        "ERRateType":"这是 ER 费率类型，可选.",
+        "ERRate":"这是 EE 费率，可选.",
+        "ERMinAmount":"这是 EE 最低金额，可选.",
+        "ERMaxAmount":"这是 EE 最大金额，可选."
+      }
+    } ,
+    "GPFRate":{
+      "lbl":{
+        "Currency":"货币",
+        "WagesFrom":"从工资来看",
+        "WagesTo":"工资",
+        "EERateType":"EE 费率类型",
+        "EERate":"EE率",
+        "EEMinAmount":"EE 最低金额",
+        "EEMaxAmount":"EE 最大金额",
+        "ERRateType":"ER 费率类型",
+        "ERRate":"ER 费率",
+        "ERMinAmount":"ER 最低金额",
+        "ERMaxAmount":"ER 最大金额"
+      },
+      "ifo":{
+        "Currency":"這是貨幣，可選.",
+        "WagesFrom":"这是工资来源，可选.",
+        "WagesTo":"这是工资至，可选.",
+        "EERateType":"这是 EE 费率类型，可选.",
+        "EERate":"这是 EE 费率，可选.",
+        "EEMinAmount":"这是 EE 最低金额，可选.",
+        "EEMaxAmount":"这是 EE 最大金额，可选.",
+        "ERRateType":"这是 ER 费率类型，可选.",
+        "ERRate":"这是 ER 费率，可选.",
+        "ERMinAmount":"这是 ER 最低金额，可选.",
+        "ERMaxAmount":"这是 ER 最大金额，可选."
+      }
+    }      
+  },
+  "AMS":{
+    "Common":{
+      "loading":"加載中",
+      "grid":{
+        "emptydatastring": "无数据显示", 
+        "pagergotopagestring": "转至页面", 
+        "pagershowrowsstring": "显示行列"
+      },
+      "btnName":{
+        "Search":"搜索",
+        "Less":"较少",
+        "More":"更多",
+        "NewRow":"添加新行",
+        "DownloadTemplate":"下載模板",
+        "UploadTemplate":"上傳 csv",
+        "Clear":"清除"
+      },
+      "btnTooltip":{
+        "Home":"点击返回主页",
+        "Back": "点击返回",
+        "ColumnShowHide":"單擊以顯示或隱藏列",
+        "ChangeView":"点击更改列表视图",
+        "Search":"点击搜索",
+        "Less":"点击隐藏更多",
+        "More":"点击使用更多条件搜索",
+        "NewRow":"單擊以添加新行",
+        "DownloadTemplate":"點擊下載",
+        "UploadTemplate":"点击上传"
+      },
+      "view":{
+        "GridView":"網格視圖",
+        "WebView":"網頁視圖",
+        "CardView":"卡片視圖"
+      },
+      "plh":{
+        "Search":"在此处输入搜索"
+      },
+      "confirm":{        
+        "Delete": "是否要放弃更改",
+        "Void": "你确定要作废吗?",
+        "Active": "您確定要激活嗎?",
+        "Inactive": "您確定要停用嗎?",
+        "New": "是否要放弃更改?"
+      },
+      "ifo":{
+        "Search":"結果將顯示"
+      }
+    },
+    "Setup":{ 
+      "lbl":{
+        "Code":"代码",
+        "Name":"姓名",
+        "Description":"描述",
+        "Status":"状态",
+        "Sequence":"顺序",
+        "Remark":"备注",
+        "Remove":"消除",
+        "TD":"TD",
+        "User":"用户"
+      }, 
+      "plh":{
+        "Code":"代码",
+        "Name":"姓名",
+        "Description":"描述",
+        "Status":"状态",
+        "Sequence":"顺序",
+        "Remark":"备注",
+        "Remove":"消除",
+        "TD":"TD",
+        "User":"用户",
+        "Select":"选择"
+      },
+      "ifo":{
+        "Title":"更多信息:",
+        "Code":"這是代碼，強制性的。最大字符數 - 50",
+        "Name":"這是名稱，必填。最大字符數 - 255",
+        "Description":"這是描述，可選。最大字符數 - 500",
+        "Sequence":"這是序列，可選.",
+        "Remark":"這是備註，可選."
+      },
+      "rule":{
+        "Code":"需要代碼.",
+        "Name":"姓名為必填項.",
+        "Min":"最小字符為",
+        "Max":"最大字符數為",
+        "Sequence":"序列不能小於零."
+      },
+      "impAlert":{
+        "Code":"在添加新行之前，需要填寫代碼.",
+        "Name":"添加新行之前，需要填寫名稱."
+      }
+    },
+    "AssetCategory":{
+      "lbl":{
+        "SetParent":"设置父级",
+        "Level":"等级",
+        "Link":"分类链接",
+        "URL":"类别网址",
+        "ParentCategory":" 家长类别:"
+      },
+      "ifo":{
+        "SetParent":"这是设置父项，可选.",
+        "Level":"这是资产类别级别，可选.",
+        "CategoryLink":"这是资产类别链接，可选.",
+        "CategoryURL":"这是资产类别 URl，可选."
+      },
+      "plh":{
+        "CategoryLink":"分类链接",
+        "CategoryURL":"类别网址"
+        }
+    } ,
+    "AssetUOM":{
+      "lbl":{
+        "UOMType":"计量单位类型",
+        "Default":"默认设置",
+        "ExchangeRate":"汇率"
+      },
+      "ifo":{
+        "UOMType":"这是计量单位类型，可选.",
+        "Default":"这是默认的，可选的.",
+        "ExchangeRate":"这是汇率，可选."
+      }
+    },
+    "Depreciation":{
+      "lbl":{
+        "Asset":"资产",
+        "StartDate":"开始日期",
+        "EndDate":"结束日期",
+        "Cost":"成本",
+        "Accrued":"应计",
+        "NetValue":"净值",
+        "DepreciationAmount":"折旧金额",
+        "Posted":"已发布",
+        "Total":"总金额"
+      }
+    },
+    "Asset":{
+      "lbl":{
+        "Type":"类型",
+        "General":"基本资料",
+        "Category":"类别",
+        "Weight":"重量",
+        "Company":"公司",
+        "WeightUOM":"重量单位",
+        "UOM":"计量单位",
+        "Height":"高度",
+        "Volumn":"体积",
+        "DimensionUOM":"尺寸单位",
+        "Color":"颜色",
+        "Depreciation":"折旧",
+        "ServiceContact":"服务联系方式",
+        "Document":"文档",
+        "Photo":"照片",
+        "Employee":"員工",
+        "Account":"帐户",
+        "StartDate":"开始日期",
+        "EndDate":"结束日期",
+        "Cost":"成本",
+        "DepreciationAmount":"折旧金额",
+        "Accrued":"应计",
+        "NetValue":"净值",
+        "Posted":"已发布",
+        "Total":"总金额",
+        "ContactType":"触点类型",
+        "Email":"电子邮件",
+        "Phone":"电话",
+        "Extension":"扩大",
+        "Mobile":"移动的",
+        "Address":"地址",
+        "PostalCode":"邮政编码",
+        "Country":"国家",
+        "Division":"分配",
+        "State":"状态",
+        "City":"城市",
+        "Fax":"传真",
+        "ReferenceURL":"参考网址",
+        "ReferenceNo":"參考編號",
+        "ReferenceDate":"參考日期",
+        "PhotoName":"照片名称",
+        "PhotoTypeName":"照片类型名称",
+        "Department":"部门",
+        "Designation":"指定",
+        "AssetType":"资产类型" ,
+        "ExpiredDate":"失效日期" ,
+        "UsefulLife":"有用的生活"
+      },
+      "ifo":{
+        "Status":"这是状态，可选.",
+        "AssetType":"这是资产类型，可选.",
+        "Category":"这是类别，可选.",
+        "Weight":"这是重量，可选.",
+        "Company":"這是公司，可選.",
+        "WeightUOM":"这是重量计量单位，可选.",
+        "UOM":"这是 UOM，可选.",
+        "Height":"这是高度，可选.",
+        "Volumn":"这是卷，可选.",
+        "DimensionUOM":"这是尺寸单位，可选.",
+        "Color":"这是颜色，可选."
+      }
+    },
+    "AssetWriteOff":{
+      "lbl":{
+        "Customer":"客户",
+        "Contact":"联系人姓名",
+        "WriteOffDate":"注销日期",
+        "File":"文件",
+        "View":"预览",
+        "Clear":"清除",
+        "DocumentNo":"文件编号.",
+        "BrowseTransaction":"浏览交易",
+        "Asset":"资产",
+        "Barcode":"条形码",
+        "WriteOffType":"核销型",
+        "AddtoList":"添加到列表",
+        "Tnc":"条款&条件",
+        "WriteOffNo":"核销 否.",
+        "Company":"公司 ",
+        "BusinessPartner":"生意伙伴",
+        "StartDate":"开始日期",
+        "EndDate":"结束日期",
+        "Qty":"数量.",
+        "UOM":"计量单位",
+        "Location":"地点"
+      },
+      "ifo":{
+        "Customer":"這是客戶，可選.",
+        "Contact":"這是聯繫方式，可選.",
+        "WriteOffDate":"注销日期",
+        "DocumentNo":"这是文件编号，可选.",
+        "File":"這是文件上傳，可選.",
+        "BrowseTransaction":"这是浏览交易，可选.",
+        "Asset":"这是资产，可选.",
+        "Barcode":"這是條形碼，可選.",
+        "WriteOffType":"这是注销类型，可选."
+      }
+    },
+    "AssetBrowseJun":{
+      "lbl":{
+      "Type":"类型.",
+      "Date":"日期",
+      "Customer":"客户",
+      "Contact":"联系人姓名",
+      "ContactPhone":"电话号码",
+      "Total":"总金额",
+      "LatestPrice":"最新价格",
+      "Discount":"折扣",
+      "OldPrice":"旧价格",
+      "Qty":"数量.",
+      "UOM":"计量单位",
+      "DiscountType":"T",
+      "DiscountRate":"R",
+      "DiscountAmt":"折扣金额",
+      "Amount":"数量",
+      "StartDate":"开始日期",
+      "EndDate":"结束日期"
+      }
+    },
+    "AssetDamage":{
+      "lbl":{
+        "AssetName":"资产",
+        "Barcode":"条形码",
+        "Reason":"Reason",
+        "DamagedDate":"损坏日期",
+        "DocumentNo":"文件编号.",
+        "File":"文件",
+        "View":"预览",
+        "Clear":"清除",
+        "AddtoList":"添加到列表",
+        "Tnc":"条款&条件",
+        "Qty":"数量.",
+        "UOM":"计量单位",
+        "DamageNo":"损坏 无.",
+        "Company":"公司 ",
+        "DamageType":"损坏类型",
+        "StartDate":"开始日期",
+        "EndDate":"结束日期",
+        "Location":"地点"
+      },
+      "ifo":{
+        "AssetName":"这是资产名称，可选.",
+        "Barcode":"這是條形碼，可選.",
+        "Reason":"這是原因，可選.",
+        "DamagedDate":"这是损坏日期，可选。",
+        "DocumentNo":"这是文档编号，可选。"
+      }
+    },
+    "AssetRecieved":{
+      "lbl":{
+        "Supplier":"供应商",
+        "Contact":"联系人姓名",
+        "RecievedDate":"收到的日期",
+        "DocumentNo":"文件编号.",
+        "RecievedType":"接收类型",
+        "Asset":"资产",
+        "Barcode":"条形码",
+        "BrowseTransaction":"浏览交易",
+        "Tnc":"条款&条件",
+        "Qty":"数量.",
+        "UOM":"计量单位",
+        "RecievedNo":"收到编号.",
+        "Company":"公司 ",
+        "StartDate":"开始日期",
+        "EndDate":"结束日期",
+        "BusinessPartner":"生意伙伴",
+        "Location":"地点",
+        "File":"文件",
+        "View":"预览",
+        "Clear":"清除",
+        "AddtoList":"添加到列表"
+      },
+      "ifo":{
+        "Supplier":"這是供應商，可選.",
+        "Contact":"這是聯繫方式，可選.",
+        "RecievedDate":"这是收到日期，可选.",
+        "DocumentNo":"这是文件编号，可选.",
+        "File":"這是文件上傳，可選."
+      }
+    },
+    "AssetReceiveBrowse":{
+        "lbl":{
+          "Type":"类型.",
+          "Date":"日期",
+          "Supplier":"供应商",
+          "Contact":"联系人姓名",
+          "ContactPhone":"电话号码",
+          "Total":"总金额",
+          "LatestPrice":"最新价格",
+          "Discount":"折扣",
+          "OldPrice":"旧价格",
+          "Qty":"数量.",
+          "UOM":"计量单位",
+          "DiscountType":"T",
+          "DiscountRate":"R",
+          "DiscountAmt":"折扣金额",
+          "Amount":"数量",
+          "StartDate":"开始日期",
+          "EndDate":"结束日期"
+        }
+    },
+    "AssetTransfer":{
+      "lbl":{
+        "TransferType":"传输类型",
+        "File":"文件",
+        "View":"预览",
+        "Clear":"清除",
+        "TransferDate":"转让日期",
+        "Asset":"资产",
+        "Barcode":"条形码",
+        "TransferStatus":"转账状态",
+        "BrowseTransaction":"浏览交易",
+        "Tnc":"条款&条件",
+        "DocumentNo":"文件编号.",
+        "AddtoList":"添加到列表",
+        "TransferNo":"转账号码.",
+        "Company":"公司 ",
+        "StartDate":"开始日期",
+        "EndDate":"结束日期",
+        "FromLoc":"出发地点.",
+        "ToLoc":"前往地点.",
+        "FromLocation":"出发地点",
+        "ToLocation":"前往地点",
+        "Qty":"数量.",
+        "UOM":"计量单位"
+      },
+      "ifo":{
+        "TransferType":"这是传输类型，可选.",
+        "FromLocation":"这是来自位置，可选.",
+        "ToLocation":"这是到位置，可选.",
+        "File":"這是文件上傳，可選.",
+        "TransferDate":"这是转移日期，可选.",
+        "Asset":"这是资产，可选.",
+        "Barcode":"這是條形碼，可選.",
+        "TransferStatus":"这是传输状态，可选.",
+        "AssetBrowse":"这是资产浏览，可选."
+      }
+    },
+    "PurchaseBilling":{
+      "lbl":{
+          "Supplier":"供应商" ,
+          "SubTotal":"小总计",
+          "InvoiceNo":"发票号码.",
+          "DiscountAmt":"折扣金额",
+          "Contact":"联系人姓名",
+          "PaymentTerm":"付款条件",
+          "PaymentType":"支付方式",
+          "BrowseTransaction":"浏览交易"  ,
+          "File":"文件",
+          "View":"预览",
+          "Clear":"清除",
+          "BillingDate":"账单日期",
+          "DueDate":"到期日",
+          "Document":"文档",
+          "InvoiceTotal":"发票总计",
+          "Billing":"计费",
+          "Discount":"折扣",
+          "RoundOff":"取整",
+          "GrandTotal":"累計",
+          "TotalAmountExcelGST":"总金额 Excel",
+          "Tnc":"条款&条件",
+          "PurchaseDate":"购买日期",
+          "ContactPh":"电话号码",
+          "Currency":"货币",
+          "DisAmt":"折扣金额",
+          "GSTAmt":"消费税金额.",
+          "Total":"总金额",
+          "Settlement":"结算",
+          "Outstanding":"拖欠款项",
+          "Company":"公司 ",
+          "StartDate":"开始日期",
+          "EndDate":"结束日期",
+          "BillingNo":"帐单号",
+          "ParentCode":"引用代码"
+  
+      },
+      "ifo":{
+        "Supplier":"這是供應商，可選.",
+        "Contact":"這是聯繫方式，可選.",
+        "PaymentTerm":"这是付款期限，可选.",
+        "PaymentType":"這是付款類型，可選.",
+        "Browse":"这是账单日期，可选.",
+        "File":"這是文件上傳，可選.",
+        "BillingDate":"这是账单日期，可选.",
+        "DueDate":"这是截止日期，可选.",
+        "DocumentNo":"这是文件编号，可选."
+      }
+    },
+    "CustomerSearch":{
+      "lbl":{
+      "CustomerSearch":"客户搜寻",
+      "CustomerType":"客户类型",
+      "PriceBand":"价格区间",
+      "DiscountGroup":"折扣团"
+    }
+  },
+  "PurchaseInvoice":{
+    "lbl":{
+      "Invoice":"发票",
+      "Company":"公司 ",
+      "ContactPh":"电话号码",
+      "Supplier":"供应商",
+      "Contact":"联系人姓名",
+      "Stock":"商品",
+      "Barcode":"条形码",
+      "BrowseTransaction":"浏览交易",
+      "AddtoList":"添加到列表",
+      "File":"文件",
+      "View":"预览",
+      "Clear":"清除",
+      "InvoiceDate":"发票日期",
+      "CollectionDate":"订单领取日期",
+      "Document":"文件编号.",
+      "SubTotal":"小总计",
+      "Discount":"折扣",
+      "RoundOff":"取整",
+      "GrandTotal":"累計",
+      "TotalAmountExcelGST":"总金额 Excel",
+      "Tnc":"条款&条件",
+      "Price":"价钱",
+      "Currency":"货币",
+      "QTY":"数量",
+      "UOM":"计量单位",
+      "DiscountType":"T",
+      "DiscountRate":"R",
+      "DiscountAmt":"折扣金额",
+      "Amount":"数量",
+      "InvoiceNo":"发票号码.",
+      "StartDate":"开始日期",
+      "EndDate":"结束日期",
+      "PurchaseType":"购买类型",
+      "EntitlaAmount":"授权金额.",
+      "GSTAmt":"消费税金额.",
+      "Total":"总金额",
+      "PostingStatus":"發帖狀態",
+      "ParentCode":"引用代码"
+    },
+    "ifo":{
+      "Supplier":"這是供應商，可選.",
+      "Contact":"這是聯繫方式，可選.",
+      "Stock":"這是採購庫存，可選.",
+      "Barcode":"這是條形碼，可選.",
+      "StockBrowse":"这是股票浏览交易，可选.",
+      "File":"這是文件上傳，可選.",
+      "InvoiceDate":"这是发票日期，可选.",
+      "CollectionDate":"这是收集日期，可选.",
+      "DocumentNo":"这是文件编号，可选."
+    }
+  },
+  "PurchaseOrder":{
+    "lbl":{
+      "Order":"命令",
+      "OrderNo":"订单号。",
+      "Company":"公司 ",
+      "StartDate":"开始日期",
+      "EndDate":"结束日期",
+      "Supplier":"供应商",
+      "Contact":"联系人姓名",
+      "Stock":"商品",
+      "Barcode":"条形码",
+      "BrowseTransaction":"浏览交易",
+      "AddtoList":"添加到列表",
+      "File":"文件",
+      "View":"预览",
+      "Clear":"清除",
+      "OrderDate":"订购日期",
+      "CollectionDate":"订单领取日期",
+      "Document":"文件编号.",
+      "SubTotal":"小总计",
+      "Discount":"折扣",
+      "RoundOff":"取整",
+      "GrandTotal":"累計",
+      "TotalAmountExcelGST":"总金额 Excel",
+      "Tnc":"条款&条件",
+      "Price":"价钱",
+      "Currency":"货币",
+      "QTY":"数量",
+      "UOM":"计量单位",
+      "DiscountType":"T",
+      "DiscountRate":"R",
+      "DiscountAmt":"折扣金额",
+      "Amount":"数量",
+      "ParentCode":"引用代码",
+      "ContactPh":"电话号码",
+      "GSTAmt":"消费税金额.",
+      "Total":"总金额"
+       },
+    "ifo":{
+      "Supplier":"這是供應商，可選.",
+      "Contact":"這是聯繫方式，可選.",
+      "Stock":"這是採購庫存，可選.",
+      "Barcode":"這是條形碼，可選.",
+      "StockBrowse":"这是股票浏览交易，可选.",
+      "File":"這是文件上傳，可選.",
+      "OrderDate":"这是订单日期，可选.",
+      "CollectionDate":"这是收集日期，可选.",
+      "DocumentNo":"这是文件编号，可选."
+    }
+  },
+  "PurchasePayment":{
+    "lbl":{
+      "Payment":"支付",
+      "Supplier":"供应商",
+      "Contact":"联系人姓名",
+      "PayDate":"发薪日期",
+      "PadiBy":"由...支付",
+      "BrowseTransaction":"浏览交易",
+      "File":"文件",
+      "View":"预览",
+      "Clear":"清除",
+      "Document":"文件编号.",
+      "PaymentTerm":"付款条件",
+      "PaymentType":"支付方式",
+      "DepositAmt":"定金额.",
+      "RemainingBalance":"保持平衡",
+      "Tender":"投标",
+      "Change":"改变",
+      "Bank":"银行 ",
+      "ChequeNo":"支票号码.",
+      "ChequeDate":"检查日期",
+      "TransactionFee":"手续费",
+      "CardNo":"卡号.",
+      "TransactionNo":"交易编号.",
+      "TransactionDate":"交易日期 ",
+      "VoucherNo":"凭证号.",
+      "VoucherDate":"凭证日期",
+      "ReadQR":"读取二维码",
+      "RefTranNo":"参考交易编号.",
+      "Date":"日期",
+      "SubTotal":"小总计",
+      "Discount":"折扣",
+      "RoundOff":"取整",
+      "GrandTotal":"累計",
+      "TotalAmountExcelGST":"总金额 Excel",
+      "Tnc":"条款&条件" ,
+      "PurchaseDate":"购买日期",
+      "ContactPh":"电话号码",
+      "Currency":"货币",
+      "Deposit":"订金",
+      "Outstanding":"拖欠款项",
+      "Total":"总金额",
+      "StartDate":"开始日期",
+      "EndDate":"结束日期",
+      "Company":"公司 "
+    },
+    "ifo":{
+      "Supplier":"這是供應商，可選.",
+      "Contact":"這是聯繫方式，可選.",
+      "RecievedDate":"這是收到日期，可選.",
+      "PaidBy":"这是股票浏览交易，可选.",
+      "StockBrowse":"这是股票浏览交易，可选这是股票浏览交易，可选.",
+      "File":"這是文件上傳，可選.",
+      "DocumentNo":"这是文件编号，可选."
+    },
+    "btnTooltip":{
+      "ReadQRCode":" 点我阅读二维码"
+    }
+  },
+  "PurchaseQuotation":{
+    "lbl":{
+      "Quotation":"引述",
+      "Supplier":"供应商",
+      "Contact":"联系人姓名",
+      "Asset":"资产",
+      "Barcode":"条形码",
+      "BrowseTransaction":"浏览交易",
+      "AddtoList":"添加到列表",
+      "File":"文件",
+      "View":"预览",
+      "Clear":"清除",
+      "QuotationDate":"报价日期",
+      "CollectionDate":"订单领取日期",
+      "Document":"文件编号.",
+      "SubTotal":"小总计",
+      "Discount":"折扣",
+      "RoundOff":"取整",
+      "GrandTotal":"累計",
+      "TotalAmountExcelGST":"总金额 Excel",
+      "Tnc":"条款&条件",
+      "Price":"价钱",
+      "Currency":"货币",
+      "QTY":"数量",
+      "UOM":"计量单位",
+      "DiscountType":"T",
+      "DiscountRate":"R",
+      "DiscountAmt":"折扣金额",
+      "Amount":"Amount",
+      "QuotationNo":"报价单号.",
+      "Company":"公司 ",
+      "StartDate":"开始日期",
+      "EndDate":"结束日期",
+      "ContactPh":"电话号码"
+    },
+    "ifo":{
+      "Supplier":"這是供應商，可選.",
+      "Contact":"這是聯繫方式，可選.",
+      "Asset":"这是购买资产，可选.",
+      "Barcode":"這是條形碼，可選.",
+      "AssetBrowse":"这是资产浏览交易，可选.",
+      "File":"這是文件上傳，可選.",
+      "QuotationDate":"这是报价日期，可选.",
+      "CollectionDate":"这是收集日期，可选.",
+      "DocumentNo":"这是文件编号，可选."
+    }
+  },
+  "PurchaseReturn":{
+    "lbl":{
+      "Return":"返回",
+      "Supplier":"供应商",
+      "Contact":"联系人姓名",
+      "ReturnDate":"归期",
+      "Reason":"原因",
+      "BrowseTransaction":"浏览交易",
+      "File":"文件",
+      "View":"预览",
+      "Clear":"清除",
+      "CollectionDate":"订单领取日期",
+      "Document":"文档",
+      "SubTotal":"小总计",
+      "Discount":"折扣",
+      "Deduction":"扣除",
+      "RoundOff":"取整",
+      "GrandTotal":"累計",
+      "TotalAmountExcelGST":"总金额 Excel",
+      "Tnc":"条款&条件",
+      "Price":"价钱",
+      "Currency":"货币",
+      "QTY":"数量",
+      "UOM":"计量单位",
+      "DiscountType":"T",
+      "DiscountRate":"R",
+      "Amount":"数量",
+      "ReturnNo":"返回编号",
+      "Company":"公司 ",
+      "StartDate":"开始日期",
+      "EndDate":"结束日期",
+      "TargetedDate":"目标日期",
+      "ParentCode":"引用代码",
+      "ContactPh":"电话号码",
+      "DisAmt":"折扣金额",
+      "GSTAmt":"消费税金额.",
+      "Total":"总金额"
+    },
+    "ifo":{
+      "Supplier":"這是供應商，可選.",
+      "Contact":"這是聯繫方式，可選.",
+      "ReturnDate":"这是返回日期，可选.",
+      "Reason":"這是原因，可選.",
+      "CollectionDate":"这是收集日期，可选.",
+      "DocumentNo":"这是文件编号，可选.",
+      "File":"這是文件上傳，可選.",
+      "Stock":"這是採購庫存，可選."
+    }
+  },
+  "SalesBilling":{
+    "lbl":{
+      "BillingNo":"账单号码",
+      "SaleDate":"发售日期",
+      "Customer":"客户",
+      "StartDate":"开始日期",
+      "EndDate":"结束日期",
+      "Contact":"联系人姓名",
+      "ParentCode":"引用代码",
+      "PaymentTerm":"付款条件",
+      "PaymentType":"支付方式",
+      "BrowseTransaction":"浏览交易",
+      "File":"文件",
+      "View":"预览",
+      "Clear":"清除",
+      "Company":"公司 ",
+      "ContactPhone":"电话号码",
+      "GSTAmt":"消费税金额.",
+      "BillingDate":"账单日期",
+      "DueDate":"到期日",
+      "DocumentNo":"文件编号.",
+      "SubTotal":"小总计",
+      "Billing":"计费",
+      "Discount":"折扣",
+      "GST":"消费税",
+      "RoundOff":"取整",
+      "GrandTotal":"累計",
+      "Tnc":"条款&条件",
+      "TotalAmountExcelGST":"总金额 Excel",
+      "ContactPh":"电话号码",
+      "Currency":"货币",
+      "DisAmt":"折扣金额",
+      "GStAmt":"消费税金额.",
+      "Total":"累計",
+      "Settlement":"结算",
+      "Outstanding":"拖欠款项",
+      "Remove":"消除"
+    },
+    "ifo":{
+      "Customer":"這是客戶，可選.",
+      "Contact":"這是聯繫方式，可選.",
+      "PaymentTerm":"这是付款期限，可选.",
+      "PaymentType":"這是付款類型，可選.",
+      "Browse":"这是浏览交易，可选.",
+      "File":"這是文件上傳，可選.",
+      "BillingDate":"这是账单日期，可选.",
+      "DueDate":"这是截止日期，可选.",
+      "DocumentNo":"这是文件编号，可选."
+    }
+   },
+   "SalesBillingJunBrowse":{
+    "lbl":{
+      "Transaction":"交易",
+      "Type":"类型",
+      "StartDate":"开始日期",
+      "EndDate":"结束日期",
+      "Customer":"客户",
+      "Date":"日期",
+      "Contact":"联系人姓名",
+      "ContactPhone":"电话号码",
+      "Total":"总金额",
+      "Settlement":"结算",
+      "Outstanding":"拖欠款项",
+      "Discount":"折扣",
+      "LastPrice":"最新价格",
+      "OldPrice":"旧价格",
+      "Qty":"数量.",
+      "UOM":"计量单位",
+      "DiscountType":"T",
+      "DiscountRate":"R",
+      "DiscountAmount":"折扣金额",
+      "Amount":"数量"
+    }
+   },
+   "GSTType":[
+    {"code": "E", "description": "电子独家" },
+    { "code": "I", "description": "包容性" }
+ ]
+  }  
+ }

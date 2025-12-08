@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rg:PopupPage
+    x:Class="CS.ERP_MOB.Views.POS.FrmPosSaleInvoicePop"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:animation="clr-namespace:RGPopup.Maui.Animations;assembly=RGPopup.Maui"
+    xmlns:ext="clr-namespace:CS.ERP_MOB.Extensions"
+    xmlns:general="clr-namespace:CS.ERP_MOB.General"
+    xmlns:local="clr-namespace:CS.ERP_MOB.Views.POS"
+    xmlns:rg="clr-namespace:RGPopup.Maui.Pages;assembly=RGPopup.Maui"
+    CloseWhenBackgroundIsClicked="true"
+    HasSystemPadding="true"
+    SystemPaddingSides="All">
+
+    <rg:PopupPage.Animation>
+        <animation:MoveAnimation
+            DurationIn="400"
+            DurationOut="300"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="true"
+            PositionIn="Bottom"
+            PositionOut="Bottom" />
+    </rg:PopupPage.Animation>
+    <Grid
+        x:Name="SearchGrid"
+        Padding="0,0,0,50"
+        ColumnSpacing="0"
+        HorizontalOptions="CenterAndExpand"
+        VerticalOptions="End">
+        <Frame
+            x:Name="PopupFrame"
+            Grid.Row="0"
+            Grid.Column="0"
+            Padding="0"
+            CornerRadius="3"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnBackgroundTapped" />
+            </Frame.GestureRecognizers>
+            <StackLayout
+                BackgroundColor="White"
+                Orientation="Vertical"
+                VerticalOptions="FillAndExpand">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="SearchTappedAsync" />
+                    <SwipeGestureRecognizer Direction="Down" Swiped="OnSwipeDown" />
+                </StackLayout.GestureRecognizers>
+                <!--  Title  -->
+                <StackLayout
+                    Padding="{StaticResource padding}"
+                    BackgroundColor="{Binding ThemeSettingContent.ThemeBgColor, Source={Static Member=general:Common.mCommon}}"
+                    HeightRequest="30"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="Start">
+                    <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                        <Label
+                            AbsoluteLayout.LayoutBounds="0.5, 0.5, AutoSize, AutoSize"
+                            AbsoluteLayout.LayoutFlags="PositionProportional"
+                            HorizontalTextAlignment="Center"
+                            Text="{Binding Source={ext:LanguageExtension Key=POS.Common.lbl.MoreSearch}, Path=Value}"
+                            TextColor="{Binding ThemeSettingContent.ThemeFontColor, Source={Static Member=general:Common.mCommon}}"
+                            VerticalOptions="Center" />
+                    </AbsoluteLayout>
+                </StackLayout>
+
+                <!--  Main Grid with Scrollable content and fixed footer  -->
+                <Grid ColumnSpacing="0" RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <!--  Content  -->
+                        <RowDefinition Height="Auto" />
+                        <!--  Footer  -->
+                    </Grid.RowDefinitions>
+
+                    <!--  Scrollable Content  -->
+                    <ScrollView Grid.Row="0" HeightRequest="500">
+                        <StackLayout Padding="20" Spacing="10">
+                            <!--  🔹 Start Date  -->
+                            <Label FontAttributes="Bold" Text="{Binding Source={ext:LanguageExtension Key=POS.Common.lbl.Date}, Path=Value}" />
+                            <HorizontalStackLayout HorizontalOptions="StartAndExpand" Visual="Default">
+                                <HorizontalStackLayout.Effects>
+                                    <TouchEffect />
+                                </HorizontalStackLayout.Effects>
+                                <Label FontAttributes="Bold" Text="{Binding Source={ext:LanguageExtension Key=POS.Common.lbl.From}, Path=Value}" />
+                                <DatePicker
+                                    x:Name="dpStartDate"
+                                    Date="{Binding StartDate}"
+                                    Format="{Binding UserSetting.DateTimeFormatName_0_255, Source={Static Member=general:Common.mCommon}}"
+                                    HorizontalOptions="StartAndExpand" />
+
+                                <!--  🔹 End Date  -->
+                                <Label FontAttributes="Bold" Text="{Binding Source={ext:LanguageExtension Key=POS.Common.lbl.To}, Path=Value}" />
+                                <DatePicker
+                                    x:Name="dpEndDate"
+                                    Date="{Binding EndDate}"
+                                    Format="{Binding UserSetting.DateTimeFormatName_0_255, Source={Static Member=general:Common.mCommon}}"
+                                    HorizontalOptions="StartAndExpand" />
+                            </HorizontalStackLayout>
+                            <Label FontAttributes="Bold" Text="{Binding Source={ext:LanguageExtension Key=POS.SalesInvoiceJunOva.lbl.Customer}, Path=Value}" />
+                            <Picker
+                                x:Name="pkrCustomer"
+                                Title="{Binding Source={ext:LanguageExtension Key=POS.Common.plh.Select}, Path=Value}"
+                                ItemDisplayBinding="{Binding CustomerName_0_255}"
+                                ItemsSource="{Binding CustomerDtlList}" />
+                            <Label FontAttributes="Bold" Text="{Binding Source={ext:LanguageExtension Key=POS.SalesInvoiceJunOva.lbl.InvoiceNo}, Path=Value}" />
+                            <Entry x:Name="entCode" Placeholder="Enter Code" />
+                        </StackLayout>
+                    </ScrollView>
+
+                    <!--  Fixed Footer Buttons  -->
+                    <StackLayout
+                        Grid.Row="1"
+                        Padding="20,10"
+                        Orientation="Horizontal"
+                        Spacing="15">
+                        <Button
+                            BackgroundColor="{Binding ThemeSettingButton.PropertiesBgColor, Source={Static Member=general:Common.mCommon}}"
+                            Clicked="CancelButton_Clicked"
+                            HorizontalOptions="FillAndExpand"
+                            Text="{Binding Source={ext:LanguageExtension Key=POS.Common.btnName.Cancel}, Path=Value}"
+                            TextColor="{Binding ThemeSettingButton.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" />
+                        <Button
+                            BackgroundColor="{Binding ThemeSettingButton.PropertiesBgColor, Source={Static Member=general:Common.mCommon}}"
+                            Clicked="OkButton_Clicked"
+                            HorizontalOptions="FillAndExpand"
+                            Text="{Binding Source={ext:LanguageExtension Key=POS.Common.btnName.OK}, Path=Value}"
+                            TextColor="{Binding ThemeSettingButton.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" />
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+        </Frame>
+    </Grid>
+</rg:PopupPage>

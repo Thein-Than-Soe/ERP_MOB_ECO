@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="CS.ERP_MOB.TabBar"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:CS.ERP_MOB"
+    xmlns:ext="clr-namespace:CS.ERP_MOB.Extensions"
+    xmlns:general="clr-namespace:CS.ERP_MOB.General">
+    <ContentView.Content>
+        <FlexLayout
+            AlignItems="Center"
+            BackgroundColor="{Binding ThemeSettingTaskbar.PropertiesBgColor, Source={x:Static general:Common.mCommon}}"
+            Direction="Row"
+            JustifyContent="SpaceEvenly">
+            <Grid FlexLayout.Grow="1" IsVisible="{Binding RegionSettingCompany.RegionVisibilityAsk, Converter={StaticResource StringToBoolConverter}, Source={x:Static general:Common.mCommon}}">
+                <controls:TabItem
+                    x:Name="home"
+                    BadgeCount="0"
+                    Caption="{Binding CompanyUserData.CompanyName_0_255, Source={x:Static general:Common.mCommon}}"
+                    HorizontalOptions="FillAndExpand"
+                    IconSource="{Binding CompanyUserData.CompanyLogo, Source={x:Static general:Common.mCommon}}"
+                    Selected="{Binding HomeSelected}"
+                    TapCommand="{Binding HomeCommand}"
+                    VerticalOptions="FillAndExpand" />
+            </Grid>
+            <Grid FlexLayout.Grow="1" IsVisible="{Binding RegionSettingNoti.RegionVisibilityAsk, Converter={StaticResource StringToBoolConverter}, Source={x:Static general:Common.mCommon}}">
+                <controls:TabItem
+                    x:Name="noti"
+                    BadgeCount="{Binding NotiList.Count, Source={x:Static general:Common.mCommon}}"
+                    Caption="Noti"
+                    FontAwesomeIcon="&#xf0f3;"
+                    HorizontalOptions="FillAndExpand"
+                    IsFontAwesome="True"
+                    IsVisible="True"
+                    Selected="{Binding NotiSelected}"
+                    TapCommand="{Binding NotiCommand}"
+                    VerticalOptions="FillAndExpand" />
+            </Grid>
+            <Grid FlexLayout.Grow="1" IsVisible="{Binding RegionSettingMessage.RegionVisibilityAsk, Converter={StaticResource StringToBoolConverter}, Source={x:Static general:Common.mCommon}}">
+                <controls:TabItem
+                    x:Name="discussion"
+                    BadgeCount="{Binding DiscussionList.Count, Source={x:Static general:Common.mCommon}}"
+                    Caption="Messages"
+                    FontAwesomeIcon="&#xf0e0;"
+                    HorizontalOptions="FillAndExpand"
+                    IsFontAwesome="True"
+                    Selected="{Binding DiscussionSelected}"
+                    TapCommand="{Binding DiscussionCommand}"
+                    VerticalOptions="FillAndExpand" />
+            </Grid>
+        </FlexLayout>
+
+    </ContentView.Content>
+</ContentView>

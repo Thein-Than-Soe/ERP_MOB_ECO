@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<xct:Popup 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:xct="http://schemas.microsoft.com/dotnet/2021/maui/communitytoolkit"
+           
+    Size="400,600"
+    xmlns:dg="clr-namespace:Syncfusion.Maui.DataGrid;assembly=Syncfusion.Maui.DataGrid"   
+    x:Class="CS.ERP_MOB.Views.HCM.FrmHcmCertificatePopup">
+
+    <ScrollView>
+        
+    <StackLayout                              
+                                VerticalOptions="FillAndExpand">
+        <Entry
+                            x:Name="entSearch"
+                            Placeholder="Search" 
+                           WidthRequest="200"
+                            HorizontalOptions="End"                           
+                            PlaceholderColor="{StaticResource OvaSearchInputColor}"
+                            TextColor="{StaticResource OvaSearchInputColor}"
+                            TextChanged="entSearch_TextChanged"/>
+
+        <Picker x:Name="pikCertificateType" IsEnabled="True" ItemDisplayBinding="{Binding DAT_APPLICANT_CERTIFICATE.CertificateTypeName}" Title="Select Certificate Type" />
+        <Entry x:Name="entName"  Text="{Binding DAT_APPLICANT_CERTIFICATE.CertificateName}"  Placeholder="Certificate Name" />
+        <Entry x:Name="entInstitude"  Text="{Binding DAT_APPLICANT_CERTIFICATE.InstituteName}"  Placeholder="Institude" />
+        <Picker x:Name="pikGPA" IsEnabled="True" ItemDisplayBinding="{Binding DAT_APPLICANT_CERTIFICATE.GPA}"  Title="GPA" />
+        <DatePicker Date="{Binding DAT_APPLICANT_CERTIFICATE.EffectiveYear}" />
+            <Frame>
+        <Grid>
+            <Button Text="Ok" WidthRequest="100" Grid.Row="0" Grid.Column="0" Clicked="okClick" ></Button>
+            <Button Text="Cancel" WidthRequest="100" Grid.Row="0" Grid.Column="1" Clicked="cancelClick"></Button>
+
+                </Grid>
+            </Frame>
+
+        </StackLayout>
+    </ScrollView>
+
+</xct:Popup>

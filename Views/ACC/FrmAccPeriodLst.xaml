@@ -1,0 +1,653 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dg="clr-namespace:Syncfusion.Maui.DataGrid;assembly=Syncfusion.Maui.DataGrid"
+    xmlns:local="clr-namespace:CS.ERP_MOB.Views.ACC"
+    xmlns:footer="clr-namespace:CS.ERP_MOB.Views.SYS"
+    xmlns:xct="http://schemas.microsoft.com/dotnet/2021/maui/communitytoolkit"
+    xmlns:syncfusion="clr-namespace:Syncfusion.Maui.DataGrid;assembly=Syncfusion.Maui.DataGrid"
+    xmlns:tabView="clr-namespace:Syncfusion.Maui.TabView;assembly=Syncfusion.Maui.TabView"
+    x:Class="CS.ERP_MOB.Views.ACC.FrmAccPeriodLst">
+    <ContentView.Content>
+        <StackLayout
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"
+            BackgroundColor="{StaticResource OvaListBackgroundColor}">
+            <!--Header area-->
+            <StackLayout
+                VerticalOptions="Start"
+                HorizontalOptions="FillAndExpand"
+                Orientation="Vertical"
+                BackgroundColor="{StaticResource OvaListTitleColor}"
+                Padding="{StaticResource paddingLeftRight}">
+                <StackLayout
+                    Orientation="Horizontal"
+                    HorizontalOptions="FillAndExpand"
+                    HeightRequest="35"
+                    Padding="{StaticResource paddingTop}">
+
+                    <!--title first two icon-->
+                    <Border
+                        Padding="{StaticResource FramePaddingLeftRight}"
+                        HorizontalOptions="Start"
+                        VerticalOptions="CenterAndExpand"
+                        >
+                        <StackLayout
+                            Orientation="Vertical"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand">
+                            <Grid
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <!--view switch icons-->
+                                <!--route entry form icon-->
+                                <StackLayout
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Orientation="Vertical"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions  ="FillAndExpand"
+                                    
+                                    >
+                                    <Label
+                                        VerticalOptions ="CenterAndExpand"
+                                        HorizontalOptions="CenterAndExpand"
+                                        Text="&#xf0fe;"
+                                        FontSize="35"
+                                        FontFamily="{StaticResource FontAwesomeSolid}"
+                                        TextColor="{StaticResource OvaListIconColor}"
+
+                                        
+                                        >
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer  Tapped="TgrNew_Tapped"
+                                        NumberOfTapsRequired="1" />
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Tapped="TgrNew_Tapped"
+                                            NumberOfTapsRequired="1" />
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+
+
+
+                            </Grid>
+                        </StackLayout>
+                    </Border>
+
+                    <!--search input box-->
+                    <StackLayout
+                        VerticalOptions="FillAndExpand"
+                        HorizontalOptions="FillAndExpand">
+                        <Entry
+                            x:Name="entSearch"
+                            Placeholder="Search" 
+                            HorizontalOptions="FillAndExpand"
+                            PlaceholderColor="{StaticResource OvaSearchInputColor}"
+                            TextColor="{StaticResource OvaSearchInputColor}"
+                            TextChanged="entSearch_TextChanged"/>
+                    </StackLayout>
+
+                    <!--last two icon-->
+                    <Border
+                        Padding="{StaticResource FramePaddingLeftRight}"
+                        HorizontalOptions="End"
+                        VerticalOptions="FillAndExpand"
+                        >
+                        <StackLayout
+                            Orientation="Vertical"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand">
+                            <Grid
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="2"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!--refersh icon-->
+                                <StackLayout
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="1"
+                                    VerticalOptions="FillAndExpand"
+                                    HorizontalOptions="FillAndExpand"
+                                    
+                                    >
+                                    <Label
+                                        VerticalOptions  ="CenterAndExpand"
+                                        HorizontalOptions="CenterAndExpand"
+                                        Text="&#xf2f1;"
+                                        FontFamily="{StaticResource FontAwesomeSolid}"
+                                        TextColor="{StaticResource OvaListIconColor}"
+                                        Padding="{StaticResource OvaListFormHeaderIconPadding}"
+                                        
+                                        >
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="TgrRefresh_Tapped"/>
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TgrRefresh_Tapped"/>
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+
+                                <BoxView
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    VerticalOptions="FillAndExpand"
+                                    BackgroundColor="{StaticResource OvaListIconColor}"  />
+
+                                <StackLayout
+                                    Grid.Row="0"
+                                    Grid.Column="2"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions  ="FillAndExpand">
+                                    <StackLayout
+                                        IsVisible="{Binding IsCardView}"
+                                        VerticalOptions="FillAndExpand"
+                                        HorizontalOptions="FillAndExpand"
+                                        
+                                        >
+                                        <Label
+                                            VerticalOptions  ="CenterAndExpand"
+                                            HorizontalOptions="CenterAndExpand"
+                                            Text="&#xf550;"
+                                            FontFamily="{StaticResource FontAwesomeSolid}"
+                                            TextColor="{StaticResource OvaListIconColor}"
+                                            Padding="{StaticResource OvaListFormHeaderIconPadding}"
+                                            
+                                            >
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding ListViewCommand}"/>
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding ListViewCommand}"/>
+                                        </StackLayout.GestureRecognizers>
+                                    </StackLayout>
+                                    <StackLayout
+                                        IsVisible="{Binding IsListView}"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="FillAndExpand"
+                                        
+                                        >
+                                        <Label
+                                            VerticalOptions  ="CenterAndExpand"
+                                            HorizontalOptions="CenterAndExpand"
+                                            Text="&#xf03a;"
+                                            FontFamily="{StaticResource FontAwesomeSolid}"
+                                            TextColor="{StaticResource OvaListIconColor}"
+                                            Padding="{StaticResource OvaListFormHeaderIconPadding}"
+                                            
+                                            >
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding GridViewCommand}"/>
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding GridViewCommand}"/>
+                                        </StackLayout.GestureRecognizers>
+                                    </StackLayout>
+                                    <StackLayout
+                                        IsVisible="{Binding IsGridView}"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="FillAndExpand"
+                                        
+                                        >
+                                        <Label
+                                            VerticalOptions  ="CenterAndExpand"
+                                            HorizontalOptions="CenterAndExpand"
+                                            Text="&#xf009;"
+                                            FontFamily="{StaticResource FontAwesomeSolid}"
+                                            TextColor="{StaticResource OvaListIconColor}"
+                                            Padding="{StaticResource OvaListFormHeaderIconPadding}"
+                                            
+                                            >
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding CardViewCommand}"/>
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding CardViewCommand}"/>
+                                        </StackLayout.GestureRecognizers>
+                                    </StackLayout>
+                                </StackLayout>
+
+
+
+                            </Grid>
+                        </StackLayout>
+                    </Border>
+                </StackLayout>
+
+            </StackLayout>
+
+
+
+            <StackLayout
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"
+                Padding="{StaticResource paddingLeftRight}">
+
+                <tabView:SfTabView
+                    TabBarPlacement="Top"
+                    TabBarBackground="{StaticResource TabStripBackgroundColor}"
+                    IndicatorBackground="{StaticResource TabStripBackgroundColor}"
+                    VerticalOptions="FillAndExpand">
+
+                    <!--open tab-->
+                    <tabView:SfTabItem
+                       x:Name="TabOpen"
+                        TextColor="{StaticResource TabTexttColor}"
+                        
+                        FontSize="12">
+                        <StackLayout
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand">
+                            <!--Card view-->
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <RefreshView
+                                    IsVisible="{Binding IsCardView}"
+                                    VerticalOptions="FillAndExpand"
+                                    
+                                    Command="{Binding RefreshCommand}">
+                                    <ScrollView
+                                        VerticalOptions="FillAndExpand">
+
+                                        <FlexLayout
+                                            BindableLayout.ItemsSource="{Binding AccountPeriodOpenList}"
+                                            Direction="Row" 
+                                            JustifyContent="SpaceEvenly" 
+                                            VerticalOptions="Start" 
+                                            HorizontalOptions="FillAndExpand"
+                                            Wrap="Wrap">
+
+
+                                            <BindableLayout.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackLayout
+                                                        Padding="{x:StaticResource paddingTop}">
+                                                        <footer:OvaListFormCartView
+                                                            ItemAsk="{Binding Ask}"
+                                                            CodeLabel="{Binding AccountPeriodName}"
+                                                            NameLabel="{Binding PeriodTypeName}"
+                                                            DescriptionLabel="{Binding SD}"  />
+
+                                                    </StackLayout>
+                                                </DataTemplate>
+                                            </BindableLayout.ItemTemplate>
+                                        </FlexLayout>
+                                    </ScrollView>
+                                </RefreshView>
+                            </Grid>
+
+                            <!--list view-->
+                            <StackLayout
+                                IsVisible="{Binding IsListView}"
+                                VerticalOptions="FillAndExpand">
+                                <Border
+                                    VerticalOptions="FillAndExpand"
+                                    
+                                    Padding="0">
+                                    <ListView
+                                        x:Name="lstView"
+                                        ItemsSource="{Binding AccountPeriodOpenList}"
+                                        RowHeight="70"
+                                        ItemSelected="lstView_ItemSelected"
+                                        IsPullToRefreshEnabled="true"
+                                        
+                                        RefreshCommand="{Binding RefreshCommand}">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <ViewCell>
+                                                    <StackLayout
+                                                        Orientation="Vertical"
+                                                        Padding="10,10,10,10">
+                                                        <Grid>
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="*"/>
+                                                                <RowDefinition Height="*"/>
+                                                            </Grid.RowDefinitions>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="*"/>
+                                                                <ColumnDefinition Width="*"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Label
+                                                                Grid.Row="0"
+                                                                Grid.Column="0"
+                                                             Text="{Binding AccountPeriodName}"/>
+                                                            <Label
+                                                                Grid.Row="0"
+                                                                Grid.Column="1"
+                                                                Text="{Binding SD}"
+                                                                HorizontalTextAlignment="End"/>
+                                                            <Label
+                                                                Grid.Row="1"
+                                                                Grid.Column="0"
+                                                                Text="{Binding  PeriodTypeName}"/>
+                                                            <Label
+                                                                Grid.Row="1"
+                                                                Grid.Column="1"
+                                                                
+                                                                Text="{Binding ED}"
+                                                                HorizontalTextAlignment="End"/>
+                                                        </Grid>
+                                                    </StackLayout>
+                                                </ViewCell>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </Border>
+
+                            </StackLayout>
+
+                            <!--data grid view-->
+                            <StackLayout
+                                IsVisible="{Binding IsGridView}"
+                                VerticalOptions="FillAndExpand">
+                                <syncfusion:SfDataGrid
+                                    ItemsSource="{Binding AccountPeriodOpenList}" 
+                                    SelectionMode="Single" 
+                                    Style="{StaticResource dgStyle}"
+                                    SelectionChanged="grdView_ItemSelected"
+                                    
+                                    PullToRefreshCommand="{Binding RefreshCommand}">
+                                    <syncfusion:SfDataGrid.Columns>
+                                        <syncfusion:DataGridTextColumn x:Name="OName" HeaderText="Name"  MappingName="AccountPeriodName" ColumnWidthMode="Auto"/>
+                                        <syncfusion:DataGridTextColumn x:Name="OType" HeaderText="Type Name"  MappingName="PeriodTypeName" ColumnWidthMode="Auto"/>
+                                        <syncfusion:DataGridTextColumn x:Name="OSD" HeaderText="SD"  MappingName="SD" ColumnWidthMode="Auto"/>
+                                        <syncfusion:DataGridTextColumn x:Name="OED" HeaderText="ED"  MappingName="ED" ColumnWidthMode="Auto"/>
+
+                                    </syncfusion:SfDataGrid.Columns>
+                                </syncfusion:SfDataGrid>
+                            </StackLayout>
+                        </StackLayout>
+
+                    </tabView:SfTabItem>
+
+                    <!--closed  tab-->
+                    <tabView:SfTabItem
+                       x:Name="TabClosed"
+                        TextColor="{StaticResource TabTexttColor}"
+                        
+                        FontSize="12">
+                        <StackLayout
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand">
+                            <!--Card view-->
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <RefreshView
+                                    IsVisible="{Binding IsCardView}"
+                                    VerticalOptions="FillAndExpand"
+                                    
+                                    Command="{Binding RefreshCommand}">
+                                    <ScrollView
+                                        VerticalOptions="FillAndExpand">
+
+                                        <FlexLayout
+                                            BindableLayout.ItemsSource="{Binding AccountPeriodClosedList}"
+                                            Direction="Row"
+                                            HorizontalOptions="FillAndExpand"
+                                            JustifyContent="SpaceEvenly"
+                                            Wrap="Wrap">
+                                            <BindableLayout.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackLayout
+                                                        Padding="{x:StaticResource paddingTop}">
+                                                        <footer:OvaListFormCartView
+                                                        ItemAsk="{Binding Ask}"
+                                                        CodeLabel="{Binding AccountPeriodName}"
+                                                        NameLabel="{Binding PeriodTypeName}"
+                                                        DescriptionLabel="{Binding SD}"/>
+                                                    </StackLayout>
+                                                </DataTemplate>
+                                            </BindableLayout.ItemTemplate>
+                                        </FlexLayout>
+                                    </ScrollView>
+                                </RefreshView>
+                            </Grid>
+                            <!--list view-->
+                            <StackLayout
+                                IsVisible="{Binding IsListView}"
+                                VerticalOptions="FillAndExpand">
+                                <Border
+                                    VerticalOptions="FillAndExpand"
+                                    
+                                    Padding="0">
+                                    <ListView
+                                        ItemsSource="{Binding AccountPeriodClosedList}"
+                                        RowHeight="70"
+                                        ItemSelected="lstView_ItemSelected"
+                                        IsPullToRefreshEnabled="true"
+                                        
+                                        RefreshCommand="{Binding RefreshCommand}">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <ViewCell>
+                                                    <StackLayout
+                                                        Orientation="Vertical"
+                                                        Padding="{StaticResource paddingAllListItem}">
+                                                        <Grid>
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="*"/>
+                                                                <RowDefinition Height="*"/>
+                                                            </Grid.RowDefinitions>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="*"/>
+                                                                <ColumnDefinition Width="*"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Label
+                                                                Grid.Row="0"
+                                                                Grid.Column="0"
+                                                             Text="{Binding AccountPeriodName}"/>
+                                                            <Label
+                                                                Grid.Row="0"
+                                                                Grid.Column="1"
+                                                                Text="{Binding SD}"
+                                                                HorizontalTextAlignment="End"/>
+                                                            <Label
+                                                                Grid.Row="1"
+                                                                Grid.Column="0"
+                                                                Text="{Binding  PeriodTypeName}"/>
+                                                            <Label
+                                                                Grid.Row="1"
+                                                                Grid.Column="1"
+                                                                
+                                                                Text="{Binding ED}"
+                                                                HorizontalTextAlignment="End"/>
+                                                        </Grid>
+                                                    </StackLayout>
+                                                </ViewCell>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </Border>
+                            </StackLayout>
+
+                            <!--data grid view-->
+                            <StackLayout
+                                IsVisible="{Binding IsGridView}"
+                                VerticalOptions="FillAndExpand">
+                                <syncfusion:SfDataGrid
+                                    x:Name="grdView"
+                                    ItemsSource="{Binding AccountPeriodClosedList}" 
+                                    SelectionMode="Single" 
+                                    Style="{StaticResource dgStyle}"
+                                    SelectionChanged="grdView_ItemSelected"
+                                    
+                                    PullToRefreshCommand="{Binding RefreshCommand}">
+                                    <syncfusion:SfDataGrid.Columns>
+                                        <syncfusion:DataGridTextColumn x:Name="CName" HeaderText="Name"  MappingName="AccountPeriodName" ColumnWidthMode="Auto"/>
+                                        <syncfusion:DataGridTextColumn x:Name="CType" HeaderText="Type Name"  MappingName="PeriodTypeName" ColumnWidthMode="Auto"/>
+                                        <syncfusion:DataGridTextColumn x:Name="CSD" HeaderText="SD"  MappingName="SD" ColumnWidthMode="Auto"/>
+                                        <syncfusion:DataGridTextColumn x:Name="CED" HeaderText="ED"  MappingName="ED" ColumnWidthMode="Auto"/>
+
+                                    </syncfusion:SfDataGrid.Columns>
+                                </syncfusion:SfDataGrid>
+                            </StackLayout>
+                        </StackLayout>
+
+                    </tabView:SfTabItem>
+
+                    <!--all tab-->
+                    <tabView:SfTabItem
+                       x:Name="TabAll"
+                        TextColor="{StaticResource TabTexttColor}"
+                        
+                        FontSize="12">
+                        <StackLayout
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand">
+                            <!--Card view-->
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <RefreshView
+                                    IsVisible="{Binding IsCardView}"
+                                    VerticalOptions="FillAndExpand"
+                                    
+                                    Command="{Binding RefreshCommand}">
+                                    <ScrollView
+                                        VerticalOptions="FillAndExpand">
+
+                                        <FlexLayout
+                                            BindableLayout.ItemsSource="{Binding AccountPeriodList}"
+                                            Direction="Row"
+                                            HorizontalOptions="FillAndExpand"
+                                            JustifyContent="SpaceEvenly"
+                                            Wrap="Wrap">
+                                            <BindableLayout.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackLayout
+                                                        Padding="{x:StaticResource paddingTop}">
+                                                        <footer:OvaListFormCartView
+                                                        ItemAsk="{Binding Ask}"
+                                                        CodeLabel="{Binding AccountPeriodName}"
+                                                        NameLabel="{Binding PeriodTypeName}"
+                                                        DescriptionLabel="{Binding SD}"/>
+                                                    </StackLayout>
+                                                </DataTemplate>
+                                            </BindableLayout.ItemTemplate>
+                                        </FlexLayout>
+                                    </ScrollView>
+                                </RefreshView>
+                            </Grid>
+
+                            <!--list view-->
+                            <StackLayout
+                                IsVisible="{Binding IsListView}"
+                                VerticalOptions="FillAndExpand">
+                                <Border
+                                    VerticalOptions="FillAndExpand"
+                                    
+                                    Padding="0">
+                                    <ListView
+                                        ItemsSource="{Binding AccountPeriodList}"
+                                        RowHeight="70"
+                                        ItemSelected="lstView_ItemSelected"
+                                        IsPullToRefreshEnabled="true"
+                                        
+                                        RefreshCommand="{Binding RefreshCommand}">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <ViewCell>
+                                                    <StackLayout
+                                                        Orientation="Vertical"
+                                                        Padding="{StaticResource paddingAllListItem}">
+                                                        <Grid>
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="*"/>
+                                                                <RowDefinition Height="*"/>
+                                                            </Grid.RowDefinitions>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="*"/>
+                                                                <ColumnDefinition Width="*"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Label
+                                                                Grid.Row="0"
+                                                                Grid.Column="0"
+                                                             Text="{Binding AccountPeriodName}"/>
+                                                            <Label
+                                                                Grid.Row="0"
+                                                                Grid.Column="1"
+                                                                Text="{Binding SD}"
+                                                                HorizontalTextAlignment="End"/>
+                                                            <Label
+                                                                Grid.Row="1"
+                                                                Grid.Column="0"
+                                                                Text="{Binding  PeriodTypeName}"/>
+                                                            <Label
+                                                                Grid.Row="1"
+                                                                Grid.Column="1"
+                                                                
+                                                                Text="{Binding ED}"
+                                                                HorizontalTextAlignment="End"/>
+                                                        </Grid>
+                                                    </StackLayout>
+                                                </ViewCell>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </Border>
+                            </StackLayout>
+
+                            <!--data grid view-->
+                            <StackLayout
+                                IsVisible="{Binding IsGridView}"
+                                VerticalOptions="FillAndExpand">
+                                <syncfusion:SfDataGrid 
+                                    ItemsSource="{Binding AccountPeriodList}" 
+                                    SelectionMode="Single" 
+                                    Style="{StaticResource dgStyle}"
+                                    SelectionChanged="grdView_ItemSelected"
+                                    
+                                    PullToRefreshCommand="{Binding RefreshCommand}">
+                                    <syncfusion:SfDataGrid.Columns>
+                                        <syncfusion:DataGridTextColumn x:Name="AName" HeaderText="Name"  MappingName="AccountPeriodName" ColumnWidthMode="Auto"/>
+                                        <syncfusion:DataGridTextColumn x:Name="AType" HeaderText="Type Name"  MappingName="PeriodTypeName" ColumnWidthMode="Auto"/>
+                                        <syncfusion:DataGridTextColumn x:Name="ASD" HeaderText="SD"  MappingName="SD" ColumnWidthMode="Auto"/>
+                                        <syncfusion:DataGridTextColumn x:Name="AED" HeaderText="ED"  MappingName="ED" ColumnWidthMode="Auto"/>
+
+                                    </syncfusion:SfDataGrid.Columns>
+                                </syncfusion:SfDataGrid>
+                            </StackLayout>
+                        </StackLayout>
+
+                    </tabView:SfTabItem>
+                </tabView:SfTabView>
+
+            </StackLayout>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<xct:Popup 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:xct="http://schemas.microsoft.com/dotnet/2021/maui/communitytoolkit"
+           
+    Size="400,600"
+    xmlns:dg="clr-namespace:Syncfusion.Maui.DataGrid;assembly=Syncfusion.Maui.DataGrid"   
+    x:Class="CS.ERP_MOB.Views.PAY.FrmPayItemGroupPopup">
+
+    <ScrollView>
+
+        <StackLayout                              
+                                VerticalOptions="FillAndExpand">
+            <Frame>
+                <Grid>
+
+                    <Picker x:Name="pikPayItemGroup" Grid.Row="0" Grid.Column="0"  IsEnabled="True" ItemDisplayBinding="{Binding DAT_ITEM_GROUP_DETAIL.PayItemGroupName}"  Title="Select Pay Item Group" HeightRequest="50"/>
+                    <DatePicker x:Name="FromDate" Grid.Row="0" Grid.Column="1" Date="{Binding DAT_ITEM_GROUP_DETAIL.SD}" />
+                    <DatePicker x:Name="ToDate" Grid.Row="0" Date="{Binding DAT_ITEM_GROUP_DETAIL.ED}" Grid.Column="2"/>                    
+                </Grid>  
+            </Frame>
+            <dg:DataGrid 
+                                    ItemsSource="{Binding EmployeeLoad.DAT_ITEM_GROUP_DETAIL}" 
+                                    SelectionEnabled="True" 
+                                    Style="{StaticResource dgStyle}"
+                                    ItemSelected="grdView_ItemSelected">
+
+                <dg:DataGrid.Columns>
+                    <dg:DataGridColumn x:Name="PayItem" Title="Pay Item" PropertyName="PayItemName" Width="*"/>
+                    <dg:DataGridColumn x:Name="PayItemType" Title="Pay Item Type" PropertyName="PayItemTypeName" Width="*"/>
+                    <dg:DataGridColumn x:Name="CalculationType" Title="Calculation Type" PropertyName="PayCalculationTypeName" Width="*"/>
+                    <dg:DataGridColumn x:Name="CPFWagesType" Title="CPFWagesType" PropertyName="CPFWagesTypeName" Width="*"/>
+                </dg:DataGrid.Columns>
+
+            </dg:DataGrid>
+
+            <Frame>
+                <Grid>
+                    <Button Text="Ok" WidthRequest="100" Grid.Row="0" Grid.Column="0" Clicked="okClick" ></Button>
+                    <Button Text="Cancel" WidthRequest="100" Grid.Row="0" Grid.Column="1" Clicked="cancelClick"></Button>
+                </Grid>
+            </Frame>
+
+        </StackLayout>
+    </ScrollView>
+
+</xct:Popup>

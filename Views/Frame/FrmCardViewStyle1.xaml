@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="CS.ERP_MOB.Views.Frame.FrmCardViewStyle1"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:general="clr-namespace:CS.ERP_MOB.General"
+    xmlns:local="clr-namespace:CS.ERP_MOB.Views.Frame"
+    xmlns:xct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    x:Name="RootView">
+    <ContentView.Content>
+        <Frame
+            Padding="10"
+            BorderColor="#dddddd"
+            CornerRadius="15"
+            HasShadow="True">
+
+            <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto, Auto">
+
+                <!--  Stock Image  -->
+                <Image
+                    x:Name="StockImage"
+                    Grid.Row="0"
+                    Margin="0,0,0,10"
+                    Aspect="AspectFill"
+                    HeightRequest="140"
+                    Source="{Binding Image, Source={RelativeSource AncestorType={x:Type local:FrmCardViewStyle1}}}" />
+
+
+                <!--  Stock Name  -->
+                <Label
+                    x:Name="StockName"
+                    Grid.Row="1"
+                    FontAttributes="Bold"
+                    FontSize="18"
+                    Text="{Binding Name, Source={RelativeSource AncestorType={x:Type local:FrmCardViewStyle1}}}"
+                    TextColor="Black" />
+
+                <!--  Price + Buttons Row  -->
+                <Grid
+                    Grid.Row="2"
+                    Margin="0,8,0,0"
+                    ColumnDefinitions="Auto,*,Auto,Auto">
+
+                    <!--  Price  -->
+                    <Label
+                        x:Name="StockPrice"
+                        Grid.Column="0"
+                        FontAttributes="Bold"
+                        FontSize="16"
+                        Text="{Binding Price, Source={RelativeSource AncestorType={x:Type local:FrmCardViewStyle1}}}"
+                        TextColor="#009944"
+                        VerticalTextAlignment="Center" />
+
+                    <!--  Spacer  -->
+                    <BoxView Grid.Column="1" BackgroundColor="Transparent" />
+
+                    <!--  Wishlist Button  -->
+                    <Button
+                        x:Name="WishlistButton"
+                        Grid.Column="2"
+                        Padding="0"
+                        BackgroundColor="#ffeeee"
+                        Clicked="WishlistButton_Clicked"
+                        CornerRadius="20"
+                        FontFamily="{StaticResource FontAwesomeSolid}"
+                        FontSize="{StaticResource HomeTitleFontSize}"
+                        HeightRequest="40"
+                        HorizontalOptions="Center"
+                        Text="&#xf004;"
+                        TextColor="#ff3344"
+                        WidthRequest="40" />
+
+                    <!--  Add to Cart Button  -->
+                    <Button
+                        x:Name="CartButton"
+                        Grid.Column="3"
+                        Padding="0"
+                        BackgroundColor="#e0f7ff"
+                        Clicked="CartButton_Clicked"
+                        CornerRadius="10"
+                        FontFamily="{StaticResource FontAwesomeSolid}"
+                        FontSize="{StaticResource HomeTitleFontSize}"
+                        HeightRequest="40"
+                        HorizontalOptions="Center"
+                        Text="&#xf217;"
+                        TextColor="#0077cc"
+                        WidthRequest="40" />
+
+                </Grid>
+
+            </Grid>
+        </Frame>
+    </ContentView.Content>
+</ContentView>

@@ -1,0 +1,480 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dg="clr-namespace:Maui.DataGrid;assembly=Maui.DataGrid"
+    xmlns:local="clr-namespace:CS.ERP_MOB.Views.POS"
+    xmlns:footer="clr-namespace:CS.ERP_MOB.Views.SYS"
+    xmlns:touch="http://axemasta.com/schemas/2023/toucheffect"
+    xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:general="clr-namespace:CS.ERP_MOB.General"
+    x:Class="CS.ERP_MOB.Views.POS.FrmPosSaleEnquiryLst"
+    xmlns:ext="clr-namespace:CS.ERP_MOB.Extensions">
+    <ContentView.Content>
+        <AbsoluteLayout>
+            <StackLayout
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"
+                BackgroundColor="{StaticResource OvaListBackgroundColor}"
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All">
+                <StackLayout
+                    VerticalOptions="Start"
+                    HorizontalOptions="FillAndExpand"
+                    Orientation="Vertical"
+                    BackgroundColor="{StaticResource OvaListTitleColor}"
+                    Padding="{StaticResource paddingLeftRight}">
+
+                    <!-- Horizontal Container-->
+                    <StackLayout
+                        Orientation="Horizontal"
+                        HorizontalOptions="FillAndExpand"
+                        Padding="0">
+
+                        <!-- Search Input Box -->
+                        <StackLayout
+                            VerticalOptions="FillAndExpand"
+                            HorizontalOptions="FillAndExpand">
+                            <Entry
+                                x:Name="entSearch"
+                                Placeholder="Search"
+                                HorizontalOptions="FillAndExpand"
+                                PlaceholderColor="{StaticResource OvaSearchInputColor}"
+                                TextColor="{StaticResource OvaSearchInputColor}"
+                                Completed="OnEntryCompleted"/>
+                        </StackLayout>
+                        <Frame
+                            BackgroundColor="{Binding UserSetting.ActionBarBgColor, Source={x:Static general:Common.mCommon}}"
+                            CornerRadius="3"
+                            WidthRequest="35"
+                            HeightRequest="35"
+                            Padding="0"
+                            Margin="5"
+                            HasShadow="True"
+                            HorizontalOptions="End">
+                            <Label Text="&#xf2f1;"
+                                   FontFamily="{StaticResource FontAwesomeSolid}"
+                                   FontSize="15"
+                                   TextColor="White"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center"
+                                   Padding="0">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TgrRefresh_Tapped"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TgrRefresh_Tapped"/>
+                            </Frame.GestureRecognizers>
+                        </Frame>
+
+                        <Frame
+                            BackgroundColor="{Binding UserSetting.ActionBarBgColor, Source={x:Static general:Common.mCommon}}"
+                            CornerRadius="3"
+                            WidthRequest="35"
+                            HeightRequest="35"
+                            Padding="0"
+                            Margin="5"
+                            HasShadow="True"
+                            HorizontalOptions="End">
+
+                            <StackLayout Grid.Column="2"
+                                         HorizontalOptions="FillAndExpand"
+                                         VerticalOptions="FillAndExpand">
+                                <!-- Card View -->
+                                <StackLayout
+                                    IsVisible="{Binding IsCardView}"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="FillAndExpand"
+                                    TouchEffect.PressedOpacity="0.4"
+                                    TouchEffect.PressedScale="0.9">
+                                    <Label
+                                        VerticalOptions="CenterAndExpand"
+                                        HorizontalOptions="CenterAndExpand"
+                                        Text="&#xf550;"
+                                        FontFamily="{StaticResource FontAwesomeSolid}"
+                                        TextColor="White"
+                                        Padding="0">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding ListViewCommand}"/>
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding ListViewCommand}"/>
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+
+                                <!-- List View -->
+                                <StackLayout
+                                    IsVisible="{Binding IsListView}"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="FillAndExpand"
+                                    TouchEffect.PressedOpacity="0.4"
+                                    TouchEffect.PressedScale="0.9">
+                                    <Label
+                                        VerticalOptions="CenterAndExpand"
+                                        HorizontalOptions="CenterAndExpand"
+                                        Text="&#xf03a;"
+                                        FontFamily="{StaticResource FontAwesomeSolid}"
+                                        TextColor="White"
+                                        Padding="0">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding GridViewCommand}"/>
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding GridViewCommand}"/>
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+
+                                <!-- Grid View -->
+                                <StackLayout
+                                    IsVisible="{Binding IsGridView}"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="FillAndExpand"
+                                    TouchEffect.PressedOpacity="0.4"
+                                    TouchEffect.PressedScale="0.9">
+                                    <Label
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="Center"
+                                        Text="&#xf009;"
+                                        FontFamily="{StaticResource FontAwesomeSolid}"
+                                        TextColor="White"
+                                        Padding="0">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding CardViewCommand}"/>
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding CardViewCommand}"/>
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+
+                        <Frame
+                            Padding="{StaticResource FramePaddingLeftRight}"
+                            HorizontalOptions="End"
+                            VerticalOptions="FillAndExpand"
+                            CornerRadius="3"
+                            IsVisible="False">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="2"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Refresh Icon -->
+                                <StackLayout
+                                    Grid.Column="0"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="FillAndExpand"
+                                    TouchEffect.PressedOpacity="0.4"
+                                    TouchEffect.PressedScale="0.9">
+                                    <Label
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="Center"
+                                        Text="&#xf2f1;"
+                                        FontFamily="{StaticResource FontAwesomeSolid}"
+                                        TextColor="{StaticResource OvaListIconColor}"
+                                        Padding="5">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="TgrRefresh_Tapped"/>
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                </StackLayout>
+
+                                <!-- Divider -->
+                                <BoxView
+                                    Grid.Column="1"
+                                    VerticalOptions="FillAndExpand"
+                                    BackgroundColor="{StaticResource OvaListIconColor}"/>
+
+                                <!-- View Toggle Icons -->
+                                <StackLayout Grid.Column="2"
+                                             HorizontalOptions="FillAndExpand"
+                                             VerticalOptions="FillAndExpand">
+                                    <!-- Card View -->
+                                    <StackLayout
+                                        IsVisible="{Binding IsCardView}"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="FillAndExpand"
+                                        TouchEffect.PressedOpacity="0.4"
+                                        TouchEffect.PressedScale="0.9">
+                                        <Label
+                                            VerticalOptions="CenterAndExpand"
+                                            HorizontalOptions="CenterAndExpand"
+                                            Text="&#xf550;"
+                                            FontFamily="{StaticResource FontAwesomeSolid}"
+                                            TextColor="{StaticResource OvaListIconColor}"
+                                            Padding="{StaticResource OvaListFormHeaderIconPadding}">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding ListViewCommand}"/>
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                    </StackLayout>
+                                    <!-- List View -->
+                                    <StackLayout
+                                        IsVisible="{Binding IsListView}"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="FillAndExpand"
+                                        TouchEffect.PressedOpacity="0.4"
+                                        TouchEffect.PressedScale="0.9">
+                                        <Label
+                                            VerticalOptions="CenterAndExpand"
+                                            HorizontalOptions="CenterAndExpand"
+                                            Text="&#xf03a;"
+                                            FontFamily="{StaticResource FontAwesomeSolid}"
+                                            TextColor="{StaticResource OvaListIconColor}"
+                                            Padding="{StaticResource OvaListFormHeaderIconPadding}">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding GridViewCommand}"/>
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                    </StackLayout>
+                                    <!-- Grid View -->
+                                    <StackLayout
+                                        IsVisible="{Binding IsGridView}"
+                                        HorizontalOptions="Center"
+                                        VerticalOptions="Center"
+                                        TouchEffect.PressedOpacity="0.4"
+                                        TouchEffect.PressedScale="0.9">
+                                        <Label
+                                            VerticalOptions="Center"
+                                            HorizontalOptions="Center"
+                                            Text="&#xf009;"
+                                            FontFamily="{StaticResource FontAwesomeSolid}"
+                                            TextColor="{StaticResource OvaListIconColor}"
+                                            Padding="{StaticResource OvaListFormHeaderIconPadding}">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding CardViewCommand}"/>
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Grid>
+                        </Frame>
+                    </StackLayout>
+                </StackLayout>
+
+                <!-- Display Data -->
+                <StackLayout
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    Padding="{StaticResource paddingLeftRight}">
+
+                    <StackLayout
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand">
+                        <!-- Card View -->
+                        <ScrollView
+                            IsVisible="{Binding IsCardView}"
+                            VerticalOptions="FillAndExpand"
+                            HorizontalOptions="FillAndExpand"
+                            >
+                            <FlexLayout
+                                BindableLayout.ItemsSource="{Binding InvoiceActiveList}"
+                                Direction="Row"
+                                JustifyContent="SpaceEvenly"
+                                VerticalOptions="Start"
+                                HorizontalOptions="FillAndExpand"
+                                Wrap="Wrap">
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <SwipeView>
+                                            <SwipeView.LeftItems>
+                                                <SwipeItems>
+                                                    <SwipeItem Text="Edit"
+                                                               BackgroundColor="LightBlue"
+                                                               Command="{Binding Source={RelativeSource AncestorType={x:Type local:FrmPosSaleInvoiceLst}}, Path=BindingContext.EditItemCommand}"
+                                                               CommandParameter="{Binding .}" />
+                                                </SwipeItems>
+                                            </SwipeView.LeftItems>
+
+                                            <SwipeView.RightItems>
+                                                <SwipeItems>
+                                                    <SwipeItem Text="Delete"
+                                                               BackgroundColor="Red"
+                                                               Command="{Binding Source={RelativeSource AncestorType={x:Type local:FrmPosSaleInvoiceLst}}, Path=BindingContext.DeleteItemCommand}"
+                                                               CommandParameter="{Binding .}" />
+                                                </SwipeItems>
+                                            </SwipeView.RightItems>
+                                            <StackLayout Padding="{x:StaticResource paddingTop}">
+                                                <StackLayout.GestureRecognizers>
+                                                    <TapGestureRecognizer                                                         
+                                                        Tapped="TgrRefresh_Tapped"/>
+
+                                                </StackLayout.GestureRecognizers>
+                                                <footer:OvaListFormCartView
+                                                    ItemAsk="{Binding Ask}"
+                                                    CodeLabel="{Binding InvoiceDate}"
+                                                    NameLabel="{Binding InvoiceCode_0_50}"
+                                                    DescriptionLabel="{Binding CustomerName_0_255}"
+                                                    RemarkLabel="{Binding GrandTotal}"/>
+                                            </StackLayout>
+                                        </SwipeView>
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
+                            </FlexLayout>
+                        </ScrollView>
+
+                        <!-- List View -->
+                        <StackLayout
+                            IsVisible="{Binding IsListView}"
+                            VerticalOptions="FillAndExpand">
+                            <Frame
+                                VerticalOptions="FillAndExpand"
+                                CornerRadius="3"
+                                Padding="0">
+                                <ListView
+                                    x:Name="lstView"
+                                    ItemsSource="{Binding InvoiceActiveList}"
+                                    RowHeight="70"
+                                    ItemSelected="lstView_ItemSelected"
+                                    IsPullToRefreshEnabled="False">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <SwipeView>
+                                                    <SwipeView.LeftItems>
+                                                        <SwipeItems>
+                                                            <SwipeItem Text="Edit"
+                                                                       BackgroundColor="LightBlue"
+                                                                       Command="{Binding Source={RelativeSource AncestorType={x:Type local:FrmPosSaleInvoiceLst}}, Path=BindingContext.EditItemCommand}"
+                                                                       CommandParameter="{Binding .}" />
+                                                        </SwipeItems>
+                                                    </SwipeView.LeftItems>
+                                                    <SwipeView.RightItems>
+                                                        <SwipeItems>
+                                                            <SwipeItem Text="Delete"
+                                                                       BackgroundColor="Red"
+                                                                       Command="{Binding Source={RelativeSource AncestorType={x:Type local:FrmPosSaleInvoiceLst}}, Path=BindingContext.DeleteItemCommand}"
+                                                                       CommandParameter="{Binding .}" />
+                                                        </SwipeItems>
+                                                    </SwipeView.RightItems>
+                                                    <StackLayout
+                                                        Orientation="Vertical"
+                                                        Padding="10,10,10,10">
+                                                        <Grid>
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="*"/>
+                                                                <RowDefinition Height="*"/>
+                                                            </Grid.RowDefinitions>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="*"/>
+                                                                <ColumnDefinition Width="*"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Label
+                                                                Grid.Row="1"
+                                                                Grid.Column="0"
+                                                                HorizontalOptions="Start"
+                                                                LineBreakMode="TailTruncation"
+                                                                Text="{Binding InvoiceDate}"/>
+                                                            <Label
+                                                                Grid.Row="1"
+                                                                Grid.Column="1"
+                                                                HorizontalOptions="End"
+                                                                Text="{Binding CustomerName_0_255}"/>
+                                                            <Label
+                                                                Grid.Row="0"
+                                                                Grid.Column="0"
+                                                                Text="{Binding InvoiceCode_0_50}"
+                                                                HorizontalTextAlignment="Start"/>
+                                                            <Label
+                                                                Grid.Row="0"
+                                                                Grid.Column="1"
+                                                                HorizontalOptions="End"
+                                                                Text="{Binding GrandTotal}"/>
+                                                        </Grid>
+                                                    </StackLayout>
+                                                </SwipeView>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </Frame>
+                        </StackLayout>
+                        <!-- Grid View -->
+                        <StackLayout
+                            IsVisible="{Binding IsGridView}"
+                            VerticalOptions="FillAndExpand">
+                            <dg:DataGrid
+                                ItemsSource="{Binding InvoiceActiveList}"
+                                SelectionMode="Single"
+                                VerticalOptions="FillAndExpand"
+                                RefreshingEnabled="False">
+                                <dg:DataGrid.Columns>
+                                    <dg:DataGridColumn x:Name="AcCode"
+                                                       Title="Code"
+                                                       PropertyName="InvoiceCode_0_50"
+                                                       Width="*"/>
+                                    <dg:DataGridColumn x:Name="AcDate"
+                                                       Title="Date"
+                                                       PropertyName="InvoiceDate"
+                                                       Width="*"/>
+                                    <dg:DataGridColumn x:Name="AcCustomer"
+                                                       Title="Customer"
+                                                       PropertyName="CustomerName_0_255"
+                                                       Width="*"/>
+                                    <dg:DataGridColumn x:Name="AcTotal"
+                                                       Title="Grand Total"
+                                                       PropertyName="GrandTotal"
+                                                       Width="*"/>
+                                </dg:DataGrid.Columns>
+                            </dg:DataGrid>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+
+            <!-- Add Data (+) -->
+            <StackLayout
+                Orientation="Vertical"
+                AbsoluteLayout.LayoutBounds="1,1, 1, 1"
+                AbsoluteLayout.LayoutFlags="All"
+                VerticalOptions="End"
+                HorizontalOptions="End"
+                Margin="15">
+                <Frame CornerRadius="25"
+                        WidthRequest="50"
+                        HeightRequest="50"
+                        HasShadow="True"
+                        BackgroundColor="{Binding UserSetting.ActionBarBgColor, Source={x:Static general:Common.mCommon}}"
+                        VerticalOptions="Center"
+                        HorizontalOptions="End"
+                        Padding="5"
+                        Margin="0, 10, 0, 0"
+                        AbsoluteLayout.LayoutBounds="1,1,AutoSize, AutoSize"
+                        AbsoluteLayout.LayoutFlags="All">
+
+                    <StackLayout
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand"
+                        TouchEffect.PressedOpacity="0.4"
+                        TouchEffect.PressedScale="0.9"
+                        Padding="0">
+                        <Label
+                            VerticalOptions="CenterAndExpand"
+                            HorizontalOptions="CenterAndExpand"
+                            Text="&#x2b;"
+                            FontSize="30"
+                            FontFamily="{StaticResource FontAwesomeSolid}"
+                            TextColor="White"
+                            Padding="0">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TgrNew_Tapped"
+                                                      NumberOfTapsRequired="1"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TgrNew_Tapped"
+                                                  NumberOfTapsRequired="1"/>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </AbsoluteLayout>
+    </ContentView.Content>
+</ContentView>

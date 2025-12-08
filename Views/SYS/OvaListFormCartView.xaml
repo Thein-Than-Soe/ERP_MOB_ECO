@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="CS.ERP_MOB.Views.SYS.OvaListFormCartView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:general="clr-namespace:CS.ERP_MOB.General"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    x:Name="RootView">
+    <ContentView.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <!--  content area  -->
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Frame
+                        Padding="{StaticResource padding}"
+                        BackgroundColor="{Binding ThemeSettingCardView.PropertiesBgColor, Source={Static Member=general:Common.mCommon}}"
+                        HeightRequest="170"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="Start"
+                        WidthRequest="150">
+
+                        <Frame.Behaviors>
+                            <toolkit:TouchBehavior
+                                LongPressCompleted="OnLongPress"
+                                LongPressDuration="800"
+                                ShouldMakeChildrenInputTransparent="True" />
+                        </Frame.Behaviors>
+                        <StackLayout
+                            HorizontalOptions="FillAndExpand"
+                            Orientation="Vertical"
+                            VerticalOptions="FillAndExpand">
+                            <StackLayout.GestureRecognizers>
+                                <!--  double tap  -->
+                                <TapGestureRecognizer NumberOfTapsRequired="2" Tapped="OnDoubleTap" />
+                                <!--  optional single tap  -->
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnSingleTap" />
+
+                            </StackLayout.GestureRecognizers>
+                            <!--  Header  -->
+                            <StackLayout
+                                InputTransparent="False"
+                                Orientation="Horizontal"
+                                VerticalOptions="Center">
+                                <CheckBox
+                                    x:Name="chkSelectItem"
+                                    BackgroundColor="Transparent"
+                                    CheckedChanged="chkSelectItem_CheckedChanged"
+                                    HeightRequest="16"
+                                    HorizontalOptions="Start"
+                                    IsChecked="{Binding IsChecked, Mode=TwoWay, Converter={StaticResource StringToBoolConverter}}"
+                                    WidthRequest="16"
+                                    Color="{Binding ThemeSettingCardView.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" />
+                                <Label
+                                    x:Name="Header"
+                                    FontAttributes="Bold"
+                                    FontFamily="{Binding ThemeSettingCardViewHeader.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                                    FontSize="{Binding ThemeSettingCardViewHeader.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
+                                    HorizontalOptions="CenterAndExpand"
+                                    LineBreakMode="TailTruncation"
+                                    TextColor="{Binding ThemeSettingCardViewHeader.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}"
+                                    VerticalOptions="CenterAndExpand" />
+                            </StackLayout>
+
+                            <!--  Separator after Header  -->
+                            <BoxView
+                                Margin="0,5,0,5"
+                                HeightRequest="1"
+                                HorizontalOptions="FillAndExpand"
+                                Color="{Binding ThemeSettingCardViewBody.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" />
+                            <StackLayout
+                                InputTransparent="False"
+                                Orientation="Vertical"
+                                VerticalOptions="Center">
+                                <!--  Body  -->
+                                <Label
+                                    x:Name="Code"
+                                    FontFamily="{Binding ThemeSettingCardViewBody.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                                    FontSize="{Binding ThemeSettingCardViewBody.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
+                                    HorizontalOptions="Start"
+                                    LineBreakMode="TailTruncation"
+                                    TextColor="{Binding ThemeSettingCardViewBody.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}"
+                                    VerticalOptions="Start" />
+                                <Label
+                                    x:Name="Name"
+                                    FontFamily="{Binding ThemeSettingCardViewBody.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                                    FontSize="{Binding ThemeSettingCardViewBody.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
+                                    HorizontalOptions="Start"
+                                    LineBreakMode="TailTruncation"
+                                    TextColor="{Binding ThemeSettingCardViewBody.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}"
+                                    VerticalOptions="Start" />
+                                <Label
+                                    x:Name="Description"
+                                    FontFamily="{Binding ThemeSettingCardViewBody.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                                    FontSize="{Binding ThemeSettingCardViewBody.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
+                                    HorizontalOptions="Start"
+                                    LineBreakMode="TailTruncation"
+                                    TextColor="{Binding ThemeSettingCardViewBody.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}"
+                                    VerticalOptions="Start" />
+                                <Label
+                                    x:Name="Remark"
+                                    FontFamily="{Binding ThemeSettingCardViewBody.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                                    FontSize="{Binding ThemeSettingCardViewBody.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
+                                    HorizontalOptions="Start"
+                                    LineBreakMode="TailTruncation"
+                                    TextColor="{Binding ThemeSettingCardViewBody.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}"
+                                    VerticalOptions="Start" />
+                                <Label
+                                    x:Name="Des"
+                                    FontFamily="{Binding ThemeSettingCardViewBody.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                                    FontSize="{Binding ThemeSettingCardViewBody.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
+                                    HorizontalOptions="Start"
+                                    LineBreakMode="TailTruncation"
+                                    TextColor="{Binding ThemeSettingCardViewBody.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}"
+                                    VerticalOptions="Start" />
+                                <Label
+                                    x:Name="Desc"
+                                    FontFamily="{Binding ThemeSettingCardViewBody.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                                    FontSize="{Binding ThemeSettingCardViewBody.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
+                                    HorizontalOptions="Start"
+                                    LineBreakMode="TailTruncation"
+                                    TextColor="{Binding ThemeSettingCardViewBody.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}"
+                                    VerticalOptions="Start" />
+
+                                <!--  Separator after Body  -->
+                                <BoxView
+                                    Margin="0,5,0,5"
+                                    HeightRequest="1"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="EndAndExpand"
+                                    Color="{Binding ThemeSettingCardViewBody.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" />
+
+                                <!--  Footer  -->
+                                <Label
+                                    x:Name="Footer"
+                                    FontFamily="{Binding ThemeSettingCardViewFooter.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                                    FontSize="{Binding ThemeSettingCardViewFooter.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
+                                    HorizontalOptions="Center"
+                                    LineBreakMode="TailTruncation"
+                                    TextColor="{Binding ThemeSettingCardViewFooter.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}"
+                                    VerticalOptions="CenterAndExpand" />
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

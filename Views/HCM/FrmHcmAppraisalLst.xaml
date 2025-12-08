@@ -1,0 +1,641 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dg="clr-namespace:Syncfusion.Maui.DataGrid;assembly=Syncfusion.Maui.DataGrid"
+    xmlns:local="clr-namespace:CS.ERP_MOB.Views.HCM"
+    xmlns:footer="clr-namespace:CS.ERP_MOB.Views.SYS"
+    xmlns:xct="http://schemas.microsoft.com/dotnet/2021/maui/communitytoolkit"
+    x:Class="CS.ERP_MOB.Views.HCM.FrmHcmAppraisalLst">
+    <ContentView.Content>
+        <StackLayout
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"
+            BackgroundColor="{StaticResource OvaListBackgroundColor}">
+            <!--Header area-->
+            <StackLayout
+                VerticalOptions="Start"
+                HorizontalOptions="FillAndExpand"
+                Orientation="Vertical"
+                BackgroundColor="{StaticResource OvaListTitleColor}"
+                Padding="{StaticResource paddingLeftRight}">
+                <StackLayout
+                    Orientation="Horizontal"
+                    HorizontalOptions="FillAndExpand"
+                    HeightRequest="35"
+                    Padding="{StaticResource paddingTop}">
+
+                    <!--title first two icon-->
+                    <Frame
+                        Padding="{StaticResource FramePaddingLeftRight}"
+                        HorizontalOptions="Start"
+                        VerticalOptions="CenterAndExpand"
+                        CornerRadius="3">
+                        <StackLayout
+                            Orientation="Vertical"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand">
+                            <Grid
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <!--view switch icons-->
+                                <!--route entry form icon-->
+                                <StackLayout
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Orientation="Vertical"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions  ="FillAndExpand"
+                                    
+                                    >
+                                    <Label
+                                        VerticalOptions ="CenterAndExpand"
+                                        HorizontalOptions="CenterAndExpand"
+                                        Text="&#xf0fe;"
+                                        FontSize="35"
+                                        FontFamily="{StaticResource FontAwesomeSolid}"
+                                        TextColor="{StaticResource OvaListIconColor}"
+
+                                        
+                                        >
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer  Tapped="TgrNew_Tapped"
+                                        NumberOfTapsRequired="1" />
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Tapped="TgrNew_Tapped"
+                                            NumberOfTapsRequired="1" />
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+
+
+
+                            </Grid>
+                        </StackLayout>
+                    </Frame>
+
+                    <!--search input box-->
+                    <StackLayout
+                        VerticalOptions="FillAndExpand"
+                        HorizontalOptions="FillAndExpand">
+                        <Entry
+                            x:Name="entSearch"
+                            Placeholder="Search" 
+                            HorizontalOptions="FillAndExpand"
+                            PlaceholderColor="{StaticResource OvaSearchInputColor}"
+                            TextColor="{StaticResource OvaSearchInputColor}"
+                            TextChanged="entSearch_TextChanged"/>
+                    </StackLayout>
+
+                    <!--last two icon-->
+                    <Frame
+                        Padding="{StaticResource FramePaddingLeftRight}"
+                        HorizontalOptions="End"
+                        VerticalOptions="FillAndExpand"
+                        CornerRadius="3">
+                        <StackLayout
+                            Orientation="Vertical"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand">
+                            <Grid
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="2"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!--refersh icon-->
+                                <StackLayout
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="1"
+                                    VerticalOptions="FillAndExpand"
+                                    HorizontalOptions="FillAndExpand"
+                                    
+                                    >
+                                    <Label
+                                        VerticalOptions  ="CenterAndExpand"
+                                        HorizontalOptions="CenterAndExpand"
+                                        Text="&#xf2f1;"
+                                        FontFamily="{StaticResource FontAwesomeSolid}"
+                                        TextColor="{StaticResource OvaListIconColor}"
+                                        Padding="{StaticResource OvaListFormHeaderIconPadding}"
+                                        
+                                        >
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="TgrRefresh_Tapped"/>
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TgrRefresh_Tapped"/>
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+
+                                <BoxView
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    VerticalOptions="FillAndExpand"
+                                    BackgroundColor="{StaticResource OvaListIconColor}"  />
+
+                                <StackLayout
+                                    Grid.Row="0"
+                                    Grid.Column="2"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions  ="FillAndExpand">
+                                    <StackLayout
+                                        IsVisible="{Binding IsCardView}"
+                                        VerticalOptions="FillAndExpand"
+                                        HorizontalOptions="FillAndExpand"
+                                        
+                                        >
+                                        <Label
+                                            VerticalOptions  ="CenterAndExpand"
+                                            HorizontalOptions="CenterAndExpand"
+                                            Text="&#xf550;"
+                                            FontFamily="{StaticResource FontAwesomeSolid}"
+                                            TextColor="{StaticResource OvaListIconColor}"
+                                            Padding="{StaticResource OvaListFormHeaderIconPadding}"
+                                            
+                                            >
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding ListViewCommand}"/>
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding ListViewCommand}"/>
+                                        </StackLayout.GestureRecognizers>
+                                    </StackLayout>
+                                    <StackLayout
+                                        IsVisible="{Binding IsListView}"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="FillAndExpand"
+                                        
+                                        >
+                                        <Label
+                                            VerticalOptions  ="CenterAndExpand"
+                                            HorizontalOptions="CenterAndExpand"
+                                            Text="&#xf03a;"
+                                            FontFamily="{StaticResource FontAwesomeSolid}"
+                                            TextColor="{StaticResource OvaListIconColor}"
+                                            Padding="{StaticResource OvaListFormHeaderIconPadding}"
+                                            
+                                            >
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding GridViewCommand}"/>
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding GridViewCommand}"/>
+                                        </StackLayout.GestureRecognizers>
+                                    </StackLayout>
+                                    <StackLayout
+                                        IsVisible="{Binding IsGridView}"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="FillAndExpand"
+                                        
+                                        >
+                                        <Label
+                                            VerticalOptions  ="CenterAndExpand"
+                                            HorizontalOptions="CenterAndExpand"
+                                            Text="&#xf009;"
+                                            FontFamily="{StaticResource FontAwesomeSolid}"
+                                            TextColor="{StaticResource OvaListIconColor}"
+                                            Padding="{StaticResource OvaListFormHeaderIconPadding}"
+                                            
+                                            >
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding CardViewCommand}"/>
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding CardViewCommand}"/>
+                                        </StackLayout.GestureRecognizers>
+                                    </StackLayout>
+                                </StackLayout>
+
+
+
+                            </Grid>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+
+            </StackLayout>
+
+
+            <StackLayout
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"
+                Padding="{StaticResource paddingLeftRight}">
+
+                <xct:TabView
+                    TabStripPlacement="Top"
+                    TabStripBorderColor="{StaticResource TabStripBorderColor}"
+                    TabStripBackgroundColor="{StaticResource TabStripBackgroundColor}"
+                    TabIndicatorColor="{StaticResource TabStripBackgroundColor}"
+                    VerticalOptions="FillAndExpand">
+
+                    <!--open tab-->
+                    <xct:TabViewItem
+                       x:Name="TabOpen"
+                        TextColor="{StaticResource TabTexttColor}"
+                        TextColorSelected="{StaticResource TextColorSelected}"
+                        FontSize="12">
+                        <StackLayout
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand">
+                            <!--Card view-->
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <RefreshView
+                                    IsVisible="{Binding IsCardView}"
+                                    VerticalOptions="FillAndExpand"
+                                    IsRefreshing="{Binding IsRefreshing}"
+                                    Command="{Binding RefreshCommand}">
+                                    <ScrollView
+                                        VerticalOptions="FillAndExpand">
+
+                                        <FlexLayout
+                                            BindableLayout.ItemsSource="{Binding AppraisalOpenList}"
+                                            Direction="Row" 
+                                            JustifyContent="SpaceEvenly" 
+                                            VerticalOptions="Start" 
+                                            HorizontalOptions="FillAndExpand"
+                                            Wrap="Wrap">
+
+
+                                            <BindableLayout.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackLayout
+                                                        Padding="{x:StaticResource paddingTop}">
+                                                        <footer:OvaListFormCartView
+                                                            ItemAsk="{Binding Ask}"
+                                                            CodeLabel="{Binding EmployeeName}"
+                                                            NameLabel="{Binding AppraisalFormName}"
+                                                           />
+                                                    </StackLayout>
+                                                </DataTemplate>
+                                            </BindableLayout.ItemTemplate>
+                                        </FlexLayout>
+                                    </ScrollView>
+                                </RefreshView>
+                            </Grid>
+
+                            <!--list view-->
+                            <StackLayout
+                                IsVisible="{Binding IsListView}"
+                                VerticalOptions="FillAndExpand">
+                                <Frame
+                                    VerticalOptions="FillAndExpand"
+                                    CornerRadius="3"
+                                    Padding="0">
+                                    <ListView
+                                        x:Name="lstView"
+                                        ItemsSource="{Binding AppraisalOpenList}"
+                                        RowHeight="70"
+                                        ItemSelected="lstView_ItemSelected"
+                                        IsPullToRefreshEnabled="true"
+                                        IsRefreshing="{Binding IsRefreshing}"
+                                        RefreshCommand="{Binding RefreshCommand}">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <ViewCell>
+                                                    <StackLayout
+                                                        Orientation="Vertical"
+                                                        Padding="10,10,10,10">
+                                                        <Grid>
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="*"/>
+                                                                <RowDefinition Height="*"/>
+                                                            </Grid.RowDefinitions>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="2*"/>
+                                                                <ColumnDefinition Width="*"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Label
+                                                                Grid.Row="0"
+                                                                Grid.Column="0"
+                                                                Text="{Binding AppraisalFormName}"/>
+                                                            <Label
+                                                                Grid.Row="0"
+                                                                Grid.Column="1"
+                                                                Text="{Binding StatusName}"
+                                                                HorizontalTextAlignment="End"/>
+                                                            <Label
+                                                                Grid.Row="1"
+                                                                Grid.Column="0"
+                                                                Text="{Binding ROName}"/>
+                                                            <Label
+                                                                Grid.Row="1"
+                                                                Grid.Column="1"
+                                                                Text="{Binding EmployeeName}"
+                                                                HorizontalTextAlignment="End"/>
+                                                        </Grid>
+                                                    </StackLayout>
+                                                </ViewCell>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </Frame>
+
+                            </StackLayout>
+
+                            <!--data grid view-->
+                            <StackLayout
+                                IsVisible="{Binding IsGridView}"
+                                VerticalOptions="FillAndExpand">
+                                <dg:DataGrid
+                                    ItemsSource="{Binding AppraisalOpenList}" 
+                                    SelectionEnabled="True" 
+                                    Style="{StaticResource dgStyle}"
+                                    ItemSelected="grdView_ItemSelected"
+                                    IsRefreshing="{Binding IsRefreshing}"
+                                    PullToRefreshCommand="{Binding RefreshCommand}">
+                                    <dg:DataGrid.Columns>
+                                        <dg:DataGridColumn x:Name="OEmployee" Title="Employee" PropertyName="EmployeeName" Width="*"/>
+                                        <dg:DataGridColumn x:Name="OAppraisalForm" Title="AppraisalForm" PropertyName="AppraisalFormName" Width="2*"/>
+                                        <dg:DataGridColumn x:Name="ORO" Title="RO" PropertyName="ROName" Width="*"/>
+                                    </dg:DataGrid.Columns>
+                                </dg:DataGrid>
+                            </StackLayout>
+                        </StackLayout>
+
+                    </xct:TabViewItem>
+
+                    <!--submit tab-->
+                    <xct:TabViewItem
+                        x:Name="TabSubmit"
+                        TextColor="{StaticResource TabTexttColor}"
+                        TextColorSelected="{StaticResource TextColorSelected}"
+                        FontSize="12">
+                        <StackLayout
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand">
+                            <!--Card view-->
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <RefreshView
+                                    IsVisible="{Binding IsCardView}"
+                                    VerticalOptions="FillAndExpand"
+                                    IsRefreshing="{Binding IsRefreshing}"
+                                    Command="{Binding RefreshCommand}">
+                                    <ScrollView
+                                        VerticalOptions="FillAndExpand">
+
+                                        <FlexLayout
+                                            BindableLayout.ItemsSource="{Binding AppraisalSubmitList}"
+                                            Direction="Row"
+                                            HorizontalOptions="FillAndExpand"
+                                            JustifyContent="SpaceEvenly"
+                                            Wrap="Wrap">
+                                            <BindableLayout.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackLayout
+                                                        Padding="{x:StaticResource paddingTop}">
+                                                        <footer:OvaListFormCartView
+                                                        ItemAsk="{Binding Ask}"
+                                                        CodeLabel="{Binding EmployeeName}"
+                                                        NameLabel="{Binding AppraisalFormName}"
+                                                        DescriptionLabel="{Binding ROName}"/>
+                                                    </StackLayout>
+                                                </DataTemplate>
+                                            </BindableLayout.ItemTemplate>
+                                        </FlexLayout>
+                                    </ScrollView>
+                                </RefreshView>
+                            </Grid>
+                            <!--list view-->
+                            <StackLayout
+                                IsVisible="{Binding IsListView}"
+                                VerticalOptions="FillAndExpand">
+                                <Frame
+                                    VerticalOptions="FillAndExpand"
+                                    CornerRadius="3"
+                                    Padding="0">
+                                    <ListView
+                                        ItemsSource="{Binding AppraisalSubmitList}"
+                                        RowHeight="70"
+                                        ItemSelected="lstView_ItemSelected"
+                                        IsPullToRefreshEnabled="true"
+                                        IsRefreshing="{Binding IsRefreshing}"
+                                        RefreshCommand="{Binding RefreshCommand}">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <ViewCell>
+                                                    <StackLayout
+                                                        Orientation="Vertical"
+                                                        Padding="{StaticResource paddingAllListItem}">
+                                                        <Grid>
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="*"/>
+                                                                <RowDefinition Height="*"/>
+                                                            </Grid.RowDefinitions>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="2*"/>
+                                                                <ColumnDefinition Width="*"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Label
+                                                                Grid.Row="0"
+                                                                Grid.Column="0"
+                                                                Text="{Binding AppraisalFormName}"/>
+                                                            <Label
+                                                                Grid.Row="0"
+                                                                Grid.Column="1"
+                                                                Text="{Binding StatusName}"
+                                                                HorizontalTextAlignment="End"/>
+                                                            <Label
+                                                                Grid.Row="1"
+                                                                Grid.Column="0"
+                                                                Text="{Binding ROName}"/>
+                                                            <Label
+                                                                Grid.Row="1"
+                                                                Grid.Column="1"
+                                                                Text="{Binding EmployeeName}"
+                                                                HorizontalTextAlignment="End"/>
+                                                        </Grid>
+                                                    </StackLayout>
+                                                </ViewCell>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </Frame>
+                            </StackLayout>
+
+                            <!--data grid view-->
+                            <StackLayout
+                                IsVisible="{Binding IsGridView}"
+                                VerticalOptions="FillAndExpand">
+                                <dg:DataGrid
+                                    x:Name="grdView"
+                                    ItemsSource="{Binding AppraisalSubmitList}" 
+                                    SelectionEnabled="True" 
+                                    Style="{StaticResource dgStyle}"
+                                    ItemSelected="grdView_ItemSelected"
+                                    IsRefreshing="{Binding IsRefreshing}"
+                                    PullToRefreshCommand="{Binding RefreshCommand}">
+                                    <dg:DataGrid.Columns>
+                                        <dg:DataGridColumn x:Name="SEmployee" Title="Employee" PropertyName="EmployeeName" Width="*"/>
+                                        <dg:DataGridColumn x:Name="SAppraisalForm" Title="AppraisalForm" PropertyName="AppraisalFormName" Width="2*"/>
+                                        <dg:DataGridColumn x:Name="SRO" Title="RO" PropertyName="ROName" Width="*"/>
+                                    </dg:DataGrid.Columns>
+                                </dg:DataGrid>
+                            </StackLayout>
+                        </StackLayout>
+
+                    </xct:TabViewItem>
+
+                    <!--all tab-->
+                    <xct:TabViewItem
+                        x:Name="TabAll"
+                        TextColor="{StaticResource TabTexttColor}"
+                        TextColorSelected="{StaticResource TextColorSelected}"
+                        FontSize="12">
+                        <StackLayout
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand">
+                            <!--Card view-->
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <RefreshView
+                                    IsVisible="{Binding IsCardView}"
+                                    VerticalOptions="FillAndExpand"
+                                    IsRefreshing="{Binding IsRefreshing}"
+                                    Command="{Binding RefreshCommand}">
+                                    <ScrollView
+                                        VerticalOptions="FillAndExpand">
+
+                                        <FlexLayout
+                                            BindableLayout.ItemsSource="{Binding AppraisalList}"
+                                            Direction="Row"
+                                            HorizontalOptions="FillAndExpand"
+                                            JustifyContent="SpaceEvenly"
+                                            Wrap="Wrap">
+                                            <BindableLayout.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackLayout
+                                                        Padding="{x:StaticResource paddingTop}">
+                                                        <footer:OvaListFormCartView
+                                                        ItemAsk="{Binding Ask}"
+                                                        CodeLabel="{Binding EmployeeName}"
+                                                        NameLabel="{Binding AppraisalFormName}"
+                                                        DescriptionLabel="{Binding ROName}"/>
+                                                    </StackLayout>
+                                                </DataTemplate>
+                                            </BindableLayout.ItemTemplate>
+                                        </FlexLayout>
+                                    </ScrollView>
+                                </RefreshView>
+                            </Grid>
+
+                            <!--list view-->
+                            <StackLayout
+                                IsVisible="{Binding IsListView}"
+                                VerticalOptions="FillAndExpand">
+                                <Frame
+                                    VerticalOptions="FillAndExpand"
+                                    CornerRadius="3"
+                                    Padding="0">
+                                    <ListView
+                                        ItemsSource="{Binding AppraisalList}"
+                                        RowHeight="70"
+                                        ItemSelected="lstView_ItemSelected"
+                                        IsPullToRefreshEnabled="true"
+                                        IsRefreshing="{Binding IsRefreshing}"
+                                        RefreshCommand="{Binding RefreshCommand}">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <ViewCell>
+                                                    <StackLayout
+                                                        Orientation="Vertical"
+                                                        Padding="{StaticResource paddingAllListItem}">
+                                                        <Grid>
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="*"/>
+                                                                <RowDefinition Height="*"/>
+                                                            </Grid.RowDefinitions>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="2*"/>
+                                                                <ColumnDefinition Width="*"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Label
+                                                                Grid.Row="0"
+                                                                Grid.Column="0"
+                                                                Text="{Binding AppraisalFormName}"/>
+                                                            <Label
+                                                                Grid.Row="0"
+                                                                Grid.Column="1"
+                                                                Text="{Binding StatusName}"
+                                                                HorizontalTextAlignment="End"/>
+                                                            <Label
+                                                                Grid.Row="1"
+                                                                Grid.Column="0"
+                                                                Text="{Binding ROName}"/>
+                                                            <Label
+                                                                Grid.Row="1"
+                                                                Grid.Column="1"
+                                                                Text="{Binding EmployeeName}"
+                                                                HorizontalTextAlignment="End"/>
+                                                        </Grid>
+                                                    </StackLayout>
+                                                </ViewCell>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </Frame>
+                            </StackLayout>
+
+                            <!--data grid view-->
+                            <StackLayout
+                                IsVisible="{Binding IsGridView}"
+                                VerticalOptions="FillAndExpand">
+                                <dg:DataGrid 
+                                    ItemsSource="{Binding AppraisalList}" 
+                                    SelectionEnabled="True" 
+                                    Style="{StaticResource dgStyle}"
+                                    ItemSelected="grdView_ItemSelected"
+                                    IsRefreshing="{Binding IsRefreshing}"
+                                    PullToRefreshCommand="{Binding RefreshCommand}">
+                                    <dg:DataGrid.Columns>
+                                        <dg:DataGridColumn x:Name="AEmployee" Title="Employee" PropertyName="EmployeeName" Width="*"/>
+                                        <dg:DataGridColumn x:Name="AAppraisalForm" Title="AppraisalForm" PropertyName="AppraisalFormName" Width="2*"/>
+                                        <dg:DataGridColumn x:Name="ARO" Title="RO" PropertyName="ROName" Width="*"/>
+                                    </dg:DataGrid.Columns>
+                                </dg:DataGrid>
+                            </StackLayout>
+                        </StackLayout>
+
+                    </xct:TabViewItem>
+                </xct:TabView>
+
+            </StackLayout>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup
+    x:Class="CS.ERP_MOB.Views.POS.ActionPopup"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    CanBeDismissedByTappingOutsideOfPopup="True"
+    Size="250,Auto">
+
+    <Frame
+        Padding="20"
+        BackgroundColor="White"
+        CornerRadius="16"
+        HasShadow="True">
+
+        <VerticalStackLayout Spacing="10">
+
+            <Label
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                Text="Choose Action" />
+
+            <Button
+                BackgroundColor="Transparent"
+                Command="{Binding SelectCommand}"
+                CommandParameter="Edit"
+                Text="✏️  Edit"
+                TextColor="Black" />
+
+            <Button
+                BackgroundColor="Transparent"
+                Command="{Binding SelectCommand}"
+                CommandParameter="Delete"
+                Text="🗑️  Delete"
+                TextColor="Black" />
+
+            <Button
+                BackgroundColor="Transparent"
+                Command="{Binding SelectCommand}"
+                CommandParameter="Share"
+                Text="📤  Share"
+                TextColor="Black" />
+
+            <BoxView HeightRequest="1" Color="#ddd" />
+
+            <Button
+                BackgroundColor="Transparent"
+                Command="{Binding ClosePopupCommand}"
+                Text="Cancel"
+                TextColor="Red" />
+        </VerticalStackLayout>
+    </Frame>
+</toolkit:Popup>

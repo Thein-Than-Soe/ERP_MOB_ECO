@@ -1,0 +1,662 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dg="clr-namespace:Syncfusion.Maui.DataGrid;assembly=Syncfusion.Maui.DataGrid"
+    xmlns:local="clr-namespace:CS.ERP_MOB.Views.POS"
+    xmlns:footer="clr-namespace:CS.ERP_MOB.Views.SYS"
+    xmlns:xct="http://schemas.microsoft.com/dotnet/2021/maui/communitytoolkit"
+    x:Class="CS.ERP_MOB.Views.POS.FrmPosStockDamageLst">
+    <ContentView.Content>
+        <StackLayout
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"
+            BackgroundColor="{StaticResource OvaListBackgroundColor}">
+            <!--Header area-->
+            <StackLayout
+                VerticalOptions="Start"
+                HorizontalOptions="FillAndExpand"
+                Orientation="Vertical"
+                BackgroundColor="{StaticResource OvaListTitleColor}"
+                Padding="{StaticResource paddingLeftRight}">
+                <StackLayout
+                    Orientation="Horizontal"
+                    HorizontalOptions="FillAndExpand"
+                    HeightRequest="35"
+                    Padding="{StaticResource paddingTop}">
+
+                    <!--title first two icon-->
+                    <Frame
+                        Padding="{StaticResource FramePaddingLeftRight}"
+                        HorizontalOptions="Start"
+                        VerticalOptions="CenterAndExpand"
+                        CornerRadius="3">
+                        <StackLayout
+                            Orientation="Vertical"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand">
+                            <Grid
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <!--view switch icons-->
+                                <!--route entry form icon-->
+                                <StackLayout
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Orientation="Vertical"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions  ="FillAndExpand"
+                                    
+                                    >
+                                    <Label
+                                        VerticalOptions ="CenterAndExpand"
+                                        HorizontalOptions="CenterAndExpand"
+                                        Text="&#xf0fe;"
+                                        FontSize="35"
+                                        FontFamily="{StaticResource FontAwesomeSolid}"
+                                        TextColor="{StaticResource OvaListIconColor}"
+
+                                        
+                                        >
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer  Tapped="TgrNew_Tapped"
+                                        NumberOfTapsRequired="1" />
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Tapped="TgrNew_Tapped"
+                                            NumberOfTapsRequired="1" />
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+
+
+
+                            </Grid>
+                        </StackLayout>
+                    </Frame>
+
+                    <!--search input box-->
+                    <StackLayout
+                        VerticalOptions="FillAndExpand"
+                        HorizontalOptions="FillAndExpand">
+                        <Entry
+                            x:Name="entSearch"
+                            Placeholder="Search" 
+                            HorizontalOptions="FillAndExpand"
+                            PlaceholderColor="{StaticResource OvaSearchInputColor}"
+                            TextColor="{StaticResource OvaSearchInputColor}"
+                            TextChanged="entSearch_TextChanged"/>
+                    </StackLayout>
+
+                    <!--last two icon-->
+                    <Frame
+                        Padding="{StaticResource FramePaddingLeftRight}"
+                        HorizontalOptions="End"
+                        VerticalOptions="FillAndExpand"
+                        CornerRadius="3">
+                        <StackLayout
+                            Orientation="Vertical"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand">
+                            <Grid
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="2"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!--refersh icon-->
+                                <StackLayout
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="1"
+                                    VerticalOptions="FillAndExpand"
+                                    HorizontalOptions="FillAndExpand"
+                                    
+                                    >
+                                    <Label
+                                        VerticalOptions  ="CenterAndExpand"
+                                        HorizontalOptions="CenterAndExpand"
+                                        Text="&#xf2f1;"
+                                        FontFamily="{StaticResource FontAwesomeSolid}"
+                                        TextColor="{StaticResource OvaListIconColor}"
+                                        Padding="{StaticResource OvaListFormHeaderIconPadding}"
+                                        
+                                        >
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="TgrRefresh_Tapped"/>
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TgrRefresh_Tapped"/>
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+
+                                <BoxView
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    VerticalOptions="FillAndExpand"
+                                    BackgroundColor="{StaticResource OvaListIconColor}"  />
+
+                                <StackLayout
+                                    Grid.Row="0"
+                                    Grid.Column="2"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions  ="FillAndExpand">
+                                    <StackLayout
+                                        IsVisible="{Binding IsCardView}"
+                                        VerticalOptions="FillAndExpand"
+                                        HorizontalOptions="FillAndExpand"
+                                        
+                                        >
+                                        <Label
+                                            VerticalOptions  ="CenterAndExpand"
+                                            HorizontalOptions="CenterAndExpand"
+                                            Text="&#xf550;"
+                                            FontFamily="{StaticResource FontAwesomeSolid}"
+                                            TextColor="{StaticResource OvaListIconColor}"
+                                            Padding="{StaticResource OvaListFormHeaderIconPadding}"
+                                            
+                                            >
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding ListViewCommand}"/>
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding ListViewCommand}"/>
+                                        </StackLayout.GestureRecognizers>
+                                    </StackLayout>
+                                    <StackLayout
+                                        IsVisible="{Binding IsListView}"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="FillAndExpand"
+                                        
+                                        >
+                                        <Label
+                                            VerticalOptions  ="CenterAndExpand"
+                                            HorizontalOptions="CenterAndExpand"
+                                            Text="&#xf03a;"
+                                            FontFamily="{StaticResource FontAwesomeSolid}"
+                                            TextColor="{StaticResource OvaListIconColor}"
+                                            Padding="{StaticResource OvaListFormHeaderIconPadding}"
+                                            
+                                            >
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding GridViewCommand}"/>
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding GridViewCommand}"/>
+                                        </StackLayout.GestureRecognizers>
+                                    </StackLayout>
+                                    <StackLayout
+                                        IsVisible="{Binding IsGridView}"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="FillAndExpand"
+                                        
+                                        >
+                                        <Label
+                                            VerticalOptions  ="CenterAndExpand"
+                                            HorizontalOptions="CenterAndExpand"
+                                            Text="&#xf009;"
+                                            FontFamily="{StaticResource FontAwesomeSolid}"
+                                            TextColor="{StaticResource OvaListIconColor}"
+                                            Padding="{StaticResource OvaListFormHeaderIconPadding}"
+                                            
+                                            >
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding CardViewCommand}"/>
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding CardViewCommand}"/>
+                                        </StackLayout.GestureRecognizers>
+                                    </StackLayout>
+                                </StackLayout>
+
+
+
+                            </Grid>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+
+            </StackLayout>
+
+
+            <StackLayout
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"
+                Padding="{StaticResource paddingLeftRight}">
+
+                <xct:TabView
+                    TabStripPlacement="Top"
+                    TabStripBorderColor="{StaticResource TabStripBorderColor}"
+                    TabStripBackgroundColor="{StaticResource TabStripBackgroundColor}"
+                    TabIndicatorColor="{StaticResource TabStripBackgroundColor}"
+                    VerticalOptions="FillAndExpand">
+
+                    <!--active tab-->
+                    <xct:TabViewItem
+                       x:Name="TabActive"
+                        TextColor="{StaticResource TabTexttColor}"
+                        TextColorSelected="{StaticResource TextColorSelected}"
+                        FontSize="12">
+                        <StackLayout
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand">
+                            <!--Card view-->
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <RefreshView
+                                    IsVisible="{Binding IsCardView}"
+                                    VerticalOptions="FillAndExpand"
+                                    IsRefreshing="{Binding IsRefreshing}"
+                                    Command="{Binding RefreshCommand}">
+                                    <ScrollView
+                                        VerticalOptions="FillAndExpand">
+
+                                        <FlexLayout
+                                            BindableLayout.ItemsSource="{Binding DamageActiveList}"
+                                            Direction="Row" 
+                                            JustifyContent="SpaceEvenly" 
+                                            VerticalOptions="Start" 
+                                            HorizontalOptions="FillAndExpand"
+                                            Wrap="Wrap">
+
+
+                                            <BindableLayout.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackLayout
+                                                        Padding="{x:StaticResource paddingTop}">
+                                                        <footer:OvaListFormCartView
+                                                            ItemAsk="{Binding Ask}"
+                                                            CodeLabel="{Binding DamageDate}"
+                                                            NameLabel="{Binding DamageCode}"
+                                                            DescriptionLabel="{Binding DamageTypeName}"
+                                                            RemarkLabel="{Binding LocationName}"/>
+                                                    </StackLayout>
+                                                </DataTemplate>
+                                            </BindableLayout.ItemTemplate>
+                                        </FlexLayout>
+                                    </ScrollView>
+                                </RefreshView>
+                            </Grid>
+
+                            <!--list view-->
+                            <StackLayout
+                                IsVisible="{Binding IsListView}"
+                                VerticalOptions="FillAndExpand">
+                                <Frame
+                                    VerticalOptions="FillAndExpand"
+                                    CornerRadius="3"
+                                    Padding="0">
+                                    <ListView
+                                        x:Name="lstView"
+                                        ItemsSource="{Binding DamageActiveList}"
+                                        RowHeight="70"
+                                        ItemSelected="lstView_ItemSelected"
+                                        IsPullToRefreshEnabled="true"
+                                        IsRefreshing="{Binding IsRefreshing}"
+                                        RefreshCommand="{Binding RefreshCommand}">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <ViewCell>
+                                                    <StackLayout
+                                                        Orientation="Vertical"
+                                                        Padding="5,5,5,5">
+                                                        <Grid>
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="*"/>
+                                                                <RowDefinition Height="*"/>
+                                                            </Grid.RowDefinitions>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="*"/>
+                                                                <ColumnDefinition Width="*"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Label
+                                                                Grid.Row="1"
+                                                                Grid.Column="0"
+                                                                HorizontalOptions="Start"
+                                                                LineBreakMode="TailTruncation"
+                                                                Text="{Binding DamageDate}"/>
+
+                                                            <Label
+                                                                Grid.Row="0"
+                                                                Grid.Column="1"
+                                                                HorizontalOptions="End"
+                                                                Text="{Binding DamageTypeName}"/>
+                                                            <Label
+                                                                Grid.Row="0"
+                                                                Grid.Column="0"
+                                                                Text="{Binding DamageCode}"
+                                                                HorizontalTextAlignment="Start"/>
+                                                            <Label
+                                                                Grid.Row="1"
+                                                                Grid.Column="1"
+                                                                Text="{Binding LocationName}"
+                                                                HorizontalTextAlignment="End"/>
+
+                                                        </Grid>
+                                                    </StackLayout>
+                                                </ViewCell>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </Frame>
+
+                            </StackLayout>
+
+                            <!--data grid view-->
+                            <StackLayout
+                                IsVisible="{Binding IsGridView}"
+                                VerticalOptions="FillAndExpand">
+                                <dg:DataGrid
+                                    ItemsSource="{Binding DamageActiveList}" 
+                                    SelectionEnabled="True" 
+                                    Style="{StaticResource dgStyle}"
+                                    ItemSelected="grdView_ItemSelected"
+                                    IsRefreshing="{Binding IsRefreshing}"
+                                    PullToRefreshCommand="{Binding RefreshCommand}">
+                                    <dg:DataGrid.Columns>
+                                        <dg:DataGridColumn x:Name="AcCode" Title="Code" PropertyName="DamageCode" Width="*"/>
+                                        <dg:DataGridColumn x:Name="AcDate" Title="Date" PropertyName="DamageDate" Width="*"/>
+                                        <dg:DataGridColumn x:Name="AcType" Title="DamageTypeName" PropertyName="DamageTypeName" Width="*"/>
+                                        <dg:DataGridColumn x:Name="AcLocation" Title="Location" PropertyName="LocationName" Width="*"/>
+                                    </dg:DataGrid.Columns>
+                                </dg:DataGrid>
+                            </StackLayout>
+                        </StackLayout>
+
+                    </xct:TabViewItem>
+
+                    <!--partial  tab-->
+                    <xct:TabViewItem
+                       x:Name="TabPartial"
+                        TextColor="{StaticResource TabTexttColor}"
+                        TextColorSelected="{StaticResource TextColorSelected}"
+                        FontSize="12">
+                        <StackLayout
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand">
+                            <!--Card view-->
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <RefreshView
+                                    IsVisible="{Binding IsCardView}"
+                                    VerticalOptions="FillAndExpand"
+                                    IsRefreshing="{Binding IsRefreshing}"
+                                    Command="{Binding RefreshCommand}">
+                                    <ScrollView
+                                        VerticalOptions="FillAndExpand">
+
+                                        <FlexLayout
+                                            BindableLayout.ItemsSource="{Binding DamagePartialList}"
+                                            Direction="Row"
+                                            HorizontalOptions="FillAndExpand"
+                                            JustifyContent="SpaceEvenly"
+                                            Wrap="Wrap">
+                                            <BindableLayout.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackLayout
+                                                        Padding="{x:StaticResource paddingTop}">
+                                                        <footer:OvaListFormCartView
+                                                        ItemAsk="{Binding Ask}"
+                                                        CodeLabel="{Binding DamageDate}"
+                                                        NameLabel="{Binding DamageDate}"
+                                                        DescriptionLabel="{Binding DamageTypeName}"
+                                                             RemarkLabel="{Binding LocationName}"/>
+                                                    </StackLayout>
+                                                </DataTemplate>
+                                            </BindableLayout.ItemTemplate>
+                                        </FlexLayout>
+                                    </ScrollView>
+                                </RefreshView>
+                            </Grid>
+                            <!--list view-->
+                            <StackLayout
+                                IsVisible="{Binding IsListView}"
+                                VerticalOptions="FillAndExpand">
+                                <Frame
+                                    VerticalOptions="FillAndExpand"
+                                    CornerRadius="3"
+                                    Padding="0">
+                                    <ListView
+                                        ItemsSource="{Binding DamagePartialList}"
+                                        RowHeight="70"
+                                        ItemSelected="lstView_ItemSelected"
+                                        IsPullToRefreshEnabled="true"
+                                        IsRefreshing="{Binding IsRefreshing}"
+                                        RefreshCommand="{Binding RefreshCommand}">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <ViewCell>
+                                                    <StackLayout
+                                                        Orientation="Vertical"
+                                                        Padding="{StaticResource paddingAllListItem}">
+                                                        <Grid>
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="*"/>
+                                                                <RowDefinition Height="*"/>
+                                                            </Grid.RowDefinitions>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="*"/>
+                                                                <ColumnDefinition Width="*"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Label
+                                                                Grid.Row="1"
+                                                                Grid.Column="0"
+                                                                HorizontalOptions="Start"
+                                                                LineBreakMode="TailTruncation"
+                                                                Text="{Binding DamageDate}"/>
+
+                                                            <Label
+                                                                Grid.Row="0"
+                                                                Grid.Column="1"
+                                                                HorizontalOptions="End"
+                                                                Text="{Binding DamageTypeName}"/>
+                                                            <Label
+                                                                Grid.Row="0"
+                                                                Grid.Column="0"
+                                                                Text="{Binding DamageCode}"
+                                                                HorizontalTextAlignment="Start"/>
+                                                            <Label
+                                                                Grid.Row="1"
+                                                                Grid.Column="1"
+                                                                Text="{Binding LocationName}"
+                                                                HorizontalTextAlignment="End"/>
+
+                                                        </Grid>
+                                                    </StackLayout>
+                                                </ViewCell>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </Frame>
+                            </StackLayout>
+
+                            <!--data grid view-->
+                            <StackLayout
+                                IsVisible="{Binding IsGridView}"
+                                VerticalOptions="FillAndExpand">
+                                <dg:DataGrid
+                                    x:Name="grdView"
+                                    ItemsSource="{Binding DamagePartialList}" 
+                                    SelectionEnabled="True" 
+                                    Style="{StaticResource dgStyle}"
+                                    ItemSelected="grdView_ItemSelected"
+                                    IsRefreshing="{Binding IsRefreshing}"
+                                    PullToRefreshCommand="{Binding RefreshCommand}">
+                                    <dg:DataGrid.Columns>
+                                        <dg:DataGridColumn x:Name="PCode" Title="Code" PropertyName="DamageCode" Width="*"/>
+                                        <dg:DataGridColumn x:Name="PDate" Title="Date" PropertyName="DamageDate" Width="*"/>
+                                        <dg:DataGridColumn x:Name="PType" Title="DamageTypeName" PropertyName="DamageTypeName" Width="*"/>
+                                        <dg:DataGridColumn x:Name="PLocation" Title="Location" PropertyName="LocationName" Width="*"/>
+                                    </dg:DataGrid.Columns>
+                                </dg:DataGrid>
+                            </StackLayout>
+                        </StackLayout>
+
+                    </xct:TabViewItem>
+
+                    <!--closed tab-->
+                    <xct:TabViewItem
+                        x:Name="TabClosed"
+                        TextColor="{StaticResource TabTexttColor}"
+                        TextColorSelected="{StaticResource TextColorSelected}"
+                        FontSize="12">
+                        <StackLayout
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand">
+                            <!--Card view-->
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <RefreshView
+                                    IsVisible="{Binding IsCardView}"
+                                    VerticalOptions="FillAndExpand"
+                                    IsRefreshing="{Binding IsRefreshing}"
+                                    Command="{Binding RefreshCommand}">
+                                    <ScrollView
+                                        VerticalOptions="FillAndExpand">
+
+                                        <FlexLayout
+                                            BindableLayout.ItemsSource="{Binding DamageClosedList}"
+                                            Direction="Row"
+                                            HorizontalOptions="FillAndExpand"
+                                            JustifyContent="SpaceEvenly"
+                                            Wrap="Wrap">
+                                            <BindableLayout.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackLayout
+                                                        Padding="{x:StaticResource paddingTop}">
+                                                        <footer:OvaListFormCartView
+                                                        ItemAsk="{Binding Ask}"
+                                                        CodeLabel="{Binding DamageCode}"
+                                                        NameLabel="{Binding DamageDate}"
+                                                        DescriptionLabel="{Binding DamageTypeName}"
+                                                             RemarkLabel="{Binding LocationName}"/>
+                                                    </StackLayout>
+                                                </DataTemplate>
+                                            </BindableLayout.ItemTemplate>
+                                        </FlexLayout>
+                                    </ScrollView>
+                                </RefreshView>
+                            </Grid>
+
+                            <!--list view-->
+                            <StackLayout
+                                IsVisible="{Binding IsListView}"
+                                VerticalOptions="FillAndExpand">
+                                <Frame
+                                    VerticalOptions="FillAndExpand"
+                                    CornerRadius="3"
+                                    Padding="0">
+                                    <ListView
+                                        ItemsSource="{Binding DamageClosedList}"
+                                        RowHeight="70"
+                                        ItemSelected="lstView_ItemSelected"
+                                        IsPullToRefreshEnabled="true"
+                                        IsRefreshing="{Binding IsRefreshing}"
+                                        RefreshCommand="{Binding RefreshCommand}">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <ViewCell>
+                                                    <StackLayout
+                                                        Orientation="Vertical"
+                                                        Padding="{StaticResource paddingAllListItem}">
+                                                        <Grid>
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="*"/>
+                                                                <RowDefinition Height="*"/>
+                                                            </Grid.RowDefinitions>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="*"/>
+                                                                <ColumnDefinition Width="*"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Label
+                                                                Grid.Row="1"
+                                                                Grid.Column="0"
+                                                                HorizontalOptions="Start"
+                                                                LineBreakMode="TailTruncation"
+                                                                Text="{Binding DamageDate}"/>
+
+                                                            <Label
+                                                                Grid.Row="0"
+                                                                Grid.Column="1"
+                                                                HorizontalOptions="End"
+                                                                Text="{Binding DamageTypeName}"/>
+                                                            <Label
+                                                                Grid.Row="0"
+                                                                Grid.Column="0"
+                                                                Text="{Binding DamageCode}"
+                                                                HorizontalTextAlignment="Start"/>
+                                                            <Label
+                                                                Grid.Row="1"
+                                                                Grid.Column="1"
+                                                                Text="{Binding LocationName}"
+                                                                HorizontalTextAlignment="End"/>
+
+                                                        </Grid>
+                                                    </StackLayout>
+                                                </ViewCell>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </Frame>
+                            </StackLayout>
+
+                            <!--data grid view-->
+                            <StackLayout
+                                IsVisible="{Binding IsGridView}"
+                                VerticalOptions="FillAndExpand">
+                                <dg:DataGrid 
+                                    ItemsSource="{Binding DamageClosedList}" 
+                                    SelectionEnabled="True" 
+                                    Style="{StaticResource dgStyle}"
+                                    ItemSelected="grdView_ItemSelected"
+                                    IsRefreshing="{Binding IsRefreshing}"
+                                    PullToRefreshCommand="{Binding RefreshCommand}">
+                                    <dg:DataGrid.Columns>
+                                        <dg:DataGridColumn x:Name="CCode" Title="Code" PropertyName="DamageCode" Width="*"/>
+                                        <dg:DataGridColumn x:Name="CDate" Title="Date" PropertyName="DamageDate" Width="*"/>
+                                        <dg:DataGridColumn x:Name="CType" Title="DamageTypeName" PropertyName="DamageTypeName" Width="*"/>
+                                        <dg:DataGridColumn x:Name="CLocation" Title="Location" PropertyName="LocationName" Width="*"/>
+                                    </dg:DataGrid.Columns>
+                                </dg:DataGrid>
+                            </StackLayout>
+                        </StackLayout>
+
+                    </xct:TabViewItem>
+                </xct:TabView>
+
+            </StackLayout>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

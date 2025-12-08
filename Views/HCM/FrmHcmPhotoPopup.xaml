@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<xct:Popup 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:xct="http://schemas.microsoft.com/dotnet/2021/maui/communitytoolkit"
+           Size="400,500"
+    xmlns:dg="clr-namespace:Syncfusion.Maui.DataGrid;assembly=Syncfusion.Maui.DataGrid"
+    x:Class="CS.ERP_MOB.Views.HCM.FrmHcmPhotoPopup">
+
+    <ScrollView>
+
+        <StackLayout                              
+                                VerticalOptions="FillAndExpand">
+            <Entry
+                            x:Name="entSearch"
+                            Placeholder="Search" 
+                           WidthRequest="200"
+                            HorizontalOptions="End"                           
+                            PlaceholderColor="{StaticResource OvaSearchInputColor}"
+                            TextColor="{StaticResource OvaSearchInputColor}"
+                            TextChanged="entSearch_TextChanged"/>
+            <Entry x:Name="entPhoto"  Text="{Binding DAT_APPLICANT_PHOTO.PhotoName}"  Placeholder="Name" />
+            <Picker x:Name="pikPhotoType" IsEnabled="True" ItemDisplayBinding="{Binding DAT_APPLICANT_PHOTO.PhotoTypeName}" Title="Select Education Level" />
+            <Entry x:Name="entAttachFile"  Text="{Binding DAT_APPLICANT_PHOTO.Remark}"  Placeholder="Attach File"  IsEnabled="False" />
+            
+            <Grid>
+                <Button Text="Ok" WidthRequest="100" Grid.Row="0" Grid.Column="0" ></Button>
+                <Button Text="Cancel" WidthRequest="100" Grid.Row="0" Grid.Column="1"></Button>
+            </Grid>
+
+        </StackLayout>
+
+    </ScrollView>
+</xct:Popup>

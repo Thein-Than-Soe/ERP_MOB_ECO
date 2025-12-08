@@ -1,0 +1,393 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xct="http://schemas.microsoft.com/dotnet/2021/maui/communitytoolkit"
+             x:Class="CS.ERP_MOB.Views.Frame.FrmSignUp"
+             Visual="Material">
+  <ContentView.Content>
+        <StackLayout
+            x:Name="stlSignUp"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand"
+            Orientation="Vertical">
+            <StackLayout
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand"
+                Padding="{StaticResource paddingLeftRight}">
+                <!--initial signup page-->
+                <Frame
+                    x:Name="SignupLayout"
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    Padding="{StaticResource FramePaddingLeftRightTop}"
+                    IsVisible="{Binding IsSignupPage}">
+                    <ScrollView
+                        VerticalOptions="FillAndExpand"
+                        HorizontalOptions="FillAndExpand">
+                        <StackLayout
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand"
+                            Orientation="Vertical">
+                            <Entry
+                                x:Name="entName"
+                                HorizontalOptions="FillAndExpand"
+                                Placeholder="Name"
+                                Focused="Input_Focused"
+                                Unfocused="Input_Unfocused"/>
+                            <Entry x:Name="entEmail"
+                                    HorizontalOptions="FillAndExpand"
+                                    Placeholder="Email"
+                                    Focused="Input_Focused"
+                                    Unfocused="Input_Unfocused"/>
+                            <StackLayout
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="Fill"
+                                Orientation="Horizontal">
+                                 <Picker
+                                        x:Name="pikCountry"
+                                        IsEnabled="False"
+                                        Title="Select Country"
+                                        ItemDisplayBinding="{Binding Name}"/>
+                                <Entry x:Name="entPhone"
+                                        HorizontalOptions="FillAndExpand"
+                                        Placeholder="Phone"
+                                        Focused="Input_Focused"
+                                        Unfocused="Input_Unfocused"/>
+                            </StackLayout>
+                            <Entry
+                                    x:Name="entPassword"
+                                    HorizontalOptions="FillAndExpand"
+                                    Placeholder="Password"
+                                    IsPassword="True"
+                                    Focused="Input_Focused"
+                                    Unfocused="Input_Unfocused"/>
+                            <Entry
+                                    x:Name="entConfirmPassword"
+                                    HorizontalOptions="FillAndExpand"
+                                    IsPassword="True"
+                                    Placeholder="Confirm Password"
+                                    Focused="Input_Focused"
+                                    Unfocused="Input_Unfocused"/>
+                        </StackLayout>
+                    </ScrollView>
+                </Frame>
+
+                <!--activation page-->
+                <Frame
+                    x:Name="ActivatePage"
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    Padding="{StaticResource FramePaddingLeftRightTop}"
+                    IsVisible="{Binding IsActivatePage}">
+                    <ScrollView 
+                                VerticalOptions="FillAndExpand"
+                                HorizontalOptions="FillAndExpand">
+                        <StackLayout
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="CenterAndExpand"
+                                Orientation="Vertical">
+                            <Label
+                                Text="Activation Code has been sent to your email or phone."
+                                TextColor="{StaticResource OvaSignupTextColor}">
+                            </Label>
+                            <Entry x:Name="entActivationCode"
+                                    HorizontalOptions="FillAndExpand"
+                                    Placeholder="Enter activation code"
+                                    Focused="Input_Focused"
+                                    Unfocused="Input_Unfocused"/>
+                        </StackLayout>
+                    </ScrollView>
+                </Frame>
+
+                <!--ask user to use service or not-->
+                <Frame
+                    x:Name="OtherServices"
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    Padding="{StaticResource FramePaddingLeftRightTop}"
+                    IsVisible="{Binding IsOtherServicePage}">
+                    <ScrollView 
+                                VerticalOptions="FillAndExpand"
+                                HorizontalOptions="FillAndExpand">
+                        <StackLayout
+                                HorizontalOptions="CenterAndExpand"
+                                VerticalOptions="CenterAndExpand"
+                                Orientation="Vertical">
+                            <Label
+                                Text="Your registration has been successfully completed."
+                                TextColor="{StaticResource OvaSignupTextColor}"
+                                LineBreakMode="WordWrap">
+                            </Label>
+                            <Label
+                                Text="Do you want to use other services?"
+                                TextColor="{StaticResource OvaSignupTextColor}"
+                                LineBreakMode="WordWrap">
+                            </Label>
+                        </StackLayout>
+                    </ScrollView>
+                </Frame>
+
+                <!--choose service type page-->
+                <Frame
+                    x:Name="ChooseServiceType"
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    Padding="{StaticResource FramePaddingLeftRightTop}"
+                    IsVisible="{Binding IsChooseTypePage}">
+                    <StackLayout
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand"
+                        Orientation="Vertical">
+                        <!--title view-->
+                        <StackLayout 
+                            HorizontalOptions="FillAndExpand" 
+                            VerticalOptions="Start"
+                            Orientation="Horizontal"
+                            HeightRequest="30"
+                            BackgroundColor="{StaticResource OvaSignupTitleColor}"
+                            Padding="{StaticResource padding}">
+                            <Label Text="Choose service type!" HorizontalOptions="CenterAndExpand"/>
+                        </StackLayout>
+                        <!--content area-->
+                        <StackLayout
+                            VerticalOptions="FillAndExpand"
+                            HorizontalOptions="FillAndExpand">
+                            <ListView
+                                x:Name="lstSubscriberType"
+                                ItemSelected="lstSubscriberType_onItemSelected">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <StackLayout
+                                                Orientation="Vertical"
+                                                VerticalOptions="CenterAndExpand"
+                                                Padding="{StaticResource FramePaddingLeftRight}">
+                                                <Label
+                                                    Text="{Binding SubscriberTypeName}"
+                                                    HorizontalOptions="StartAndExpand" 
+                                                    VerticalOptions="Center"
+                                                    TextColor="Gray"/>
+                                                <StackLayout.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="TgrSubscriptionType_Tapped" />
+                                                </StackLayout.GestureRecognizers>
+                                            </StackLayout>
+
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+
+                <!--choose service plan-->
+                <Frame
+                    x:Name="ChooseServicePlan"
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    Padding="{StaticResource FramePaddingLeftRightTop}"
+                    IsVisible="{Binding IsChoosePlanPage}">
+                    <ScrollView
+                        VerticalOptions="FillAndExpand"
+                        HorizontalOptions="FillAndExpand">
+                        <StackLayout
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand"
+                            Orientation="Vertical">
+                            <!--title view-->
+                            <StackLayout
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="Start"
+                                Orientation="Horizontal"
+                                HeightRequest="30"
+                                BackgroundColor="{StaticResource OvaSignupTitleColor}"
+                                Padding="{StaticResource padding}">
+                                <Label
+                                    Text="Choose service plan!"
+                                    HorizontalOptions="CenterAndExpand"/>
+                            </StackLayout>
+                            <!--content area-->
+                            <StackLayout
+                                VerticalOptions="FillAndExpand"
+                                HorizontalOptions="FillAndExpand">
+                                <ListView
+                                    x:Name="lstSubscriptionPlan"
+                                    ItemSelected="lstSubscriptionPlan_onItemSelected"
+                                    RowHeight="150">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="50"/>
+                                                        <RowDefinition Height="100"/>
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <StackLayout
+                                                        Grid.Row="0"
+                                                        Grid.Column="0"
+                                                        VerticalOptions="FillAndExpand"
+                                                        HorizontalOptions="FillAndExpand">
+                                                        <Grid>
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="*"/>
+                                                                <RowDefinition Height="*"/>
+                                                            </Grid.RowDefinitions>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="*" />
+                                                                <ColumnDefinition Width="2*"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Label 
+                                                                Grid.Row="0"
+                                                                Grid.Column="0"
+                                                                Text="{Binding SubscriberPlanName}"
+                                                                HorizontalOptions="StartAndExpand" 
+                                                                VerticalOptions="Center"
+                                                                TextColor="Gray"/>
+                                                            <Label
+                                                                Grid.Row="0"
+                                                                Grid.Column="1"
+                                                                Text=""
+                                                                HorizontalTextAlignment="End"/>
+                                                            <Label
+                                                                Grid.Row="1"
+                                                                Grid.Column="0"
+                                                                Text="{Binding DurationName}"/>
+                                                            <Label
+                                                                Grid.Row="1"
+                                                                Grid.Column="1"
+                                                                Text="{Binding PriceName}"
+                                                                HorizontalTextAlignment="End"/>
+                                                        </Grid>
+                                                    </StackLayout>
+                                                    <StackLayout
+                                                        Grid.Row="1"
+                                                        Grid.Column="0"
+                                                        BindableLayout.ItemsSource="{Binding RES_SUB_PLAN_DETAIL}">
+                                                        <BindableLayout.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <Label Text="{Binding Detail}"/>
+                                                            </DataTemplate>
+                                                        </BindableLayout.ItemTemplate>
+                                                    </StackLayout>
+                                                </Grid>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </StackLayout>
+                        </StackLayout>
+                    </ScrollView>
+                </Frame>
+            </StackLayout>
+
+            <!--Footer area-->
+            <StackLayout
+                    x:Name="FooterLayout"
+                    Orientation="Horizontal"
+                    VerticalOptions="End"
+                    Padding="{StaticResource paddingLeftRightBottom}">
+                <StackLayout
+                        Orientation="Vertical"
+                        VerticalOptions="FillAndExpand" 
+                        HorizontalOptions="FillAndExpand">
+
+                    <!--initial signup page-->
+                    <StackLayout 
+                        Orientation="Horizontal"
+                        IsVisible="{Binding IsSignupPage}">
+                        <Button
+                            x:Name="btnCancel"
+                            Text="Cancel"
+                            HorizontalOptions="FillAndExpand"
+                            BackgroundColor="{StaticResource OvaBackgroundColor}"
+                            Clicked="btnCancel_onClicked"
+                            TextTransform="None"/>
+                        <Button
+                            x:Name="btnSignUp"
+                            Text="Sign up"
+                            HorizontalOptions="FillAndExpand"
+                            BackgroundColor="{StaticResource OvaBackgroundColor}"
+                            Clicked="btnSignUp_onClicked"
+                            TextTransform="None"/>
+                    </StackLayout>
+
+                    <!--activation page-->
+                    <StackLayout 
+                        Orientation="Horizontal"
+                        IsVisible="{Binding IsActivatePage}">
+                        <Button
+                            x:Name="btnResend"
+                            Text="Resend"
+                            HorizontalOptions="FillAndExpand"
+                            BackgroundColor="{StaticResource OvaBackgroundColor}"
+                            Clicked="btnResend_onClicked"
+                            TextTransform="None"/>
+                        <Button
+                            x:Name="btnActivate"
+                            Text="Activate"
+                            HorizontalOptions="FillAndExpand"
+                            BackgroundColor="{StaticResource OvaBackgroundColor}"
+                            Clicked="btnActivate_onClicked"
+                            TextTransform="None"/>
+                    </StackLayout>
+
+                    <!--ask user to use service or not-->
+                    <StackLayout 
+                        Orientation="Horizontal"
+                        IsVisible="{Binding IsOtherServicePage}">
+                        <Button
+                            x:Name="btnUnSubscribeService"
+                            Text="No"
+                            HorizontalOptions="FillAndExpand"
+                            BackgroundColor="{StaticResource OvaBackgroundColor}"
+                            Clicked="btnUnSubscribeService_onClicked"
+                            TextTransform="None"/>
+                        <Button
+                            x:Name="btnSubscribeService"
+                            Text="Yes"
+                            HorizontalOptions="FillAndExpand"
+                            BackgroundColor="{StaticResource OvaBackgroundColor}"
+                            Clicked="btnSubscribeService_onClicked"
+                            TextTransform="None"/>
+                    </StackLayout>
+
+                    <!--choose service type page-->
+                    <StackLayout 
+                        Orientation="Horizontal"
+                        IsVisible="{Binding IsChooseTypePage}">
+                        <Button Text="Cancel"
+                            HorizontalOptions="FillAndExpand"
+                            BackgroundColor="{StaticResource OvaBackgroundColor}"
+                            Clicked="btnCancelSubscribeType_onClicked"
+                            TextTransform="None"/>
+                        <Button Text="Next"
+                            HorizontalOptions="FillAndExpand"
+                            BackgroundColor="{StaticResource OvaBackgroundColor}"
+                            Clicked="btnNextSubscribeType_onClicked"
+                            TextTransform="None"/>
+                    </StackLayout>
+
+                    <!--choose service plan-->
+                    <StackLayout 
+                        Orientation="Horizontal"
+                        IsVisible="{Binding IsChoosePlanPage}">
+                        <Button Text="Back"
+                            HorizontalOptions="FillAndExpand"
+                            BackgroundColor="{StaticResource OvaBackgroundColor}"
+                            Clicked="btnBackSubscriptionPlan_onClicked"
+                            TextTransform="None"/>
+                        <Button Text="Next"
+                            HorizontalOptions="FillAndExpand"
+                            BackgroundColor="{StaticResource OvaBackgroundColor}"
+                            Clicked="btnNextSubscriptionPlan_onClicked"
+                            TextTransform="None"/>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

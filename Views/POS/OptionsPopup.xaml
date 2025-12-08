@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup
+    x:Class="CS.ERP_MOB.Views.POS.OptionsPopup"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:general="clr-namespace:CS.ERP_MOB.General"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    CanBeDismissedByTappingOutsideOfPopup="True"
+    Size="150, Auto">
+
+    <Frame
+        Padding="0"
+        BackgroundColor="White"
+        CornerRadius="8"
+        HasShadow="True">
+        <StackLayout BindableLayout.ItemsSource="{Binding ControlList}" Spacing="0">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate>
+                    <Border
+                        Padding="10,5"
+                        BackgroundColor="{Binding ThemeSettingButton.PropertiesBgColor, Source={Static Member=general:Common.mCommon}}"
+                        StrokeShape="RoundRectangle 0"
+                        StrokeThickness="0">
+
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="onControl_Clicked" />
+                        </Border.GestureRecognizers>
+
+                        <HorizontalStackLayout Spacing="8" VerticalOptions="Center">
+                            <!--  FontAwesome Icon  -->
+                            <Label
+                                FontFamily="FontAwesomeSolid"
+                                FontSize="18"
+                                Text="{Binding btnicon,Converter={StaticResource IconConverter}}"
+                                TextColor="White"
+                                VerticalOptions="Center" />
+
+                            <!--  Text  -->
+                            <Label
+                                FontSize="16"
+                                Text="{Binding text}"
+                                TextColor="White"
+                                VerticalOptions="Center" />
+                        </HorizontalStackLayout>
+                    </Border>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </StackLayout>
+    </Frame>
+</toolkit:Popup>

@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CS.ERP_MOB.Views.Frame.FrmCheckOut">
+  <ContentView.Content>
+        <StackLayout
+            x:Name="RootLayout"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand"
+            Orientation="Vertical">
+
+            <!--content area-->
+            <StackLayout
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand"
+                Padding="{StaticResource paddingLeftRight}">
+                <!--initial checkout page-->
+                <Frame
+                    x:Name="CheckoutLayout"
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    Padding="{StaticResource FramePaddingLeftRightTop}"
+                    IsVisible="{Binding IsCheckoutPage}">
+                    <ScrollView
+                        VerticalOptions="FillAndExpand"
+                        HorizontalOptions="FillAndExpand">
+                        <StackLayout
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand"
+                            Orientation="Vertical">
+                            
+                        </StackLayout>
+                    </ScrollView>
+                </Frame>
+
+                <!--delivery page-->
+                <Frame
+                    x:Name="DeliveryLayout"
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    Padding="{StaticResource FramePaddingLeftRightTop}"
+                    IsVisible="{Binding IsDeliveryPage}">
+                    <ScrollView
+                        VerticalOptions="FillAndExpand"
+                        HorizontalOptions="FillAndExpand">
+                        <StackLayout
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand"
+                            Orientation="Vertical">
+
+                        </StackLayout>
+                    </ScrollView>
+                </Frame>
+
+                <!--shipping page-->
+                <Frame
+                    x:Name="ShippingLayout"
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    Padding="{StaticResource FramePaddingLeftRightTop}"
+                    IsVisible="{Binding IsShippingPage}">
+                    <ScrollView
+                        VerticalOptions="FillAndExpand"
+                        HorizontalOptions="FillAndExpand">
+                        <StackLayout
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand"
+                            Orientation="Vertical">
+
+                        </StackLayout>
+                    </ScrollView>
+                </Frame>
+
+            </StackLayout>
+
+            <!--Footer area-->
+            <StackLayout
+                x:Name="FooterLayout"
+                Orientation="Horizontal"
+                VerticalOptions="End"
+                Padding="{StaticResource paddingLeftRightBottom}">
+                <StackLayout
+                    Orientation="Vertical"
+                    VerticalOptions="FillAndExpand" 
+                    HorizontalOptions="FillAndExpand">
+                    
+                    <!--initial signup page-->
+                    <StackLayout 
+                        Orientation="Horizontal"
+                        IsVisible="{Binding IsCheckoutPage}">
+                        <Button
+                            Text="Cancel"
+                            HorizontalOptions="FillAndExpand"
+                            BackgroundColor="{StaticResource OvaBackgroundColor}"
+                            Clicked="CancelButton_Clicked"
+                            TextTransform="None"/>
+                        <Button Text="Checkout"
+                            HorizontalOptions="FillAndExpand"
+                            BackgroundColor="{StaticResource OvaBackgroundColor}"
+                            Clicked="CheckoutButton_Clicked"
+                            TextTransform="None"/>
+                    </StackLayout>
+
+                    <!--delivery page-->
+                    <StackLayout 
+                        Orientation="Horizontal"
+                        IsVisible="{Binding IsDeliveryPage}">
+                        <Button Text="Back"
+                            HorizontalOptions="FillAndExpand"
+                            BackgroundColor="{StaticResource OvaBackgroundColor}"
+                            Clicked="DeliveryBackButton_Clicked"
+                            TextTransform="None"/>
+                        <Button Text="Next"
+                            HorizontalOptions="FillAndExpand"
+                            BackgroundColor="{StaticResource OvaBackgroundColor}"
+                            Clicked="DeliveryNextButton_Clicked"
+                            TextTransform="None"/>
+                    </StackLayout>
+
+                    <!--shipping page-->
+                    <StackLayout 
+                        Orientation="Horizontal"
+                        IsVisible="{Binding IsShippingPage}">
+                        <Button Text="Back"
+                            HorizontalOptions="FillAndExpand"
+                            BackgroundColor="{StaticResource OvaBackgroundColor}"
+                            Clicked="ShippingBackButton_Clicked"
+                            TextTransform="None"/>
+                        <Button Text="Pay"
+                            HorizontalOptions="FillAndExpand"
+                            BackgroundColor="{StaticResource OvaBackgroundColor}"
+                            Clicked="ShippingPayButton_Clicked"
+                            TextTransform="None"/>
+                    </StackLayout>
+
+                </StackLayout>
+                
+            </StackLayout>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

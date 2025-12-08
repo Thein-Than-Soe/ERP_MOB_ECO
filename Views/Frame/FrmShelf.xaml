@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="CS.ERP_MOB.Views.Frame.FrmShelf"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:card="clr-namespace:CS.ERP_MOB.Views.Frame"
+    xmlns:general="clr-namespace:CS.ERP_MOB.General">
+    <CollectionView
+        Margin="10"
+        BackgroundColor="Transparent"
+        ItemsSource="{Binding ShelfList, Source={x:Static general:Common.mCommon}}"
+        VerticalOptions="FillAndExpand">
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <StackLayout>
+                    <Label Text="{Binding ShelfName_0_255}" />
+                    <CollectionView
+                        Margin="10"
+                        BackgroundColor="Transparent"
+                        ItemsSource="{Binding DAT_SHELF_PRODUCT}"
+                        VerticalOptions="FillAndExpand">
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Orientation="Vertical" Span="2" />
+                        </CollectionView.ItemsLayout>
+
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <card:FrmCardViewStyle1 Name="{Binding StockName_0_255}" Image="{Binding PhotoURL, Converter={StaticResource ImageURLConverter}}">
+                                    <card:FrmCardViewStyle1.Price>
+                                        <MultiBinding Converter="{StaticResource AmountCurrencyConverter}">
+                                            <Binding Path="CurrencyDescription_0_500" />
+                                            <Binding Path="StockRetailPrice" />
+                                        </MultiBinding>
+                                    </card:FrmCardViewStyle1.Price>
+                                </card:FrmCardViewStyle1>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+
+</ContentView>

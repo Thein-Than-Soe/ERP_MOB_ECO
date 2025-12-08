@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="CS.ERP_MOB.Views.Frame.FrmSignIn"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Visual="Material">
+    <ContentView.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+            <Frame
+                Margin="5"
+                Padding="15"
+                CornerRadius="3"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                WidthRequest="300">
+                <StackLayout
+                    HorizontalOptions="FillAndExpand"
+                    Orientation="Vertical"
+                    Spacing="15"
+                    VerticalOptions="Center">
+                    <Label
+                        FontSize="Large"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="Sign in" />
+                    <Entry
+                        x:Name="entUserName"
+                        Placeholder="Username"
+                        TextChanged="entUserName_TextChanged" />
+                    <Entry
+                        x:Name="entPassword"
+                        IsPassword="True"
+                        Placeholder="Password" />
+                    <StackLayout Orientation="Horizontal" Spacing="10">
+                        <StackLayout HorizontalOptions="StartAndExpand" Orientation="Horizontal">
+                            <!--<CheckBox /> <Label Text="Remember me" VerticalOptions="Center"  Padding="-10,0,0,0"></Label>-->
+                            <Grid IsVisible="false">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <CheckBox
+                                    x:Name="chbRememberPassword"
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Margin="0" />
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Margin="30,0,0,0"
+                                    Text="Remember me"
+                                    VerticalOptions="Center" />
+                            </Grid>
+                        </StackLayout>
+                        <Label
+                            HorizontalOptions="End"
+                            Text="Forgot Password?"
+                            TextColor="{StaticResource OvaColor}"
+                            TextDecorations="Underline"
+                            VerticalOptions="Center" />
+                    </StackLayout>
+                    <StackLayout Orientation="Vertical" Spacing="10">
+                        <StackLayout Orientation="Horizontal" Spacing="10">
+                            <Button
+                                x:Name="btnSignUp"
+                                BackgroundColor="{StaticResource OvaBackgroundColor}"
+                                Clicked="btnSignUp_onClicked"
+                                HorizontalOptions="FillAndExpand"
+                                Text="Sign up"
+                                TextTransform="None" />
+                            <Button
+                                x:Name="btnSignIn"
+                                BackgroundColor="{StaticResource OvaBackgroundColor}"
+                                Clicked="btnSignIn_onClicked"
+                                HorizontalOptions="FillAndExpand"
+                                Text="Sign in"
+                                TextTransform="None" />
+                        </StackLayout>
+                        <Button
+                            x:Name="btnSignInFb"
+                            BackgroundColor="Blue"
+                            Clicked="btnSignInFb_onClick"
+                            HorizontalOptions="FillAndExpand"
+                            Text="Sign in with Facebook"
+                            TextTransform="None" />
+                        <Button
+                            x:Name="btnSignInGoogle"
+                            BackgroundColor="Red"
+                            Clicked="btnSignInGoogle_onClick"
+                            HorizontalOptions="FillAndExpand"
+                            Text="Sign in with Google"
+                            TextTransform="None" />
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

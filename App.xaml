@@ -1,0 +1,253 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application
+    x:Class="CS.ERP_MOB.App"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:CS.ERP_MOB.General"
+    xmlns:dg="clr-namespace:Syncfusion.Maui.DataGrid;assembly=Syncfusion.Maui.DataGrid"
+    xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material">
+    <Application.Resources>
+        <ResourceDictionary>
+            <converters:FriendlyDateConverter x:Key="FriendlyDateConverter" />
+            <converters:StatusPostingConverter x:Key="StatusPostingConverter" />
+            <converters:CustomerContactConverter x:Key="CustomerContactConverter" />
+            <converters:AmountCurrencyConverter x:Key="AmountCurrencyConverter" />
+            <converters:StringToBoolConverter x:Key="StringToBoolConverter" />
+            <converters:ImageURLConverter x:Key="ImageURLConverter" />
+            <converters:FontAwesomeUnicodeConverter x:Key="FontAwesomeUnicodeConverter" />
+            <converters:ZeroToVisibilityConverter x:Key="ZeroToVisibilityConverter" />
+            <converters:HighlightColorConverter x:Key="HighlightColorConverter" />
+            <converters:TabColorConverter x:Key="TabColorConverter" />
+            <converters:IconConverter x:Key="IconConverter" />
+
+            <OnPlatform x:Key="FontAwesomeBrands" x:TypeArguments="x:String">
+                <On Platform="Android" Value="FontAwesome5Brands.otf#Regular" />
+                <On Platform="iOS" Value="FontAwesome5Brands-Regular" />
+                <On Platform="UWP" Value="/Assets/FontAwesome5Brands.otf#Font Awesome 5 Brands" />
+            </OnPlatform>
+
+            <OnPlatform x:Key="FontAwesomeSolid" x:TypeArguments="x:String">
+                <On Platform="Android" Value="FontAwesome5Solid.otf#Regular" />
+                <On Platform="iOS" Value="FontAwesome5Free-Solid" />
+                <On Platform="UWP" Value="/Assets/FontAwesome5Solid.otf#Font Awesome 5 Free" />
+            </OnPlatform>
+
+            <OnPlatform x:Key="FontAwesomeRegular" x:TypeArguments="x:String">
+                <On Platform="Android" Value="FontAwesome5Regular.otf#Regular" />
+                <On Platform="iOS" Value="FontAwesome5Free-Regular" />
+                <On Platform="UWP" Value="/Assets/FontAwesome5Regular.otf#Font Awesome 5 Free" />
+            </OnPlatform>
+            <OnPlatform x:Key="FontCheckoutSize" x:TypeArguments="x:Double">
+                <On Platform="iOS">20</On>
+                <On Platform="Android, UWP">20</On>
+            </OnPlatform>
+            <OnPlatform x:Key="StockCartFontSize" x:TypeArguments="x:Double">
+                <On Platform="iOS">12</On>
+                <On Platform="Android, UWP">12</On>
+            </OnPlatform>
+            <OnPlatform x:Key="HomeTitleFontSize" x:TypeArguments="x:Double">
+                <On Platform="iOS">18</On>
+                <On Platform="Android, UWP">18</On>
+            </OnPlatform>
+
+            <OnPlatform x:Key="CornerRadius" x:TypeArguments="x:Double">
+                <On Platform="iOS">3</On>
+                <On Platform="Android, UWP">3</On>
+            </OnPlatform>
+
+            <Thickness x:Key="padding">
+                5,5,5,5
+            </Thickness>
+            <Thickness x:Key="paddingLeftRight">
+                5,0,5,0
+            </Thickness>
+            <Thickness x:Key="paddingLeftRightBottom">
+                5,0,5,5
+            </Thickness>
+            <Thickness x:Key="FramePadding">
+                5,5,5,5
+            </Thickness>
+            <Thickness x:Key="FramePaddingLeftRight">
+                10,0,10,0
+            </Thickness>
+            <Thickness x:Key="FramePaddingLeftRightTop">
+                5,5,5,0
+            </Thickness>
+            <Thickness x:Key="FramePaddingBottom">
+                0,0,0,5
+            </Thickness>
+            <Thickness x:Key="margin">
+                5,5,5,5
+            </Thickness>
+            <Thickness x:Key="OvaListFormHeaderIconPadding">
+                5,0,0,0
+            </Thickness>
+            <Thickness x:Key="paddingMenuGroupHeader">
+                5,0,0,0
+            </Thickness>
+            <Thickness x:Key="paddingMenuGroupCell">
+                15,5,5,5
+            </Thickness>
+            <Thickness x:Key="paddingCardView">
+                5,5,5,5
+            </Thickness>
+            <Thickness x:Key="paddingListItem">
+                10,0,10,0
+            </Thickness>
+            <Thickness x:Key="paddingAllListItem">
+                10
+            </Thickness>
+            <Thickness x:Key="paddingTop">
+                0,5,0,0
+            </Thickness>
+            <Color x:Key="ToolbarItemUnselectedBackground">
+                #006FB9
+            </Color>
+            <Color x:Key="ToolbarItemSelectedBackground">
+                DarkRed
+            </Color>
+            <Color x:Key="ToolbarItemTextColor">
+                white
+            </Color>
+            <Color x:Key="OvaBackgroundColor">
+                #006FB9
+            </Color>
+            <Color x:Key="OvaColor">
+                #006FB9
+            </Color>
+            <Color x:Key="OvaAlertColor">
+                #BBFFBB
+            </Color>
+            <Color x:Key="OvaErrColor">
+                Red
+            </Color>
+            <Color x:Key="OvaDangerColor">
+                Red
+            </Color>
+            <Color x:Key="OvaFrontColor">
+                white
+            </Color>
+            <Color x:Key="OvaTextColor">
+                White
+            </Color>
+            <Color x:Key="OvaSignupTextColor">
+                Gray
+            </Color>
+            <Color x:Key="OvaSignupTitleColor">
+                Gray
+            </Color>
+            <Color x:Key="OvaPopupTitleColor">
+                #cccccc
+            </Color>
+            <Color x:Key="OvaPopupFooterColor">
+                #cccccc
+            </Color>
+            <Color x:Key="OvaListViewBackgroundColor">
+                #cccccc
+            </Color>
+            <Color x:Key="OvaListViewTextColor">
+                #005569
+            </Color>
+            <Color x:Key="OvaListViewStateIconColor">
+                #005569
+            </Color>
+            <Color x:Key="OvaClickableColor">
+                blue
+            </Color>
+            <Color x:Key="OvaLiveChatColor">
+                Red
+            </Color>
+            <Color x:Key="OvaListIconBackgroundColor">
+                White
+            </Color>
+            <Color x:Key="OvaListIconColor">
+                Gray
+            </Color>
+            <Color x:Key="OvaListTitleColor">
+                LightGray
+            </Color>
+            <Color x:Key="OvaListBackgroundColor">
+                LightGray
+            </Color>
+            <Color x:Key="OvaListFooterColor">
+                Gray
+            </Color>
+            <Color x:Key="OvaSetBackgroundColor">
+                LightGray
+            </Color>
+            <Color x:Key="OvaSetTitleBackgroundColor">
+                LightGray
+            </Color>
+            <Color x:Key="OvaSetTitleColor">
+                Gray
+            </Color>
+            <Color x:Key="OvaSetFooterColor">
+                Gray
+            </Color>
+            <Color x:Key="OvaControlBackgroundColor">
+                #006FB9
+            </Color>
+            <Color x:Key="OvaControlColor">
+                White
+            </Color>
+            <Color x:Key="TabStripBackgroundColor">
+                White
+            </Color>
+            <Color x:Key="TabStripBorderColor">
+                Gray
+            </Color>
+            <Color x:Key="TabIndicatorColor">
+                #006FB9
+            </Color>
+            <Color x:Key="TextColorSelected">
+                #006FB9
+            </Color>
+            <Color x:Key="TabTexttColor">
+                Gray
+            </Color>
+            <Color x:Key="OvaSearchInputColor">
+                Gray
+            </Color>
+
+            <Color x:Key="SwipeColor">
+                LightPink
+            </Color>
+
+            <Color x:Key="BadgeViewColor">
+                LightPink
+            </Color>
+
+            <!--  region Colors  -->
+            <Color x:Key="BorderColor">#CCCCCC</Color>
+            <Color x:Key="HeaderBackgroundColor">#E0F6F8</Color>
+            <!--  endregion  -->
+
+            <!--  region sizes  -->
+            <OnIdiom
+                x:Key="HeaderFontSize"
+                x:TypeArguments="x:Double"
+                Phone="12"
+                Tablet="15" />
+            <!--  endregion  -->
+            <!--<dg:PaletteCollection x:Key="BgPalette">
+                <Color>#F2F2F2</Color>
+                <Color>#FFFFFF</Color>
+            </dg:PaletteCollection>-->
+            <Style x:Key="dgStyle" TargetType="dg:SfDataGrid">
+                <Setter Property="RowHeight" Value="40" />
+                <!--<Setter Property="HeaderHeight" Value="50"/>-->
+                <!--<Setter Property="BorderColor" Value="{StaticResource BorderColor}"/>-->
+                <!--<Setter Property="HeaderBackground" Value="{StaticResource HeaderBackgroundColor}"/>-->
+                <!--<Setter Property="HeaderFontSize" Value="{StaticResource HeaderFontSize}"/>-->
+                <!--<Setter Property="RowsBackgroundColorPalette" Value="{StaticResource BgPalette}"/>-->
+            </Style>
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary x:Name="appColors" Source="Resources/Styles/Colors.xaml" />
+                <ResourceDictionary x:Name="appStyles" Source="Resources/Styles/Styles.xaml" />
+
+                <material:StyleResource BasedOn="{x:Reference appStyles}" ColorsOverride="{x:Reference appColors}" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

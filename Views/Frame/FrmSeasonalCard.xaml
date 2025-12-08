@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CS.ERP_MOB.Views.Frame.FrmSeasonalCard"
+             xmlns:xct="http://schemas.microsoft.com/dotnet/2021/maui/communitytoolkit">
+  <ContentView.Content>
+      <StackLayout 
+          VerticalOptions="FillAndExpand"
+          HorizontalOptions="FillAndExpand">
+            <Frame Padding="0" 
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="StartAndExpand"
+                   CornerRadius="3">
+                <StackLayout
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand">
+                    <!--header area-->
+                    <StackLayout
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="StartAndExpand"
+                    HeightRequest="30"
+                    Orientation="Horizontal"
+                    BackgroundColor="{StaticResource OvaPopupTitleColor}"
+                    Padding="{StaticResource padding}">
+                        <Label 
+                            x:Name="LblSubscriberName" 
+                            FontSize="{StaticResource StockCartFontSize}"
+                            LineBreakMode="TailTruncation"
+                            HorizontalOptions="StartAndExpand"
+                            VerticalOptions="Center"/>
+                        <Image 
+                            x:Name="ImgSubscriberIcon"
+                            HorizontalOptions="End"
+                            VerticalOptions="CenterAndExpand"/>
+                    </StackLayout>
+                    <!--content area-->
+                    <StackLayout
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="StartAndExpand">
+                        <Frame
+                            Padding="0"
+                            VerticalOptions="FillAndExpand"
+                            HorizontalOptions="FillAndExpand"
+                            HeightRequest="100">
+                            <Image 
+                            x:Name="ImgStockIcon"
+                            VerticalOptions="FillAndExpand"
+                            HorizontalOptions="FillAndExpand"/>
+                        </Frame>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer 
+                                        Tapped="TgrStockDetail_Tapped"
+                                        NumberOfTapsRequired="1"/>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <!--footer area-->
+                    <StackLayout
+                        Orientation="Vertical"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="StartAndExpand"
+                        HeightRequest="90"
+                        BackgroundColor="{StaticResource OvaPopupFooterColor}"
+                        Padding="{StaticResource padding}">
+                        <StackLayout
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="StartAndExpand">
+                            <Label 
+                            x:Name="LblStockName" 
+                            LineBreakMode="TailTruncation"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="StartAndExpand"/>
+                        </StackLayout>
+                        <StackLayout
+                            Orientation="Vertical"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="StartAndExpand">
+                            <Label 
+                                x:Name="LblNewPrice" 
+                                LineBreakMode="TailTruncation"
+                                HorizontalOptions="CenterAndExpand"
+                                VerticalOptions="CenterAndExpand"
+                                FontSize="{StaticResource StockCartFontSize}"/>
+                            <Label 
+                                x:Name="LblOldPrice" 
+                                LineBreakMode="TailTruncation"
+                                HorizontalOptions="CenterAndExpand"
+                                VerticalOptions="CenterAndExpand"
+                                TextDecorations="Strikethrough"
+                                FontSize="{StaticResource StockCartFontSize}"/>
+                        </StackLayout>
+                        <StackLayout
+                            Orientation="Horizontal"
+                            VerticalOptions="FillAndExpand"
+                            HorizontalOptions="FillAndExpand">
+                            <Frame 
+                                Padding="0"
+                                CornerRadius="3"
+                                HeightRequest="50"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="CenterAndExpand"
+                                BackgroundColor="{StaticResource OvaBackgroundColor}"
+                                
+                                >
+                                <StackLayout
+                                    VerticalOptions="CenterAndExpand"
+                                    HorizontalOptions="CenterAndExpand">
+                                    <Label
+                                        x:Name="LblAddtocart"
+                                        Text="Add to cart"
+                                        LineBreakMode="TailTruncation"
+                                        HorizontalOptions="CenterAndExpand"
+                                        VerticalOptions="CenterAndExpand"
+                                        TextColor="{StaticResource OvaFrontColor}"
+                                        FontSize="{StaticResource StockCartFontSize}"/>
+                                </StackLayout>
+                            </Frame>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer 
+                                        Tapped="TggAddCart_Tapped"
+                                        NumberOfTapsRequired="1"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+  </ContentView.Content>
+</ContentView>

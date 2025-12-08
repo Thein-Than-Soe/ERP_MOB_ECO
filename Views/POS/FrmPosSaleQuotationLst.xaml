@@ -1,0 +1,719 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="CS.ERP_MOB.Views.POS.FrmPosSaleQuotationLst"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:Effects="clr-namespace:RGPopup.Maui.Effects;assembly=RGPopup.Maui"
+    xmlns:dg="clr-namespace:Maui.DataGrid;assembly=Maui.DataGrid"
+    xmlns:ext="clr-namespace:CS.ERP_MOB.Extensions"
+    xmlns:footer="clr-namespace:CS.ERP_MOB.Views.SYS"
+    xmlns:general="clr-namespace:CS.ERP_MOB.General"
+    xmlns:local="clr-namespace:CS.ERP_MOB.Views.POS"
+    xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:touch="http://axemasta.com/schemas/2023/toucheffect">
+    <AbsoluteLayout>
+        <StackLayout
+            AbsoluteLayout.LayoutBounds="0,0,1,1"
+            AbsoluteLayout.LayoutFlags="All"
+            BackgroundColor="{StaticResource Key=OvaListBackgroundColor}"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+            <StackLayout
+                Padding="{StaticResource Key=paddingLeftRight}"
+                BackgroundColor="{StaticResource Key=OvaListTitleColor}"
+                HorizontalOptions="FillAndExpand"
+                Orientation="Horizontal"
+                VerticalOptions="Start">
+
+                <!--  Add Icon  -->
+                <Frame
+                    Margin="5"
+                    Padding="0"
+                    BackgroundColor="{Binding ThemeSettingButton.PropertiesBgColor, Source={Static Member=general:Common.mCommon}}"
+                    CornerRadius="8"
+                    HasShadow="True"
+                    HeightRequest="35"
+                    HorizontalOptions="End"
+                    WidthRequest="35">
+
+                    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <StackLayout
+                            HorizontalOptions="FillAndExpand"
+                            TouchEffect.PressedOpacity="0.4"
+                            TouchEffect.PressedScale="0.9"
+                            VerticalOptions="FillAndExpand">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TgrNew_Tapped" />
+                            </StackLayout.GestureRecognizers>
+                            <Label
+                                Padding="0"
+                                FontFamily="{StaticResource Key=FontAwesomeSolid}"
+                                HorizontalOptions="CenterAndExpand"
+                                Text="&#xf067;"
+                                TextColor="White"
+                                VerticalOptions="CenterAndExpand">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TgrNew_Tapped" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+                <!--  Search Input Box  -->
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Entry
+                        x:Name="entSearch"
+                        Completed="OnEntryCompleted"
+                        HorizontalOptions="FillAndExpand"
+                        Placeholder="Search"
+                        PlaceholderColor="{StaticResource Key=OvaSearchInputColor}"
+                        TextColor="{StaticResource Key=OvaSearchInputColor}" />
+                </StackLayout>
+                <!--  Three Dot Icon  -->
+                <Frame
+                    Margin="0"
+                    Padding="0"
+                    BackgroundColor="{Binding ThemeSettingButton.PropertiesBgColor, Source={Static Member=general:Common.mCommon}}"
+                    CornerRadius="8"
+                    HasShadow="True"
+                    HeightRequest="35"
+                    HorizontalOptions="End"
+                    WidthRequest="35">
+                    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <StackLayout
+                            HorizontalOptions="FillAndExpand"
+                            TouchEffect.PressedOpacity="0.4"
+                            TouchEffect.PressedScale="0.9"
+                            VerticalOptions="FillAndExpand">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnMenuTapped" />
+                            </StackLayout.GestureRecognizers>
+                            <Label
+                                Padding="0"
+                                FontFamily="{StaticResource Key=FontAwesomeSolid}"
+                                HorizontalOptions="CenterAndExpand"
+                                Text="&#xF142;"
+                                TextColor="White"
+                                VerticalOptions="CenterAndExpand" />
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+
+            </StackLayout>
+
+            <!--  Display Data  -->
+            <StackLayout
+                Padding="{StaticResource Key=paddingLeftRight}"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand">
+
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <!--  Card View  -->
+                    <RefreshView
+                        Command="{Binding RefreshCommand}"
+                        IsRefreshing="{Binding IsRefreshing}"
+                        IsVisible="{Binding IsCardView}">
+
+                        <CollectionView
+                            x:Name="collectionView"
+                            BackgroundColor="{Binding ThemeSettingContent.PropertiesBgColor, Source={Static Member=general:Common.mCommon}}"
+                            ItemsSource="{Binding SalesQuotationList}"
+                            SelectionMode="None">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <SwipeView>
+                                        <SwipeView.LeftItems>
+                                            <SwipeItems>
+                                                <SwipeItem
+                                                    BackgroundColor="{Binding ThemeSettingSwipe.PropertiesBgColor, Source={Static Member=general:Common.mCommon}}"
+                                                    Invoked="OnEditSwipeInvoked"
+                                                    Text="{Binding Source={ext:LanguageExtension Key=POS.Common.btnName.Edit}, Path=Value}" />
+                                            </SwipeItems>
+                                        </SwipeView.LeftItems>
+
+                                        <SwipeView.RightItems>
+                                            <SwipeItems>
+                                                <SwipeItem
+                                                    BackgroundColor="{Binding ThemeSettingSwipe.PropertiesBgColor, Source={Static Member=general:Common.mCommon}}"
+                                                    Command="{Binding BindingContext.DeleteItemCommand, Source={RelativeSource AncestorType={Type local:FrmPosSaleQuotationLst}}}"
+                                                    CommandParameter="{Binding .}"
+                                                    Text="{Binding Source={ext:LanguageExtension Key=POS.Common.btnName.Delete}, Path=Value}" />
+                                            </SwipeItems>
+                                        </SwipeView.RightItems>
+
+                                        <StackLayout Padding="{StaticResource Key=paddingTop}">
+                                            <footer:OvaListFormCartView
+                                                CodeLabel="{Binding QuotationDate, Converter={StaticResource FriendlyDateConverter}}"
+                                                HeaderLabel="{Binding QuotationCode_0_50}"
+                                                IsChecked="{Binding IsChecked}"
+                                                ItemAsk="{Binding Ask}"
+                                                ItemDoubleTapped="OnItemDoubleTapped"
+                                                ItemSingleTapped="OnItemSingleTapped"
+                                                NameLabel="{Binding SalePersonName_0_255}">
+                                                <footer:OvaListFormCartView.RemarkLabel>
+                                                    <MultiBinding Converter="{StaticResource AmountCurrencyConverter}">
+                                                        <Binding Path="CurrencyDescription_0_500" />
+                                                        <Binding Path="GrandTotal" />
+                                                    </MultiBinding>
+                                                </footer:OvaListFormCartView.RemarkLabel>
+
+                                                <footer:OvaListFormCartView.DescriptionLabel>
+                                                    <MultiBinding Converter="{StaticResource CustomerContactConverter}">
+                                                        <Binding Path="CustomerName_0_255" />
+                                                        <Binding Path="ContactName_0_255" />
+                                                    </MultiBinding>
+                                                </footer:OvaListFormCartView.DescriptionLabel>
+                                                <footer:OvaListFormCartView.FooterLabel>
+                                                    <MultiBinding Converter="{StaticResource StatusPostingConverter}">
+                                                        <Binding Path="StatusName_0_255" />
+                                                        <Binding Path="PostingStatusName_0_255" />
+                                                    </MultiBinding>
+                                                </footer:OvaListFormCartView.FooterLabel>
+                                            </footer:OvaListFormCartView>
+                                        </StackLayout>
+                                    </SwipeView>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+
+                    </RefreshView>
+                    <!--  List View  -->
+                    <StackLayout
+                        HorizontalOptions="FillAndExpand"
+                        IsVisible="{Binding IsListView}"
+                        VerticalOptions="FillAndExpand">
+                        <Frame
+                            Padding="0"
+                            CornerRadius="3"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand">
+                            <ListView
+                                x:Name="lstView"
+                                BackgroundColor="{Binding ThemeSettingContent.PropertiesBgColor, Source={Static Member=general:Common.mCommon}}"
+                                HorizontalOptions="FillAndExpand"
+                                IsPullToRefreshEnabled="True"
+                                IsRefreshing="{Binding IsRefreshing}"
+                                ItemsSource="{Binding SalesQuotationList}"
+                                RefreshCommand="{Binding RefreshCommand}"
+                                RowHeight="70"
+                                VerticalOptions="FillAndExpand">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <SwipeView>
+                                                <SwipeView.LeftItems>
+                                                    <SwipeItems>
+                                                        <SwipeItem
+                                                            BackgroundColor="{Binding ThemeSettingSwipe.PropertiesBgColor, Source={Static Member=general:Common.mCommon}}"
+                                                            Invoked="OnEditSwipeInvoked"
+                                                            Text="{Binding Source={ext:LanguageExtension Key=POS.Common.btnName.Edit}, Path=Value}" />
+                                                    </SwipeItems>
+                                                </SwipeView.LeftItems>
+
+                                                <SwipeView.RightItems>
+                                                    <SwipeItems>
+                                                        <SwipeItem
+                                                            BackgroundColor="{Binding ThemeSettingSwipe.PropertiesBgColor, Source={Static Member=general:Common.mCommon}}"
+                                                            Command="{Binding BindingContext.DeleteItemCommand, Source={RelativeSource AncestorType={Type local:FrmPosSaleQuotationLst}}}"
+                                                            CommandParameter="{Binding .}"
+                                                            Text="{Binding Source={ext:LanguageExtension Key=POS.Common.btnName.Delete}, Path=Value}" />
+                                                    </SwipeItems>
+                                                </SwipeView.RightItems>
+
+                                                <StackLayout
+                                                    Padding="10,10,10,10"
+                                                    BackgroundColor="{Binding ThemeSettingContent.PropertiesBgColor, Source={Static Member=general:Common.mCommon}}"
+                                                    Orientation="Vertical">
+                                                    <StackLayout.GestureRecognizers>
+                                                        <!--  double tap  -->
+                                                        <TapGestureRecognizer
+                                                            CommandParameter="{Binding .}"
+                                                            NumberOfTapsRequired="2"
+                                                            Tapped="OnListDoubleTap" />
+                                                        <!--  optional single tap  -->
+                                                        <TapGestureRecognizer
+                                                            CommandParameter="{Binding .}"
+                                                            NumberOfTapsRequired="1"
+                                                            Tapped="OnListSingleTap" />
+                                                    </StackLayout.GestureRecognizers>
+                                                    <Grid>
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="*" />
+                                                            <RowDefinition Height="*" />
+                                                            <RowDefinition Height="*" />
+                                                        </Grid.RowDefinitions>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="30" />
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="*" />
+                                                        </Grid.ColumnDefinitions>
+
+                                                        <CheckBox
+                                                            x:Name="chkListSelectItem"
+                                                            Grid.Row="0"
+                                                            Grid.Column="0"
+                                                            CheckedChanged="chkSelectItem_CheckedChanged"
+                                                            HeightRequest="20"
+                                                            HorizontalOptions="Start"
+                                                            IsChecked="{Binding IsChecked, Mode=TwoWay, Converter={StaticResource StringToBoolConverter}}"
+                                                            WidthRequest="20"
+                                                            Color="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" />
+                                                        <Label
+                                                            Grid.Row="2"
+                                                            Grid.Column="1"
+                                                            FontFamily="{Binding ThemeSettingContent.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                                                            FontSize="{Binding ThemeSettingContent.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
+                                                            HorizontalOptions="Start"
+                                                            LineBreakMode="TailTruncation"
+                                                            Text="{Binding QuotationDate, Converter={StaticResource FriendlyDateConverter}}"
+                                                            TextColor="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" />
+                                                        <Label
+                                                            Grid.Row="2"
+                                                            Grid.Column="2"
+                                                            FontFamily="{Binding ThemeSettingContent.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                                                            FontSize="{Binding ThemeSettingContent.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
+                                                            HorizontalOptions="End"
+                                                            LineBreakMode="TailTruncation"
+                                                            Text="{Binding SalePersonName_0_255}"
+                                                            TextColor="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" />
+                                                        <Label
+                                                            Grid.Row="1"
+                                                            Grid.Column="1"
+                                                            FontFamily="{Binding ThemeSettingContent.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                                                            FontSize="{Binding ThemeSettingContent.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
+                                                            HorizontalOptions="Start"
+                                                            TextColor="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}">
+                                                            <MultiBinding Converter="{StaticResource CustomerContactConverter}">
+                                                                <Binding Path="CustomerName_0_255" />
+                                                                <Binding Path="ContactName_0_255" />
+                                                            </MultiBinding>
+                                                        </Label>
+                                                        <Label
+                                                            Grid.Row="0"
+                                                            Grid.Column="1"
+                                                            FontFamily="{Binding ThemeSettingContent.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                                                            FontSize="{Binding ThemeSettingContent.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
+                                                            HorizontalTextAlignment="Start"
+                                                            Text="{Binding QuotationCode_0_50}"
+                                                            TextColor="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" />
+
+                                                        <Label
+                                                            Grid.Row="0"
+                                                            Grid.Column="2"
+                                                            FontFamily="{Binding ThemeSettingContent.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                                                            FontSize="{Binding ThemeSettingContent.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
+                                                            HorizontalTextAlignment="End"
+                                                            TextColor="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}">
+                                                            <MultiBinding Converter="{StaticResource StatusPostingConverter}">
+                                                                <Binding Path="StatusName_0_255" />
+                                                                <Binding Path="PostingStatusName_0_255" />
+                                                            </MultiBinding>
+                                                        </Label>
+                                                        <Label
+                                                            Grid.Row="1"
+                                                            Grid.Column="2"
+                                                            FontFamily="{Binding ThemeSettingContent.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                                                            FontSize="{Binding ThemeSettingContent.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
+                                                            HorizontalOptions="End"
+                                                            TextColor="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}">
+                                                            <MultiBinding Converter="{StaticResource AmountCurrencyConverter}">
+                                                                <Binding Path="CurrencyDescription_0_500" />
+                                                                <Binding Path="GrandTotal" />
+                                                            </MultiBinding>
+                                                        </Label>
+                                                    </Grid>
+                                                </StackLayout>
+                                            </SwipeView>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </Frame>
+                    </StackLayout>
+                    <!--  Grid View  -->
+                    <RefreshView
+                        Command="{Binding RefreshCommand}"
+                        IsRefreshing="{Binding IsRefreshing}"
+                        IsVisible="{Binding IsGridView}">
+
+                        <ContentView>
+                            <dg:DataGrid
+                                x:Name="MyGrid"
+                                BackgroundColor="{Binding ThemeSettingContent.PropertiesBgColor, Source={Static Member=general:Common.mCommon}}"
+                                BorderColor="LightGray"
+                                BorderThickness="3"
+                                ItemsSource="{Binding SalesQuotationList}"
+                                SelectionEnabled="True"
+                                SelectionMode="Single"
+                                SortingEnabled="True"
+                                VerticalOptions="FillAndExpand">
+
+                                <dg:DataGrid.Columns>
+                                    <dg:DataGridColumn
+                                        x:Name="AcCheck"
+                                        Title=""
+                                        Width="30">
+                                        <dg:DataGridColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <CheckBox
+                                                    x:Name="chkGridSelectItem"
+                                                    CheckedChanged="chkSelectItem_CheckedChanged"
+                                                    HeightRequest="16"
+                                                    HorizontalOptions="Center"
+                                                    InputTransparent="False"
+                                                    IsChecked="{Binding IsChecked, Mode=TwoWay, Converter={StaticResource StringToBoolConverter}}"
+                                                    WidthRequest="16"
+                                                    Color="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" />
+                                            </DataTemplate>
+                                        </dg:DataGridColumn.CellTemplate>
+                                    </dg:DataGridColumn>
+                                    <dg:DataGridColumn Title="Code" Width="70">
+                                        <dg:DataGridColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Grid BackgroundColor="Transparent" InputTransparent="False">
+                                                    <Grid.GestureRecognizers>
+                                                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnGridSingleTap" />
+                                                        <TapGestureRecognizer NumberOfTapsRequired="2" Tapped="OnGridDoubleTap" />
+                                                    </Grid.GestureRecognizers>
+
+                                                    <Label
+                                                        FontFamily="{Binding ThemeSettingContent.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                                                        FontSize="{Binding ThemeSettingContent.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
+                                                        HorizontalOptions="Start"
+                                                        Text="{Binding QuotationCode_0_50}"
+                                                        TextColor="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}"
+                                                        VerticalOptions="Center" />
+                                                </Grid>
+                                            </DataTemplate>
+                                        </dg:DataGridColumn.CellTemplate>
+                                    </dg:DataGridColumn>
+
+                                    <dg:DataGridColumn
+                                        x:Name="AcDate"
+                                        Title="Date"
+                                        Width="100">
+                                        <dg:DataGridColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Grid Padding="0" InputTransparent="False">
+                                                    <Grid.GestureRecognizers>
+                                                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnGridSingleTap" />
+                                                        <TapGestureRecognizer NumberOfTapsRequired="2" Tapped="OnGridDoubleTap" />
+                                                    </Grid.GestureRecognizers>
+
+                                                    <Label
+                                                        FontFamily="{Binding ThemeSettingContent.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                                                        FontSize="{Binding ThemeSettingContent.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
+                                                        HorizontalOptions="Start"
+                                                        Text="{Binding QuotationDate, Converter={StaticResource FriendlyDateConverter}}"
+                                                        TextColor="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" />
+                                                </Grid>
+                                            </DataTemplate>
+                                        </dg:DataGridColumn.CellTemplate>
+                                    </dg:DataGridColumn>
+                                    <dg:DataGridColumn
+                                        x:Name="AcCustomer"
+                                        Title="Customer"
+                                        Width="70"
+                                        HorizontalContentAlignment="Start">
+                                        <dg:DataGridColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Grid InputTransparent="False">
+                                                    <Grid.GestureRecognizers>
+                                                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnGridSingleTap" />
+                                                        <TapGestureRecognizer NumberOfTapsRequired="2" Tapped="OnGridDoubleTap" />
+                                                    </Grid.GestureRecognizers>
+
+                                                    <Label
+                                                        FontFamily="{Binding ThemeSettingContent.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                                                        FontSize="{Binding ThemeSettingContent.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
+                                                        HorizontalOptions="Start"
+                                                        Text="{Binding CustomerName_0_255}"
+                                                        TextColor="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}"
+                                                        VerticalOptions="Center" />
+                                                </Grid>
+                                            </DataTemplate>
+                                        </dg:DataGridColumn.CellTemplate>
+                                    </dg:DataGridColumn>
+                                    <dg:DataGridColumn
+                                        x:Name="AcStatus"
+                                        Title="Status"
+                                        Width="60"
+                                        HorizontalContentAlignment="Start">
+                                        <dg:DataGridColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Grid InputTransparent="False">
+                                                    <Grid.GestureRecognizers>
+                                                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnGridSingleTap" />
+                                                        <TapGestureRecognizer NumberOfTapsRequired="2" Tapped="OnGridDoubleTap" />
+                                                    </Grid.GestureRecognizers>
+
+                                                    <Label
+                                                        FontFamily="{Binding ThemeSettingContent.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                                                        FontSize="{Binding ThemeSettingContent.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
+                                                        HorizontalOptions="Start"
+                                                        Text="{Binding StatusName_0_255}"
+                                                        TextColor="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}"
+                                                        VerticalOptions="Center" />
+                                                </Grid>
+                                            </DataTemplate>
+                                        </dg:DataGridColumn.CellTemplate>
+                                    </dg:DataGridColumn>
+                                    <dg:DataGridColumn
+                                        x:Name="AcTotal"
+                                        Title="Grand Total"
+                                        Width="*">
+                                        <dg:DataGridColumn.HeaderLabelStyle>
+                                            <Style TargetType="Label">
+                                                <Setter Property="HorizontalTextAlignment" Value="End" />
+                                                <Setter Property="VerticalTextAlignment" Value="Center" />
+                                                <Setter Property="Padding" Value="0,0,3,0" />
+                                                <Setter Property="FontAttributes" Value="Bold" />
+                                            </Style>
+                                        </dg:DataGridColumn.HeaderLabelStyle>
+                                        <dg:DataGridColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Grid>
+                                                    <Grid.GestureRecognizers>
+                                                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnGridSingleTap" />
+                                                        <TapGestureRecognizer NumberOfTapsRequired="2" Tapped="OnGridDoubleTap" />
+                                                    </Grid.GestureRecognizers>
+                                                    <Label
+                                                        FontFamily="{Binding ThemeSettingContent.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                                                        FontSize="{Binding ThemeSettingContent.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
+                                                        HorizontalTextAlignment="End"
+                                                        TextColor="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}">
+                                                        <Label.Text>
+                                                            <MultiBinding Converter="{StaticResource AmountCurrencyConverter}">
+                                                                <Binding Path="CurrencyDescription_0_500" />
+                                                                <Binding Path="GrandTotal" />
+                                                            </MultiBinding>
+                                                        </Label.Text>
+                                                    </Label>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </dg:DataGridColumn.CellTemplate>
+                                    </dg:DataGridColumn>
+                                </dg:DataGrid.Columns>
+
+                            </dg:DataGrid>
+                        </ContentView>
+                    </RefreshView>
+
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+
+        <!--  Invisible overlay (captures outside taps). Initially hidden.  -->
+        <BoxView
+            x:Name="Overlay"
+            AbsoluteLayout.LayoutBounds="0,0,1,1"
+            AbsoluteLayout.LayoutFlags="All"
+            BackgroundColor="Transparent"
+            IsVisible="False">
+            <BoxView.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnOverlayTapped" />
+            </BoxView.GestureRecognizers>
+        </BoxView>
+        <!--  Hidden menu  -->
+        <Frame
+            x:Name="MenuBox"
+            Padding="5"
+            AbsoluteLayout.LayoutBounds="1,0.09"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            BackgroundColor="White"
+            CornerRadius="8"
+            HorizontalOptions="End"
+            IsVisible="False"
+            VerticalOptions="Start">
+            <VerticalStackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <CheckBox
+                        x:Name="chkSelectAll"
+                        CheckedChanged="OnCheckAllCheckChanged"
+                        HeightRequest="16"
+                        HorizontalOptions="Start"
+                        WidthRequest="16" />
+                    <Label
+                        Margin="3"
+                        Text="{Binding Source={ext:LanguageExtension Key=POS.Common.lbl.CheckAll}, Path=Value}"
+                        TextColor="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" />
+                </StackLayout>
+                <StackLayout
+                    Orientation="Horizontal"
+                    TouchEffect.PressedOpacity="0.4"
+                    TouchEffect.PressedScale="0.9">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding MoreSearchCommand}" />
+                    </StackLayout.GestureRecognizers>
+                    <Label
+                        Margin="0,3"
+                        Padding="0"
+                        FontFamily="{StaticResource Key=FontAwesomeSolid}"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="&#xF002;"
+                        VerticalOptions="CenterAndExpand" />
+                    <Label
+                        Margin="3"
+                        Text="{Binding Source={ext:LanguageExtension Key=POS.Common.lbl.SearchMore}, Path=Value}"
+                        TextColor="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" />
+                </StackLayout>
+                <!--  Separator line  -->
+                <BoxView
+                    Margin="0"
+                    HeightRequest="1"
+                    HorizontalOptions="FillAndExpand"
+                    Color="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" />
+                <Label
+                    Margin="3"
+                    Text="{Binding Source={ext:LanguageExtension Key=POS.Common.lbl.SortedBy}, Path=Value}"
+                    TextColor="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" />
+                <StackLayout
+                    x:Name="LabelsContainer"
+                    BindableLayout.ItemsSource="{Binding sortingList}"
+                    Orientation="Vertical">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Grid ColumnDefinitions="15,*">
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer CommandParameter="{Binding .}" Tapped="Sorting_Tapped" />
+                                </Grid.GestureRecognizers>
+                                <Label
+                                    Grid.Column="0"
+                                    Margin="0,3"
+                                    FontFamily="FontAwesomeSolid"
+                                    IsVisible="{Binding ShowIcon}"
+                                    Text="&#xf00c;"
+                                    TextColor="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" />
+                                <Label
+                                    Grid.Column="1"
+                                    Margin="0,3"
+                                    Text="{Binding label}"
+                                    TextColor="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" />
+                            </Grid>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+                <!--  Separator line  -->
+                <BoxView
+                    Margin="15,0,0,0"
+                    HeightRequest="1"
+                    HorizontalOptions="FillAndExpand"
+                    Color="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" />
+                <Grid
+                    ColumnDefinitions="15,*"
+                    TouchEffect.PressedOpacity="0.4"
+                    TouchEffect.PressedScale="0.9">
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Ascending_Tapped" />
+                    </Grid.GestureRecognizers>
+                    <Label
+                        Grid.Column="0"
+                        Margin="0,3"
+                        FontFamily="FontAwesomeSolid"
+                        IsVisible="{Binding IsAscending}"
+                        Text="&#xf00c;"
+                        TextColor="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" />
+                    <Label
+                        Grid.Column="1"
+                        Margin="0,3"
+                        Text="{Binding Source={ext:LanguageExtension Key=POS.Common.lbl.Ascending}, Path=Value}"
+                        TextColor="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" />
+                </Grid>
+                <Grid
+                    Margin="0,2"
+                    ColumnDefinitions="15,*"
+                    TouchEffect.PressedOpacity="0.4"
+                    TouchEffect.PressedScale="0.9">
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Descending_Tapped" />
+                    </Grid.GestureRecognizers>
+                    <Label
+                        Grid.Column="0"
+                        Margin="0"
+                        FontFamily="FontAwesomeSolid"
+                        IsVisible="{Binding IsDescending}"
+                        Text="&#xf00c;"
+                        TextColor="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" />
+                    <Label
+                        Grid.Column="1"
+                        Margin="0"
+                        Text="{Binding Source={ext:LanguageExtension Key=POS.Common.lbl.Descending}, Path=Value}"
+                        TextColor="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" />
+                </Grid>
+                <!--  Separator line  -->
+                <BoxView
+                    Margin="0"
+                    HeightRequest="1"
+                    HorizontalOptions="FillAndExpand"
+                    Color="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" />
+                <Label
+                    Margin="3"
+                    Text="{Binding Source={ext:LanguageExtension Key=POS.Common.lbl.View}, Path=Value}"
+                    TextColor="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" />
+                <Grid
+                    ColumnDefinitions="15,*"
+                    TouchEffect.PressedOpacity="0.4"
+                    TouchEffect.PressedScale="0.9">
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding CardViewCommand}" />
+                    </Grid.GestureRecognizers>
+                    <Label
+                        Grid.Column="0"
+                        Margin="0,3"
+                        FontFamily="FontAwesomeSolid"
+                        IsVisible="{Binding IsCardView}"
+                        Text="&#xf00c;"
+                        TextColor="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" />
+                    <Label
+                        Grid.Column="1"
+                        Margin="0,3"
+                        Text="{Binding Source={ext:LanguageExtension Key=POS.Common.lbl.Card}, Path=Value}"
+                        TextColor="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" />
+                </Grid>
+                <Grid
+                    Margin="0,2"
+                    ColumnDefinitions="15,*"
+                    TouchEffect.PressedOpacity="0.4"
+                    TouchEffect.PressedScale="0.9">
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ListViewCommand}" />
+                    </Grid.GestureRecognizers>
+                    <Label
+                        Grid.Column="0"
+                        Margin="0"
+                        FontFamily="FontAwesomeSolid"
+                        IsVisible="{Binding IsListView}"
+                        Text="&#xf00c;"
+                        TextColor="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" />
+                    <Label
+                        Grid.Column="1"
+                        Margin="0"
+                        Text="{Binding Source={ext:LanguageExtension Key=POS.Common.lbl.List}, Path=Value}"
+                        TextColor="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" />
+                </Grid>
+                <Grid
+                    Margin="0,2"
+                    ColumnDefinitions="15,*"
+                    TouchEffect.PressedOpacity="0.4"
+                    TouchEffect.PressedScale="0.9">
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GridViewCommand}" />
+                    </Grid.GestureRecognizers>
+                    <Label
+                        Grid.Column="0"
+                        Margin="0"
+                        FontFamily="FontAwesomeSolid"
+                        IsVisible="{Binding IsGridView}"
+                        Text="&#xf00c;"
+                        TextColor="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" />
+                    <Label
+                        Grid.Column="1"
+                        Margin="0"
+                        Text="{Binding Source={ext:LanguageExtension Key=POS.Common.lbl.Grid}, Path=Value}"
+                        TextColor="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" />
+                </Grid>
+            </VerticalStackLayout>
+        </Frame>
+    </AbsoluteLayout>
+</ContentView>

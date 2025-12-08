@@ -1,0 +1,675 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dg="clr-namespace:Syncfusion.Maui.DataGrid;assembly=Syncfusion.Maui.DataGrid"
+    xmlns:local="clr-namespace:CS.ERP_MOB.Views.POS"
+    xmlns:footer="clr-namespace:CS.ERP_MOB.Views.SYS"
+    xmlns:xct="http://schemas.microsoft.com/dotnet/2021/maui/communitytoolkit"
+    x:Class="CS.ERP_MOB.Views.POS.FrmPosPurchaseReturnLst">
+    <ContentView.Content>
+        <StackLayout
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"
+            BackgroundColor="{StaticResource OvaListBackgroundColor}">
+            <!--Header area-->
+            <StackLayout
+                VerticalOptions="Start"
+                HorizontalOptions="FillAndExpand"
+                Orientation="Vertical"
+                BackgroundColor="{StaticResource OvaListTitleColor}"
+                Padding="{StaticResource paddingLeftRight}">
+                <StackLayout
+                    Orientation="Horizontal"
+                    HorizontalOptions="FillAndExpand"
+                    HeightRequest="35"
+                    Padding="{StaticResource paddingTop}">
+
+                    <!--title first two icon-->
+                    <Frame
+                        Padding="{StaticResource FramePaddingLeftRight}"
+                        HorizontalOptions="Start"
+                        VerticalOptions="CenterAndExpand"
+                        CornerRadius="3">
+                        <StackLayout
+                            Orientation="Vertical"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand">
+                            <Grid
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <!--view switch icons-->
+                                <!--route entry form icon-->
+                                <StackLayout
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Orientation="Vertical"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions  ="FillAndExpand"
+                                    
+                                    >
+                                    <Label
+                                        VerticalOptions ="CenterAndExpand"
+                                        HorizontalOptions="CenterAndExpand"
+                                        Text="&#xf0fe;"
+                                        FontSize="35"
+                                        FontFamily="{StaticResource FontAwesomeSolid}"
+                                        TextColor="{StaticResource OvaListIconColor}"
+
+                                        
+                                        >
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer  Tapped="TgrNew_Tapped"
+                                        NumberOfTapsRequired="1" />
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Tapped="TgrNew_Tapped"
+                                            NumberOfTapsRequired="1" />
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+
+
+
+                            </Grid>
+                        </StackLayout>
+                    </Frame>
+
+                    <!--search input box-->
+                    <StackLayout
+                        VerticalOptions="FillAndExpand"
+                        HorizontalOptions="FillAndExpand">
+                        <Entry
+                            x:Name="entSearch"
+                            Placeholder="Search" 
+                            HorizontalOptions="FillAndExpand"
+                            PlaceholderColor="{StaticResource OvaSearchInputColor}"
+                            TextColor="{StaticResource OvaSearchInputColor}"
+                            TextChanged="entSearch_TextChanged"/>
+                    </StackLayout>
+
+                    <!--last two icon-->
+                    <Frame
+                        Padding="{StaticResource FramePaddingLeftRight}"
+                        HorizontalOptions="End"
+                        VerticalOptions="FillAndExpand"
+                        CornerRadius="3">
+                        <StackLayout
+                            Orientation="Vertical"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand">
+                            <Grid
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="2"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!--refersh icon-->
+                                <StackLayout
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="1"
+                                    VerticalOptions="FillAndExpand"
+                                    HorizontalOptions="FillAndExpand"
+                                    
+                                    >
+                                    <Label
+                                        VerticalOptions  ="CenterAndExpand"
+                                        HorizontalOptions="CenterAndExpand"
+                                        Text="&#xf2f1;"
+                                        FontFamily="{StaticResource FontAwesomeSolid}"
+                                        TextColor="{StaticResource OvaListIconColor}"
+                                        Padding="{StaticResource OvaListFormHeaderIconPadding}"
+                                        
+                                        >
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="TgrRefresh_Tapped"/>
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TgrRefresh_Tapped"/>
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+
+                                <BoxView
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    VerticalOptions="FillAndExpand"
+                                    BackgroundColor="{StaticResource OvaListIconColor}"  />
+
+                                <StackLayout
+                                    Grid.Row="0"
+                                    Grid.Column="2"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions  ="FillAndExpand">
+                                    <StackLayout
+                                        IsVisible="{Binding IsCardView}"
+                                        VerticalOptions="FillAndExpand"
+                                        HorizontalOptions="FillAndExpand"
+                                        
+                                        >
+                                        <Label
+                                            VerticalOptions  ="CenterAndExpand"
+                                            HorizontalOptions="CenterAndExpand"
+                                            Text="&#xf550;"
+                                            FontFamily="{StaticResource FontAwesomeSolid}"
+                                            TextColor="{StaticResource OvaListIconColor}"
+                                            Padding="{StaticResource OvaListFormHeaderIconPadding}"
+                                            
+                                            >
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding ListViewCommand}"/>
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding ListViewCommand}"/>
+                                        </StackLayout.GestureRecognizers>
+                                    </StackLayout>
+                                    <StackLayout
+                                        IsVisible="{Binding IsListView}"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="FillAndExpand"
+                                        
+                                        >
+                                        <Label
+                                            VerticalOptions  ="CenterAndExpand"
+                                            HorizontalOptions="CenterAndExpand"
+                                            Text="&#xf03a;"
+                                            FontFamily="{StaticResource FontAwesomeSolid}"
+                                            TextColor="{StaticResource OvaListIconColor}"
+                                            Padding="{StaticResource OvaListFormHeaderIconPadding}"
+                                            
+                                            >
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding GridViewCommand}"/>
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding GridViewCommand}"/>
+                                        </StackLayout.GestureRecognizers>
+                                    </StackLayout>
+                                    <StackLayout
+                                        IsVisible="{Binding IsGridView}"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="FillAndExpand"
+                                        
+                                        >
+                                        <Label
+                                            VerticalOptions  ="CenterAndExpand"
+                                            HorizontalOptions="CenterAndExpand"
+                                            Text="&#xf009;"
+                                            FontFamily="{StaticResource FontAwesomeSolid}"
+                                            TextColor="{StaticResource OvaListIconColor}"
+                                            Padding="{StaticResource OvaListFormHeaderIconPadding}"
+                                            
+                                            >
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding CardViewCommand}"/>
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding CardViewCommand}"/>
+                                        </StackLayout.GestureRecognizers>
+                                    </StackLayout>
+                                </StackLayout>
+
+
+
+                            </Grid>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+
+            </StackLayout>
+
+            <StackLayout
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"
+                Padding="{StaticResource paddingLeftRight}">
+
+                <xct:TabView
+                    TabStripPlacement="Top"
+                    TabStripBorderColor="{StaticResource TabStripBorderColor}"
+                    TabStripBackgroundColor="{StaticResource TabStripBackgroundColor}"
+                    TabIndicatorColor="{StaticResource TabStripBackgroundColor}"
+                    VerticalOptions="FillAndExpand">
+
+                    <!--active tab-->
+                    <xct:TabViewItem
+                       x:Name="TabActive"
+                        TextColor="{StaticResource TabTexttColor}"
+                        TextColorSelected="{StaticResource TextColorSelected}"
+                        FontSize="12">
+                        <StackLayout
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand">
+                            <!--Card view-->
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <RefreshView
+                                    IsVisible="{Binding IsCardView}"
+                                    VerticalOptions="FillAndExpand"
+                                    IsRefreshing="{Binding IsRefreshing}"
+                                    Command="{Binding RefreshCommand}">
+                                    <ScrollView
+                                        VerticalOptions="FillAndExpand">
+
+                                        <FlexLayout
+                                            BindableLayout.ItemsSource="{Binding ReturnActiveList}"
+                                            Direction="Row" 
+                                            JustifyContent="SpaceEvenly" 
+                                            VerticalOptions="Start" 
+                                            HorizontalOptions="FillAndExpand"
+                                            Wrap="Wrap">
+
+                                            <BindableLayout.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackLayout
+                                                        Padding="{x:StaticResource paddingTop}">
+                                                        <footer:OvaListFormCartView
+                                                        ItemAsk="{Binding Ask}"
+                                                        CodeLabel="{Binding ReturnDate}"
+                                                        NameLabel="{Binding ReturnCode}"
+                                                        DescriptionLabel="{Binding ParentCode}"
+                                                        RemarkLabel="{Binding GrandTotal}"
+                                                              DesLabel="{Binding SupplierName}"/>
+                                                    </StackLayout>
+                                                </DataTemplate>
+                                            </BindableLayout.ItemTemplate>
+                                        </FlexLayout>
+                                    </ScrollView>
+                                </RefreshView>
+                            </Grid>
+
+                            <!--list view-->
+                            <StackLayout
+                                IsVisible="{Binding IsListView}"
+                                VerticalOptions="FillAndExpand">
+                                <Frame
+                                    VerticalOptions="FillAndExpand"
+                                    CornerRadius="3"
+                                    Padding="0">
+                                    <ListView
+                                        x:Name="lstView"
+                                        ItemsSource="{Binding ReturnActiveList}"
+                                        RowHeight="70"
+                                        ItemSelected="lstView_ItemSelected"
+                                        IsPullToRefreshEnabled="true"
+                                        IsRefreshing="{Binding IsRefreshing}"
+                                        RefreshCommand="{Binding RefreshCommand}">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <ViewCell>
+                                                    <StackLayout
+                                                        Orientation="Vertical"
+                                                        Padding="5,5,5,5">
+                                                        <Grid>
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="*"/>
+                                                                <RowDefinition Height="*"/>
+                                                            </Grid.RowDefinitions>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="*"/>
+                                                                <ColumnDefinition Width="*"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Label
+                                                                Grid.Row="1"
+                                                                Grid.Column="0"
+                                                                HorizontalOptions="Start"
+                                                                LineBreakMode="TailTruncation"
+                                                                Text="{Binding ReturnDate}"/>
+                                                            <Label
+                                                                Grid.Row="0"
+                                                                Grid.Column="1"
+                                                                Text="{Binding GrandTotal}"
+                                                                HorizontalTextAlignment="End"/>
+                                                            <Label
+                                                                Grid.Row="2"
+                                                                Grid.Column="0"
+                                                                HorizontalOptions="Start"
+                                                                Text="{Binding ParentCode}"/>
+                                                            <Label
+                                                                Grid.Row="0"
+                                                                Grid.Column="0"
+                                                                Text="{Binding ReturnCode}"
+                                                                HorizontalTextAlignment="Start"/>
+                                                            <Label
+                                                                Grid.Row="1"
+                                                                Grid.Column="1"
+                                                                Text="{Binding SupplierName}"
+                                                                HorizontalTextAlignment="End"/>
+                                                        </Grid>
+                                                    </StackLayout>
+                                                </ViewCell>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </Frame>
+
+                            </StackLayout>
+
+                            <!--data grid view-->
+                            <StackLayout
+                                IsVisible="{Binding IsGridView}"
+                                VerticalOptions="FillAndExpand">
+                                <dg:DataGrid
+                                    ItemsSource="{Binding ReturnActiveList}" 
+                                    SelectionEnabled="True" 
+                                    Style="{StaticResource dgStyle}"
+                                    ItemSelected="grdView_ItemSelected"
+                                    IsRefreshing="{Binding IsRefreshing}"
+                                    PullToRefreshCommand="{Binding RefreshCommand}">
+                                    <dg:DataGrid.Columns>
+                                        <dg:DataGridColumn x:Name="ACode" Title="Code" PropertyName="ReturnCode" Width="*"/>
+                                        <dg:DataGridColumn x:Name="ADate" Title="Date" PropertyName="ReturnDate" Width="*"/>
+                                        <dg:DataGridColumn x:Name="AParent" Title="Parent Code" PropertyName="ParentCode" Width="*"/>
+                                        <dg:DataGridColumn x:Name="ATotal" Title="Grand Total" PropertyName="GrandTotal" Width="*"/>
+                                        <dg:DataGridColumn x:Name="ASupplier" Title="Supplier" PropertyName="SupplierName" Width="*"/>
+                                    </dg:DataGrid.Columns>
+                                </dg:DataGrid>
+                            </StackLayout>
+                        </StackLayout>
+
+                    </xct:TabViewItem>
+
+                    <!--partial  tab-->
+                    <xct:TabViewItem
+                        x:Name="TabPartial"
+                        TextColor="{StaticResource TabTexttColor}"
+                        TextColorSelected="{StaticResource TextColorSelected}"
+                        FontSize="12">
+                        <StackLayout
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand">
+                            <!--Card view-->
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <RefreshView
+                                    IsVisible="{Binding IsCardView}"
+                                    VerticalOptions="FillAndExpand"
+                                    IsRefreshing="{Binding IsRefreshing}"
+                                    Command="{Binding RefreshCommand}">
+                                    <ScrollView
+                                        VerticalOptions="FillAndExpand">
+
+                                        <FlexLayout
+                                            BindableLayout.ItemsSource="{Binding ReturnPartialList}"
+                                            Direction="Row"
+                                            HorizontalOptions="FillAndExpand"
+                                            JustifyContent="SpaceEvenly"
+                                            Wrap="Wrap">
+                                            <BindableLayout.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackLayout
+                                                        Padding="{x:StaticResource paddingTop}">
+                                                        <footer:OvaListFormCartView
+                                                        ItemAsk="{Binding Ask}"
+                                                        CodeLabel="{Binding ReturnDate}"
+                                                        NameLabel="{Binding ReturnCode}"
+                                                        DescriptionLabel="{Binding ParentCode}"
+                                                        RemarkLabel="{Binding GrandTotal}"
+                                                              DesLabel="{Binding SupplierName}"/>
+                                                    </StackLayout>
+                                                </DataTemplate>
+                                            </BindableLayout.ItemTemplate>
+                                        </FlexLayout>
+                                    </ScrollView>
+                                </RefreshView>
+                            </Grid>
+                            <!--list view-->
+                            <StackLayout
+                                IsVisible="{Binding IsListView}"
+                                VerticalOptions="FillAndExpand">
+                                <Frame
+                                    VerticalOptions="FillAndExpand"
+                                    CornerRadius="3"
+                                    Padding="0">
+                                    <ListView
+                                        ItemsSource="{Binding ReturnPartialList}"
+                                        RowHeight="70"
+                                        ItemSelected="lstView_ItemSelected"
+                                        IsPullToRefreshEnabled="true"
+                                        IsRefreshing="{Binding IsRefreshing}"
+                                        RefreshCommand="{Binding RefreshCommand}">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <ViewCell>
+                                                    <StackLayout
+                                                        Orientation="Vertical"
+                                                        Padding="5,5,5,5">
+                                                        <Grid>
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="*"/>
+                                                                <RowDefinition Height="*"/>
+                                                            </Grid.RowDefinitions>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="*"/>
+                                                                <ColumnDefinition Width="*"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Label
+                                                                Grid.Row="1"
+                                                                Grid.Column="0"
+                                                                HorizontalOptions="Start"
+                                                                LineBreakMode="TailTruncation"
+                                                                Text="{Binding ReturnDate}"/>
+                                                            <Label
+                                                                Grid.Row="0"
+                                                                Grid.Column="1"
+                                                                Text="{Binding GrandTotal}"
+                                                                HorizontalTextAlignment="End"/>
+                                                            <Label
+                                                                Grid.Row="2"
+                                                                Grid.Column="0"
+                                                                HorizontalOptions="Start"
+                                                                Text="{Binding ParentCode}"/>
+                                                            <Label
+                                                                Grid.Row="0"
+                                                                Grid.Column="0"
+                                                                Text="{Binding ReturnCode}"
+                                                                HorizontalTextAlignment="Start"/>
+                                                            <Label
+                                                                Grid.Row="1"
+                                                                Grid.Column="1"
+                                                                Text="{Binding SupplierName}"
+                                                                HorizontalTextAlignment="End"/>
+                                                        </Grid>
+                                                    </StackLayout>
+                                                </ViewCell>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </Frame>
+                            </StackLayout>
+
+                            <!--data grid view-->
+                            <StackLayout
+                                IsVisible="{Binding IsGridView}"
+                                VerticalOptions="FillAndExpand">
+                                <dg:DataGrid
+                                    x:Name="grdView"
+                                    ItemsSource="{Binding ReturnPartialList}" 
+                                    SelectionEnabled="True" 
+                                    Style="{StaticResource dgStyle}"
+                                    ItemSelected="grdView_ItemSelected"
+                                    IsRefreshing="{Binding IsRefreshing}"
+                                    PullToRefreshCommand="{Binding RefreshCommand}">
+                                    <dg:DataGrid.Columns>
+                                        <dg:DataGridColumn x:Name="PCode" Title="Code" PropertyName="ReturnCode" Width="*"/>
+                                        <dg:DataGridColumn x:Name="PDate" Title="Date" PropertyName="ReturnDate" Width="*"/>
+                                        <dg:DataGridColumn x:Name="PParent" Title="Parent Code" PropertyName="ParentCode" Width="*"/>
+                                        <dg:DataGridColumn x:Name="PTotal" Title="Grand Total" PropertyName="GrandTotal" Width="*"/>
+                                        <dg:DataGridColumn x:Name="PSupplier" Title="Supplier" PropertyName="SupplierName" Width="*"/>
+                                    </dg:DataGrid.Columns>
+                                </dg:DataGrid>
+                            </StackLayout>
+                        </StackLayout>
+
+                    </xct:TabViewItem>
+
+                    <!--Closed tab-->
+                    <xct:TabViewItem
+                       x:Name="TabClosed"
+                        TextColor="{StaticResource TabTexttColor}"
+                        TextColorSelected="{StaticResource TextColorSelected}"
+                        FontSize="12">
+                        <StackLayout
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand">
+                            <!--Card view-->
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <RefreshView
+                                    IsVisible="{Binding IsCardView}"
+                                    VerticalOptions="FillAndExpand"
+                                    IsRefreshing="{Binding IsRefreshing}"
+                                    Command="{Binding RefreshCommand}">
+                                    <ScrollView
+                                        VerticalOptions="FillAndExpand">
+
+                                        <FlexLayout
+                                            BindableLayout.ItemsSource="{Binding ReturnClosedList}"
+                                            Direction="Row"
+                                            HorizontalOptions="FillAndExpand"
+                                            JustifyContent="SpaceEvenly"
+                                            Wrap="Wrap">
+                                            <BindableLayout.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackLayout
+                                                        Padding="{x:StaticResource paddingTop}">
+                                                        <footer:OvaListFormCartView
+                                                        ItemAsk="{Binding Ask}"
+                                                        CodeLabel="{Binding ReturnDate}"
+                                                        NameLabel="{Binding ReturnCode}"
+                                                        DescriptionLabel="{Binding ParentCode}"
+                                                        RemarkLabel="{Binding GrandTotal}"
+                                                              DesLabel="{Binding SupplierName}"/>
+                                                    </StackLayout>
+                                                </DataTemplate>
+                                            </BindableLayout.ItemTemplate>
+                                        </FlexLayout>
+                                    </ScrollView>
+                                </RefreshView>
+                            </Grid>
+
+                            <!--list view-->
+                            <StackLayout
+                                IsVisible="{Binding IsListView}"
+                                VerticalOptions="FillAndExpand">
+                                <Frame
+                                    VerticalOptions="FillAndExpand"
+                                    CornerRadius="3"
+                                    Padding="0">
+                                    <ListView
+                                        ItemsSource="{Binding ReturnClosedList}"
+                                        RowHeight="70"
+                                        ItemSelected="lstView_ItemSelected"
+                                        IsPullToRefreshEnabled="true"
+                                        IsRefreshing="{Binding IsRefreshing}"
+                                        RefreshCommand="{Binding RefreshCommand}">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <ViewCell>
+                                                    <StackLayout
+                                                        Orientation="Vertical"
+                                                        Padding="5,5,5,5">
+                                                        <Grid>
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="*"/>
+                                                                <RowDefinition Height="*"/>
+                                                            </Grid.RowDefinitions>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="*"/>
+                                                                <ColumnDefinition Width="*"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Label
+                                                                Grid.Row="1"
+                                                                Grid.Column="0"
+                                                                HorizontalOptions="Start"
+                                                                LineBreakMode="TailTruncation"
+                                                                Text="{Binding ReturnDate}"/>
+                                                            <Label
+                                                                Grid.Row="0"
+                                                                Grid.Column="1"
+                                                                Text="{Binding GrandTotal}"
+                                                                HorizontalTextAlignment="End"/>
+                                                            <Label
+                                                                Grid.Row="2"
+                                                                Grid.Column="0"
+                                                                HorizontalOptions="Start"
+                                                                Text="{Binding ParentCode}"/>
+                                                            <Label
+                                                                Grid.Row="0"
+                                                                Grid.Column="0"
+                                                                Text="{Binding ReturnCode}"
+                                                                HorizontalTextAlignment="Start"/>
+                                                            <Label
+                                                                Grid.Row="1"
+                                                                Grid.Column="1"
+                                                                Text="{Binding SupplierName}"
+                                                                HorizontalTextAlignment="End"/>
+                                                        </Grid>
+                                                    </StackLayout>
+                                                </ViewCell>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </Frame>
+                            </StackLayout>
+
+                            <!--data grid view-->
+                            <StackLayout
+                                IsVisible="{Binding IsGridView}"
+                                VerticalOptions="FillAndExpand">
+                                <dg:DataGrid 
+                                    ItemsSource="{Binding ReturnClosedList}" 
+                                    SelectionEnabled="True" 
+                                    Style="{StaticResource dgStyle}"
+                                    ItemSelected="grdView_ItemSelected"
+                                    IsRefreshing="{Binding IsRefreshing}"
+                                    PullToRefreshCommand="{Binding RefreshCommand}">
+                                    <dg:DataGrid.Columns>
+                                        <dg:DataGridColumn x:Name="CCode" Title="Code" PropertyName="ReturnCode" Width="*"/>
+                                        <dg:DataGridColumn x:Name="CDate" Title="Date" PropertyName="ReturnDate" Width="*"/>
+                                        <dg:DataGridColumn x:Name="CParent" Title="Parent Code" PropertyName="ParentCode" Width="*"/>
+                                        <dg:DataGridColumn x:Name="CTotal" Title="Grand Total" PropertyName="GrandTotal" Width="*"/>
+                                        <dg:DataGridColumn x:Name="CSupplier" Title="Supplier" PropertyName="SupplierName" Width="*"/>
+                                    </dg:DataGrid.Columns>
+                                </dg:DataGrid>
+                            </StackLayout>
+                        </StackLayout>
+
+                    </xct:TabViewItem>
+                </xct:TabView>
+
+            </StackLayout>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<pages:PopupPage
+    xmlns ="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x ="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages ="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:animations ="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    x:Class ="CS.ERP_MOB.Views.Frame.FrmSubscriptionPayment"
+    HasSystemPadding ="true"
+    SystemPaddingSides ="All"
+    CloseWhenBackgroundIsClicked="true"
+    Visual="Material">
+    <pages:PopupPage.Animation>
+        <animations:MoveAnimation
+            PositionIn ="Bottom"
+            PositionOut ="Bottom"
+            DurationIn ="400"
+            DurationOut ="300"
+            EasingIn ="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="true" />
+    </pages:PopupPage.Animation>
+    <Grid
+        x:Name="ProductGrid"
+        HorizontalOptions="FillAndExpand"
+        VerticalOptions  ="FillAndExpand"
+        BackgroundColor="Transparent"
+        ColumnSpacing    ="0"
+        Padding="10,0,10,0">
+        <Grid.RowDefinitions>
+            <RowDefinition  Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Frame
+            Grid.Row ="0"
+            Grid.Column="0"
+            Padding="0" 
+            CornerRadius="3"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="CenterAndExpand">
+            <StackLayout
+                BackgroundColor="White"
+                VerticalOptions="FillAndExpand">
+                <!--title view-->
+                <StackLayout 
+                    HorizontalOptions="FillAndExpand" 
+                    VerticalOptions="Start"
+                    Orientation="Horizontal"
+                    HeightRequest="30"
+                    BackgroundColor="{StaticResource OvaPopupTitleColor}"
+                    Padding="{StaticResource padding}">
+                    <AbsoluteLayout
+                        VerticalOptions="Center"
+                        HorizontalOptions="FillAndExpand">
+                        <Label 
+                            Text="Payment" 
+                            AbsoluteLayout.LayoutBounds="0.5,1,0.5,20"
+                            AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
+                            HorizontalTextAlignment="Center"/>
+                        <Label 
+                            Text="X"
+                            TextColor="{StaticResource OvaClickableColor}"
+                            AbsoluteLayout.LayoutBounds="1,1,0.5,20"
+                            AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
+                            HorizontalTextAlignment="End">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TgrClose_Tapped"> </TapGestureRecognizer>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </AbsoluteLayout>
+                </StackLayout>
+                <!--content area-->
+                <StackLayout
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <!--plan area-->
+                        <StackLayout
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Orientation="Vertical"
+                            HorizontalOptions="FillAndExpand">
+                            <Label
+                                x:Name="lblPlanName"
+                                Text=""
+                                HorizontalTextAlignment="Center"/>
+                            <StackLayout
+                                Orientation="Horizontal"
+                                HorizontalOptions="FillAndExpand">
+                                <Label
+                                    x:Name="lblDurationName"
+                                    Text=""
+                                    HorizontalOptions="StartAndExpand"/>
+                                <Label
+                                    x:Name="lblPriceName"
+                                    Text=""
+                                    HorizontalOptions="EndAndExpand"/>
+                            </StackLayout>
+                        </StackLayout>
+                        
+                        <!--customer area-->
+                        <StackLayout
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Orientation="Vertical">
+                            <StackLayout
+                                Orientation="Horizontal">
+                                <Label
+                                    Text="Customer : "/>
+                                <Label
+                                    x:Name="lblCustomerName"
+                                    Text=""/>
+                            </StackLayout>
+                                
+                            <StackLayout
+                                Orientation="Horizontal">
+                                <Label
+                                    Text="Email : "/>
+                                <Label
+                                    x:Name="lblEmail"
+                                    Text=""/>
+                            </StackLayout>
+                        </StackLayout>
+                        <!--payment area-->
+                        <StackLayout
+                            Grid.Row="2"
+                            Grid.Column="0">
+                            <StackLayout
+                                Orientation="Vertical">
+                                <Entry 
+                                    x:Name="entCreditCardNumber"
+                                    Text="" 
+                                    FontSize="15"
+                                    Placeholder="Enter your credit card number"
+                                    MaxLength="16"
+                                    Keyboard="Numeric"
+                                    HorizontalOptions="FillAndExpand">
+                                </Entry>
+                                <StackLayout Orientation="Horizontal">
+                                    <Entry 
+                                        x:Name="entExpiryYear"
+                                        Text="" 
+                                        FontSize="15"
+                                        HorizontalOptions="FillAndExpand"
+                                        Placeholder="Expiry Year"
+                                        MaxLength="4"
+                                        Keyboard="Numeric"></Entry>
+                                    <Entry 
+                                        x:Name="entExpiryMonth"
+                                        Text="" 
+                                        HorizontalOptions="FillAndExpand"
+                                        Placeholder="Expiry Month"
+                                        FontSize="15"
+                                        MaxLength="2"
+                                        Keyboard="Numeric"></Entry>
+                                    <Entry 
+                                        x:Name="entCVV"
+                                        Text=""
+                                        FontSize="15"
+                                        HorizontalOptions="FillAndExpand"
+                                        MaxLength="3"
+                                        Keyboard="Numeric"
+                                        Placeholder="CVV"></Entry>
+                                </StackLayout>
+                            </StackLayout>
+                            <Button 
+                                x:Name="btnPay"
+                                Text="Pay"
+                                Clicked="btnPay_onClicked"
+                                BackgroundColor="{StaticResource OvaBackgroundColor}">
+                            </Button>
+                        </StackLayout>
+                    </Grid>
+                </StackLayout>
+            </StackLayout>
+        </Frame>
+    </Grid>
+</pages:PopupPage>

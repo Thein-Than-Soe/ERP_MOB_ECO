@@ -1,0 +1,338 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dg="clr-namespace:Syncfusion.Maui.DataGrid;assembly=Syncfusion.Maui.DataGrid"
+    xmlns:local="clr-namespace:CS.ERP_MOB.Views.SYS"
+    xmlns:xct="http://schemas.microsoft.com/dotnet/2021/maui/communitytoolkit"
+    x:Class="CS.ERP_MOB.Views.SYS.FrmApiConfigLst"
+    Visual="Material">
+    <ContentView.Content>
+        <StackLayout
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"
+            BackgroundColor="{StaticResource OvaListBackgroundColor}">
+            <!--Header area-->
+            <StackLayout
+                VerticalOptions="Start"
+                HorizontalOptions="FillAndExpand"
+                Orientation="Vertical"
+                BackgroundColor="{StaticResource OvaListTitleColor}"
+                Padding="{StaticResource paddingLeftRight}">
+                <StackLayout
+                    Orientation="Horizontal"
+                    HorizontalOptions="FillAndExpand"
+                    HeightRequest="35"
+                    Padding="{StaticResource paddingTop}">
+
+                    <!--title first two icon-->
+                    <Frame
+                        Padding="{StaticResource FramePaddingLeftRight}"
+                        HorizontalOptions="Start"
+                        VerticalOptions="CenterAndExpand"
+                        CornerRadius="3">
+                        <StackLayout
+                            Orientation="Vertical"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand">
+                            <Grid
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <!--view switch icons-->
+                                <!--route entry form icon-->
+                                <StackLayout
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Orientation="Vertical"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions  ="FillAndExpand"
+                                    
+                                    >                           
+                                </StackLayout>
+
+                            </Grid>
+                        </StackLayout>
+                    </Frame>
+
+                    <!--search input box-->
+                    <StackLayout
+                        VerticalOptions="FillAndExpand"
+                        HorizontalOptions="FillAndExpand">
+                        <Entry
+                            x:Name="entSearch"
+                            Placeholder="Search" 
+                            HorizontalOptions="FillAndExpand"
+                            PlaceholderColor="{StaticResource OvaSearchInputColor}"
+                            TextColor="{StaticResource OvaSearchInputColor}"
+                            TextChanged="entSearch_TextChanged"/>
+                    </StackLayout>
+
+                    <!--last two icon-->
+                    <Frame
+                        Padding="{StaticResource FramePaddingLeftRight}"
+                        HorizontalOptions="End"
+                        VerticalOptions="FillAndExpand"
+                        CornerRadius="3">
+                        <StackLayout
+                            Orientation="Vertical"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand">
+                            <Grid
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="2"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>                          
+
+
+                            </Grid>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+
+            </StackLayout>
+
+
+            <StackLayout
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand">
+                <!--Card view-->
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                   
+                        <ScrollView
+                                        VerticalOptions="FillAndExpand">
+
+                            <FlexLayout
+                                            
+                                            Direction="Row" 
+                                            JustifyContent="SpaceEvenly" 
+                                            VerticalOptions="Start" 
+                                            HorizontalOptions="FillAndExpand"
+                                            Wrap="Wrap">
+
+
+                                <CollectionView 
+                    x:Name="colView" 
+                    SelectionMode="Single"
+                    Margin="20"
+                    SelectionChanged="colView_onSelectionChange">
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackLayout
+                                                        Padding="{x:StaticResource paddingTop}">
+                                                <local:OvaListFormCartView
+                                                            ItemAsk="{Binding Ask}"
+                                                            CodeLabel="{Binding ProductCode}"
+                                                            NameLabel="{Binding UploadURL}"
+                                                            DescriptionLabel="{Binding APIURL}"/>
+                                            </StackLayout>
+                                        </DataTemplate>
+
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+
+
+                            </FlexLayout>
+                        </ScrollView>
+                   
+                </Grid>
+
+                <!--list view-->
+                <!--     <StackLayout
+                                IsVisible="{Binding IsListView}"
+                                VerticalOptions="FillAndExpand"> -->
+
+
+                <!--     <RefreshView
+                                    IsVisible="{Binding IsCardView}"
+                                    VerticalOptions="FillAndExpand"
+                                    
+                                    Command="{Binding RefreshCommand}">
+
+                    <ScrollView>
+
+                        <Frame
+                         
+                                    VerticalOptions="FillAndExpand"
+                                    CornerRadius="3"
+                                    Padding="0">
+                            <CollectionView 
+                    x:Name="collView" 
+                    SelectionMode="Single"
+                    Margin="20"
+                    SelectionChanged="colView_onSelectionChange">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <StackLayout
+                                                        Orientation="Vertical"
+                                                        Padding="10,10,10,10">
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="*"/>
+                                                        <RowDefinition Height="*"/>
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="2*"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Label
+                                                                Grid.Row="0"
+                                                                Grid.Column="0"
+                                                                x:Name="lblProductCode"
+                                                                HorizontalOptions="Start"
+                                                                LineBreakMode="TailTruncation"
+                                                                Text="{Binding UploadURL}"/>
+                                                    <Label
+                                                                Grid.Row="0"
+                                                                Grid.Column="1"
+                                                                 x:Name="lblUploadURL"
+                                                                 Text ="{Binding UploadURL}"
+                                                                 LineBreakMode="TailTruncation"
+                                                                HorizontalTextAlignment="End"/>
+                                                    <Label
+                                                                Grid.Row="1"
+                                                                Grid.Column="0"
+                                                                 x:Name="lblAPIURL"
+                                                                 LineBreakMode="TailTruncation"
+                                                                 HorizontalOptions="Start"
+                                                                Text="{Binding APIURL}"/>
+
+                                                </Grid>
+                                            </StackLayout>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                            
+                        </Frame>
+
+
+                    </ScrollView>
+
+
+                </RefreshView>          
+                -->
+
+
+
+
+
+                <!--</StackLayout>-->
+
+                <!--data grid view-->
+
+
+                <!--
+                <StackLayout
+                                IsVisible="{Binding IsGridView}"
+                                VerticalOptions="FillAndExpand">
+                    <syncfusion:SfDataGrid
+                                    ItemsSource="{Binding CountryActiveList}" 
+                                    SelectionMode="Single" 
+                                    Style="{StaticResource dgStyle}"
+                                    SelectionChanged="grdView_ItemSelected"
+                                    
+                                    PullToRefreshCommand="{Binding RefreshCommand}">
+                        <syncfusion:SfDataGrid.Columns>
+                            <syncfusion:DataGridTextColumn HeaderText="Code" MappingName="CountryCode" ColumnWidthMode="Auto"/>
+                            <syncfusion:DataGridTextColumn HeaderText="Name" MappingName="CountryName" ColumnWidthMode="Auto"/>
+                            <syncfusion:DataGridTextColumn HeaderText="Description" MappingName="CountryDescription" ColumnWidthMode="Auto"/>
+                        </syncfusion:SfDataGrid.Columns>
+                    </syncfusion:SfDataGrid>
+                </StackLayout>
+                
+                -->
+
+            </StackLayout>
+
+            <!-- List View-->
+            <!--
+            <CollectionView 
+                    x:Name="colView" 
+                    SelectionMode="Single"
+                    Margin="20"
+                    SelectionChanged="colView_onSelectionChange">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Frame CornerRadius="10"
+                                       OutlineColor="Gray"
+                                       Padding="0"
+                                       Margin="5">
+                                <Grid Padding="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="2*" />
+                                      
+                                    </Grid.ColumnDefinitions>
+                               
+                                    <StackLayout
+                                            Margin="2"
+                                            Grid.Row="0"
+                                            Grid.Column="0"
+                                            Orientation="Vertical">
+                                        <Label
+                                                x:Name="lblProductCode"
+                                                Text="{Binding ProductCode}"
+                                                FontSize="Large"
+                                                HorizontalTextAlignment="Start"
+                                                LineBreakMode="TailTruncation"/>
+                                   
+                                        
+                                    </StackLayout>
+                                   
+                                    <StackLayout
+                                            Grid.Row="1"
+                                            Grid.Column="0"
+                                            
+                                            Orientation="Vertical">
+                                        <Label
+                                                 x:Name="lblUploadURL"
+                                                 Text ="{Binding UploadURL}"
+                                                 MaxLines="3"
+                                                 FontSize="Small"
+                                                 HorizontalTextAlignment="Start"
+                                                 LineBreakMode="TailTruncation"/>
+                                    </StackLayout>
+                                    <StackLayout 
+                                            Grid.Row="1"
+                                            Grid.Column="1"
+                                            Orientation="Vertical">
+                                        <Label
+                                                x:Name="lblAPIURL"
+                                                Text="{Binding APIURL}"
+                                                HorizontalOptions="EndAndExpand"
+                                                FontSize="Medium"
+                                                HorizontalTextAlignment="Center"/>
+                                    </StackLayout>
+                                  
+
+                                </Grid>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            -->
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

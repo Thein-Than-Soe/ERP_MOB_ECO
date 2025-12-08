@@ -1,0 +1,543 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CS.ERP_MOB.Views.HCM.FrmHcmApplicantSet"
+             xmlns:xct="http://schemas.microsoft.com/dotnet/2021/maui/communitytoolkit"
+            xmlns:local="clr-namespace:CS.ERP_MOB.Views.SYS"
+             Visual="Material">
+    <ContentView.Content>
+        <StackLayout
+            x:Name="RootLayout"
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"
+            BackgroundColor="{StaticResource OvaSetBackgroundColor}">
+
+            <!--Header area-->
+            <StackLayout
+                VerticalOptions="Start"
+                HorizontalOptions="FillAndExpand"
+                HeightRequest="35"
+                Orientation="Horizontal"
+                BackgroundColor="LightGray"
+                Padding="{StaticResource paddingLeftRight}">
+                <Frame
+                    Padding="{StaticResource FramePaddingLeftRight}"
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="StartAndExpand"
+                    
+                    >
+                    <Label
+                        VerticalOptions ="CenterAndExpand"
+                        HorizontalOptions="Center"
+                        Text="&#xf060;"
+                        FontFamily="{StaticResource FontAwesomeSolid}"
+                        FontSize="30"
+                        TextColor="{StaticResource OvaSetTitleColor}"
+                        
+                        >
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="BackTapGestureRecognizer_Tapped"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="BackTapGestureRecognizer_Tapped"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+
+                <Frame
+                    Padding="{StaticResource FramePaddingLeftRight}"
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="End"
+                    
+                    >
+                    <Label
+                        VerticalOptions ="CenterAndExpand"
+                        HorizontalOptions="Center"
+                        Text="&#xf0fe;"
+                        FontFamily="{StaticResource FontAwesomeSolid}"
+                        FontSize="30"
+                        TextColor="{StaticResource OvaSetTitleColor}"
+                        
+                        >
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TgrNew_Tapped"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TgrNew_Tapped"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+
+            </StackLayout>
+
+            <!--content area-->
+            <StackLayout  
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand"
+                Orientation="Vertical">
+                <StackLayout
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand"
+                    Padding="{StaticResource paddingLeftRight}">
+                    <Frame
+                        VerticalOptions="FillAndExpand"
+                        HorizontalOptions="FillAndExpand"
+                        Padding="{StaticResource FramePaddingLeftRightTop}">
+                        <ScrollView 
+                                VerticalOptions="FillAndExpand"
+                                HorizontalOptions="FillAndExpand">
+                            <StackLayout
+                                BindableLayout.ItemsSource="{Binding DAT_APPLICANT_CERTIFICATE}"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand"
+                                Orientation="Vertical">
+                                <Frame WidthRequest="60" HeightRequest="60"  HorizontalOptions="CenterAndExpand" VerticalOptions="Center" BorderColor="White" CornerRadius="100">                        
+                                     <Image x:Name="image"  VerticalOptions="CenterAndExpand"  Source="https://aka.ms/campus.jpg" >
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnImageNameTapped" NumberOfTapsRequired="1" />
+                                    </Image.GestureRecognizers>
+                                    </Image>
+                                </Frame>
+
+                                <Entry x:Name="entName" Grid.Row="0" Grid.Column="0"  Text="{Binding DAT_APPLICANT.CertificateName}"  Placeholder="Name" HeightRequest="50" WidthRequest="250" HorizontalOptions="Center" />
+                                <Entry x:Name="entEmail"  Text="{Binding DAT_APPLICANT.InstituteName}"  Placeholder="Email" HeightRequest="50"/>
+                                <Picker x:Name="pikMobile" IsEnabled="True" ItemDisplayBinding="{Binding DAT_APPLICANT.mobilecode}"  Title="Select Mobile Code" HeightRequest="30"/>
+                                <Entry x:Name="entMobile"  Text="{Binding DAT_APPLICANT.mobile}"  Placeholder="Mobile Phone" HeightRequest="30" />
+                                <Picker x:Name="pikApplyDesignation" IsEnabled="True" ItemDisplayBinding="{Binding DAT_APPLICANT.ApplyDesignation}" Title="Select Apply Designation" HeightRequest="30"/>
+                                <Picker x:Name="pikStatus" IsEnabled="True" ItemDisplayBinding="{Binding DAT_APPLICANT.ApproveStatusName}" Title="Select Applicant Status" HeightRequest="30"/>
+                                <DatePicker x:Name="Dob"/>
+                                <!--Personal -->                                
+                                <xct:Expander>                                   
+                                        <xct:Expander.Header>
+                                        <Grid>
+                                        <Label Text="Personal"  TextColor="White" VerticalTextAlignment="Center" HeightRequest="60" FontSize="Medium" FontAttributes="Bold" BackgroundColor="{StaticResource OvaControlBackgroundColor}"/>
+                                            </Grid>
+                                    </xct:Expander.Header>
+                                        <xct:Expander.ContentTemplate>
+                                            <DataTemplate>
+                                                <Grid>
+                                                <Entry x:Name="entNRC" Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding DAT_PERSON.NRCNo}"  Placeholder="NRC NO" HeightRequest="50"/>
+                                                <Picker x:Name="pikRace" Grid.Row="2" Grid.ColumnSpan="2" IsEnabled="True" ItemDisplayBinding="{Binding DAT_PERSON.RaceName}"  Title="Select Race" HeightRequest="30"/>
+                                                <Picker x:Name="pikNationality" Grid.Row="3" Grid.ColumnSpan="2" IsEnabled="True" ItemDisplayBinding="{Binding DAT_PERSON.NationalityName}"  Title="Select Nationality" HeightRequest="30"/>
+                                                <Entry x:Name="entMark" Grid.Row="4" Grid.ColumnSpan="2" Text="{Binding DAT_PERSON.DistinctMark}"  Placeholder="Distinct Mark" HeightRequest="30"/>
+                                                </Grid>
+                                            </DataTemplate>
+
+                                        </xct:Expander.ContentTemplate>
+
+                                    </xct:Expander>
+                                
+                                <!--JobVacancy-->
+                                <xct:Expander>
+
+                                    <xct:Expander.Header>
+                                        <Label Text="Jon Vacancy" HeightRequest="60" TextColor="White" FontSize="Medium" FontAttributes="Bold" VerticalTextAlignment="Center" BackgroundColor="{StaticResource OvaControlBackgroundColor}"/>
+                                    </xct:Expander.Header>
+                                    <xct:Expander.ContentTemplate>
+                                        <DataTemplate>
+                                            <ScrollView>
+                                            <Grid>
+                                                <Label Grid.Row="0" Grid.Column="1" VerticalOptions ="End" HorizontalOptions="End" Text="&#xf0fe;" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="30" TextColor="{StaticResource OvaSetTitleColor}"  >
+                                                    <Label.GestureRecognizers>
+                                                        <TapGestureRecognizer Tapped="TgrJobVacancy_Tapped"/>
+                                                    </Label.GestureRecognizers>
+                                                </Label>
+                                                    <CollectionView  x:Name="colView" SelectionMode="Single" Margin="20"  SelectionChanged="colView_onSelectionChange"  ItemsSource="{Binding DAT_JOB_VACANCY}" >
+                                                        <CollectionView.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <StackLayout
+                                                            Padding="{x:StaticResource paddingTop}">
+                                                            <local:OvaListFormCartView
+                                                            ItemAsk="{Binding Ask}"
+                                                            CodeLabel="{Binding DesignationName}"
+                                                            NameLabel="{Binding JD}"
+                                                            DescriptionLabel="{Binding StatusName}"/>
+                                                                </StackLayout>
+                                                            </DataTemplate>
+
+                                                        </CollectionView.ItemTemplate>
+                                                    </CollectionView>
+
+
+
+                                                </Grid>
+
+                                               
+                                            </ScrollView>
+                                        </DataTemplate>
+
+                                    </xct:Expander.ContentTemplate>
+
+                                </xct:Expander>
+
+                                <!--Certificate-->
+                                <xct:Expander>
+
+                                    <xct:Expander.Header>
+                                        <Label Text="Certificate" TextColor="White" HeightRequest="60" FontSize="Medium" FontAttributes="Bold" VerticalTextAlignment="Center" BackgroundColor="{StaticResource OvaControlBackgroundColor}"/>
+                                    </xct:Expander.Header>
+                                    <xct:Expander.ContentTemplate>
+
+                                        <DataTemplate>
+                                            <Grid>
+                                                <Label Grid.Row="0" Grid.Column="1"  VerticalOptions ="End"  HorizontalOptions="End"  Text="&#xf0fe;" FontFamily="{StaticResource FontAwesomeSolid}"  FontSize="30" TextColor="{StaticResource OvaSetTitleColor}"   >
+                                                    <Label.GestureRecognizers>
+                                                        <TapGestureRecognizer Tapped="TgrCertificate_Tapped"/>
+                                                    </Label.GestureRecognizers>
+                                                </Label>
+                                                <Entry x:Name="entCertificateType" Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding DAT_APPLICANT_CERTIFICATE.CertificateTypeName}"  Placeholder="Certificate Type Name" HeightRequest="50"/>
+                                                <Entry x:Name="entCertificateName" Grid.Row="2" Grid.ColumnSpan="2" Text="{Binding DAT_APPLICANT_CERTIFICATE.CertificateName}"  Placeholder="Certificate Name" HeightRequest="50"/>
+                                                <Entry x:Name="entInstitude" Grid.Row="3" Grid.ColumnSpan="2" Text="{Binding DAT_APPLICANT_CERTIFICATE.InstituteName}"  Placeholder="Institude" HeightRequest="50"/>
+                                                <Entry x:Name="entGPA" Grid.Row="4" Grid.ColumnSpan="2" Text="{Binding DAT_APPLICANT_CERTIFICATE.GPA}"  Placeholder="GPA" HeightRequest="50"/>
+                                                   
+                                            </Grid>
+                                        </DataTemplate>
+
+                                    </xct:Expander.ContentTemplate>
+
+                                </xct:Expander>
+
+                                <!--Contact-->
+                                <xct:Expander>
+
+                                    <xct:Expander.Header>
+                                        <Label Text="Contact" TextColor="White" VerticalTextAlignment="Center" HeightRequest="60" FontSize="Medium" x:Name="CertiName" FontAttributes="Bold" BackgroundColor="{StaticResource OvaControlBackgroundColor}"/>
+                                    </xct:Expander.Header>
+                                    <xct:Expander.ContentTemplate>
+
+                                        <DataTemplate>
+                                            <Grid>                                               
+                                            
+                                            <Label Grid.Row="0" Grid.Column="1"  VerticalOptions ="End"  HorizontalOptions="End"  Text="&#xf0fe;" FontFamily="{StaticResource FontAwesomeSolid}"  FontSize="30" TextColor="{StaticResource OvaSetTitleColor}"   >
+                                                <Label.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="TgrContact_Tapped"/>
+                                                </Label.GestureRecognizers>
+                                            </Label>
+                                                
+                                                
+                                            </Grid>
+                                        </DataTemplate>
+
+                                    </xct:Expander.ContentTemplate>
+
+
+                                </xct:Expander>
+
+                                <!--Education-->
+                                <xct:Expander>
+
+                                    <xct:Expander.Header>
+                                        <Label Text="Education" HeightRequest="60" VerticalTextAlignment="Center" TextColor="White" FontSize="Medium" FontAttributes="Bold" BackgroundColor="{StaticResource OvaControlBackgroundColor}"/>
+                                    </xct:Expander.Header>
+                                    <xct:Expander.ContentTemplate>
+
+                                        <DataTemplate>
+                                            <Grid>
+                                                <Label Grid.Row="0" Grid.Column="1"  VerticalOptions ="End"  HorizontalOptions="End"  Text="&#xf0fe;" FontFamily="{StaticResource FontAwesomeSolid}"  FontSize="30" TextColor="{StaticResource OvaSetTitleColor}"   >
+                                                    <Label.GestureRecognizers>
+                                                        <TapGestureRecognizer Tapped="TgrEducation_Tapped"/>
+                                                    </Label.GestureRecognizers>
+                                               </Label>
+                                              </Grid>
+
+                                        </DataTemplate>
+
+                                    </xct:Expander.ContentTemplate>
+
+                                </xct:Expander>
+                                
+                                <!--Hobby-->
+                                <xct:Expander>
+
+                                    <xct:Expander.Header>
+                                        <Label Text="Hobby" HeightRequest="60" VerticalTextAlignment="Center" TextColor="White" FontSize="Medium" FontAttributes="Bold" BackgroundColor="{StaticResource OvaControlBackgroundColor}"/>
+                                    </xct:Expander.Header>
+                                    <xct:Expander.ContentTemplate>
+
+                                        <DataTemplate>
+
+                                            <Grid>
+
+                                                <Label Grid.Row="0" Grid.Column="1"  VerticalOptions ="End"  HorizontalOptions="End"  Text="&#xf0fe;" FontFamily="{StaticResource FontAwesomeSolid}"  FontSize="30" TextColor="{StaticResource OvaSetTitleColor}"   >
+                                                    <Label.GestureRecognizers>
+                                                        <TapGestureRecognizer Tapped="TgrHobby_Tapped"/>
+                                                    </Label.GestureRecognizers>
+                                                </Label>
+                                            </Grid>
+
+
+                                        </DataTemplate>
+
+                                    </xct:Expander.ContentTemplate>
+
+
+                                </xct:Expander>
+
+                                <!--Internship-->
+                                <xct:Expander>
+
+                                    <xct:Expander.Header>
+                                        <Label Text="Internship" HeightRequest="60" TextColor="White" FontSize="Medium" FontAttributes="Bold" BackgroundColor="{StaticResource OvaControlBackgroundColor}"/>
+                                    </xct:Expander.Header>
+                                    <xct:Expander.ContentTemplate>
+
+                                        <DataTemplate>
+                                            <Grid>
+
+                                                <Label Grid.Row="0" Grid.Column="1"  VerticalOptions ="End"  HorizontalOptions="End"  Text="&#xf0fe;" FontFamily="{StaticResource FontAwesomeSolid}"  FontSize="30" TextColor="{StaticResource OvaSetTitleColor}"   >
+                                                    <Label.GestureRecognizers>
+                                                        <TapGestureRecognizer Tapped="TgrInternship_Tapped"/>
+                                                    </Label.GestureRecognizers>
+                                                </Label>
+                                            </Grid>
+
+
+                                        </DataTemplate>
+
+                                    </xct:Expander.ContentTemplate>
+
+
+                                </xct:Expander>
+
+                                <!--Language Skill-->
+                                <xct:Expander>
+
+                                    <xct:Expander.Header>
+                                        <Label Text="Language Skill" HeightRequest="60" VerticalTextAlignment="Center" TextColor="White" FontSize="Medium" FontAttributes="Bold" BackgroundColor="{StaticResource OvaControlBackgroundColor}"/>
+                                    </xct:Expander.Header>
+                                    <xct:Expander.ContentTemplate>
+
+                                        <DataTemplate>
+                                            <Grid>
+
+                                                <Label Grid.Row="0" Grid.Column="1"  VerticalOptions ="End"  HorizontalOptions="End"  Text="&#xf0fe;" FontFamily="{StaticResource FontAwesomeSolid}"  FontSize="30" TextColor="{StaticResource OvaSetTitleColor}"   >
+                                                    <Label.GestureRecognizers>
+                                                        <TapGestureRecognizer Tapped="TgrLanguageSkill_Tapped"/>
+                                                    </Label.GestureRecognizers>
+                                                </Label>
+                                            </Grid>
+
+                                        </DataTemplate>
+
+                                    </xct:Expander.ContentTemplate>
+
+
+                                </xct:Expander>
+
+                                <!--Other Qualification-->
+                                <xct:Expander>
+
+                                    <xct:Expander.Header>
+                                        <Label Text="Other Qualification" HeightRequest="60" VerticalTextAlignment="Center" TextColor="White" FontSize="Medium" FontAttributes="Bold" BackgroundColor="{StaticResource OvaControlBackgroundColor}"/>
+                                    </xct:Expander.Header>
+                                    <xct:Expander.ContentTemplate>
+
+                                        <DataTemplate>
+
+                                            <Grid>
+
+                                                <Label Grid.Row="0" Grid.Column="1"  VerticalOptions ="End"  HorizontalOptions="End"  Text="&#xf0fe;" FontFamily="{StaticResource FontAwesomeSolid}"  FontSize="30" TextColor="{StaticResource OvaSetTitleColor}"   >
+                                                    <Label.GestureRecognizers>
+                                                        <TapGestureRecognizer Tapped="TgrQualification_Tapped"/>
+                                                    </Label.GestureRecognizers>
+                                                </Label>
+                                            </Grid>
+
+
+
+                                        </DataTemplate>
+
+                                    </xct:Expander.ContentTemplate>
+
+
+                                </xct:Expander>
+
+                                <!--Photo-->
+                                <xct:Expander>
+
+                                    <xct:Expander.Header>
+                                        <Label Text="Photo" HeightRequest="60" VerticalTextAlignment="Center" TextColor="White" FontSize="Medium" FontAttributes="Bold" BackgroundColor="{StaticResource OvaControlBackgroundColor}"/>
+                                    </xct:Expander.Header>
+                                    <xct:Expander.ContentTemplate>
+
+                                        <DataTemplate>
+                                            <Grid>
+
+                                                <Label Grid.Row="0" Grid.Column="1"  VerticalOptions ="End"  HorizontalOptions="End"  Text="&#xf0fe;" FontFamily="{StaticResource FontAwesomeSolid}"  FontSize="30" TextColor="{StaticResource OvaSetTitleColor}"   >
+                                                    <Label.GestureRecognizers>
+                                                        <TapGestureRecognizer Tapped="TgrPhoto_Tapped"/>
+                                                    </Label.GestureRecognizers>
+                                                </Label>
+                                            </Grid>
+
+
+                                        </DataTemplate>
+
+                                    </xct:Expander.ContentTemplate>
+
+
+                                </xct:Expander>
+
+                                <!--Skill-->
+                                <xct:Expander>
+
+                                    <xct:Expander.Header>
+                                        <Label Text="Skill" HeightRequest="60" VerticalTextAlignment="Center" TextColor="White" FontSize="Medium" FontAttributes="Bold" BackgroundColor="{StaticResource OvaControlBackgroundColor}"/>
+                                    </xct:Expander.Header>
+                                    <xct:Expander.ContentTemplate>
+
+                                        <DataTemplate>
+                                            <Grid>
+
+                                                <Label Grid.Row="0" Grid.Column="1"  VerticalOptions ="End"  HorizontalOptions="End"  Text="&#xf0fe;" FontFamily="{StaticResource FontAwesomeSolid}"  FontSize="30" TextColor="{StaticResource OvaSetTitleColor}"   >
+                                                    <Label.GestureRecognizers>
+                                                        <TapGestureRecognizer Tapped="TgrSkill_Tapped"/>
+                                                    </Label.GestureRecognizers>
+                                                </Label>
+                                            </Grid>
+                                        </DataTemplate>
+
+                                    </xct:Expander.ContentTemplate>
+
+
+                                </xct:Expander>
+
+                                <!--Social Affairs-->
+                                <xct:Expander>
+
+                                    <xct:Expander.Header>
+                                        <Label Text="Social Affairs" HeightRequest="60" VerticalTextAlignment="Center" TextColor="White" FontSize="Medium" FontAttributes="Bold" BackgroundColor="{StaticResource OvaControlBackgroundColor}"/>
+                                    </xct:Expander.Header>
+                                    <xct:Expander.ContentTemplate>
+
+                                        <DataTemplate>
+                                            <Grid>
+
+                                                <Label Grid.Row="0" Grid.Column="1"  VerticalOptions ="End"  HorizontalOptions="End"  Text="&#xf0fe;" FontFamily="{StaticResource FontAwesomeSolid}"  FontSize="30" TextColor="{StaticResource OvaSetTitleColor}"   >
+                                                    <Label.GestureRecognizers>
+                                                        <TapGestureRecognizer Tapped="TgrSocialAffais_Tapped"/>
+                                                    </Label.GestureRecognizers>
+                                                </Label>
+                                            </Grid>
+
+                                        </DataTemplate>
+
+                                    </xct:Expander.ContentTemplate>
+
+
+                                </xct:Expander>
+
+                                <!--Training-->
+                                <xct:Expander>
+
+                                    <xct:Expander.Header>
+                                        <Label Text="Training" HeightRequest="60" VerticalTextAlignment="Center" TextColor="White" FontSize="Medium" FontAttributes="Bold" BackgroundColor="{StaticResource OvaControlBackgroundColor}"/>
+                                    </xct:Expander.Header>
+                                    <xct:Expander.ContentTemplate>
+
+                                        <DataTemplate>
+
+                                            <Grid>
+
+                                                <Label Grid.Row="0" Grid.Column="1"  VerticalOptions ="End"  HorizontalOptions="End"  Text="&#xf0fe;" FontFamily="{StaticResource FontAwesomeSolid}"  FontSize="30" TextColor="{StaticResource OvaSetTitleColor}"   >
+                                                    <Label.GestureRecognizers>
+                                                        <TapGestureRecognizer Tapped="TgrTraining_Tapped"/>
+                                                    </Label.GestureRecognizers>
+                                                </Label>
+                                            </Grid>
+
+
+                                        </DataTemplate>
+
+                                    </xct:Expander.ContentTemplate>
+
+
+                                </xct:Expander>
+
+                                <!--Working Experience-->
+                                <xct:Expander>
+                                    <xct:Expander.Header>
+                                        <Label Text="Working Experience" HeightRequest="60" VerticalTextAlignment="Center" TextColor="White" FontSize="Medium" FontAttributes="Bold" BackgroundColor="{StaticResource OvaControlBackgroundColor}"/>
+                                    </xct:Expander.Header>
+                                    <xct:Expander.ContentTemplate>
+
+                                        <DataTemplate>
+                                            <Grid>
+                                                <Grid>
+                                                    <Label Grid.Row="0" Grid.Column="1"  VerticalOptions ="End"  HorizontalOptions="End"  Text="&#xf0fe;" FontFamily="{StaticResource FontAwesomeSolid}"  FontSize="30" TextColor="{StaticResource OvaSetTitleColor}"   >
+                                                        <Label.GestureRecognizers>
+                                                            <TapGestureRecognizer Tapped="TgrWorkingExperience_Tapped"/>
+                                                        </Label.GestureRecognizers>
+                                                    </Label>
+                                                </Grid>
+                                            </Grid>
+                                        </DataTemplate>
+
+                                    </xct:Expander.ContentTemplate>
+                                </xct:Expander>
+
+                            </StackLayout>
+                        </ScrollView>
+                    </Frame>
+                </StackLayout>
+
+                <!--Footer area-->
+                <StackLayout
+                    x:Name="FooterLayout"
+                    HeightRequest="35"
+                    Orientation="Horizontal"
+                    VerticalOptions="End"
+                    Padding="{StaticResource paddingLeftRightBottom}">
+                    <StackLayout
+                        x:Name="ControlButtons"
+                        Orientation="Horizontal"
+                        VerticalOptions="FillAndExpand" 
+                        HorizontalOptions="FillAndExpand">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Frame
+                                        Padding="0"
+                                        BackgroundColor="{StaticResource OvaControlBackgroundColor}"
+                                        HorizontalOptions="FillAndExpand"
+                                        
+                                        >
+                                    <StackLayout
+                                            VerticalOptions="FillAndExpand"
+                                            HorizontalOptions="CenterAndExpand"
+                                            Orientation="Horizontal">
+                                        <!--<Image Source="{Binding btnicon}" 
+                                               WidthRequest="40"
+                                               HeightRequest="40"
+                                               HorizontalOptions="Start"/>-->
+
+                                        <Label
+                                                VerticalOptions ="Center"
+                                                Text="&#xf07a;"
+                                                FontSize="16"
+                                                FontFamily="{StaticResource FontAwesomeSolid}"
+                                                TextColor="{StaticResource OvaControlColor}"
+                                                TextTransform="None">
+                                        </Label>
+                                        <Label
+                                                VerticalOptions ="Center"
+                                                Text="{Binding text}"
+                                                FontSize="16"
+                                                TextColor="{StaticResource OvaControlColor}"
+                                                TextTransform="None">
+                                        </Label>
+                                    </StackLayout>
+
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="ControlTapGestureRecognizer_Tapped"/>
+                                    </Frame.GestureRecognizers>
+                                </Frame>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+                </StackLayout>
+
+            </StackLayout>
+
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>
