@@ -1,4 +1,5 @@
-﻿using CS.ERP.PL.SYS.DAT;
+﻿using CommunityToolkit.Mvvm.Messaging;
+using CS.ERP.PL.SYS.DAT;
 using CS.ERP_MOB.General;
 using RGPopup.Maui.Pages;
 using RGPopup.Maui.Services;
@@ -13,11 +14,6 @@ namespace CS.ERP_MOB.Views.Frame
             try
             {
                 InitializeComponent();
-                //BindingContext = new VmlDiscussion(this);
-                //double screenWidth = Application.Current.MainPage.Width;
-                //int paddingRight = (int)(screenWidth / 5);
-                //paddingRight = paddingRight / 2;
-                //DiscussionGrid.Padding = new Thickness(0, 0, paddingRight, 50);
             }
             catch (Exception ex)
             {
@@ -38,33 +34,46 @@ namespace CS.ERP_MOB.Views.Frame
             try
             {
                 var l_RES_DISCUSSION = (DAT_DISCUSSION_NOTI)DiscussionList.SelectedItem;
-                if (l_RES_DISCUSSION != null)
+                if (l_RES_DISCUSSION == null)
+                    return;
+
+                // ✅ CLOSE POPUP FIRST
+                await PopupNavigation.Instance.PopAllAsync();
+                l_RES_DISCUSSION.DiscussionStatusAsk = "1";//1=send, 0=open
+                for (int i = 0; i < Common.mCommon.RES_PRODUCT_LST.Count; i++)
                 {
-                    l_RES_DISCUSSION.DiscussionStatusAsk = "1";//1=send, 0=open
-                    //OpenExternalApp(item?.AppName);
-                    Common.mCommon.OpenExternalApp(l_RES_DISCUSSION.DiscussionNotiURL);
-                    //Common.mCommon.DiscussionList.Remove(l_RES_DISCUSSION);
-                    //Common.mCommon.DiscussionList = Clone(Common.mCommon.DiscussionList);
-                    //Common.mCommon.updateDiscussion(l_RES_DISCUSSION);
-
-                    //if (!Common.bindMenu(l_RES_DISCUSSION.UserProfileURL))
-                    //{
-                    //    Common.mCommon.SelectedMenu = new RES_MENU { ProductAsk = "1", Text = "FrmAdmin", MenuUrl = "FrmAdmin", logoImg = "" };
-                    //    MessagingCenter.Send<Application, string>(Application.Current, "ToastMessage", ApplicationMessage.Message.MenuAccessRight);
-                    //}
-                    //Common.routeMenu(Common.mCommon.SelectedMenu);
-                    //await PopupNavigation.Instance.PopAllAsync();
-
-                    //if (Common.bindMenu(l_RES_DISCUSSION.Link))
-                    //{
-                    //    Common.routeMenu(l_RES_DISCUSSION.Link, l_RES_DISCUSSION.DiscussionDataType);
-                    //}
-                    //else
-                    //{
-                    //    MessagingCenter.Send<Application, string>(Application.Current, "ToastMessage", "no access right");
-                    //}
-                    //await PopupNavigation.Instance.PopAllAsync();
+                    if (Common.mCommon.RES_PRODUCT_LST[i].ProductAsk == l_RES_DISCUSSION.ProductAsk)
+                    {
+                        Common.mCommon.OpenExternalApp(l_RES_DISCUSSION.ProductCode_0_50.ToLower(), Common.mCommon.RES_PRODUCT_LST[i].LinkInURL, Common.mCommon.RES_PRODUCT_LST[i].AndroidIcon);
+                        return;
+                    }
+                    else if (i == Common.mCommon.RES_PRODUCT_LST.Count - 1)
+                    {
+                        WeakReferenceMessenger.Default.Send(Common.mCommon.GetMessageValueByKey("MsgAccess"));
+                    }
                 }
+                //Common.mCommon.OpenExternalApp(l_RES_DISCUSSION.DiscussionNotiURL);
+                //Common.mCommon.DiscussionList.Remove(l_RES_DISCUSSION);
+                //Common.mCommon.DiscussionList = Clone(Common.mCommon.DiscussionList);
+                //Common.mCommon.updateDiscussion(l_RES_DISCUSSION);
+
+                //if (!Common.bindMenu(l_RES_DISCUSSION.UserProfileURL))
+                //{
+                //    Common.mCommon.SelectedMenu = new RES_MENU { ProductAsk = "1", Text = "FrmAdmin", MenuUrl = "FrmAdmin", logoImg = "" };
+                //    MessagingCenter.Send<Application, string>(Application.Current, "ToastMessage", ApplicationMessage.Message.MenuAccessRight);
+                //}
+                //Common.routeMenu(Common.mCommon.SelectedMenu);
+                //await PopupNavigation.Instance.PopAllAsync();
+
+                //if (Common.bindMenu(l_RES_DISCUSSION.Link))
+                //{
+                //    Common.routeMenu(l_RES_DISCUSSION.Link, l_RES_DISCUSSION.DiscussionDataType);
+                //}
+                //else
+                //{
+                //    MessagingCenter.Send<Application, string>(Application.Current, "ToastMessage", "no access right");
+                //}
+                //await PopupNavigation.Instance.PopAllAsync();
             }
             catch (Exception ex)
             {

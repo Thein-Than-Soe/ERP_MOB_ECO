@@ -32,6 +32,7 @@ namespace CS.ERP_MOB.Services.SYS
         public static string wsLoginWithGO = "/LoginWithGo";
         public static string wsrunQuery = "/runQuery";
         public static string wsrunVersion = "/runVersion";
+        public static string wsupdateDefaultCompanyUser  = "updateDefaultCompanyUser";
         #endregion
         #region "List"
         public static string wsgetSample = "/getSample";

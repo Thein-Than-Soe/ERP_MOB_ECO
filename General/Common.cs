@@ -125,6 +125,9 @@ namespace CS.ERP_MOB.General
         private List<RES_STOCK_HOME> mRES_STOCK_HOME = new List<RES_STOCK_HOME>();
         private Thickness mCheckoutThickness = new Thickness(0, 10, 0, 0);
 
+        JSN_REQ_COMPANY_USER mJSN_REQ_COMPANY_USER = new JSN_REQ_COMPANY_USER();
+        JSN_COMPANY_USER mJSN_COMPANY_USER = new JSN_COMPANY_USER();
+
         private bool mApplicationAlert;
         private bool mLiveChat;
         private bool mFormAlert;
@@ -994,8 +997,62 @@ namespace CS.ERP_MOB.General
                 SliderList.Add(l_DAT_SLIDER);
             }
         }
+        public void bindSwitchProductData()
+        {
+
+            for (int i = 0; i < Common.mCommon.RES_PRODUCT_LST.Count; i++)
+            {
+                if (Common.mCommon.RES_PRODUCT_LST[i].ProductAsk == mCommon.REQ_AUTHORIZATION.ProductAsk)
+                {
+                    mCommon.SelectedProduct = Common.mCommon.RES_PRODUCT_LST[i];
+                }
+            }
+            this.SelectedMenu = this.JSN_RES_ECOMANCE.menu[0];
+        }
         public void bindLoginData()
         {
+            this.RES_PRODUCT_LST = this.JSN_RES_ECOMANCE.products;
+            this.CompanyUserList = this.JSN_RES_ECOMANCE.RES_COMPANY_USER;
+
+            if (this.JSN_RES_ECOMANCE.user != null)
+            {
+                this.User = this.JSN_RES_ECOMANCE.user;
+            }
+            if (this.JSN_RES_ECOMANCE.DAT_USER_SETTING.Count > 0)
+            {
+                this.UserSetting = this.JSN_RES_ECOMANCE.DAT_USER_SETTING[0];
+                string l_userPreferredLanguage = this.UserSetting.LanguageCode_0_50;
+                mCommon.UpdateLanguage(l_userPreferredLanguage);
+                mCommon.UpdateMessageManager(l_userPreferredLanguage);
+            }
+            else
+            {
+                this.UserSetting = new DAT_USER_SETTING();
+            }
+            if (this.JSN_RES_ECOMANCE.RES_SHOPPING_CART.Detail.Count > 0)
+            {
+                this.CheckoutThickness = new Thickness(0, 0, 0, 0);
+                this.ShoppingCartList = this.JSN_RES_ECOMANCE.RES_SHOPPING_CART.Detail;
+                this.Shopping = this.JSN_RES_ECOMANCE.RES_SHOPPING_CART.Header[0];
+                //need to set paddint to change checkout icon
+                this.CheckoutThickness = new Thickness(0, 0, 0, 0);
+            }
+            else
+            {
+                //need to set paddint to change checkout icon
+                this.CheckoutThickness = new Thickness(0, 10, 0, 0);
+            }
+            if (mCommon.User.UserAsk == "2")//Guest
+            {
+                this.UserLoggedIn = false;
+                this.UserLoggedOut = true;
+            }
+            else //login
+            {
+                this.UserLoggedIn = true;
+                this.UserLoggedOut = false;
+            }
+
             NotiList = new ObservableCollection<RES_NOTI_LST>();
             if (this.JSN_RES_ECOMANCE.noti.Count > 0)
             {
@@ -1219,6 +1276,22 @@ namespace CS.ERP_MOB.General
                 throw ex.InnerException;
             }
         }
+        public async void switchProduct(RES_PRODUCT argRES_PRODUCT,string argMenuURL= "")
+        {
+            try
+            {
+                if (argRES_PRODUCT != null)
+                {
+                    mCommon.SelectedProduct = argRES_PRODUCT;
+                    mCommon.REQ_AUTHORIZATION.ProductAsk = mCommon.SelectedProduct.ProductAsk;
+                }
+                mCommon.switchProduct(mCommon.REQ_AUTHORIZATION, null,argMenuURL);
+            }
+            catch (Exception ex)
+            {
+                throw ex.InnerException;
+            }
+        }
         public async void switchProduct(RES_PRODUCT argRES_PRODUCT, Action? l_MenuCallback = null)
         {
             try
@@ -1412,7 +1485,7 @@ namespace CS.ERP_MOB.General
             try
             {
                 Utility.openLoader();
-                argREQ_AUTHORIZATION.ProductAsk = "10";
+                argREQ_AUTHORIZATION.ProductAsk = "10";//10 for eco
                 l_Request = JsonConvert.SerializeObject(argREQ_AUTHORIZATION);
                 l_Response = await Eco_Service.ApiCall(l_Request, Eco_Name.wsLogIn);
                 if (l_Response != null || l_Response != "")
@@ -1434,81 +1507,26 @@ namespace CS.ERP_MOB.General
                         listenNtfSocket();
                         bindRegionData();
                         bindLoginData();
-                        this.RES_PRODUCT_LST = this.JSN_RES_ECOMANCE.products;
-                        this.CompanyUserList = this.JSN_RES_ECOMANCE.RES_COMPANY_USER;
-                        if (this.JSN_RES_ECOMANCE.user != null)
+                        if (this.JSN_RES_ECOMANCE.products.Count > 0)
                         {
-                            this.User = this.JSN_RES_ECOMANCE.user;
-                        }
-                        if (this.JSN_RES_ECOMANCE.DAT_USER_SETTING.Count > 0)
-                        {
-                            this.UserSetting = this.JSN_RES_ECOMANCE.DAT_USER_SETTING[0];
-                            this.UserSetting.DateTimeFormatName_0_255 = "dd/MM/yyyy hh:mm tt";
-                            this.UserSetting.SwipeButtonBgColor = "#006FB9";//need to remove this line
-                            this.UserSetting.CardViewFName_0_255 = "Roboto";//need to remove this line
-                            this.UserSetting.CardViewFColor = "#006FB9";//need to remove this line
-                            this.UserSetting.CardViewFSize = "12";//need to remove this line
-                            this.UserSetting.CardViewFStyle = "Bold";//need to remove this line
-                            this.UserSetting.CardViewBgColor = "#FFFFFFFF";//need to remove this line
-
-                            this.UserSetting.ContentBodyFName_0_255 = "Roboto";//need to remove this line
-                            this.UserSetting.ContentBodyFColor = "#000000";//need to remove this line
-                            this.UserSetting.ContentBodyFSize = "12";//need to remove this line
-                            this.UserSetting.ContentBodyFStyle = "Bold,Italic";//need to remove this line
-                            this.UserSetting.ContentBodyBgColor = "#F0F0F0";//need to remove this line
-
-                            string l_userPreferredLanguage = this.UserSetting.LanguageCode_0_50;
-                            mCommon.UpdateLanguage(l_userPreferredLanguage);
-                            mCommon.UpdateMessageManager(l_userPreferredLanguage);
-                        }
-                        else
-                        {
-                            this.UserSetting = new DAT_USER_SETTING();
+                            for (int i = 0; i < this.JSN_RES_ECOMANCE.products.Count; i++)
+                            {
+                                if (this.JSN_RES_ECOMANCE.products[i].ProductAsk == "23")
+                                {
+                                    this.SelectedProduct = this.JSN_RES_ECOMANCE.products[i];
+                                }
+                            }
                         }
                         bindThemeSetting();
                         bindRegionSetting();
-                        if (this.JSN_RES_ECOMANCE.products.Count > 0)
-                        {
-                            this.SelectedProduct = this.JSN_RES_ECOMANCE.products[1];
-                        }
-                        if (this.JSN_RES_ECOMANCE.RES_SHOPPING_CART.Detail.Count > 0)
-                        {
-                            this.CheckoutThickness = new Thickness(0, 0, 0, 0);
-                            this.ShoppingCartList = this.JSN_RES_ECOMANCE.RES_SHOPPING_CART.Detail;
-                            this.Shopping = this.JSN_RES_ECOMANCE.RES_SHOPPING_CART.Header[0];
-                            //need to set paddint to change checkout icon
-                            this.CheckoutThickness = new Thickness(0, 0, 0, 0);
-                        }
-                        else
-                        {
-                            //need to set paddint to change checkout icon
-                            this.CheckoutThickness = new Thickness(0, 10, 0, 0);
-                        }
 
                         saveDbUser();
                         if (!Common.bindMenu("home"))
                         {
                             Common.mCommon.SelectedMenu = new RES_MENU { ProductAsk = "1", Text = "Home", MenuUrl = "home", logoImg = "" };
-                            //WeakReferenceMessenger.Default.Send(
-                            //    ApplicationMessage.Message.Welcome + this.User.UserDescription);
-
-                            WeakReferenceMessenger.Default.Send(
-                                mCommon.GetMessageValueByKey("MsgSaveSuccess"));
+                            WeakReferenceMessenger.Default.Send(mCommon.GetMessageValueByKey("MsgSaveSuccess"));
                         }
                         Common.routeMenu(Common.mCommon.SelectedMenu);
-
-                        if (mCommon.User.UserAsk == "2")//Guest
-                        {
-                            this.UserLoggedIn = false;
-                            this.UserLoggedOut = true;
-                        }
-                        else //login
-                        {
-                            this.UserLoggedIn = true;
-                            this.UserLoggedOut = false;
-                        }
-                        //MessagingCenter.Send<Application, string>(Application.Current, ApplicationMessage.Message.Alert,"You are welcome! "+ this.User.UserDescription);
-                        //routeMenu("home", "Home");
                     }
                     else
                     {
@@ -1516,20 +1534,12 @@ namespace CS.ERP_MOB.General
                         this.UserLoggedOut = false;
                         mCommon.SelectedMenu = new RES_MENU { ProductAsk = "1", Text = "Sign In", MenuUrl = "signin", logoImg = "" };
                         Common.routeMenu(Common.mCommon.SelectedMenu);
-                        WeakReferenceMessenger.Default.Send(
-                                mCommon.JSN_RES_ECOMANCE.Message.Message);
-
-                        //MessagingCenter.Send<Application, string>(Application.Current, ApplicationMessage.Message.Alert, mCommon.JSN_RES_ECOMANCE.Message.Message);
-                        //routeMenu("signin", "Sign In");
-                        //MessagingCenter.Send<Application, string>(Application.Current, ApplicationMessage.Message.Alert, mCommon.JSN_RES_ECOMANCE.Message.Message);
+                        WeakReferenceMessenger.Default.Send(mCommon.JSN_RES_ECOMANCE.Message.Message);
                     }
                 }
                 else
                 {
-                    //MessagingCenter.Send<Application, string>(Application.Current, ApplicationMessage.Message.Alert, "Server Err");
-                    WeakReferenceMessenger.Default.Send(
-                                    "Server Err");
-
+                    WeakReferenceMessenger.Default.Send("Server Err");
                 }
                 Utility.closeLoader();
             }
@@ -1538,7 +1548,6 @@ namespace CS.ERP_MOB.General
                 Common.mCommon.SelectedMenu = new RES_MENU { ProductAsk = "1", Text = "Sign In", MenuUrl = "signin", logoImg = "" };
                 Common.routeMenu(Common.mCommon.SelectedMenu);
                 Utility.closeLoader();
-                //throw ex.InnerException;
             }
         }
         private void bindRegionSetting()
@@ -1775,7 +1784,7 @@ namespace CS.ERP_MOB.General
             }
         }
 
-        public async void switchProduct(REQ_AUTHORIZATION argREQ_AUTHORIZATION, Action? l_MenuCallback = null)
+        public async void switchProduct(REQ_AUTHORIZATION argREQ_AUTHORIZATION, Action? l_MenuCallback = null,string argMenuURL = "")
         {
             string l_Request = "";
             var l_Response = "";
@@ -1794,52 +1803,17 @@ namespace CS.ERP_MOB.General
                         this.InitMenuGroup();
                         l_MenuCallback?.Invoke();
                         bindLoginData();
-                        this.RES_PRODUCT_LST = this.JSN_RES_ECOMANCE.products;
-                        this.SelectedMenu = this.JSN_RES_ECOMANCE.menu[0];
-
-                        if (this.JSN_RES_ECOMANCE.user != null)
-                        {
-                            this.User = this.JSN_RES_ECOMANCE.user;
-                        }
-                        if (this.JSN_RES_ECOMANCE.products.Count > 0)
-                        {
-                            //this.SelectedProduct = this.JSN_RES_ECOMANCE.products[0];
-                        }
-                        if (this.JSN_RES_ECOMANCE.RES_SHOPPING_CART.Detail.Count > 0)
-                        {
-                            this.CheckoutThickness = new Thickness(0, 0, 0, 0);
-                            this.ShoppingCartList = this.JSN_RES_ECOMANCE.RES_SHOPPING_CART.Detail;
-                            this.Shopping = this.JSN_RES_ECOMANCE.RES_SHOPPING_CART.Header[0];
-                            //need to set paddint to change checkout icon
-                            //this.CheckoutThickness = new Thickness(0, 10, 0, 0);
-                        }
-                        else
-                        {
-                            //need to set paddint to change checkout icon
-                            this.CheckoutThickness = new Thickness(0, 10, 0, 0);
-                        }
-
-                        if (Common.mCommon.User.UserAsk == "2")//Guest
-                        {
-                            this.UserLoggedIn = false;
-                            this.UserLoggedOut = true;
-                        }
-                        else //login
-                        {
-                            this.UserLoggedIn = true;
-                            this.UserLoggedOut = false;
-                        }
-
+                        bindSwitchProductData();
                         saveDbUser();
-                        //MessagingCenter.Send<Application, string>(Application.Current, ApplicationMessage.Message.Alert, "You are welcome! " + this.User.UserDescription);
-                        //routeMenu("home", "Home");
 
-                        if (!Common.bindMenu("home"))
+                        if (Common.bindMenu(argMenuURL))
+                        {
+
+                        }
+                        else if (!Common.bindMenu("home"))
                         {
                             Common.mCommon.SelectedMenu = new RES_MENU { ProductAsk = "1", Text = "Home", MenuUrl = "home", logoImg = "" };
-                            //MessagingCenter.Send<Application, string>(Application.Current, ApplicationMessage.Message.Alert, ApplicationMessage.Message.Welcome + this.User.UserDescription);
-                            WeakReferenceMessenger.Default.Send(
-                                       ApplicationMessage.Message.Welcome + this.User.UserDescription);
+                           WeakReferenceMessenger.Default.Send(ApplicationMessage.Message.Welcome + this.User.UserDescription);
                         }
                         Common.routeMenu(Common.mCommon.SelectedMenu);
                     }
@@ -1851,10 +1825,7 @@ namespace CS.ERP_MOB.General
                         Common.mCommon.SelectedMenu = new RES_MENU { ProductAsk = "1", Text = "Sign In", MenuUrl = "signin", logoImg = "" };
                         Common.routeMenu(Common.mCommon.SelectedMenu);
                         //MessagingCenter.Send<Application, string>(Application.Current, ApplicationMessage.Message.Alert, mCommon.JSN_RES_ECOMANCE.Message.Message);
-                        WeakReferenceMessenger.Default.Send(
-                                      mCommon.JSN_RES_ECOMANCE.Message.Message);
-                        //routeMenu("signin", "Sign In");
-                        //MessagingCenter.Send<Application, string>(Application.Current, ApplicationMessage.Message.Alert, mCommon.JSN_RES_ECOMANCE.Message.Message);
+                        WeakReferenceMessenger.Default.Send(mCommon.JSN_RES_ECOMANCE.Message.Message);
                     }
                 }
                 else
@@ -2183,37 +2154,79 @@ namespace CS.ERP_MOB.General
                 }
             }
         }
-        public void OpenExternalApp(string appName)
+        //public void OpenExternalApp(string appName)
+        //{
+        //    try
+        //    {
+        //        switch (appName)
+        //        {
+        //            case "facebook":
+        //                Launcher.TryOpenAsync("fb://profile"); // Open Facebook App
+        //                break;
+
+        //            case "messenger":
+        //                Launcher.TryOpenAsync("fb-messenger://"); // Messenger
+        //                break;
+
+        //            case "whatsapp":
+        //                Launcher.TryOpenAsync("whatsapp://send?text=Hello");
+        //                break;
+
+        //            default:
+        //                // fallback to website
+        //                Launcher.OpenAsync("ova://chat");
+        //                break;
+        //        }
+        //    }
+        //    catch
+        //    {
+        //        // app not installed – optional fallback
+        //        Launcher.OpenAsync("https://www.google.com");
+        //    }
+        //}
+        public async Task OpenExternalApp(string appName, string argAppURL = "", string argPlaystoreURL = "")
         {
-            try
+            //string appUri = "";
+            //string playStoreUri = "";
+
+            //switch (appName)
+            //{
+            //    case "facebook":
+            //        appUri = "fb://";
+            //        playStoreUri = "https://play.google.com/store/apps/details?id=com.facebook.katana";
+            //        break;
+
+            //    case "messenger":
+            //        appUri = "fb-messenger://";
+            //        playStoreUri = "https://play.google.com/store/apps/details?id=com.facebook.orca";
+            //        break;
+
+            //    case "whatsapp":
+            //        appUri = "whatsapp://";
+            //        playStoreUri = "https://play.google.com/store/apps/details?id=com.whatsapp";
+            //        break;
+
+            //    case "cht":
+            //        appUri = argAppURL;
+            //        playStoreUri = argPlaystoreURL;
+            //        break;
+
+            //    default:
+            //        appUri = "ova://chat";
+            //        playStoreUri = "https://play.google.com/store/apps";
+            //        break;
+            //}
+
+            // Try to open the external app
+            bool opened = await Launcher.TryOpenAsync(argAppURL);
+
+            if (!opened)
             {
-                switch (appName)
-                {
-                    case "facebook":
-                        Launcher.TryOpenAsync("fb://profile"); // Open Facebook App
-                        break;
-
-                    case "messenger":
-                        Launcher.TryOpenAsync("fb-messenger://"); // Messenger
-                        break;
-
-                    case "whatsapp":
-                        Launcher.TryOpenAsync("whatsapp://send?text=Hello");
-                        break;
-
-                    default:
-                        // fallback to website
-                        Launcher.OpenAsync("ova://chat");
-                        break;
-                }
-            }
-            catch
-            {
-                // app not installed – optional fallback
-                Launcher.OpenAsync("https://www.google.com");
+                // App not installed → open Play Store
+                await Launcher.OpenAsync(argPlaystoreURL);
             }
         }
-         
+
         public async void saveNoti(RES_CONTROL argRES_CONTROL)
         {
             try
@@ -2229,6 +2242,41 @@ namespace CS.ERP_MOB.General
                 }
             }
             catch (Exception ex){
+            }
+        }
+        public async void updateDefaultCompanyUser(RES_COMPANY_USER argRES_COMPANY_USER)
+        {
+            string l_Request = "";
+            var l_Response = "";
+            mJSN_REQ_COMPANY_USER = new JSN_REQ_COMPANY_USER();
+            mJSN_REQ_COMPANY_USER.REQ_AUTHORIZATION = mCommon.REQ_AUTHORIZATION;
+            mJSN_REQ_COMPANY_USER.RES_COMPANY_USER.Add(argRES_COMPANY_USER);
+            try
+            {
+                Utility.openLoader();
+                l_Request = JsonConvert.SerializeObject(mJSN_REQ_COMPANY_USER);
+                l_Response = await Sys_Service.ApiCall(l_Request, Sys_Name.wsupdateDefaultCompanyUser);
+                if (l_Response != null || l_Response != "")
+                {
+                    mJSN_COMPANY_USER = JsonConvert.DeserializeObject<JSN_COMPANY_USER>(l_Response);
+                    if (mJSN_COMPANY_USER.Message.Code == "7")
+                    {
+                        CompanyUserList = mJSN_COMPANY_USER.RES_COMPANY_USER;
+                    }
+                    else
+                    {
+                        WeakReferenceMessenger.Default.Send(mJSN_COMPANY_USER.Message.Message);
+                    }
+                }
+                else
+                {
+                    WeakReferenceMessenger.Default.Send("Server Err");
+                }
+                Utility.closeLoader();
+            }
+            catch (Exception ex)
+            {
+                
             }
         }
         #endregion

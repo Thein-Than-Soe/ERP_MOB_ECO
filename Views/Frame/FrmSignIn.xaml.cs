@@ -13,7 +13,6 @@ using System.Linq;
 using Microsoft.Identity.Client;
 //using Xamarin.Auth;
 using Microsoft.Maui.Authentication;
-using CHARS.HR.COMMON.BOL;
 using Microsoft.Maui.Storage;
 
 namespace CS.ERP_MOB.Views.Frame

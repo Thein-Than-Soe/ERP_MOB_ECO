@@ -384,7 +384,14 @@ namespace CS.ERP_MOB
                 }
                 else if (HomeSelected)
                 {
-                    this.changeContentView(new HomePage(), "Home");
+                    if (Common.mCommon.CompanyUserList.Count == 1)
+                    {
+                        this.changeContentView(new HomePage(), "Home");
+                    }
+                    else
+                    {
+                        await PopupNavigation.Instance.PushAsync(new PopCompany());
+                    }
                 }
                 else if (NotiSelected)
                 {

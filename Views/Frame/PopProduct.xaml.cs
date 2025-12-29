@@ -65,7 +65,7 @@ After:
                 var l_RES_PRODUCT = (RES_PRODUCT)ProductList.SelectedItem;
                 if (l_RES_PRODUCT != null)
                 {
-                    Common.mCommon.switchProduct(l_RES_PRODUCT);
+                    Common.mCommon.switchProduct(l_RES_PRODUCT,"");
                     await PopupNavigation.Instance.PopAllAsync();
                 }
             }

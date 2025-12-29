@@ -1,4 +1,5 @@
-﻿using CS.ERP.PL.ECO.DAT;
+﻿using CommunityToolkit.Mvvm.Messaging;
+using CS.ERP.PL.ECO.DAT;
 using CS.ERP.PL.SYS.DAT;
 using CS.ERP.PL.SYS.REQ;
 using CS.ERP.PL.SYS.RES;
@@ -93,7 +94,7 @@ namespace CS.ERP_MOB
 
                 if (tappedItem.FloatDescription_0_500 == "openChat")
                 {
-                    Common.mCommon.OpenExternalApp("");
+                    Common.mCommon.OpenExternalApp("", tappedItem.DefaultURL, tappedItem.UserURL);
                 }
                 else if (tappedItem.FloatDescription_0_500 == "scrollToTop")
                 {
@@ -104,7 +105,51 @@ namespace CS.ERP_MOB
             {
                 throw ex.InnerException;
             }
-        }       
+        }
+        private async void FloatLeft_Tapped(object sender, EventArgs e)
+        {
+            try
+            {
+                if (_longPressTriggered)
+                {
+                    _longPressTriggered = false;
+                    return;
+                }
+                var frame = sender as Frame;
+                if (frame == null) return;
+
+                var tappedItem = frame.BindingContext as DAT_FLOAT;
+                if (tappedItem == null) return;
+                switch (tappedItem.FloatTypeAsk)
+                {
+                    case "1"://1 for meta data
+                        await Share.Default.RequestAsync(new ShareTextRequest
+                        {
+                            Uri = tappedItem.DefaultURL
+                        });
+                        break;
+                    case "2"://2 for same app
+
+                        if (Common.bindMenu(tappedItem.DefaultURL))
+                        {
+                            Common.routeMenu(Common.mCommon.SelectedMenu);
+                        }
+                        else
+                        {
+                            WeakReferenceMessenger.Default.Send(Common.mCommon.GetMessageValueByKey("MsgAccess"));
+                        }
+                         break;
+                    case "3"://3 for different app
+                        Common.mCommon.OpenExternalApp("", tappedItem.DefaultURL, tappedItem.UserURL);
+                        break;
+                    default:break;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex.InnerException;
+            }
+        }
         private void ToggleShareList()
         {
             ShareList.IsVisible = !ShareList.IsVisible;

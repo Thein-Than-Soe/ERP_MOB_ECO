@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:general="clr-namespace:CS.ERP_MOB.General"
+    xmlns:sys="clr-namespace:System;assembly=netstandard"
     xmlns:tabbar="clr-namespace:CS.ERP_MOB"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:views="clr-namespace:CS.ERP_MOB.Views.Frame"
@@ -409,7 +410,7 @@
                 <!--  Float Left  -->
                 <StackLayout
                     x:Name="ShareButton"
-                    AbsoluteLayout.LayoutBounds="0,1,60,550"
+                    AbsoluteLayout.LayoutBounds="0,1,60,600"
                     AbsoluteLayout.LayoutFlags="PositionProportional"
                     HorizontalOptions="Start"
                     IsVisible="{Binding RegionSettingFloatLeft.RegionVisibilityAsk, Converter={StaticResource StringToBoolConverter}, Source={x:Static general:Common.mCommon}}"
@@ -440,13 +441,53 @@
                                                 LongPressDuration="800"
                                                 ShouldMakeChildrenInputTransparent="True" />
                                         </Frame.Behaviors>
-                                        <Label
-                                            FontFamily="{StaticResource FontAwesomeBrands}"
-                                            FontSize="28"
-                                            HorizontalOptions="Center"
-                                            Text="{Binding Icon, Converter={StaticResource IconConverter}}"
-                                            TextColor="{Binding ThemeSettingFloatLeft.PropertiesFontColor, Source={x:Static general:Common.mCommon}}"
-                                            VerticalOptions="Center" />
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="FloatLeft_Tapped" />
+                                        </Frame.GestureRecognizers>
+                                        <!--  Content  -->
+                                        <Grid>
+
+                                            <!--  IMAGE  -->
+                                            <Image Source="{Binding Image, Converter={StaticResource ImageURLConverter}}">
+                                                <Image.Triggers>
+                                                    <DataTrigger
+                                                        Binding="{Binding Image}"
+                                                        TargetType="Image"
+                                                        Value="{x:Static sys:String.Empty}">
+                                                        <Setter Property="IsVisible" Value="False" />
+                                                    </DataTrigger>
+                                                </Image.Triggers>
+                                            </Image>
+
+                                            <!--  FONT AWESOME ICON  -->
+                                            <Label
+                                                FontFamily="{StaticResource FontAwesomeBrands}"
+                                                FontSize="28"
+                                                HorizontalOptions="Center"
+                                                IsVisible="False"
+                                                Text="{Binding Icon, Converter={StaticResource IconConverter}}"
+                                                TextColor="{Binding ThemeSettingFloatLeft.PropertiesFontColor, Source={x:Static general:Common.mCommon}}"
+                                                VerticalOptions="Center">
+
+                                                <Label.Triggers>
+                                                    <!--  Hide label if Image exists  -->
+                                                    <DataTrigger
+                                                        Binding="{Binding Image}"
+                                                        TargetType="Label"
+                                                        Value="">
+                                                        <Setter Property="IsVisible" Value="True" />
+                                                    </DataTrigger>
+
+                                                    <DataTrigger
+                                                        Binding="{Binding Image}"
+                                                        TargetType="Label"
+                                                        Value="{x:Reference Image}">
+                                                        <Setter Property="IsVisible" Value="False" />
+                                                    </DataTrigger>
+                                                </Label.Triggers>
+                                            </Label>
+
+                                        </Grid>
                                     </Frame>
                                     <!--  ❌ Delete Button  -->
                                     <Frame

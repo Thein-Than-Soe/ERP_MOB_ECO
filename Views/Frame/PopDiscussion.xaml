@@ -52,6 +52,14 @@
 
                     <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="Center">
                         <Label
+                            Padding="0"
+                            AbsoluteLayout.LayoutBounds="0.5, -2, AutoSize, AutoSize"
+                            AbsoluteLayout.LayoutFlags="PositionProportional"
+                            FontFamily="{StaticResource FontAwesomeSolid}"
+                            HorizontalTextAlignment="Center"
+                            Text="&#xf7a4;"
+                            VerticalOptions="Start" />
+                        <Label
                             AbsoluteLayout.LayoutBounds="0.5, 0.5, AutoSize, AutoSize"
                             AbsoluteLayout.LayoutFlags="PositionProportional"
                             HorizontalTextAlignment="Center"

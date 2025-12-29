@@ -1,4 +1,5 @@
-﻿using CS.ERP.PL.NTF.DAT;
+﻿using CommunityToolkit.Mvvm.Messaging;
+using CS.ERP.PL.NTF.DAT;
 using CS.ERP.PL.SYS.DAT;
 using CS.ERP_MOB.General;
 using CS.ERP_MOB.Services.NTF;
@@ -145,11 +146,9 @@ After:
         private async void OnSwipeDown(object sender, SwipedEventArgs e)
         {
             await PopupNavigation.Instance.PopAsync();
-        }
+        }     
 
-      
-
-        private void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private async void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
             {
@@ -158,15 +157,58 @@ After:
                 if (selectedItem == null)
                     return;
 
-              
-                RES_NOTI_LST l_RES_NOTI_LST = selectedItem as RES_NOTI_LST;
-                
 
-              
-                DisplayAlert("Selected", l_RES_NOTI_LST.SystemNotiName_0_255, "OK");
-
-                
                 ((CollectionView)sender).SelectedItem = null;
+                RES_NOTI_LST l_RES_NOTI_LST = selectedItem as RES_NOTI_LST;
+
+                if (l_RES_NOTI_LST == null)
+                    return;
+
+                // ✅ CLOSE POPUP FIRST
+                await PopupNavigation.Instance.PopAsync();
+
+                // ⏳ Let UI settle (important)
+                await Task.Delay(100);
+
+                if (l_RES_NOTI_LST.ProductAsk == Common.mCommon.SelectedProduct.ProductAsk)
+                {
+                    if (!Common.bindMenu(l_RES_NOTI_LST.SystemNotiURL))
+                    {
+                        WeakReferenceMessenger.Default.Send(Common.mCommon.GetMessageValueByKey("MsgAccess"));
+                        return;
+                    }
+                    Common.routeMenu(Common.mCommon.SelectedMenu);
+                }
+                else if (l_RES_NOTI_LST.ProductAsk == "21" || l_RES_NOTI_LST.ProductAsk == "23")//21 for CHT,23 for JOB
+                {
+                    for (int i = 0; i < Common.mCommon.RES_PRODUCT_LST.Count; i++)
+                    {
+                        if (Common.mCommon.RES_PRODUCT_LST[i].ProductAsk == l_RES_NOTI_LST.ProductAsk)
+                        {
+                            Common.mCommon.OpenExternalApp(l_RES_NOTI_LST.ProductCode_0_50.ToLower(), Common.mCommon.RES_PRODUCT_LST[i].LinkInURL, Common.mCommon.RES_PRODUCT_LST[i].AndroidIcon);
+                            return;
+                        }
+                        else if(i == Common.mCommon.RES_PRODUCT_LST.Count-1)
+                        {
+                            WeakReferenceMessenger.Default.Send(Common.mCommon.GetMessageValueByKey("MsgAccess"));
+                        }
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < Common.mCommon.RES_PRODUCT_LST.Count; i++)
+                    {
+                        if (Common.mCommon.RES_PRODUCT_LST[i].ProductAsk == l_RES_NOTI_LST.ProductAsk)
+                        {
+                            Common.mCommon.switchProduct(Common.mCommon.RES_PRODUCT_LST[i], l_RES_NOTI_LST.SystemNotiURL);
+                            return;
+                        }
+                        else if (i == Common.mCommon.RES_PRODUCT_LST.Count - 1)
+                        {
+                            WeakReferenceMessenger.Default.Send(Common.mCommon.GetMessageValueByKey("MsgAccess"));
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {

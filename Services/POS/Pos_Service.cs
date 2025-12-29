@@ -4,7 +4,6 @@ using System.Net.Http;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
-using CHARS.HR.COMMON.BOL;
 using CS.ERP.BOL.API;
 using CS.ERP_MOB.DB;
 

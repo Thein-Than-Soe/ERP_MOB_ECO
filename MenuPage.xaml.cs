@@ -41,8 +41,12 @@ namespace CS.ERP_MOB
             try
             {
                 var l_RES_PRODUCT = (RES_PRODUCT)ProductList.SelectedItem;
-                if (l_RES_PRODUCT != null)
+                if(l_RES_PRODUCT == null) { return; }
+                if (Common.mCommon.UserSetting.NewTabSwitchProduct == "1")
                 {
+                    Common.mCommon.OpenExternalApp("", l_RES_PRODUCT.LinkInURL, l_RES_PRODUCT.AndroidIcon);
+                }
+                else {
                     Common.mCommon.switchProduct(l_RES_PRODUCT, () => {
                         var l_viewModel = (MenuPageModel)BindingContext;
                         l_viewModel.ToggleDropdownCommand.Execute(null);

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rg:PopupPage
+    x:Class="CS.ERP_MOB.Views.Frame.PopCompany"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:animation="clr-namespace:RGPopup.Maui.Animations;assembly=RGPopup.Maui"
+    xmlns:ext="clr-namespace:CS.ERP_MOB.Extensions"
+    xmlns:general="clr-namespace:CS.ERP_MOB.General"
+    xmlns:rg="clr-namespace:RGPopup.Maui.Pages;assembly=RGPopup.Maui"
+    CloseWhenBackgroundIsClicked="true"
+    HasSystemPadding="true"
+    SystemPaddingSides="All">
+    <rg:PopupPage.Animation>
+        <animation:MoveAnimation
+            DurationIn="400"
+            DurationOut="300"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="true"
+            PositionIn="Bottom"
+            PositionOut="Bottom" />
+    </rg:PopupPage.Animation>
+    <Grid
+        x:Name="DiscussionGrid"
+        Padding="0,0,0,50"
+        ColumnSpacing="0"
+        HorizontalOptions="CenterAndExpand"
+        VerticalOptions="End">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Frame
+            x:Name="PopupFrame"
+            Grid.Row="0"
+            Grid.Column="0"
+            Padding="0"
+            CornerRadius="3"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+            <StackLayout BackgroundColor="White" VerticalOptions="FillAndExpand">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="DiscussionTappedAsync" />
+                    <SwipeGestureRecognizer Direction="Down" Swiped="OnSwipeDown" />
+                </StackLayout.GestureRecognizers>
+                <!--  title view  -->
+                <StackLayout
+                    Padding="{StaticResource padding}"
+                    BackgroundColor="{StaticResource OvaPopupTitleColor}"
+                    HeightRequest="30"
+                    HorizontalOptions="FillAndExpand"
+                    Orientation="Vertical"
+                    VerticalOptions="Start">
+
+                    <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                        <Label
+                            Padding="0"
+                            AbsoluteLayout.LayoutBounds="0.5, -2, AutoSize, AutoSize"
+                            AbsoluteLayout.LayoutFlags="PositionProportional"
+                            FontFamily="{StaticResource FontAwesomeSolid}"
+                            HorizontalTextAlignment="Center"
+                            Text="&#xf7a4;"
+                            VerticalOptions="Start" />
+                        <Label
+                            AbsoluteLayout.LayoutBounds="0.5, 0.5, AutoSize, AutoSize"
+                            AbsoluteLayout.LayoutFlags="PositionProportional"
+                            HorizontalTextAlignment="Center"
+                            Text="{Binding Source={ext:LanguageExtension Key=frame.Banner.lbl.Company}, Path=Value}"
+                            VerticalOptions="Center" />
+                    </AbsoluteLayout>
+
+                </StackLayout>
+
+                <!--  content area  -->
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <ListView
+                        x:Name="CompanyUserList"
+                        ItemSelected="CompanyUserList_ItemSelected"
+                        ItemsSource="{Binding CompanyUserList, Source={x:Static general:Common.mCommon}}"
+                        RowHeight="60">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <SwipeView>
+                                        <SwipeView.LeftItems>
+                                            <SwipeItems>
+                                                <SwipeItem BackgroundColor="LightPink" Text="Clear" />
+                                            </SwipeItems>
+                                        </SwipeView.LeftItems>
+                                        <StackLayout
+                                            Padding="{StaticResource padding}"
+                                            HorizontalOptions="FillAndExpand"
+                                            Orientation="Vertical"
+                                            VerticalOptions="Center">
+                                            <Frame
+                                                Padding="0"
+                                                HorizontalOptions="FillAndExpand"
+                                                VerticalOptions="FillAndExpand">
+
+                                                <StackLayout
+                                                    HorizontalOptions="FillAndExpand"
+                                                    Orientation="Horizontal"
+                                                    VerticalOptions="FillAndExpand">
+                                                    <Image
+                                                        HeightRequest="40"
+                                                        Source="{Binding CompanyLogo, Converter={StaticResource ImageURLConverter}}"
+                                                        WidthRequest="40" />
+                                                    <StackLayout
+                                                        Padding="{StaticResource padding}"
+                                                        HorizontalOptions="StartAndExpand"
+                                                        Orientation="Vertical"
+                                                        VerticalOptions="Center">
+
+                                                        <Label
+                                                            HorizontalOptions="StartAndExpand"
+                                                            Text="{Binding CompanyName_0_255}"
+                                                            VerticalOptions="Center" />
+                                                        <Label
+                                                            FontSize="Small"
+                                                            HorizontalOptions="StartAndExpand"
+                                                            Text="{Binding CompanyDescription_0_500}"
+                                                            VerticalOptions="Center" />
+                                                    </StackLayout>
+                                                </StackLayout>
+                                            </Frame>
+                                        </StackLayout>
+                                    </SwipeView>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+            </StackLayout>
+        </Frame>
+    </Grid>
+</rg:PopupPage>
