@@ -21,7 +21,7 @@
 		<Nullable>enable</Nullable>
 
 		<!-- Display name -->
-		<ApplicationTitle>CS.ERP_MOB_ECO</ApplicationTitle>
+		<ApplicationTitle>OVA ECO</ApplicationTitle>
 
 		<!-- App Identifier -->
 		<ApplicationId>com.ovaerp.cs.erp_mob_eco</ApplicationId>
@@ -50,10 +50,12 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+		<MauiIcon Include="Resources\AppIcon\ecoicon.png" ForegroundFile="Resources\AppIcon\ecoicon.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</MauiIcon>
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+		<MauiSplashScreen Include="Resources\Splash\ecosplash.png" Color="#FFFFFF" BaseSize="512,512"/>
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
