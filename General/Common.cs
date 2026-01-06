@@ -1511,10 +1511,14 @@ namespace CS.ERP_MOB.General
                         {
                             for (int i = 0; i < this.JSN_RES_ECOMANCE.products.Count; i++)
                             {
-                                if (this.JSN_RES_ECOMANCE.products[i].ProductAsk == "23")
+                                if (this.JSN_RES_ECOMANCE.products[i].ProductAsk == argREQ_AUTHORIZATION.ProductAsk)
                                 {
                                     this.SelectedProduct = this.JSN_RES_ECOMANCE.products[i];
                                 }
+                            }
+                            if (this.SelectedProduct.ProductAsk == "0")
+                            {
+                                this.SelectedProduct = this.JSN_RES_ECOMANCE.products.First();
                             }
                         }
                         bindThemeSetting();

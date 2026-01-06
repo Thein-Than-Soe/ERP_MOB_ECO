@@ -15,6 +15,7 @@ namespace CS.ERP_MOB.Route
         {
             DicRouteList = new Dictionary<string, Type>();
             DicRouteList.Add("signin", typeof(FrmSignIn));
+            DicRouteList.Add("login", typeof(FrmSignIn));
             //DicRouteList.Add("signin", typeof(FrmPosSaleInvoiceLst));
             DicRouteList.Add("signup", typeof(FrmSignUp));
             DicRouteList.Add("FrmAdmin", typeof(FrmAdmin));

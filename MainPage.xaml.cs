@@ -14,6 +14,7 @@ namespace CS.ERP_MOB
     public partial class MainPage : ContentPage
     {
         private bool _longPressTriggered = false;
+        private bool isExpanded = true;
         public MainPage()
         {
             InitializeComponent();
@@ -160,7 +161,6 @@ namespace CS.ERP_MOB
             else
                 ShareList.FadeTo(0, 150, Easing.CubicOut);
         }
-        private bool isExpanded = false;
 
         private async void BtnMainShare_Tapped(object sender, EventArgs e)
         {

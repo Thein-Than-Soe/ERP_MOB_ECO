@@ -429,7 +429,7 @@ namespace CS.ERP_MOB
                    
                     foreach (ApiConfig l_apiConfig in l_ApiConfig_Lst)
                     {
-                      await App.Database.deleteApiConfigAsync(l_apiConfig);
+                      //await App.Database.deleteApiConfigAsync(l_apiConfig);
                         switch (l_apiConfig.ProductCode)
                         {
                             case "SYS":

@@ -10,7 +10,6 @@ using Newtonsoft.Json;
 using System;
 using System.Diagnostics;
 using System.Linq;
-using Microsoft.Identity.Client;
 //using Xamarin.Auth;
 using Microsoft.Maui.Authentication;
 using Microsoft.Maui.Storage;
