@@ -97,6 +97,7 @@ namespace CS.ERP_MOB
         private ICommand? mCheckoutCommand;
         private ICommand? mUserProfileCommand;
         private ICommand? mCloseToastCommand;
+        private ICommand? mRaiseTicketCommand;
         #endregion
 
         #region Public Properties
@@ -288,6 +289,17 @@ namespace CS.ERP_MOB
                 return mCloseToastCommand;
             }
         }
+        public ICommand RaiseTicketCommand
+        {
+            get
+            {
+                if (mRaiseTicketCommand == null)
+                {
+                    mRaiseTicketCommand = new Command(() => this.riaseTicket());
+                }
+                return mRaiseTicketCommand;
+            }
+        }
 
         #endregion Commands
         #region Private Methods
@@ -342,6 +354,17 @@ namespace CS.ERP_MOB
         }
 
         private void closeToastMessage()
+        {
+            try
+            {
+                Common.mCommon.FormAlert = false;
+            }
+            catch (Exception ex)
+            {
+                throw ex.InnerException;
+            }
+        }
+        private void riaseTicket()
         {
             try
             {

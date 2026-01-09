@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:animation="clr-namespace:RGPopup.Maui.Animations;assembly=RGPopup.Maui"
     xmlns:general="clr-namespace:CS.ERP_MOB.General"
+    xmlns:ext="clr-namespace:CS.ERP_MOB.Extensions"
     xmlns:rg="clr-namespace:RGPopup.Maui.Pages;assembly=RGPopup.Maui"
     CloseWhenBackgroundIsClicked="true"
     HasSystemPadding="true"
@@ -36,7 +37,7 @@
             CornerRadius="3"
             HorizontalOptions="FillAndExpand"
             VerticalOptions="FillAndExpand">
-            <StackLayout BackgroundColor="White" VerticalOptions="FillAndExpand">
+            <StackLayout BackgroundColor="{Binding ThemeSettingMessage.PropertiesBgColor, Source={x:Static general:Common.mCommon}}" VerticalOptions="FillAndExpand">
                 <StackLayout.GestureRecognizers>
                     <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="DiscussionTappedAsync" />
                     <SwipeGestureRecognizer Direction="Down" Swiped="OnSwipeDown" />
@@ -63,15 +64,15 @@
                             AbsoluteLayout.LayoutBounds="0.5, 0.5, AutoSize, AutoSize"
                             AbsoluteLayout.LayoutFlags="PositionProportional"
                             HorizontalTextAlignment="Center"
-                            Text="Messages"
+                            Text="{Binding Source={ext:LanguageExtension Key=frame.Banner.lbl.Messages}, Path=Value}"
                             VerticalOptions="Center" />
 
                         <Label
                             AbsoluteLayout.LayoutBounds="1, 0.5, AutoSize, AutoSize"
                             AbsoluteLayout.LayoutFlags="PositionProportional"
                             HorizontalTextAlignment="End"
-                            Text="Read All"
-                            TextColor="{StaticResource OvaClickableColor}"
+                            Text="{Binding Source={ext:LanguageExtension Key=frame.Banner.lbl.ReadAll}, Path=Value}"
+                            TextColor="{Binding ThemeSettingNoti.HighlightColor, Source={Static Member=general:Common.mCommon}}"
                             VerticalOptions="Center" />
                     </AbsoluteLayout>
 

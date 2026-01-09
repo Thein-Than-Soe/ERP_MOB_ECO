@@ -233,29 +233,24 @@ namespace CS.ERP_MOB.General
             throw new NotImplementedException();
         }
     }
-    public class TabColorConverter : IValueConverter
+    public class TabColorConverter : IMultiValueConverter
     {
-        // You can customize these colors in XAML when registering the converter
-        public Color ActiveColor { get; set; } = Colors.LightBlue;
         public Color InactiveColor { get; set; } = Colors.Transparent;
 
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            // value = current tab item
-            // parameter = ActiveTab
-
-            if (value == null || parameter == null)
+            if (values.Length < 2 || values[0] == null || values[1] == null || values[2] == null)
                 return InactiveColor;
 
-            // same object -> active tab
-            bool isActive = value.Equals(parameter);
+            var item = values[0];
+            var activeTab = values[1];
+            var color = values[2];
 
-            return isActive ? ActiveColor : InactiveColor;
+            return Equals(item, activeTab) ? color : InactiveColor;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+            => throw new NotImplementedException();
     }
+
 }

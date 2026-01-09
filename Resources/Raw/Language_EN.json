@@ -1,17 +1,19 @@
 {
   "frame": {
     "Banner": {
-      "lbl": {
-        "SignUp": "Sign up",
-        "SignIn": "Sign in",
-        "Products": "Products",
-        "DiscussionRoom": "Discussion Room",
-        "ClearAll": "Clear All",
-        "CaughtUp": "caught up!",
-        "Notifications": "Notifications",
-        "Company": "Company",
-        "AddAnotherAccount": "Add another account"
-      },
+        "lbl": {
+            "SignUp": "Sign up",
+            "SignIn": "Sign in",
+            "Products": "Products",
+            "DiscussionRoom": "Discussion Room",
+            "ClearAll": "Clear All",
+            "ReadAll": "Read All",
+            "CaughtUp": "caught up!",
+            "Notifications": "Notifications",
+            "Messages": "Messages",
+            "Company": "Company",
+            "AddAnotherAccount": "Add another account"
+        },
       "plh": {
         "Search": "Search"
       },

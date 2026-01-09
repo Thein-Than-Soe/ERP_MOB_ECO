@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,7 +43,7 @@ namespace CS.ERP_MOB.Services.ECO
                     //client.BaseAddress = new Uri(mAPIProtocol + mAPIServer + mAPIPort + mAPIServiceName);
                     client.BaseAddress = new Uri(mApiConfig.APIProtocol + mApiConfig.APIServer + mApiConfig.APIPort + mApiConfig.APIServiceName);
                     HttpResponseMessage response = await client.PostAsync(argApiName, content);
-
+                    
                     if (response.IsSuccessStatusCode)
                     {
                         mResponse = await response.Content.ReadAsStringAsync();

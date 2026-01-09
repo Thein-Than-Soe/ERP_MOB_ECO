@@ -31,6 +31,7 @@ using CS.ERP_MOB.Services.NTF;
 using CS.ERP.PL.NTF.DAT;
 using CS.ERP_MOB.Services.CHT;
 using CS.ERP.PL.WSS.DAT;
+using System.Diagnostics;
 namespace CS.ERP_MOB.General
 {
     public class Common : ObservableProperty, INotifyPropertyChanged
@@ -1009,7 +1010,7 @@ namespace CS.ERP_MOB.General
             }
             this.SelectedMenu = this.JSN_RES_ECOMANCE.menu[0];
         }
-        public void bindLoginData()
+        public async void bindLoginData()
         {
             this.RES_PRODUCT_LST = this.JSN_RES_ECOMANCE.products;
             this.CompanyUserList = this.JSN_RES_ECOMANCE.RES_COMPANY_USER;
@@ -1075,11 +1076,12 @@ namespace CS.ERP_MOB.General
             {
                 foreach (DAT_FLOAT l_DAT_FLOAT in JSN_RES_ECOMANCE.DAT_FLOAT)
                 {
-                    if(l_DAT_FLOAT.FloatAlignmentAsk == "1")//1 for left
+                    if (l_DAT_FLOAT.FloatAlignmentAsk == "1")//1 for left
                     {
                         FloatLeftList.Add(l_DAT_FLOAT);
                     }
-                    else if(l_DAT_FLOAT.FloatAlignmentAsk == "2")//2 for right
+                    else
+                    if (l_DAT_FLOAT.FloatAlignmentAsk == "2")//2 for right
                     {
                         FloatRightList.Add(l_DAT_FLOAT);
                     }
@@ -1269,7 +1271,7 @@ namespace CS.ERP_MOB.General
                     mCommon.REQ_AUTHORIZATION.ProductAsk = "2";
                     mCommon.REQ_AUTHORIZATION.TransactionName = "1";
                 }
-                mCommon.signIn(mCommon.REQ_AUTHORIZATION);
+                await mCommon.signIn(mCommon.REQ_AUTHORIZATION);
             }
             catch (Exception ex)
             {
@@ -1477,7 +1479,7 @@ namespace CS.ERP_MOB.General
             else { ApplicationAlert = false; }
 
         }
-        public async void signIn(REQ_AUTHORIZATION argREQ_AUTHORIZATION)
+        public async Task signIn(REQ_AUTHORIZATION argREQ_AUTHORIZATION)
         {
             string l_Request = "";
             var l_Response = "";
@@ -1488,10 +1490,11 @@ namespace CS.ERP_MOB.General
                 argREQ_AUTHORIZATION.ProductAsk = "10";//10 for eco
                 l_Request = JsonConvert.SerializeObject(argREQ_AUTHORIZATION);
                 l_Response = await Eco_Service.ApiCall(l_Request, Eco_Name.wsLogIn);
-                if (l_Response != null || l_Response != "")
+                if (!string.IsNullOrEmpty(l_Response))
                 {
+                    //Debug.WriteLine("MAUI:l_Response " + l_Response);
                     JSN_RES_ECOMANCE = JsonConvert.DeserializeObject<JSN_RES_ECOMANCE>(l_Response);
-                    if (mCommon.JSN_RES_ECOMANCE != null && mCommon.JSN_RES_ECOMANCE.Message.Code == "7")
+                    if (mCommon.JSN_RES_ECOMANCE?.Message?.Code == "7")
                     {
                         mCommon.REQ_AUTHORIZATION = argREQ_AUTHORIZATION;
                         this.combileImageURL();
@@ -1507,7 +1510,7 @@ namespace CS.ERP_MOB.General
                         listenNtfSocket();
                         bindRegionData();
                         bindLoginData();
-                        if (this.JSN_RES_ECOMANCE.products.Count > 0)
+                        if (this.JSN_RES_ECOMANCE?.products?.Count > 0)
                         {
                             for (int i = 0; i < this.JSN_RES_ECOMANCE.products.Count; i++)
                             {
@@ -1516,7 +1519,7 @@ namespace CS.ERP_MOB.General
                                     this.SelectedProduct = this.JSN_RES_ECOMANCE.products[i];
                                 }
                             }
-                            if (this.SelectedProduct.ProductAsk == "0")
+                            if (this.SelectedProduct?.ProductAsk == "0")
                             {
                                 this.SelectedProduct = this.JSN_RES_ECOMANCE.products.First();
                             }
@@ -1531,6 +1534,7 @@ namespace CS.ERP_MOB.General
                             WeakReferenceMessenger.Default.Send(mCommon.GetMessageValueByKey("MsgSaveSuccess"));
                         }
                         Common.routeMenu(Common.mCommon.SelectedMenu);
+                        //WeakReferenceMessenger.Default.Send(mCommon.JSN_RES_ECOMANCE?.Message?.Message);
                     }
                     else
                     {
@@ -1538,7 +1542,7 @@ namespace CS.ERP_MOB.General
                         this.UserLoggedOut = false;
                         mCommon.SelectedMenu = new RES_MENU { ProductAsk = "1", Text = "Sign In", MenuUrl = "signin", logoImg = "" };
                         Common.routeMenu(Common.mCommon.SelectedMenu);
-                        WeakReferenceMessenger.Default.Send(mCommon.JSN_RES_ECOMANCE.Message.Message);
+                        WeakReferenceMessenger.Default.Send(mCommon.JSN_RES_ECOMANCE?.Message?.Message);
                     }
                 }
                 else
@@ -1547,7 +1551,7 @@ namespace CS.ERP_MOB.General
                 }
                 Utility.closeLoader();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 Common.mCommon.SelectedMenu = new RES_MENU { ProductAsk = "1", Text = "Sign In", MenuUrl = "signin", logoImg = "" };
                 Common.routeMenu(Common.mCommon.SelectedMenu);

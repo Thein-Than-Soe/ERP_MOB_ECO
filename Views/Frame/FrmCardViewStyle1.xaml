@@ -10,6 +10,7 @@
     <ContentView.Content>
         <Frame
             Padding="10"
+            BackgroundColor="{Binding ThemeSettingCardView.PropertiesBgColor, Source={x:Static general:Common.mCommon}}"
             BorderColor="#dddddd"
             CornerRadius="15"
             HasShadow="True">
@@ -31,9 +32,9 @@
                     x:Name="StockName"
                     Grid.Row="1"
                     FontAttributes="Bold"
-                    FontSize="18"
+                    FontSize="{Binding ThemeSettingCardView.PropertiesFontSize, Source={x:Static general:Common.mCommon}}"
                     Text="{Binding Name, Source={RelativeSource AncestorType={x:Type local:FrmCardViewStyle1}}}"
-                    TextColor="Black" />
+                    TextColor="{Binding ThemeSettingCardView.PropertiesFontColor, Source={x:Static general:Common.mCommon}}" />
 
                 <!--  Price + Buttons Row  -->
                 <Grid
@@ -46,9 +47,9 @@
                         x:Name="StockPrice"
                         Grid.Column="0"
                         FontAttributes="Bold"
-                        FontSize="16"
+                        FontSize="{Binding ThemeSettingCardView.PropertiesFontSize, Source={x:Static general:Common.mCommon}}"
                         Text="{Binding Price, Source={RelativeSource AncestorType={x:Type local:FrmCardViewStyle1}}}"
-                        TextColor="#009944"
+                        TextColor="{Binding ThemeSettingCardView.PropertiesFontColor, Source={x:Static general:Common.mCommon}}"
                         VerticalTextAlignment="Center" />
 
                     <!--  Spacer  -->
@@ -64,11 +65,11 @@
                         CornerRadius="20"
                         FontFamily="{StaticResource FontAwesomeSolid}"
                         FontSize="{StaticResource HomeTitleFontSize}"
-                        HeightRequest="40"
+                        HeightRequest="35"
                         HorizontalOptions="Center"
                         Text="&#xf004;"
                         TextColor="#ff3344"
-                        WidthRequest="40" />
+                        WidthRequest="35" />
 
                     <!--  Add to Cart Button  -->
                     <Button
@@ -80,11 +81,11 @@
                         CornerRadius="10"
                         FontFamily="{StaticResource FontAwesomeSolid}"
                         FontSize="{StaticResource HomeTitleFontSize}"
-                        HeightRequest="40"
+                        HeightRequest="35"
                         HorizontalOptions="Center"
                         Text="&#xf217;"
                         TextColor="#0077cc"
-                        WidthRequest="40" />
+                        WidthRequest="35" />
 
                 </Grid>
 

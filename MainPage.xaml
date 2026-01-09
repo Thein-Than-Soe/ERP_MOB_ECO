@@ -3,6 +3,7 @@
     x:Class="CS.ERP_MOB.MainPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ext="clr-namespace:CS.ERP_MOB.Extensions"
     xmlns:general="clr-namespace:CS.ERP_MOB.General"
     xmlns:sys="clr-namespace:System;assembly=netstandard"
     xmlns:tabbar="clr-namespace:CS.ERP_MOB"
@@ -262,6 +263,7 @@
                 </Grid>
             </StackLayout>
             <AbsoluteLayout Grid.Row="1" Grid.Column="0">
+
                 <StackLayout
                     AbsoluteLayout.LayoutBounds="0,0,1,1"
                     AbsoluteLayout.LayoutFlags="All"
@@ -282,6 +284,59 @@
                                 TextColor="{StaticResource OvaFrontColor}" />
                         </Frame>
                     </StackLayout>
+                    <StackLayout
+                        BackgroundColor="{Binding ThemeSettingAlert.PropertiesBgColor, Source={x:Static general:Common.mCommon}}"
+                        HeightRequest="30"
+                        IsVisible="{Binding FormAlert, Source={x:Static general:Common.mCommon}}"
+                        Orientation="Horizontal">
+                        <Grid
+                            ColumnSpacing="0"
+                            HorizontalOptions="FillAndExpand"
+                            RowSpacing="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="auto" />
+                            </Grid.ColumnDefinitions>
+                            <Frame
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Padding="0"
+                                BackgroundColor="{Binding ThemeSettingAlert.PropertiesBgColor, Source={x:Static general:Common.mCommon}}"
+                                CornerRadius="0"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand">
+                                <Label
+                                    HorizontalOptions="Center"
+                                    Text="{Binding FormAlertMessage, Source={x:Static general:Common.mCommon}}"
+                                    TextColor="{Binding ThemeSettingAlert.PropertiesFontColor, Source={x:Static general:Common.mCommon}}"
+                                    VerticalOptions="CenterAndExpand" />
+                            </Frame>
+                            <Button
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                BackgroundColor="Transparent"
+                                Command="{Binding RaiseTicketCommand}"
+                                HorizontalOptions="End"
+                                Text="{Binding Source={ext:LanguageExtension Key=frame.Banner.btnName.RaiseTicket}, Path=Value}"
+                                TextColor="{Binding ThemeSettingAlert.PropertiesFontColor, Source={x:Static general:Common.mCommon}}"
+                                VerticalOptions="Center" />
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="2"
+                                FontFamily="{StaticResource Key=FontAwesomeSolid}"
+                                HorizontalOptions="End"
+                                HorizontalTextAlignment="Center"
+                                Text="&#xf00d;"
+                                TextColor="{Binding ThemeSettingAlert.PropertiesFontColor, Source={x:Static general:Common.mCommon}}"
+                                VerticalOptions="Center"
+                                WidthRequest="30">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding CloseToastCommand}" NumberOfTapsRequired="1" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Grid>
+                    </StackLayout>
 
                     <!--  flyout area  -->
                     <StackLayout VerticalOptions="FillAndExpand">
@@ -290,49 +345,6 @@
                             Content="{Binding CvWorkingArea}"
                             VerticalOptions="FillAndExpand" />
                     </StackLayout>
-                </StackLayout>
-
-                <!--  toast message area  -->
-                <StackLayout
-                    AbsoluteLayout.LayoutBounds="0,1,1,0.05"
-                    AbsoluteLayout.LayoutFlags="All"
-                    BackgroundColor="{StaticResource OvaAlertColor}"
-                    HeightRequest="30"
-                    IsVisible="{Binding FormAlert, Source={x:Static general:Common.mCommon}}"
-                    Orientation="Horizontal">
-                    <Grid
-                        ColumnSpacing="0"
-                        HorizontalOptions="FillAndExpand"
-                        RowSpacing="0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Frame
-                            Grid.Row="0"
-                            Grid.Column="0"
-                            Padding="0"
-                            BackgroundColor="{StaticResource OvaAlertColor}"
-                            CornerRadius="0"
-                            HorizontalOptions="FillAndExpand"
-                            VerticalOptions="FillAndExpand">
-                            <Label
-                                HorizontalOptions="Center"
-                                Text="{Binding FormAlertMessage, Source={x:Static general:Common.mCommon}}"
-                                VerticalOptions="CenterAndExpand" />
-                        </Frame>
-                        <Label
-                            Grid.Row="0"
-                            Grid.Column="0"
-                            HorizontalOptions="End"
-                            HorizontalTextAlignment="Center"
-                            Text="X"
-                            VerticalOptions="Center"
-                            WidthRequest="70">
-                            <Label.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding CloseToastCommand}" NumberOfTapsRequired="1" />
-                            </Label.GestureRecognizers>
-                        </Label>
-                    </Grid>
                 </StackLayout>
 
                 <!--  Float Right  -->
@@ -422,7 +434,7 @@
                         x:Name="ShareList"
                         Padding="0"
                         BindableLayout.ItemsSource="{Binding FloatLeftList, Source={x:Static general:Common.mCommon}}"
-                        IsVisible="True"
+                        InputTransparent="False"
                         Spacing="10"
                         VerticalOptions="End">
                         <BindableLayout.ItemTemplate>
@@ -469,20 +481,13 @@
                                                 TextColor="{Binding ThemeSettingFloatLeft.PropertiesFontColor, Source={x:Static general:Common.mCommon}}"
                                                 VerticalOptions="Center">
 
+                                                <!--  Hide label if Image exists  -->
                                                 <Label.Triggers>
-                                                    <!--  Hide label if Image exists  -->
                                                     <DataTrigger
                                                         Binding="{Binding Image}"
                                                         TargetType="Label"
                                                         Value="">
                                                         <Setter Property="IsVisible" Value="True" />
-                                                    </DataTrigger>
-
-                                                    <DataTrigger
-                                                        Binding="{Binding Image}"
-                                                        TargetType="Label"
-                                                        Value="{x:Reference Image}">
-                                                        <Setter Property="IsVisible" Value="False" />
                                                     </DataTrigger>
                                                 </Label.Triggers>
                                             </Label>
