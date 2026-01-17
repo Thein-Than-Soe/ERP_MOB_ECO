@@ -115,6 +115,7 @@ namespace CS.ERP_MOB.General
         private List<RES_SHOPPING_DETAIL> mRES_SHOPPING_DETAIL = new List<RES_SHOPPING_DETAIL>();
 
         private List<RES_COMPANY_USER> mRES_COMPANY_USER = new List<RES_COMPANY_USER>();
+        private List<RES_COUNTRY> mRES_COUNTRY = new List<RES_COUNTRY>();
         private ObservableCollection<RES_NOTI_LST> mRES_NOTI_LST = new ObservableCollection<RES_NOTI_LST>();
         private ObservableCollection<DAT_DISCUSSION_NOTI> mRES_DISCUSSION_LST = new ObservableCollection<DAT_DISCUSSION_NOTI>();
         private ObservableCollection<DAT_FLOAT> mDAT_FLOAT_LEFT = new ObservableCollection<DAT_FLOAT>();
@@ -836,6 +837,15 @@ namespace CS.ERP_MOB.General
                 return Common.mCommon.CompanyUserList[0];
             }
         }
+        public List<RES_COUNTRY> CountryList
+        {
+            get { return mRES_COUNTRY; }
+            set
+            {
+                mRES_COUNTRY = value;
+                OnPropertyChanged(nameof(CountryList));
+            }
+        }
         public ObservableCollection<RES_NOTI_LST> NotiList
         {
             get { return mRES_NOTI_LST; }
@@ -1014,6 +1024,7 @@ namespace CS.ERP_MOB.General
         {
             this.RES_PRODUCT_LST = this.JSN_RES_ECOMANCE.products;
             this.CompanyUserList = this.JSN_RES_ECOMANCE.RES_COMPANY_USER;
+            this.CountryList = this.JSN_RES_ECOMANCE.RES_COUNTRY;
 
             if (this.JSN_RES_ECOMANCE.user != null)
             {
@@ -1510,6 +1521,7 @@ namespace CS.ERP_MOB.General
                         listenNtfSocket();
                         bindRegionData();
                         bindLoginData();
+                        Debug.WriteLine("MAUI:bindLoginData");
                         if (this.JSN_RES_ECOMANCE?.products?.Count > 0)
                         {
                             for (int i = 0; i < this.JSN_RES_ECOMANCE.products.Count; i++)
@@ -1526,6 +1538,7 @@ namespace CS.ERP_MOB.General
                         }
                         bindThemeSetting();
                         bindRegionSetting();
+                        Debug.WriteLine("MAUI:l_Response");
 
                         saveDbUser();
                         if (!Common.bindMenu("home"))
@@ -1839,8 +1852,7 @@ namespace CS.ERP_MOB.General
                 else
                 {
                     //MessagingCenter.Send<Application, string>(Application.Current, ApplicationMessage.Message.Alert, "Server Err");
-                    WeakReferenceMessenger.Default.Send(
-                                           "Server Err");
+                    WeakReferenceMessenger.Default.Send("Server Err");
                 }
                 Utility.closeLoader();
             }
@@ -2162,73 +2174,13 @@ namespace CS.ERP_MOB.General
                 }
             }
         }
-        //public void OpenExternalApp(string appName)
-        //{
-        //    try
-        //    {
-        //        switch (appName)
-        //        {
-        //            case "facebook":
-        //                Launcher.TryOpenAsync("fb://profile"); // Open Facebook App
-        //                break;
-
-        //            case "messenger":
-        //                Launcher.TryOpenAsync("fb-messenger://"); // Messenger
-        //                break;
-
-        //            case "whatsapp":
-        //                Launcher.TryOpenAsync("whatsapp://send?text=Hello");
-        //                break;
-
-        //            default:
-        //                // fallback to website
-        //                Launcher.OpenAsync("ova://chat");
-        //                break;
-        //        }
-        //    }
-        //    catch
-        //    {
-        //        // app not installed – optional fallback
-        //        Launcher.OpenAsync("https://www.google.com");
-        //    }
-        //}
         public async Task OpenExternalApp(string appName, string argAppURL = "", string argPlaystoreURL = "")
         {
-            //string appUri = "";
-            //string playStoreUri = "";
-
-            //switch (appName)
-            //{
-            //    case "facebook":
-            //        appUri = "fb://";
-            //        playStoreUri = "https://play.google.com/store/apps/details?id=com.facebook.katana";
-            //        break;
-
-            //    case "messenger":
-            //        appUri = "fb-messenger://";
-            //        playStoreUri = "https://play.google.com/store/apps/details?id=com.facebook.orca";
-            //        break;
-
-            //    case "whatsapp":
-            //        appUri = "whatsapp://";
-            //        playStoreUri = "https://play.google.com/store/apps/details?id=com.whatsapp";
-            //        break;
-
-            //    case "cht":
-            //        appUri = argAppURL;
-            //        playStoreUri = argPlaystoreURL;
-            //        break;
-
-            //    default:
-            //        appUri = "ova://chat";
-            //        playStoreUri = "https://play.google.com/store/apps";
-            //        break;
-            //}
-
-            // Try to open the external app
-            bool opened = await Launcher.TryOpenAsync(argAppURL);
-
-            if (!opened)
+            try
+            {
+                await Launcher.OpenAsync(argAppURL);
+            }
+            catch
             {
                 // App not installed → open Play Store
                 await Launcher.OpenAsync(argPlaystoreURL);

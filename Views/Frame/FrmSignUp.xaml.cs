@@ -1,5 +1,6 @@
 ﻿
 //using CS.ERP.PL.POS.DAT;
+using CommunityToolkit.Mvvm.Messaging;
 using CS.ERP.PL.SYS.DAT;
 using CS.ERP.PL.SYS.REQ;
 using CS.ERP.PL.SYS.RES;
@@ -7,7 +8,7 @@ using CS.ERP_MOB.General;
 using CS.ERP_MOB.Services.SYS;
 using CS.ERP_MOB.ViewsModel.Frame;
 using Newtonsoft.Json;
-
+using RGPopup.Maui.Extensions;
 using static CS.ERP_MOB.General.Utility;
 using ApplicationMessage = CS.ERP_MOB.General.ApplicationMessage;
 
@@ -224,16 +225,16 @@ namespace CS.ERP_MOB.Views.Frame
                     {
                         this.mJSN_CUSTOMER_REG = JsonConvert.DeserializeObject<JSN_CUSTOMER_REG>(l_Response);
                         showActivation();
-                        MessagingCenter.Send<Application, string>(Application.Current, "ToastMessage", "We are ready to support your business grow!");
+                        WeakReferenceMessenger.Default.Send(this.mJSN_LOAD_SUBSCRIBER?.Message?.Message);
                     }
                     else
                     {
-                        MessagingCenter.Send<Application, string>(Application.Current, "ToastMessage", this.mJSN_LOAD_SUBSCRIBER.Message.Message);
+                        WeakReferenceMessenger.Default.Send(this.mJSN_LOAD_SUBSCRIBER?.Message?.Message);
                     }
                 }
                 else
                 {
-                    MessagingCenter.Send<Application, string>(Application.Current, "ToastMessage", "Server Err");
+                    WeakReferenceMessenger.Default.Send("Server Err");
                 }
                 Utility.closeLoader();
             }
@@ -360,14 +361,23 @@ namespace CS.ERP_MOB.Views.Frame
             try
             {
                 l_Request = JsonConvert.SerializeObject(mJSN_REQ_SUBSCRIBER);
-                General.Utility.openLoader();
+                Utility.openLoader();
                 l_Response = await Sys_Service.ApiCall(l_Request, Sys_Name.wsSaveSubscriber);
                 if (l_Response != null)
                 {
                     if (JsonConvert.DeserializeObject<JSN_SUBSCRIBER>(l_Response).Message.Code == "7")
                     {
                         this.mJSN_SUBSCRIBER = JsonConvert.DeserializeObject<JSN_SUBSCRIBER>(l_Response);
-                        showSubscriptionPayment();
+                        if (Convert.ToDecimal(this.mJSN_REQ_SUBSCRIBER.RES_SUBSCRIBER.SubscriberFee) == 0)
+                        {
+                            Utility.closeLoader();
+                            this.activateSubscriber();
+                        }
+                        else
+                        {
+                            Utility.closeLoader();
+                            showSubscriptionPayment();
+                        }
                         MessagingCenter.Send<Application, string>(Application.Current, "ToastMessage", "We are ready to support your business grow!");
 
                     }
@@ -401,18 +411,21 @@ namespace CS.ERP_MOB.Views.Frame
                 {
                     if (JsonConvert.DeserializeObject<JSN_SUBSCRIBER>(l_Response).Message.Code == "7")
                     {
-                        this.mJSN_SUBSCRIBER = JsonConvert.DeserializeObject<JSN_SUBSCRIBER>(l_Response);
-                        showActivation();
-                        MessagingCenter.Send<Application, string>(Application.Current, "ToastMessage", "We are ready to support your business grow!");
+                        Utility.closeLoader();
+                        Common.mCommon.SelectedMenu = new RES_MENU { ProductAsk = "1", Text = "Sign In", MenuUrl = "signin", logoImg = "" };
+                        Common.routeMenu(Common.mCommon.SelectedMenu);
+                        //this.mJSN_SUBSCRIBER = JsonConvert.DeserializeObject<JSN_SUBSCRIBER>(l_Response);
+                        //showActivation();
+                        //MessagingCenter.Send<Application, string>(Application.Current, "ToastMessage", "We are ready to support your business grow!");
                     }
                     else
                     {
-                        MessagingCenter.Send<Application, string>(Application.Current, "ToastMessage", this.mJSN_SUBSCRIBER.Message.Message);
+                        WeakReferenceMessenger.Default.Send(this.mJSN_SUBSCRIBER.Message.Message);
                     }
                 }
                 else
                 {
-                    MessagingCenter.Send<Application, string>(Application.Current, "ToastMessage", "Server Err");
+                    WeakReferenceMessenger.Default.Send(Common.mCommon.GetMessageValueByKey("ErrWebService"));
                 }
                 Utility.closeLoader();
             }
@@ -482,7 +495,7 @@ namespace CS.ERP_MOB.Views.Frame
             {
                 if (this.mJSN_SUBSCRIBER.RES_SUBSCRIBER[0].Ask != "0"  && this.mJSN_SUBSCRIBER.RES_SUB_PAYMENT.Ask != "0")
                 {
-                    //await Application.Current.MainPage.Navigation.PushPopupAsync(new FrmSubscriptionPayment(mJSN_SUBSCRIBER.RES_SUB_PAYMENT, mJSN_SUBSCRIBER.RES_SUB_PLAN[0]));
+                    await Application.Current.MainPage.Navigation.PushPopupAsync(new FrmSubscriptionPayment(mJSN_SUBSCRIBER.RES_SUB_PAYMENT, mJSN_SUBSCRIBER.RES_SUB_PLAN[0]));
                 }
             }
             catch (Exception ex)
@@ -554,7 +567,7 @@ namespace CS.ERP_MOB.Views.Frame
                 if (!Common.bindMenu("signin"))
                 {
                     Common.mCommon.SelectedMenu = new RES_MENU { ProductAsk = "1", Text = "Sign In", MenuUrl = "signin", logoImg = "" };
-                    MessagingCenter.Send<Application, string>(Application.Current, "ToastMessage", ApplicationMessage.Message.MenuAccessRight );
+                    WeakReferenceMessenger.Default.Send(Common.mCommon.GetMessageValueByKey("MsgAccess"));
                 }
                 Common.routeMenu(Common.mCommon.SelectedMenu);
             }
@@ -643,7 +656,7 @@ namespace CS.ERP_MOB.Views.Frame
                 if (!Common.bindMenu("signin"))
                 {
                     Common.mCommon.SelectedMenu = new RES_MENU { ProductAsk = "1", Text = "Sign In", MenuUrl = "signin", logoImg = "" };
-                    MessagingCenter.Send<Application, string>(Application.Current, "ToastMessage", "no access right");
+                    WeakReferenceMessenger.Default.Send(Common.mCommon.GetMessageValueByKey("MsgAccess"));
                 }
                 Common.routeMenu(Common.mCommon.SelectedMenu);
             }
@@ -730,14 +743,14 @@ namespace CS.ERP_MOB.Views.Frame
         {
             try
             {
-                if (bindSubscriber())
-                {
-                    saveSubscriber();
-                }
-                else
-                {
-                    MessagingCenter.Send<Application, string>(Application.Current, "ToastMessage", "(*) Fields can't be blaked");
-                }
+                //if (bindSubscriber())
+                //{
+                //    saveSubscriber();
+                //}
+                //else
+                //{
+                //    MessagingCenter.Send<Application, string>(Application.Current, "ToastMessage", "(*) Fields can't be blaked");
+                //}
             }
             catch (Exception ex)
             {

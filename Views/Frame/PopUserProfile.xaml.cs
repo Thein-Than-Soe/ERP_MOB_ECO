@@ -40,8 +40,7 @@ namespace CS.ERP_MOB.Views.Frame
                     {
                         foreach (DbUser l_user in Common.mCommon.mDbUser_LST)
                         {
-                            if (l_user.UserAsk.ToLower() != Common.mCommon.User.UserAsk
-                                && l_user.UserID.ToLower()!="guest" && l_user.UserID.ToLower() != "admin")
+                            if (l_user.UserAsk.ToLower() != Common.mCommon.User.UserAsk && l_user.UserID.ToLower()!="guest")
                             {
                                 mDbUser.Add(l_user);
                             }

@@ -142,6 +142,7 @@
 
                 <!--  content area  -->
                 <StackLayout
+                    BackgroundColor="White"
                     x:Name="sltContent"
                     HorizontalOptions="FillAndExpand"
                     Orientation="Vertical"

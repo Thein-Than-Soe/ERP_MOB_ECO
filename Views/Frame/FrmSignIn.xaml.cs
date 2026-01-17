@@ -13,6 +13,7 @@ using System.Linq;
 //using Xamarin.Auth;
 using Microsoft.Maui.Authentication;
 using Microsoft.Maui.Storage;
+using CommunityToolkit.Mvvm.Messaging;
 
 namespace CS.ERP_MOB.Views.Frame
 {
@@ -138,8 +139,8 @@ namespace CS.ERP_MOB.Views.Frame
                 //IntercomService.RouteMenu("signup", "Sign up");
                 if (!Common.bindMenu("signup"))
                 {
-                    Common.mCommon.SelectedMenu = new RES_MENU { ProductAsk = "1", Text = "FrmAdmin", MenuUrl = "FrmAdmin", logoImg = "" };
-                    MessagingCenter.Send<Application, string>(Application.Current, "ToastMessage", ApplicationMessage.Message.MenuAccessRight);
+                    WeakReferenceMessenger.Default.Send(Common.mCommon.GetMessageValueByKey("MsgAccess"));
+                    return;
                 }
                 Common.routeMenu(Common.mCommon.SelectedMenu);
 

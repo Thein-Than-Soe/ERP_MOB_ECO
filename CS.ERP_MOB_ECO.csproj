@@ -26,8 +26,8 @@
 		<!-- App Identifier -->
 		<ApplicationId>com.ovaerp.cs.erp_mob_eco</ApplicationId>
 		<!-- Versions -->
-		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
-		<ApplicationVersion>1</ApplicationVersion>
+		<ApplicationDisplayVersion>1.0.1</ApplicationDisplayVersion>
+		<ApplicationVersion>2</ApplicationVersion>
 
 		<!-- To develop, package, and publish an app to the Microsoft Store, see: https://aka.ms/MauiTemplateUnpackaged -->
 		<WindowsPackageType>None</WindowsPackageType>
@@ -39,7 +39,10 @@
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
 	</PropertyGroup>
-
+	<PropertyGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">
+		<AndroidCompileSdkVersion>35</AndroidCompileSdkVersion>
+		<AndroidTargetSdkVersion>35</AndroidTargetSdkVersion>
+	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android|AnyCPU'">
 		<AndroidPackageFormat>apk</AndroidPackageFormat>
 		<AndroidUseAapt2>True</AndroidUseAapt2>
@@ -149,14 +152,12 @@
 		<Compile Remove="Route\Pay_Route.cs" />
 		<Compile Remove="Route\Wms_Route.cs" />
 		<Compile Remove="ViewsModel\Frame\VmlDiscussion.cs" />
-		<Compile Remove="Views\Frame\FrmSubscriptionPayment.xaml.cs" />
 		<Compile Remove="Views\Frame\PopCheckOut.xaml.cs" />
 		<Compile Remove="Views\Frame\PopLiveChat.xaml.cs" />
 		<Compile Remove="Views\Frame\PopStockDetail.xaml.cs" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<MauiXaml Remove="Views\Frame\FrmSubscriptionPayment.xaml" />
 		<MauiXaml Remove="Views\Frame\PopCheckOut.xaml" />
 		<MauiXaml Remove="Views\Frame\PopLiveChat.xaml" />
 		<MauiXaml Remove="Views\Frame\PopStockDetail.xaml" />
@@ -349,6 +350,9 @@
 		<MauiXaml Update="Views\CHT\FrmChtVBoardSet.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
+		<!--<MauiXaml Update="Views\Frame\FrmSubscriptionPayment.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>-->
 	</ItemGroup>
 
 	<!-- <ItemGroup>

@@ -1,10 +1,8 @@
 ﻿using CS.ERP.PL.SYS.DAT;
-using Rg.Plugins.Popup.Pages;
+using RGPopup.Maui.Pages;
 using Stripe;
-using System;using Microsoft.Maui.Controls;
-using Xamarin.Forms.Xaml;
-using Application = Xamarin.Forms.Application;
-using Rg.Plugins.Popup.Services;
+using Application = Microsoft.Maui.Controls.Application;
+using RGPopup.Maui.Services;
 
 namespace CS.ERP_MOB.Views.Frame
 {
@@ -43,16 +41,16 @@ namespace CS.ERP_MOB.Views.Frame
                 mRES_SUB_PLAN = argRES_SUB_PLAN;
                 if (mRES_SUB_PAYMENT != null)
                 {
-                    btnPay.Text = "Pay " + mRES_SUB_PAYMENT.CurrencyCode + mRES_SUB_PAYMENT.DepositAmount;
-                    lblCustomerName.Text = mRES_SUB_PAYMENT.CustomerName;
+                    btnPay.Text = "Pay " + mRES_SUB_PAYMENT.CurrencyCode_0_50 + mRES_SUB_PAYMENT.DepositAmount;
+                    lblCustomerName.Text = mRES_SUB_PAYMENT.CustomerName_0_255;
                     lblEmail.Text = mRES_SUB_PAYMENT.ContactEmail;
                 }
 
                 if (mRES_SUB_PLAN != null)
                 {
-                    lblPlanName.Text = mRES_SUB_PLAN.SubscriberPlanName;
-                    lblDurationName.Text = mRES_SUB_PLAN.DurationName;
-                    lblPriceName.Text = mRES_SUB_PLAN.PriceName;
+                    lblPlanName.Text = mRES_SUB_PLAN.SubscriberPlanName_0_255;
+                    lblDurationName.Text = mRES_SUB_PLAN.DurationName_0_255;
+                    lblPriceName.Text = mRES_SUB_PLAN.PriceName_0_255;
                 }
             }
             catch (Exception ex)
@@ -68,7 +66,7 @@ namespace CS.ERP_MOB.Views.Frame
             {
                 StripeConfiguration.ApiKey = mRES_SUB_PAYMENT.ReferenceDetail;//StripeApiPublicKey
                 string secretKey = mRES_SUB_PAYMENT.ReferenceNo;
-                string customerName = mRES_SUB_PAYMENT.CustomerName;
+                string customerName = mRES_SUB_PAYMENT.CustomerName_0_255;
                 string customerEmail = mRES_SUB_PAYMENT.ContactEmail;
                 string paymentIntentId = mRES_SUB_PAYMENT.TransactionNo;
                 string paymentMethodId = getPaymentMethodId();
@@ -98,18 +96,18 @@ namespace CS.ERP_MOB.Views.Frame
                 var options = new PaymentMethodCreateOptions
                 {
                     Type = "card",
-                    Card = new PaymentMethodCardOptions
-                    {
-                        Number = entCreditCardNumber.Text,
-                        ExpMonth = long.Parse(entExpiryMonth.Text),
-                        ExpYear = long.Parse(entExpiryYear.Text),
-                        Cvc = entCVV.Text,
-                    },
-                    BillingDetails = new PaymentMethodBillingDetailsOptions
-                    {
-                        Name = mRES_SUB_PAYMENT.CustomerName,
-                        Email = mRES_SUB_PAYMENT.ContactEmail
-                    }
+                    //Card = new PaymentMethodCardOptions
+                    //{
+                    //    Number = entCreditCardNumber.Text,
+                    //    ExpMonth = long.Parse(entExpiryMonth.Text),
+                    //    ExpYear = long.Parse(entExpiryYear.Text),
+                    //    Cvc = entCVV.Text,
+                    //},
+                    //BillingDetails = new PaymentMethodBillingDetailsOptions
+                    //{
+                    //    Name = mRES_SUB_PAYMENT.CustomerName_0_255,
+                    //    Email = mRES_SUB_PAYMENT.ContactEmail
+                    //}
                 };
                 var service = new PaymentMethodService();
                 PaymentMethod pm = service.Create(options);

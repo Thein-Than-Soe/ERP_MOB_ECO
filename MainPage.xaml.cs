@@ -95,7 +95,7 @@ namespace CS.ERP_MOB
 
                 if (tappedItem.FloatDescription_0_500 == "openChat")
                 {
-                    Common.mCommon.OpenExternalApp("", tappedItem.DefaultURL, tappedItem.UserURL);
+                    await Common.mCommon.OpenExternalApp("", tappedItem.DefaultURL, tappedItem.UserURL);
                 }
                 else if (tappedItem.FloatDescription_0_500 == "scrollToTop")
                 {
