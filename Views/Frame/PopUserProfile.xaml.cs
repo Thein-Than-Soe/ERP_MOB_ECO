@@ -88,7 +88,7 @@ namespace CS.ERP_MOB.Views.Frame
                 //}
                 if (!Common.bindMenu("change-password"))
                 {
-                    Common.mCommon.SelectedMenu = new RES_MENU { ProductAsk = "1", Text = "FrmAdmin", MenuUrl = "FrmAdmin", logoImg = "" };
+                    Common.mCommon.SelectedMenu = new RES_MENU { ProductAsk = "1", Text = "Change Password", MenuUrl = "change-password", logoImg = "" };
                     MessagingCenter.Send<Application, string>(Application.Current, "ToastMessage", ApplicationMessage.Message.MenuAccessRight);
                 }
                 Common.routeMenu(Common.mCommon.SelectedMenu);

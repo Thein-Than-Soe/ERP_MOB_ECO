@@ -173,6 +173,8 @@
     "MsgOneSelectRow": "Pls Select One Row for Set Default",
     "MsgResetAlert": "Someone reset your password! Do you want to change the password",
     "MsgAccess": "There is no access",
-    "MsgDelete": "Not allowed to delete."
+    "MsgDelete": "Not allowed to delete.",
+    "MsgYesNo": "Are you sure you want to quit without save.?",
+    "MsgPriceChange": "Would you like to update the price acccording to selected date?"
 }
 

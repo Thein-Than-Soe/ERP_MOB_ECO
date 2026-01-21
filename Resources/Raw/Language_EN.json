@@ -137,7 +137,7 @@
         "Phone": "Phone",
         "Password": "Password",
         "ConfirmPassword": "Confirm Password",
-        "ActivationCode": "Activation Code has been sent to your email or phone.",
+        "ActivationCode": "Activation Code has been sent to your email",
         "EnterActivationCode": "Enter activation code.",
         "ActivationCodeResendMsg": "If the activation code is not sent to your email or phone within 5 seconds, click on \"Resend\" button to send the code back.",
         "RegistrationSuccess": "Your registration has been successfully completed.",

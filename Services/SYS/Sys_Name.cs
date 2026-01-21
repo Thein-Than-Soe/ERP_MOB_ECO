@@ -26,13 +26,18 @@ namespace CS.ERP_MOB.Services.SYS
         public static string wsgetSamJson = "/getSamJson";
         public static string wsUpdateNoti = "UpdateNoti";
         public static string wsupdateDiscussionStatus = "updateDiscussionStatus";
-        public static string wsResetPwd = "/ResetPwd";
+        public static string wsResetPwd = "ResetPwd";
         public static string wsSearch = "/Search";
         public static string wsLoginWithFB = "/LoginWithFB";
         public static string wsLoginWithGO = "/LoginWithGo";
         public static string wsrunQuery = "/runQuery";
         public static string wsrunVersion = "/runVersion";
         public static string wsupdateDefaultCompanyUser  = "updateDefaultCompanyUser";
+        public static string wsVerifyEmailOTP = "VerifyEmailOTP";
+        public static string wsverifySMSOTP = "VerifySMSOTP";
+        public static string wsverifyPassword = "VerifyPassword";
+        public static string wsgetEmailOTP = "getEmailOTP";
+        public static string wsgetSMSOTP = "getSMSOTP";
         #endregion
         #region "List"
         public static string wsgetSample = "/getSample";
@@ -134,7 +139,7 @@ namespace CS.ERP_MOB.Services.SYS
         public static string wsSaveControlGroupJun = "/saveControlGroupJun";
         public static string wsSaveUserJun = "/saveUserJun";
         public static string wsSaveUser = "/saveUser";
-        public static string wsSavePassword = "/savePassword";
+        public static string wsSavePassword = "savePassword";
         public static string wsSavePromotion = "/savePromotion";
         public static string wsSaveCompany = "/saveCompany";
         public static string wsSaveCompanyUser = "/saveCompanyUser";

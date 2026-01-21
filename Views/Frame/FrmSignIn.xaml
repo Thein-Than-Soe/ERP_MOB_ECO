@@ -3,14 +3,18 @@
     x:Class="CS.ERP_MOB.Views.Frame.FrmSignIn"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ext="clr-namespace:CS.ERP_MOB.Extensions"
     Visual="Material">
     <ContentView.Content>
         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+            <!--  sign in page  -->
             <Frame
+                x:Name="SignInPage"
                 Margin="5"
                 Padding="15"
                 CornerRadius="3"
                 HorizontalOptions="Center"
+                IsVisible="{Binding IsSignInPage}"
                 VerticalOptions="Center"
                 WidthRequest="300">
                 <StackLayout
@@ -59,7 +63,11 @@
                             Text="Forgot Password?"
                             TextColor="{StaticResource OvaColor}"
                             TextDecorations="Underline"
-                            VerticalOptions="Center" />
+                            VerticalOptions="Center">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TgrForgotPassword_Tapped" />
+                            </Label.GestureRecognizers>
+                        </Label>
                     </StackLayout>
                     <StackLayout Orientation="Vertical" Spacing="10">
                         <StackLayout Orientation="Horizontal" Spacing="10">
@@ -94,6 +102,52 @@
                             TextTransform="None" />
                     </StackLayout>
                 </StackLayout>
+            </Frame>
+
+            <!--  activation page  -->
+            <Frame
+                x:Name="ActivatePage"
+                Padding="{StaticResource FramePaddingLeftRightTop}"
+                HorizontalOptions="FillAndExpand"
+                IsVisible="{Binding IsActivatePage}"
+                VerticalOptions="FillAndExpand">
+                <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <StackLayout
+                        HorizontalOptions="FillAndExpand"
+                        Orientation="Vertical"
+                        VerticalOptions="CenterAndExpand">
+                        <Label
+                            x:Name="lblPrefix"
+                            Text="{Binding Source={ext:LanguageExtension Key=frame.Register.lbl.ActivationCode}, Path=Value}"
+                            TextColor="{StaticResource OvaSignupTextColor}" />
+                        <StackLayout IsVisible="{Binding IsActivatePage}" Orientation="Horizontal">
+                            <Entry x:Name="entActivationCode" HorizontalOptions="FillAndExpand" />
+                            <Button
+                                x:Name="btnResend"
+                                BackgroundColor="{StaticResource OvaBackgroundColor}"
+                                Clicked="btnResend_onClicked"
+                                HorizontalOptions="FillAndExpand"
+                                Text="Resend"
+                                TextTransform="None" />
+                        </StackLayout>
+                        <StackLayout IsVisible="{Binding IsActivatePage}" Orientation="Horizontal">
+                            <Button
+                                x:Name="btnBack"
+                                BackgroundColor="{StaticResource OvaBackgroundColor}"
+                                Clicked="btnBack_onClicked"
+                                HorizontalOptions="FillAndExpand"
+                                Text="Back"
+                                TextTransform="None" />
+                            <Button
+                                x:Name="btnOk"
+                                BackgroundColor="{StaticResource OvaBackgroundColor}"
+                                Clicked="btnOk_onClicked"
+                                HorizontalOptions="FillAndExpand"
+                                Text="Activate"
+                                TextTransform="None" />
+                        </StackLayout>
+                    </StackLayout>
+                </ScrollView>
             </Frame>
         </StackLayout>
     </ContentView.Content>

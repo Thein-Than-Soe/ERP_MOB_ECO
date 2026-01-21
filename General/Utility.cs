@@ -30,6 +30,11 @@ namespace CS.ERP_MOB.General
             List,
             Grid
         }
+        public enum SignInState
+        {
+            SignIn,
+            Activate,
+        }
 
 
 

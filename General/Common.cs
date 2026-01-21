@@ -108,6 +108,7 @@ namespace CS.ERP_MOB.General
         private RES_PRODUCT mRES_PRODUCT = new RES_PRODUCT();
         private RES_MENU mRES_MENU = new RES_MENU();
         public REQ_AUTHORIZATION mREQ_AUTHORIZATION = new REQ_AUTHORIZATION();
+        public RES_MESSAGE mRES_MESSAGE = new RES_MESSAGE();
         //public static JSN_PROFILE mJSN_PROFILE = new JSN_PROFILE();
         public static JSN_RES_ECOMANCE mJSN_RES_ECOMANCE = new JSN_RES_ECOMANCE();
         private JSN_SHOPPING mJSN_SHOPPING = new JSN_SHOPPING();
@@ -145,6 +146,7 @@ namespace CS.ERP_MOB.General
         DAT_RES_NOTI mDAT_RES_NOTI = new DAT_RES_NOTI();
         DAT_RES_CHAT_NOTI mDAT_RES_CHAT_NOTI = new DAT_RES_CHAT_NOTI();
         RES_NOTI_LST mRES_NOTI_LST_DATA = new RES_NOTI_LST();
+        JSN_REQ_USER mJSN_REQ_USER = new JSN_REQ_USER();
         public ObservableCollection<DAT_SHELF_PRODUCT> Items { get; set; }
         public ObservableCollection<DAT_SHELF> ShelfList { get; set; }
         public ObservableCollection<DAT_SLIDER> SliderList { get; set; }
@@ -776,7 +778,16 @@ namespace CS.ERP_MOB.General
                 mREQ_AUTHORIZATION = value;
                 OnPropertyChanged("SelectedMenu");
             }
-        } 
+        }
+        public RES_MESSAGE ResMessage
+        {
+            get { return mRES_MESSAGE; }
+            set
+            {
+                mRES_MESSAGE = value;
+                OnPropertyChanged("ResMessage");
+            }
+        }
         public JSN_RES_ECOMANCE JSN_RES_ECOMANCE
         {
             get { return mJSN_RES_ECOMANCE; }
@@ -1521,7 +1532,6 @@ namespace CS.ERP_MOB.General
                         listenNtfSocket();
                         bindRegionData();
                         bindLoginData();
-                        Debug.WriteLine("MAUI:bindLoginData");
                         if (this.JSN_RES_ECOMANCE?.products?.Count > 0)
                         {
                             for (int i = 0; i < this.JSN_RES_ECOMANCE.products.Count; i++)
@@ -1538,13 +1548,12 @@ namespace CS.ERP_MOB.General
                         }
                         bindThemeSetting();
                         bindRegionSetting();
-                        Debug.WriteLine("MAUI:l_Response");
 
                         saveDbUser();
                         if (!Common.bindMenu("home"))
                         {
                             Common.mCommon.SelectedMenu = new RES_MENU { ProductAsk = "1", Text = "Home", MenuUrl = "home", logoImg = "" };
-                            WeakReferenceMessenger.Default.Send(mCommon.GetMessageValueByKey("MsgSaveSuccess"));
+                            //WeakReferenceMessenger.Default.Send(mCommon.GetMessageValueByKey("MsgSaveSuccess"));
                         }
                         Common.routeMenu(Common.mCommon.SelectedMenu);
                         //WeakReferenceMessenger.Default.Send(mCommon.JSN_RES_ECOMANCE?.Message?.Message);
@@ -1571,6 +1580,177 @@ namespace CS.ERP_MOB.General
                 Utility.closeLoader();
             }
         }
+
+        public async Task<RES_MESSAGE?> getEmailOTP()
+        {
+            try
+            {
+                //Utility.openLoader();
+                string l_Request = JsonConvert.SerializeObject(mCommon.REQ_AUTHORIZATION);
+                string l_Response = await Sys_Service.ApiCall(l_Request, Sys_Name.wsgetEmailOTP);
+
+                if (!string.IsNullOrEmpty(l_Response))
+                {
+                    ResMessage = JsonConvert.DeserializeObject<RES_MESSAGE>(l_Response);
+                    if (ResMessage != null && ResMessage.Code == "7")
+                    {
+                        return ResMessage;
+                    }
+                    else
+                    {
+                        WeakReferenceMessenger.Default.Send(ResMessage.Message);
+                        return null;
+                    }
+                }
+                else
+                {
+                    WeakReferenceMessenger.Default.Send("Server Err");
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            finally
+            {
+                //Utility.closeLoader();
+            }
+        }
+        public async Task<RES_MESSAGE?> verifyEmailOTP(string argOTPCode)
+        {
+            try
+            {
+                mJSN_REQ_USER = new JSN_REQ_USER();
+                mJSN_REQ_USER.REQ_AUTHORIZATION = mCommon.REQ_AUTHORIZATION;
+                mJSN_REQ_USER.RES_USER_LST.UserID = mCommon.User.UserAsk;
+                mJSN_REQ_USER.RES_USER_LST.OTPCode_0_50 = argOTPCode;
+                string l_Request = JsonConvert.SerializeObject(mJSN_REQ_USER);
+                string l_Response = await Sys_Service.ApiCall(l_Request, Sys_Name.wsVerifyEmailOTP);
+
+                if (!string.IsNullOrEmpty(l_Response))
+                {
+                    ResMessage = JsonConvert.DeserializeObject<RES_MESSAGE>(l_Response);
+                    if (ResMessage != null && ResMessage.Code == "7")
+                    {
+                        return ResMessage;
+                    }
+                    else
+                    {
+                        WeakReferenceMessenger.Default.Send(ResMessage.Message);
+                        return null;
+                    }
+                }
+                else
+                {
+                    WeakReferenceMessenger.Default.Send("Server Err");
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+        public async Task<RES_MESSAGE?> getSMSOTP()
+        {
+            try
+            {
+                string l_Request = JsonConvert.SerializeObject(mCommon.REQ_AUTHORIZATION);
+                string l_Response = await Sys_Service.ApiCall(l_Request, Sys_Name.wsgetSMSOTP);
+
+                if (!string.IsNullOrEmpty(l_Response))
+                {
+                    ResMessage = JsonConvert.DeserializeObject<RES_MESSAGE>(l_Response);
+                    if (ResMessage != null && ResMessage.Code == "7")
+                    {
+                        return ResMessage;
+                    }
+                    else
+                    {
+                        WeakReferenceMessenger.Default.Send(ResMessage.Message);
+                        return null;
+                    }
+                }
+                else
+                {
+                    WeakReferenceMessenger.Default.Send("Server Err");
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+        public async Task<RES_MESSAGE?> verifySMSOTP(string argOTPCode)
+        {
+            try
+            {
+                mJSN_REQ_USER = new JSN_REQ_USER();
+                mJSN_REQ_USER.REQ_AUTHORIZATION = mCommon.REQ_AUTHORIZATION;
+                mJSN_REQ_USER.RES_USER_LST.UserID = mCommon.User.UserAsk;
+                mJSN_REQ_USER.RES_USER_LST.OTPCode_0_50 = argOTPCode;
+                string l_Request = JsonConvert.SerializeObject(mJSN_REQ_USER);
+                string l_Response = await Sys_Service.ApiCall(l_Request, Sys_Name.wsverifySMSOTP);
+
+                if (!string.IsNullOrEmpty(l_Response))
+                {
+                    ResMessage = JsonConvert.DeserializeObject<RES_MESSAGE>(l_Response);
+                    if (ResMessage != null && ResMessage.Code == "7")
+                    {
+                        return ResMessage;
+                    }
+                    else
+                    {
+                        WeakReferenceMessenger.Default.Send(ResMessage.Message);
+                        return null;
+                    }
+                }
+                else
+                {
+                    WeakReferenceMessenger.Default.Send("Server Err");
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+        public async Task<RES_MESSAGE?> verifyPassword(string argPassword)
+        {
+            try
+            {
+                mCommon.REQ_AUTHORIZATION.UserPassword = argPassword;
+                string l_Request = JsonConvert.SerializeObject(mCommon.REQ_AUTHORIZATION);
+                string l_Response = await Sys_Service.ApiCall(l_Request, Sys_Name.wsverifyPassword);
+
+                if (!string.IsNullOrEmpty(l_Response))
+                {
+                    ResMessage = JsonConvert.DeserializeObject<RES_MESSAGE>(l_Response);
+                    if (ResMessage != null && ResMessage.Code == "7")
+                    {
+                        return ResMessage;
+                    }
+                    else
+                    {
+                        WeakReferenceMessenger.Default.Send(ResMessage.Message);
+                        return null;
+                    }
+                }
+                else
+                {
+                    WeakReferenceMessenger.Default.Send("Server Err");
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
         private void bindRegionSetting()
         {
             try

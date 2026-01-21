@@ -14,6 +14,10 @@ using System.Linq;
 using Microsoft.Maui.Authentication;
 using Microsoft.Maui.Storage;
 using CommunityToolkit.Mvvm.Messaging;
+using CS.ERP_MOB.ViewsModel.Frame;
+using static CS.ERP_MOB.General.Utility;
+using RGPopup.Maui.Services;
+using System.Threading.Tasks;
 
 namespace CS.ERP_MOB.Views.Frame
 {
@@ -21,10 +25,16 @@ namespace CS.ERP_MOB.Views.Frame
     public partial class FrmSignIn : ContentView
     {
         #region "Declaration"
+        VmlSignIn mVmlSignIn;
+        SignInState mSignInState = SignInState.SignIn;
         //Account account;
         //AccountStore store;
         REQ_AUTHORIZATION mREQ_AUTHORIZATION = new REQ_AUTHORIZATION();
         DbUser mDbUser = new DbUser();
+        REQ_RESET_PWD mREQ_RESET_PWD = new REQ_RESET_PWD();
+        JSN_REQ_USER_RESETPWD mJSN_REQ_USER_RESETPWD = new JSN_REQ_USER_RESETPWD();
+        JSN_USER mJSN_USER = new JSN_USER();
+        JSN_RESET_PWD mJSN_RESET_PWD = new JSN_RESET_PWD();
         #endregion
         #region "Constructor"
         public FrmSignIn()
@@ -32,6 +42,9 @@ namespace CS.ERP_MOB.Views.Frame
             try
             {
                 InitializeComponent();
+                BindingContext = mVmlSignIn = new VmlSignIn();
+                mVmlSignIn.IsSignInPage = true;
+
                 //store = AccountStore.Create();
                 mREQ_AUTHORIZATION = Common.mCommon.REQ_AUTHORIZATION;
                 if (Common.mCommon.REQ_AUTHORIZATION.UserID.ToLower() != "guest" )
@@ -95,6 +108,114 @@ namespace CS.ERP_MOB.Views.Frame
                 else
                 {
                     entUserName.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex.InnerException;
+            }
+        }
+        private void showActivation()
+        {
+            try
+            {
+                switchSignInState(SignInState.Activate);
+                entActivationCode.Text = mJSN_USER.RES_USER_LST.First().OTPCode_0_50;
+                entActivationCode.Focus();
+            }
+            catch (Exception ex)
+            {
+                throw ex.InnerException;
+            }
+        }
+        private void showSignIn()
+        {
+            try
+            {
+                switchSignInState(SignInState.SignIn);
+                entUserName.Focus();
+            }
+            catch (Exception ex)
+            {
+                throw ex.InnerException;
+            }
+        }
+        private bool bindActivationData()
+        {
+            try
+            {
+                bool flag = true;
+                //Name
+                if (!string.IsNullOrEmpty(entUserName.Text))
+                {
+                    mJSN_RESET_PWD = new JSN_RESET_PWD();
+                    mJSN_RESET_PWD.REQ_AUTHORIZATION = Common.mCommon.REQ_AUTHORIZATION;
+                    REQ_RESET_PWD l_REQ_RESET_PWD = new REQ_RESET_PWD();
+                    l_REQ_RESET_PWD.UserID = entUserName.Text;
+                    l_REQ_RESET_PWD.LoginURL = AppInfo.Current.Name;
+                    mJSN_RESET_PWD.REQ_RESET_PWD = l_REQ_RESET_PWD;
+                }
+                else
+                {
+                    flag = false;
+                    entUserName.Focus();
+                }
+                return flag;
+            }
+            catch (Exception ex)
+            {
+                throw ex.InnerException;
+            }
+        }
+        private async void resetPassword()
+        {
+            string l_Request = "";
+            var l_Response = "";
+            try
+            {
+                l_Request = JsonConvert.SerializeObject(mJSN_RESET_PWD);
+                Utility.openLoader();
+                l_Response = await Sys_Service.ApiCall(l_Request, Sys_Name.wsResetPwd);
+                if (l_Response != null)
+                {
+                    mJSN_USER = JsonConvert.DeserializeObject<JSN_USER>(l_Response);
+                    if (mJSN_USER.Message.Code == "7")
+                    {
+                       showActivation();
+                    }
+                    else
+                    {
+                        WeakReferenceMessenger.Default.Send(this.mJSN_USER?.Message?.Message);
+                    }
+                }
+                else
+                {
+                    WeakReferenceMessenger.Default.Send("Server Err");
+                }
+                Utility.closeLoader();
+            }
+            catch (Exception ex)
+            {
+                Utility.closeLoader();
+                throw ex.InnerException;
+            }
+
+        }
+        private void switchSignInState(SignInState argSignInState)
+        {
+            try
+            {
+                mVmlSignIn.IsSignInPage = false;
+                mVmlSignIn.IsActivatePage = false;
+                mSignInState = argSignInState;
+                switch (mSignInState)
+                {
+                    case SignInState.SignIn:
+                        mVmlSignIn.IsSignInPage = true;
+                        break;
+                    case SignInState.Activate:
+                        mVmlSignIn.IsActivatePage = true;
+                        break;
                 }
             }
             catch (Exception ex)
@@ -340,7 +461,7 @@ namespace CS.ERP_MOB.Views.Frame
         //    {
         //        throw ex.InnerException;
         //    }
-           
+
         //}
         //void OnAuthError(object sender, AuthenticatorErrorEventArgs e)
         //{
@@ -359,10 +480,71 @@ namespace CS.ERP_MOB.Views.Frame
         //    {
         //        throw ex.InnerException;
         //    }
-            
+
         //}
 
-        
+
+        private void TgrForgotPassword_Tapped(object sender, TappedEventArgs e)
+        {
+            try
+            {
+                if (bindActivationData())
+                {
+                    resetPassword();
+                }
+                else
+                {
+                    WeakReferenceMessenger.Default.Send(Common.mCommon.GetMessageValueByKey("MsgUIDRequired"));
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        private void btnResend_onClicked(object sender, EventArgs e)
+        {
+            try
+            {
+                if (bindActivationData())
+                {
+                    resetPassword();
+                }
+                else
+                {
+                    WeakReferenceMessenger.Default.Send("Server Err");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex.InnerException;
+            }
+        }
+
+        private void btnBack_onClicked(object sender, EventArgs e)
+        {
+            showSignIn();
+        }
+        private async void btnOk_onClicked(object sender, EventArgs e)
+        {
+            string verificationCode = entActivationCode.Text?.Trim();
+
+            if (!string.IsNullOrEmpty(verificationCode))
+            {
+                RES_MESSAGE? response = await Common.mCommon.verifyEmailOTP(verificationCode);
+
+                if (response != null && response.Code == "7")
+                {
+
+                    if (!Common.bindMenu("change-password"))
+                    {
+                        Common.mCommon.SelectedMenu = new RES_MENU { ProductAsk = "1", Text = "Change Password", MenuUrl = "change-password", logoImg = "" };
+                    }
+                    Common.routeMenu(Common.mCommon.SelectedMenu);
+                }
+            }
+        }
         #endregion
 
     }
