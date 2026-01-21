@@ -1560,8 +1560,8 @@ namespace CS.ERP_MOB.General
                     }
                     else
                     {
-                        this.UserLoggedIn = true;
-                        this.UserLoggedOut = false;
+                        this.UserLoggedIn = false;
+                        this.UserLoggedOut = true;
                         mCommon.SelectedMenu = new RES_MENU { ProductAsk = "1", Text = "Sign In", MenuUrl = "signin", logoImg = "" };
                         Common.routeMenu(Common.mCommon.SelectedMenu);
                         WeakReferenceMessenger.Default.Send(mCommon.JSN_RES_ECOMANCE?.Message?.Message);
