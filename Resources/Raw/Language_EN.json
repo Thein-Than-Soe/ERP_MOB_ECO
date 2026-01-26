@@ -138,6 +138,7 @@
                 "Password": "Password",
                 "ConfirmPassword": "Confirm Password",
                 "ActivationCode": "Activation Code has been sent to your email",
+                "PhoneActivationCode": "Activation Code has been sent to your phone",
                 "EnterActivationCode": "Enter activation code.",
                 "ActivationCodeResendMsg": "If the activation code is not sent to your email or phone within 5 seconds, click on \"Resend\" button to send the code back.",
                 "RegistrationSuccess": "Your registration has been successfully completed.",
@@ -7313,10 +7314,21 @@
                 "Search": "Search",
                 "Less": "Less",
                 "More": "More",
-                "Clear": "Clear",
                 "NewRow": "Add New Row",
                 "DownloadTemplate": "Download Template",
-                "UploadTemplate": "Upload CSV"
+                "UploadTemplate": "Upload CSV",
+                "Clear": "Clear",
+                "Refresh": "Refresh",
+                "Active": "Active",
+                "Inactive": "Inactive",
+                "Edit": "Edit",
+                "Delete": "Delete",
+                "Send": "Send",
+                "Yes": "Yes",
+                "No": "No",
+                "OK": "OK",
+                "Cancel": "Cancel",
+                "Resend": "Resend"
             },
             "btnTooltip": {
                 "Home": "Click me to go Home",
@@ -7326,29 +7338,94 @@
                 "Search": "Click me to search",
                 "Less": "Click me to hide more",
                 "More": "Click me to see more criteria",
-                "Clear": "Click me to clear all criteria",
                 "NewRow": "Click me to add new row",
                 "DownloadTemplate": "Click me to download",
                 "UploadTemplate": "Click me to upload",
-                "UserGuide": "Click me to user guide"
+                "AddtoList": "Click me to add List",
+                "Upload": "Click me to upload",
+                "Clear": "Click me to clear all criteria",
+                "Edit": "Click me to edit",
+                "Refresh": "Click me to refresh",
+                "UserGuide": "Click me to user guide",
+                "Calculate": "Click me to Calculate"
             },
             "view": {
                 "GridView": "Grid View",
                 "WebView": "Web View",
-                "CardView": "Card View"
+                "CardView": "Card View",
+                "CustomerNestedView": "Customer Nested View",
+                "UserNestedView": "User Nested View",
+                "NestedViewSupplier": "Nested View Supplier",
+                "NestedViewPurchasePerson": "Nested View Purchase Person",
+                "TypeView": "Type View",
+                "SalesPersonNestedView": "SalesPersonNestedView",
+                "ListView": "List View",
+                "SupplierNestedView": "Supplier Nested View",
+                "DateScheduleView": "Date Schedule View",
+                "EDScheduleView": "ED Schedule View",
+                "PivotView": "Pivot View",
+                "InvoiceView": "Invoice View",
+                "ImageView": "Image View",
+                "NestedView": "Nested View",
+                "SchedulerView": "Scheduler View",
+                "PriceLabelView": "Price Label View",
+                "SupplierAgingView": "Supplier Aging View",
+                "AdvanceView": "Advance View",
+                "GridAdvancedView": "Grid Advanced View",
+                "ScheduleView": "Schedule View"
+            },
+            "lbl": {
+                "MoreSearch": "More Search",
+                "SearchDate": "Search Date",
+                "From": "From",
+                "To": "To",
+                "CheckAll": "Check All",
+                "SearchMore": "Search More",
+                "SortedBy": "Sorted By",
+                "Ascending": "Ascending",
+                "Descending": "Descending",
+                "View": "View",
+                "Card": "Card",
+                "List": "List",
+                "Grid": "Grid",
+                "Email": "Email",
+                "VerificationCode": "Verification Code",
+                "SMS": "SMS",
+                "Password": "Password",
+                "Signature": "Signature",
+                "Confirmation": "Confirmation"
             },
             "plh": {
-                "Search": "Type here to search"
+                "Search": "Type here to search",
+                "Code": "Enter your code",
+                "Password": "Enter your password",
+                "Select": "Select"
             },
             "confirm": {
                 "Delete": "Are you sure you want to delete?",
                 "Void": "Are you sure you want to void?",
+                "Send": "Are you sure you want to send?",
                 "Active": "Are you sure you want to active?",
                 "Inactive": "Are you sure you want to inactive?",
-                "New": "Do you want to discard changes?"
+                "Print": "Are you sure you want to print?",
+                "Export": "Are you sure you want to export?",
+                "ExportPDF": "Are you sure you want to export PDF?",
+                "ExportExcel": "Are you sure you want to export Excel?",
+                "ExportCSV": "Are you sure you want to export CSV?",
+                "Import": "Are you sure you want to import?",
+                "Edit": "Are you sure you want to edit?",
+                "Post": "Are you sure you want to post?",
+                "Summary": "Are you sure you want to summary?",
+                "AddNew": "Are you sure you want to add new?",
+                "New": "Do you want to discard changes?",
+                "Select": "Are you sure you want to select?"
             },
             "ifo": {
-                "Search": "Result will show"
+                "Title": "More Info:",
+                "Info": "Info",
+                "Search": "Result will show",
+                "FilterRange": "This is Filter Range.",
+                "Status": "This is Status."
             }
         },
         "Setup": {
@@ -9130,7 +9207,13 @@
                 "Cancel": "Cancel",
                 "PropertiesFontStyle": "Properties Font Style",
                 "BoxHShadow": "Box H-Shadow",
-                "BoxVShadow": "Box V-Shadow"
+                "BoxVShadow": "Box V-Shadow",
+                "HighlightColor": "Highlight Color",
+                "ClickableLinkColor": "Clickable Link Color",
+                "MouseHoverTransform": "MouseHover Transform",
+                "MouseHoverFontColor": "MouseHover Font Color",
+                "MouseHoverBgColor": "MouseHover Bg Color",
+                "RegionSetting": "Region Setting"
             },
             "ifo": {
                 "User": "This is User, Optional.",
@@ -9144,7 +9227,86 @@
                 "PropertiesBgColor": "This is Properties Bg Color, Optional.",
                 "BorderRadius": "This is Border Radius, Optional.",
                 "BoxRadius": "This is Box Radius, Optional.",
-                "PropertiesFontStyle": "This is Properties Font Style"
+                "PropertiesFontStyle": "This is Properties Font Style",
+                "BoxColor": "This is Box color, Optional.",
+                "HighlightColor": "This is Highlight color, Optional.",
+                "ClickableLinkColor": "This is Clickable Link Color, Optional.",
+                "MouseHoverTransform": "This is MouseHover Transform, Optional.",
+                "MouseHoverFontColor": "This is MouseHover Font Color, Optional.",
+                "MouseHoverBgColor": "This is MouseHover Bg Color, Optional."
+            }
+        },
+        "Theme": {
+            "lbl": {
+                "ThemeColor": "Theme Color",
+                "ThemeFontName": "Theme Font Name",
+                "ThemeFontColor": "Theme Font Color",
+                "HeightType": "Height Type",
+                "ThemeFontStyle": "Theme Font Style",
+                "WidthType": "Width Type",
+                "ThemeBgColor": "Theme Bg Color",
+                "Remark": "Remark",
+                "ThemeMode": "Theme Mode",
+                "DeviceType": "Device Type",
+                "RegionType": "Region Type",
+                "RegionStatus": "Region Status",
+                "IsInheritance": "Is Inheritance",
+                "Height": "Height",
+                "UOM": "UOM",
+                "HorizontalAlignment": "Horizontal Alignment",
+                "Sequence": "Sequence",
+                "Remove": "#",
+                "RegionSetting": "Region Setting",
+                "RegionVisibility": "Region Visibility",
+                "VerticalAlignment": "Vertical Alignment",
+                "OK": "OK",
+                "Cancel": "Cancel",
+                "Margin": "Margin",
+                "Code": "Code",
+                "Name": "Name",
+                "Description": "Description",
+                "HighlightColor": "Highlight Color",
+                "ClickableLinkColor": "Clickable Link Color",
+                "MouseHoverTransform": "MouseHover Transform",
+                "MouseHoverBgColor": "MouseHover Bg Color",
+                "MouseHoverFontColor": "MouseHover Font Color",
+                "RegionSpacing": "Region Spacing",
+                "LayoutType": "Layout Type"
+            },
+            "ifo": {
+                "ThemeColor": "This is Theme Color, Optional.",
+                "ThemeFontName": "This is Theme Font Name, Optional.",
+                "ThemeFontColor": "This  is Theme Font Color, Optional.",
+                "HeightType": "This is Height Type, Optional.",
+                "WidthType": "This is Width Type, Optional.",
+                "ThemeBgColor": "This is Theme Bg Color, Optional.",
+                "Remark": "This is Remark, Optional.",
+                "ThemeFontStyle": "This is Theme Font Style, Optional.",
+                "ThemeMode": "This is Theme Mode, Optional.",
+                "DeviceType": "This is Device Type, Optional.",
+                "Margin": "This is Margin, Optional.",
+                "HighlightColor": "This is Highlight color, Optional.",
+                "ClickableLinkColor": "This is Clickable Link Color, Optional.",
+                "MouseHoverTransform": "This is MouseHover Transform, Optional.",
+                "MouseHoverBgColor": "This is MouseHover Bg Color, Optional.",
+                "MouseHoverFontColor": "This is MouseHover Font Color, Optional.",
+                "RegionSpacing": "This is Region Sapcing, Optional.",
+                "LayoutType": "This is Layout Type, Optional."
+            },
+            "plh": {
+                "ThemeColor": "Theme Color",
+                "ThemeFontName": "Theme Font Name",
+                "ThemeFontColor": "Theme Font Color",
+                "HeightType": "Height Type",
+                "ThemeFontStyle": "Theme Font Style",
+                "ThemeBgColor": "Theme Bg Color",
+                "ThemeMode": "Theme Mode",
+                "Margin": "Margin",
+                "HighlightColor": "Highlight Color",
+                "ClickableLinkColor": "Clickable Link Color",
+                "MouseHoverTransform": "MouseHover Transform",
+                "MouseHoverFontColor": "MouseHover Font Color",
+                "MouseHoverBgColor": "MouseHover Bg Color"
             }
         },
         "ThemeSetting": {
@@ -9175,10 +9337,17 @@
                 "Margin": "Margin",
                 "Code": "Code",
                 "Name": "Name",
-                "Description": "Description"
+                "Description": "Description",
+                "HighlightColor": "Highlight Color",
+                "ClickableLinkColor": "Clickable Link Color",
+                "MouseHoverTransform": "MouseHover Transform",
+                "MouseHoverBgColor": "MouseHover Bg Color",
+                "MouseHoverFontColor": "MouseHover Font Color",
+                "RegionSpacing": "Region Spacing",
+                "LayoutType": "Layout Type"
             },
             "ifo": {
-                "ThemeColor": "This is Theme Colorm, Optional.",
+                "ThemeColor": "This is Theme Color, Optional.",
                 "ThemeFontName": "This is Theme Font Name, Optional.",
                 "ThemeFontColor": "This  is Theme Font Color, Optional.",
                 "HeightType": "This is Height Type, Optional.",
@@ -9188,7 +9357,14 @@
                 "ThemeFontStyle": "This is Theme Font Style, Optional.",
                 "ThemeMode": "This is Theme Mode, Optional.",
                 "DeviceType": "This is Device Type, Optional.",
-                "Margin": "This is Margin, Optional."
+                "Margin": "This is Margin, Optional.",
+                "HighlightColor": "This is Highlight color, Optional.",
+                "ClickableLinkColor": "This is Clickable Link Color, Optional.",
+                "MouseHoverTransform": "This is MouseHover Transform, Optional.",
+                "MouseHoverBgColor": "This is MouseHover Bg Color, Optional.",
+                "MouseHoverFontColor": "This is MouseHover Font Color, Optional.",
+                "RegionSpacing": "This is Region Sapcing, Optional.",
+                "LayoutType": "This is Layout Type, Optional."
             },
             "plh": {
                 "ThemeColor": "Theme Color",
@@ -9198,7 +9374,17 @@
                 "ThemeFontStyle": "Theme Font Style",
                 "ThemeBgColor": "Theme Bg Color",
                 "ThemeMode": "Theme Mode",
-                "Margin": "Margin"
+                "Margin": "Margin",
+                "HighlightColor": "Highlight Color",
+                "ClickableLinkColor": "Clickable Link Color",
+                "MouseHoverTransform": "MouseHover Transform",
+                "MouseHoverFontColor": "MouseHover Font Color",
+                "MouseHoverBgColor": "MouseHover Bg Color"
+            }
+        },
+        "UserTheme": {
+            "lbl": {
+                "RegionSetting": "Region Setting"
             }
         },
         "IsInheritance": [
@@ -9210,7 +9396,88 @@
                 "code": "0",
                 "description": "No"
             }
-        ]
+        ],
+        "ScheduleStatus": [
+            {
+                "code": "1",
+                "description": "Yes"
+            },
+            {
+                "code": "0",
+                "description": "No"
+            }
+        ],
+        "ConfirmationUserJun": {
+            "lbl": {
+                "Company": "Company",
+                "Location": "Location",
+                "CostCenter": "Cost Center",
+                "User": "User",
+                "Product": "Product ",
+                "Menu": "Menu",
+                "Control": "Control",
+                "ConfirmationStatus": "Confirmation Status",
+                "ConfirmationType": "Confirmation Type"
+            },
+            "ifo": {
+                "Company": "This is  Company, Optional.",
+                "Location": "This is Location Optional.",
+                "CostCenter": "This is Cost Center, Optional.",
+                "User": "This is User, Optional.",
+                "Product": "This is Product, Optional.",
+                "Menu": "This is Menu, Optional.",
+                "Control": "This is Control, Optional.",
+                "ConfirmationStatus": "This is Confirmation Status, Optional.",
+                "ConfirmationType": "This is Confirmation Type, Optional."
+            },
+            "rule": {
+                "Company": "Company is required!",
+                "Location": "Location is required!"
+            }
+        },
+        "SMSIntegration": {
+            "lbl": {
+                "URL": "URL",
+                "Server": "Server",
+                "AuthType": "Auth Type",
+                "APIKey": "API Key",
+                "APIValue": "API Value",
+                "User": "User",
+                "Password": "Password",
+                "SID": "SID",
+                "AuthToken": "Auth Token",
+                "PhoneNo": "Phone No",
+                "Company": "Company "
+            },
+            "ifo": {
+                "URL": "This is URL, Optional.",
+                "Server": "This is Server, Optoinal.",
+                "AuthType": "This is Auth Type, Optional.",
+                "APIKey": "This is API Key, Optional.",
+                "APIValue": "This is API Value, Optional.",
+                "User": "This is User, Optional.",
+                "Password": "This is Password , Optional.",
+                "SID": "This is SID, Optional.",
+                "AuthToken": "This is Auth Token, Optional.",
+                "PhoneNo": "This is Phone No. , Optional.",
+                "Company": "This is  Company, Optional."
+            },
+            "rule": {
+                "URL": "URL is required!",
+                "APIKey": "API Key is required!",
+                "Server": "Server is required!"
+            },
+            "plh": {
+                "URL": "URL",
+                "Server": "Server",
+                "AuthType": "Auth Type",
+                "APIKey": "API Key",
+                "APIValue": "API Value",
+                "User": "User",
+                "Password": "Password",
+                "AuthToken": "Auth Token"
+            }
+        }
     },
     "ACC": {
         "Common": {
@@ -9384,7 +9651,8 @@
                 "PostingStatus": "Posting Status",
                 "ApproveDate": "Approve Date",
                 "PaymentType": "Payment Type",
-                "PaymentTerm": "Payment Term"
+                "PaymentTerm": "Payment Term",
+                "Currency": "Currency"
             },
             "ifo": {
                 "BenefitType": "This is Benefit Type, Optional.",
@@ -9416,7 +9684,8 @@
                 "PostingStatus": "Posting Status",
                 "ApproveDate": "Approve Date",
                 "PaymentType": "Payment Type",
-                "PaymentTerm": "Payment Term"
+                "PaymentTerm": "Payment Term",
+                "Currency": "Currency"
             },
             "ifo": {
                 "TaxationType": "This is Taxation Type, Optional.",
@@ -9447,7 +9716,8 @@
                 "ApprovedBy": "Approved By",
                 "Currency": "Currency",
                 "PettyCashLog": "Petty Cash Log",
-                "PostingStatus": "Posting Status"
+                "PostingStatus": "Posting Status",
+                "Date": "Date"
             },
             "ifo": {
                 "Company": "This is Company, Optional.",
@@ -9458,7 +9728,8 @@
                 "Purpose": "This is Purpose, Optional.",
                 "ApprovedBy": "This is Approved By, Optional.",
                 "Currency": "This is Currency, Optional.",
-                "PettyCashLog": "This is Petty Cash Log, Optional."
+                "PettyCashLog": "This is Petty Cash Log, Optional.",
+                "Date": "This is Date, Optional."
             },
             "plh": {
                 "Purpose": "Purpose"
@@ -11324,7 +11595,8 @@
                 "Life": "Life",
                 "StartDate": "Start Date",
                 "EndDate": "End Date",
-                "Company": "Company"
+                "Company": "Company",
+                "APIData": "API Data"
             },
             "ifo": {
                 "TicketDetail": "This is Ticket Detail, Optional.",
@@ -11338,7 +11610,8 @@
                 "TargetDate": "This is Target Date, Optional.",
                 "AttachFile": "This is Attach File, Optional.",
                 "PageName": "This is Page Name, Optional.",
-                "Company": "This is  Company, Optional."
+                "Company": "This is  Company, Optional.",
+                "APIData": "This is API Data, Optional."
             },
             "plh": {
                 "TicketDetail": "Ticket Detail",
@@ -14587,7 +14860,7 @@
                 "Amount": "Amount",
                 "PostingStatus": "Posting Status",
                 "Reload": "Reload",
-                "SalesInvoiceToAccountPosting": "Sales Invoice To Account Posting",
+                "PayOutToAccountPosting": "Pay Out To Account Posting",
                 "Company": "Company ",
                 "Account": "Account",
                 "PostingFigure": "Posting Figure",
@@ -15534,8 +15807,7 @@
                 "Account": "Account",
                 "PostingFigure": "Posting Figure",
                 "Debit": "Debit",
-                "Credit": "Credit",
-                "SchedulePayment": "Schedule Payment"
+                "Credit": "Credit"
             },
             "ifo": {
                 "Company": "This is  Company, Optional.",
@@ -15701,7 +15973,8 @@
                 "DepreciationAmount": "Depreciation Amount",
                 "Posted": "Posted",
                 "Total": "Total",
-                "Company": "Company"
+                "Company": "Company",
+                "PostingStatus": "Posting Status"
             }
         },
         "Asset": {
@@ -15752,7 +16025,8 @@
                 "Designation": "Designation",
                 "AssetType": "Asset Type",
                 "ExpiredDate": "Expired Date",
-                "UsefulLife": "Useful Life"
+                "UsefulLife": "Useful Life",
+                "LinkType": "Link Type"
             },
             "ifo": {
                 "Status": "This is Status, Optional.",
@@ -17902,6 +18176,175 @@
                 "Company": "Company is requied",
                 "Location": "Location is required."
             }
+        },
+        "CustomerContactDl": {
+            "lbl": {
+                "SameAsCompanyAddress": "Same As Company Address",
+                "ContactName": "Contact Name",
+                "Contact": "Contact",
+                "Tel1": "Tel1",
+                "Tel2": "Tel2",
+                "LanAccent": "Lan Accent",
+                "Profession": "Profession",
+                "Mobile": "Mobile",
+                "Email": "Email",
+                "PostalCode": "Postal Code",
+                "Retrieve": "Retrieve",
+                "FloorUnit": "Floor-Unit",
+                "Address": "Address",
+                "ContactType": "Contact Type",
+                "Department": "Department",
+                "JobTitle": "Job Title",
+                "Gender": "Gender",
+                "DateOfBirth": "Date of Birth",
+                "Nationality": "Nationality",
+                "Country": "Country",
+                "State": "State",
+                "City": "City",
+                "MaritalStatus": "Marital Status",
+                "Status": "Status",
+                "OK": "OK",
+                "Cancel": "Cancel",
+                "ContactTitle": "Contact",
+                "View": "View",
+                "Clear": "Clear",
+                "SendLoginCriteria": "Send Login Criteria",
+                "MapUser": "Map User",
+                "StartDate": "Start Date",
+                "EndDate": "End Date",
+                "Loading": "Loading"
+            },
+            "ifo": {
+                "ContactName": "This is Contact Name, Optional.",
+                "Tel1": "This is Tel1, Optional.",
+                "Tel2": "This is Tel2, Optional.",
+                "LanAccent": "This is Lan Accent, Optional.",
+                "Profession": "This is Profession, Optional.",
+                "Mobile": "This is Mobile, Optional.",
+                "Email": "This is Email, Optional.",
+                "PostalCode": "This is Postal Code, Optional.",
+                "FloorUnit": "This is Floor-Unit, Optional.",
+                "Address": "This is Address, Optional.",
+                "ContactType": "This is Contact Type, Optional.",
+                "Department": "This is Department, Optional.",
+                "JobTitle": "This is Job Title, Optional.",
+                "Gender": "This is Gender, Optional.",
+                "DateOfBirth": "This is Date of Birth, Optional.",
+                "Nationality": "This is Nationality, Optional.",
+                "Country": "This is Country, Optional.",
+                "State": "This is State, Optional.",
+                "City": "This is City, Optional.",
+                "MaritalStatus": "This is Marital Status, Optional.",
+                "Status": "This is Status, Optional.",
+                "StartDate": "This is Start Date, Optional.",
+                "EndDate": "This is End Date, Optional."
+            },
+            "plh": {
+                "Ext": "Ext",
+                "Select": "Select",
+                "State": "Select State:",
+                "City": "Select City",
+                "Address": "Street Name,\nBuilding Name,\n#Floor number-Unit number"
+            },
+            "tooltip": {
+                "Retrieve": "Click me to Retrieve"
+            }
+        },
+        "Guest": {
+            "lbl": {
+                "Code": "Code",
+                "Name": "Name",
+                "Email": "Email",
+                "Mobile": "Mobile",
+                "View": "View",
+                "Clear": "Clear",
+                "General": "General",
+                "Company": "Company ",
+                "NickName": "Nick Name",
+                "Location": "Location",
+                "RegisterDate": "Register Date",
+                "CostCenter": "Cost Center",
+                "Industry": "Industry",
+                "BusinessType": "Business Type",
+                "PriceBand": "Price Band",
+                "CustomerType": "Customer Type",
+                "Currency": "Currency",
+                "DiscountGroup": "Discount Group",
+                "Status": "Status",
+                "TaxRegID": "Tax Reg ID",
+                "Scheme": "Scheme",
+                "UEN": "UEN",
+                "SuperScheme": "Super Scheme",
+                "Peppol": "Peppol",
+                "Address": "Address",
+                "Country": "Country",
+                "Tel1": "Tel1",
+                "State": "State",
+                "Tel2": "Tel2",
+                "City": "City",
+                "Website": "Website",
+                "PostalCode": "Postal Code",
+                "Retrieve": "Retrieve",
+                "Facebook": "Facebook",
+                "FloorUnit": "Floor-Unit",
+                "Youtube": "Youtube",
+                "LinkedIn": "LinkedIn",
+                "Fax": "Fax",
+                "Twitter": "Twitter",
+                "Remark": "Remark",
+                "ContactPerson": "Contact Person",
+                "Payment": "Payment",
+                "PaymentTerm": "Payment Term",
+                "PaymentType": "Payment Type",
+                "BranchName": "Branch Name",
+                "CustomerBank": "Customer Bank",
+                "CustomerBankNo": "Customer Bank No.",
+                "HouseBank": "House Bank",
+                "Account": "Account",
+                "Title": "Title",
+                "Type": "Type",
+                "Gender": "Gender",
+                "Remove": "#",
+                "AccountType": "Account Type"
+            },
+            "ifo": {
+                "Code": "This is Code, mandatory. Max character - 50",
+                "Name": "This is Name, mandatory. Max character - 255",
+                "Mobile": "This is Mobile, Optional.",
+                "File": "This is File Upload, Optional.",
+                "Company": "This is  Company, Optional.",
+                "NickName": "This is Nick Name, Optional.",
+                "Location": "This is Location Optional.",
+                "RegisterDate": "This is Register Date, Optional.",
+                "CostCenter": "This is Cost Center, Optional.",
+                "Industry": "This is Industry, Optional.",
+                "BusinessType": "This is Business Type, Optional.",
+                "PriceBand": "This is Price Band, Optional.",
+                "CustomerType": "This is Customer Type,  Optional.",
+                "Currency": "This is Currency, Optional.",
+                "DiscountGroup": "This is Discount Group, Optional.",
+                "Status": "This is Status, Optional.",
+                "TaxRegID": "This is Tax Reg ID, Optional.",
+                "Scheme": "This is Scheme, Optional.",
+                "UEN": "This is UEN, Optional.",
+                "SuperScheme": "This is Super Scheme, Opitonal.",
+                "Peppol": "This is Peppol, Optional.",
+                "Country": "This is Country, Optional.",
+                "Tel1": "This is Tel1, Optional.",
+                "State": "This is State, Optional",
+                "Tel2": "This is Tel2, Optional.",
+                "City": "This is City, Optional.",
+                "Website": "This is Website, Optional.",
+                "PostalCode": "This is Postal Code, Optional.",
+                "Facebook": "This is Facebook, Optional.",
+                "FloorUnit": "This is Floor Unit, Optional.",
+                "Youtube": "This is Youtube, Optional.",
+                "Address": "This is Address, Optional",
+                "LinkedIn": "This is LinkedIn, Optional.",
+                "Fax": "This is Fax, Optional.",
+                "Twitter": "This is Twitter, Optional.",
+                "Remark": "This is Remark, Optional."
+            }
         }
     },
     "MCST": {
@@ -19922,6 +20365,12 @@
                 "Key": "This is Key, Optional.",
                 "Value": "This is Value, Optional.",
                 "Description": "This is Description, Optional. Max character - 500"
+            },
+            "plh": {
+                "YouTubeURL": "YouTube URL",
+                "Caution": "Caution",
+                "Hnint": "Hnint",
+                "KeyNote": "Key Note"
             }
         },
         "DocumentationDl": {
@@ -19955,6 +20404,12 @@
                 "Caution": "This is Caution, Optional.",
                 "Hnint": "This is Hnint, Optional.",
                 "KeyNote": "This is Key Note, Optional."
+            },
+            "plh": {
+                "YouTubeURL": "YouTube URL",
+                "Caution": "Caution",
+                "Hnint": "Hnint",
+                "KeyNote": "Key Note"
             }
         },
         "OverviewDl": {
@@ -19988,6 +20443,12 @@
                 "Caution": "This is Caution, Optional.",
                 "Hnint": "This is Hnint, Optional.",
                 "KeyNote": "This is Key Note, Optional."
+            },
+            "plh": {
+                "YouTubeURL": "YouTube URL",
+                "Caution": "Caution",
+                "Hnint": "Hnint",
+                "KeyNote": "Key Note"
             }
         },
         "CommonFile": {
@@ -21307,6 +21768,59 @@
                 "FloorUnit": "This is Floor Unit, Optional.",
                 "Address": "This is Address, Optional",
                 "Tnc": "This is Terms & Conditions, Optional."
+            }
+        },
+        "SupplierInvoice": {
+            "lbl": {
+                "Invoice": "Invoice",
+                "Supplier": "Supplier",
+                "Contact": "Contact",
+                "StockName": "Stock Name",
+                "Barcode": "Barcode",
+                "AddtoList": "Add to List",
+                "File": "File",
+                "View": "View",
+                "Clear": "Clear",
+                "InvoiceDate": "Invoice Date",
+                "CollectionDate": "Collection Date",
+                "Document": "Document",
+                "SubTotal": "Sub Total",
+                "Discount": "Discount",
+                "RoundOff": "Round Off",
+                "GrandTotal": "Grand Total",
+                "TotalAmountExclGST": "Total Amount Excel GST",
+                "TnC": "Terms & Conditions",
+                "Remark": "Remark",
+                "BrowseTransaction": "Browse Transaction",
+                "Code": "Code",
+                "Name": "Name",
+                "Price": "Price",
+                "Currency": "Currency",
+                "QTY": "QTY",
+                "UOM": "UOM",
+                "DiscountType": "Discount Type",
+                "DiscountRate": "Discount Rate",
+                "DiscountAmt": "Dis. Amt.",
+                "Amount": "Amount",
+                "Remove": "Remove"
+            },
+            "ifo": {
+                "SP": "This is SP, Optional.",
+                "Contact": "This is Contact, Optional.",
+                "Stock": "This is Stock, Optional.",
+                "Barcode": "This is Barcode, Optional.",
+                "File": "This is File Upload, Optional.",
+                "InvoiceDate": "This is Invoice Date, Optional.",
+                "CollectionDate": "This is Collection Date, Optional.",
+                "Document": "This is Document, Optional."
+            },
+            "btnTooltip": {
+                "Edit": "Click me to edit",
+                "AddtoList": "Click me to add List",
+                "Upload": "Click me to upload",
+                "More": "Click me to see more",
+                "Less": "Click me to hide more",
+                "Search": "Click me to search"
             }
         }
     },
