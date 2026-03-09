@@ -18,20 +18,33 @@ namespace CS.ERP_MOB.ViewsModel.Frame
                 NotifyPropertyChanged("IsSignInPage");
             }
         }
-        private bool mIsActivatePage;
-        public bool IsActivatePage
+        private bool mIsEmailVerifyPage;
+        public bool IsEmailVerifyPage
         {
             get
             {
-                return mIsActivatePage;
+                return mIsEmailVerifyPage;
             }
             set
             {
-                mIsActivatePage = value;
-                NotifyPropertyChanged("IsActivatePage");
+                mIsEmailVerifyPage = value;
+                NotifyPropertyChanged("IsEmailActivatePage");
+            }
+        }
+        private bool mIsPhoneVerifyPage;
+        public bool IsPhoneVerifyPage
+        {
+            get
+            {
+                return mIsPhoneVerifyPage;
+            }
+            set
+            {
+                mIsPhoneVerifyPage = value;
+                NotifyPropertyChanged("IsPhoneVerifyPage");
             }
         }
         #endregion
-        
+
     }
 }

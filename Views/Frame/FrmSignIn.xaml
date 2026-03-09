@@ -104,12 +104,12 @@
                 </StackLayout>
             </Frame>
 
-            <!--  activation page  -->
+            <!--  email verify page  -->
             <Frame
-                x:Name="ActivatePage"
+                x:Name="EmailVerifyPage"
                 Padding="{StaticResource FramePaddingLeftRightTop}"
                 HorizontalOptions="FillAndExpand"
-                IsVisible="{Binding IsActivatePage}"
+                IsVisible="{Binding IsEmailVerifyPage}"
                 VerticalOptions="FillAndExpand">
                 <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                     <StackLayout
@@ -120,8 +120,8 @@
                             x:Name="lblPrefix"
                             Text="{Binding Source={ext:LanguageExtension Key=frame.Register.lbl.ActivationCode}, Path=Value}"
                             TextColor="{StaticResource OvaSignupTextColor}" />
-                        <StackLayout IsVisible="{Binding IsActivatePage}" Orientation="Horizontal">
-                            <Entry x:Name="entActivationCode" HorizontalOptions="FillAndExpand" />
+                        <StackLayout Orientation="Horizontal">
+                            <Entry x:Name="entVerifyCodeEmail" HorizontalOptions="FillAndExpand" />
                             <Button
                                 x:Name="btnResend"
                                 BackgroundColor="{StaticResource OvaBackgroundColor}"
@@ -130,7 +130,7 @@
                                 Text="Resend"
                                 TextTransform="None" />
                         </StackLayout>
-                        <StackLayout IsVisible="{Binding IsActivatePage}" Orientation="Horizontal">
+                        <StackLayout Orientation="Horizontal">
                             <Button
                                 x:Name="btnBack"
                                 BackgroundColor="{StaticResource OvaBackgroundColor}"
@@ -141,9 +141,55 @@
                             <Button
                                 x:Name="btnOk"
                                 BackgroundColor="{StaticResource OvaBackgroundColor}"
-                                Clicked="btnOk_onClicked"
+                                Clicked="btnVerifyEmail_onClicked"
                                 HorizontalOptions="FillAndExpand"
-                                Text="Activate"
+                                Text="Verify"
+                                TextTransform="None" />
+                        </StackLayout>
+                    </StackLayout>
+                </ScrollView>
+            </Frame>
+
+            <!--  phone verify page  -->
+            <Frame
+                x:Name="PhoneVerifyPage"
+                Padding="{StaticResource FramePaddingLeftRightTop}"
+                HorizontalOptions="FillAndExpand"
+                IsVisible="{Binding IsPhoneVerifyPage}"
+                VerticalOptions="FillAndExpand">
+                <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <StackLayout
+                        HorizontalOptions="FillAndExpand"
+                        Orientation="Vertical"
+                        VerticalOptions="CenterAndExpand">
+                        <Label
+                            x:Name="lblPrefixPhone"
+                            Text="{Binding Source={ext:LanguageExtension Key=frame.Register.lbl.PhoneActivationCode}, Path=Value}"
+                            TextColor="{StaticResource OvaSignupTextColor}" />
+                        <StackLayout Orientation="Horizontal">
+                            <Entry x:Name="entVerifyCodePhone" HorizontalOptions="FillAndExpand" />
+                            <Button
+                                x:Name="btnResendPhone"
+                                BackgroundColor="{StaticResource OvaBackgroundColor}"
+                                Clicked="btnResend_onClicked"
+                                HorizontalOptions="FillAndExpand"
+                                Text="Resend"
+                                TextTransform="None" />
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Button
+                                x:Name="btnBackPhone"
+                                BackgroundColor="{StaticResource OvaBackgroundColor}"
+                                Clicked="btnBack_onClicked"
+                                HorizontalOptions="FillAndExpand"
+                                Text="Back"
+                                TextTransform="None" />
+                            <Button
+                                x:Name="btnOkPhone"
+                                BackgroundColor="{StaticResource OvaBackgroundColor}"
+                                Clicked="btnVerifyPhone_onClicked"
+                                HorizontalOptions="FillAndExpand"
+                                Text="Verify"
                                 TextTransform="None" />
                         </StackLayout>
                     </StackLayout>

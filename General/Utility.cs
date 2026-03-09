@@ -33,7 +33,8 @@ namespace CS.ERP_MOB.General
         public enum SignInState
         {
             SignIn,
-            Activate,
+            VerifyEmail,
+            VerifyPhone,
         }
 
 

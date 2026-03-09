@@ -76,7 +76,7 @@
                     </ScrollView>
                 </Frame>
 
-                <!--  activation page  -->
+                <!--  email activation page  -->
                 <Frame
                     x:Name="ActivatePage"
                     Padding="{StaticResource FramePaddingLeftRightTop}"

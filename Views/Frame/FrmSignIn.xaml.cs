@@ -115,13 +115,26 @@ namespace CS.ERP_MOB.Views.Frame
                 throw ex.InnerException;
             }
         }
-        private void showActivation()
+        private void showVerifyEmail()
         {
             try
             {
-                switchSignInState(SignInState.Activate);
-                entActivationCode.Text = mJSN_USER.RES_USER_LST.First().OTPCode_0_50;
-                entActivationCode.Focus();
+                switchSignInState(SignInState.VerifyEmail);
+                entVerifyCodeEmail.Text = mJSN_USER.RES_USER_LST.First().OTPCode_0_50;
+                entVerifyCodeEmail.Focus();
+            }
+            catch (Exception ex)
+            {
+                throw ex.InnerException;
+            }
+        }
+        private void showVerifyPhone()
+        {
+            try
+            {
+                switchSignInState(SignInState.VerifyPhone);
+                entVerifyCodePhone.Text = mJSN_USER.RES_USER_LST.First().OTPCode_0_50;
+                entVerifyCodePhone.Focus();
             }
             catch (Exception ex)
             {
@@ -179,9 +192,16 @@ namespace CS.ERP_MOB.Views.Frame
                 if (l_Response != null)
                 {
                     mJSN_USER = JsonConvert.DeserializeObject<JSN_USER>(l_Response);
-                    if (mJSN_USER.Message.Code == "7")
+                    if (mJSN_USER?.Message.Code == "7")
                     {
-                       showActivation();
+                        if (Common.mCommon.UserSetting.VerifiedByEmail == "1")
+                        {
+                            showVerifyEmail();
+                        }
+                        else if (Common.mCommon.UserSetting.VerifiedByPhoneNo == "1")
+                        {
+                            showVerifyPhone();
+                        }
                     }
                     else
                     {
@@ -206,15 +226,19 @@ namespace CS.ERP_MOB.Views.Frame
             try
             {
                 mVmlSignIn.IsSignInPage = false;
-                mVmlSignIn.IsActivatePage = false;
+                mVmlSignIn.IsEmailVerifyPage = false;
+                mVmlSignIn.IsPhoneVerifyPage = false;
                 mSignInState = argSignInState;
                 switch (mSignInState)
                 {
                     case SignInState.SignIn:
                         mVmlSignIn.IsSignInPage = true;
                         break;
-                    case SignInState.Activate:
-                        mVmlSignIn.IsActivatePage = true;
+                    case SignInState.VerifyEmail:
+                        mVmlSignIn.IsEmailVerifyPage = true;
+                        break;
+                    case SignInState.VerifyPhone:
+                        mVmlSignIn.IsPhoneVerifyPage = true;
                         break;
                 }
             }
@@ -526,13 +550,40 @@ namespace CS.ERP_MOB.Views.Frame
         {
             showSignIn();
         }
-        private async void btnOk_onClicked(object sender, EventArgs e)
+        private async void btnVerifyEmail_onClicked(object sender, EventArgs e)
         {
-            string verificationCode = entActivationCode.Text?.Trim();
+            string verificationCode = entVerifyCodeEmail.Text?.Trim();
+
+            if (string.IsNullOrEmpty(verificationCode)) return;
+            
+            RES_MESSAGE? response = await Common.mCommon.verifyEmailOTP(verificationCode);
+
+            if (response == null || response.Code != "7") return;
+
+            if (Common.mCommon.UserSetting.VerifiedByPhoneNo == "1")
+            {
+                RES_MESSAGE? responseGetSMSOTP = await Common.mCommon.getSMSOTP();
+                if (responseGetSMSOTP != null && responseGetSMSOTP.Code == "7")
+                {
+                    showVerifyPhone();
+                }
+            }
+            else
+            {
+                if (!Common.bindMenu("change-password"))
+                {
+                    Common.mCommon.SelectedMenu = new RES_MENU { ProductAsk = "1", Text = "Change Password", MenuUrl = "change-password", logoImg = "" };
+                }
+                Common.routeMenu(Common.mCommon.SelectedMenu);
+            }            
+        }
+        private async void btnVerifyPhone_onClicked(object sender, EventArgs e)
+        {
+            string verificationCode = entVerifyCodePhone.Text?.Trim();
 
             if (!string.IsNullOrEmpty(verificationCode))
             {
-                RES_MESSAGE? response = await Common.mCommon.verifyEmailOTP(verificationCode);
+                RES_MESSAGE? response = await Common.mCommon.verifySMSOTP(verificationCode);
 
                 if (response != null && response.Code == "7")
                 {
