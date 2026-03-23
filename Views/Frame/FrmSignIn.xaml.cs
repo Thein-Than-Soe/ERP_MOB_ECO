@@ -44,6 +44,8 @@ namespace CS.ERP_MOB.Views.Frame
                 InitializeComponent();
                 BindingContext = mVmlSignIn = new VmlSignIn();
                 mVmlSignIn.IsSignInPage = true;
+                this.emailOTPBox();
+                this.phoneOTPBox();
 
                 //store = AccountStore.Create();
                 mREQ_AUTHORIZATION = Common.mCommon.REQ_AUTHORIZATION;
@@ -120,8 +122,8 @@ namespace CS.ERP_MOB.Views.Frame
             try
             {
                 switchSignInState(SignInState.VerifyEmail);
-                entVerifyCodeEmail.Text = mJSN_USER.RES_USER_LST.First().OTPCode_0_50;
-                entVerifyCodeEmail.Focus();
+                lblEmailPrefix.Text = mJSN_USER.RES_USER_LST.First().OTPCode_0_50;
+                otp1.Focus();
             }
             catch (Exception ex)
             {
@@ -133,8 +135,8 @@ namespace CS.ERP_MOB.Views.Frame
             try
             {
                 switchSignInState(SignInState.VerifyPhone);
-                entVerifyCodePhone.Text = mJSN_USER.RES_USER_LST.First().OTPCode_0_50;
-                entVerifyCodePhone.Focus();
+                lblPhonePrefix.Text = mJSN_USER.RES_USER_LST.First().OTPCode_0_50;
+                phoneOTP1.Focus();
             }
             catch (Exception ex)
             {
@@ -246,6 +248,84 @@ namespace CS.ERP_MOB.Views.Frame
             {
                 throw ex.InnerException;
             }
+        }
+        private void emailOTPBox()
+        {
+            otp1.TextChanged += (s, e) => { if (otp1.Text.Length == 1) otp2.Focus(); };
+            otp2.TextChanged += (s, e) =>
+            {
+                if (otp2.Text?.Length == 1)
+                    otp3.Focus();
+                else if (string.IsNullOrEmpty(otp2.Text))
+                    otp1.Focus();
+            };
+            otp3.TextChanged += (s, e) =>
+            {
+                if (otp3.Text?.Length == 1)
+                    otp4.Focus();
+                else if (string.IsNullOrEmpty(otp3.Text))
+                    otp2.Focus();
+            };
+            otp4.TextChanged += (s, e) =>
+            {
+                if (otp4.Text?.Length == 1)
+                    otp5.Focus();
+                else if (string.IsNullOrEmpty(otp4.Text))
+                    otp3.Focus();
+            };
+            otp5.TextChanged += (s, e) =>
+            {
+                if (otp5.Text?.Length == 1)
+                    otp6.Focus();
+                else if (string.IsNullOrEmpty(otp5.Text))
+                    otp4.Focus();
+            };
+            otp6.TextChanged += (s, e) =>
+            {
+                if (otp6.Text?.Length == 1)
+                    otp6.Focus();
+                else if (string.IsNullOrEmpty(otp6.Text))
+                    otp5.Focus();
+            };
+        }
+        private void phoneOTPBox()
+        {
+            phoneOTP1.TextChanged += (s, e) => { if (phoneOTP1.Text.Length == 1) phoneOTP2.Focus(); };
+            phoneOTP2.TextChanged += (s, e) =>
+            {
+                if (phoneOTP2.Text?.Length == 1)
+                    phoneOTP3.Focus();
+                else if (string.IsNullOrEmpty(phoneOTP2.Text))
+                    phoneOTP1.Focus();
+            };
+            phoneOTP3.TextChanged += (s, e) =>
+            {
+                if (phoneOTP3.Text?.Length == 1)
+                    phoneOTP4.Focus();
+                else if (string.IsNullOrEmpty(phoneOTP3.Text))
+                    phoneOTP2.Focus();
+            };
+            phoneOTP4.TextChanged += (s, e) =>
+            {
+                if (phoneOTP4.Text?.Length == 1)
+                    phoneOTP5.Focus();
+                else if (string.IsNullOrEmpty(phoneOTP4.Text))
+                    phoneOTP3.Focus();
+            };
+            phoneOTP5.TextChanged += (s, e) =>
+            {
+                if (phoneOTP5.Text?.Length == 1)
+                    phoneOTP6.Focus();
+                else if (string.IsNullOrEmpty(phoneOTP5.Text))
+                    phoneOTP4.Focus();
+            };
+            phoneOTP6.TextChanged += (s, e) =>
+            {
+                if (phoneOTP6.Text?.Length == 1)
+                    phoneOTP6.Focus();
+                else if (string.IsNullOrEmpty(phoneOTP6.Text))
+                    phoneOTP5.Focus();
+            };
         }
         #endregion
         #region "Property"
@@ -552,7 +632,8 @@ namespace CS.ERP_MOB.Views.Frame
         }
         private async void btnVerifyEmail_onClicked(object sender, EventArgs e)
         {
-            string verificationCode = entVerifyCodeEmail.Text?.Trim();
+
+            string verificationCode = lblEmailPrefix.Text + otp1.Text + otp2.Text + otp3.Text + otp4.Text + otp5.Text + otp6.Text;
 
             if (string.IsNullOrEmpty(verificationCode)) return;
             
@@ -579,7 +660,7 @@ namespace CS.ERP_MOB.Views.Frame
         }
         private async void btnVerifyPhone_onClicked(object sender, EventArgs e)
         {
-            string verificationCode = entVerifyCodePhone.Text?.Trim();
+            string verificationCode = lblPhonePrefix.Text + phoneOTP1.Text + phoneOTP2.Text + phoneOTP3.Text + phoneOTP4.Text + phoneOTP5.Text + phoneOTP6.Text;
 
             if (!string.IsNullOrEmpty(verificationCode))
             {

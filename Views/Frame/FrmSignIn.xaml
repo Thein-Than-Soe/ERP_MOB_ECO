@@ -105,7 +105,7 @@
             </Frame>
 
             <!--  email verify page  -->
-            <Frame
+            <!--<Frame
                 x:Name="EmailVerifyPage"
                 Padding="{StaticResource FramePaddingLeftRightTop}"
                 HorizontalOptions="FillAndExpand"
@@ -148,10 +148,133 @@
                         </StackLayout>
                     </StackLayout>
                 </ScrollView>
+            </Frame>-->
+            <Frame
+                x:Name="EmailVerifyPage"
+                Margin="20"
+                Padding="25"
+                CornerRadius="12"
+                HasShadow="True"
+                IsVisible="{Binding IsEmailVerifyPage}"
+                VerticalOptions="Center">
+
+                <VerticalStackLayout Spacing="25">
+
+                    <!--  Title  -->
+                    <Label
+                        FontFamily="{StaticResource FontAwesomeSolid}"
+                        FontSize="100"
+                        HorizontalTextAlignment="Center"
+                        Text="&#xf2b6;"
+                        TextColor="{StaticResource OvaBackgroundColor}" />
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="22"
+                        HorizontalOptions="Center"
+                        Text="{Binding Source={ext:LanguageExtension Key=frame.Register.lbl.EmailVerification}, Path=Value}"
+                        TextColor="{StaticResource OvaSignupTextColor}" />
+
+                    <!--  Instruction  -->
+                    <Label
+                        x:Name="lblEmailOTPInstruction"
+                        FontSize="14"
+                        HorizontalTextAlignment="Center"
+                        Text="{Binding Source={ext:LanguageExtension Key=frame.Register.lbl.ActivationCode}, Path=Value}"
+                        TextColor="{StaticResource OvaSignupTextColor}" />
+
+                    <!--  Email  -->
+                    <Label
+                        x:Name="lblEmailPrefix"
+                        FontAttributes="Bold"
+                        HorizontalOptions="Center"
+                        TextColor="{StaticResource OvaSignupTextColor}" />
+
+                    <!--  OTP Boxes  -->
+                    <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+
+                        <Entry
+                            x:Name="otp1"
+                            HorizontalTextAlignment="Center"
+                            Keyboard="Numeric"
+                            MaxLength="1"
+                            WidthRequest="45" />
+                        <Entry
+                            x:Name="otp2"
+                            HorizontalTextAlignment="Center"
+                            Keyboard="Numeric"
+                            MaxLength="1"
+                            WidthRequest="45" />
+                        <Entry
+                            x:Name="otp3"
+                            HorizontalTextAlignment="Center"
+                            Keyboard="Numeric"
+                            MaxLength="1"
+                            WidthRequest="45" />
+                        <Entry
+                            x:Name="otp4"
+                            HorizontalTextAlignment="Center"
+                            Keyboard="Numeric"
+                            MaxLength="1"
+                            WidthRequest="45" />
+                        <Entry
+                            x:Name="otp5"
+                            HorizontalTextAlignment="Center"
+                            Keyboard="Numeric"
+                            MaxLength="1"
+                            WidthRequest="45" />
+                        <Entry
+                            x:Name="otp6"
+                            HorizontalTextAlignment="Center"
+                            Keyboard="Numeric"
+                            MaxLength="1"
+                            WidthRequest="45" />
+
+                    </HorizontalStackLayout>
+
+                    <!--  Resend  -->
+                    <Button
+                        x:Name="btnEmailResend"
+                        BackgroundColor="{StaticResource OvaBackgroundColor}"
+                        Clicked="btnResend_onClicked"
+                        HorizontalOptions="FillAndExpand"
+                        Text="Resend"
+                        TextTransform="None">
+
+                        <Button.ImageSource>
+                            <FontImageSource
+                                FontFamily="{StaticResource FontAwesomeSolid}"
+                                Glyph="&#xf2f1;"
+                                Size="18"
+                                Color="White" />
+                        </Button.ImageSource>
+
+                    </Button>
+
+                    <!--  Verify Button  -->
+                    <Button
+                        x:Name="btnOk"
+                        BackgroundColor="{StaticResource OvaBackgroundColor}"
+                        Clicked="btnVerifyEmail_onClicked"
+                        HorizontalOptions="FillAndExpand"
+                        Text="Verify"
+                        TextTransform="None">
+
+                        <Button.ImageSource>
+                            <FontImageSource
+                                FontFamily="{StaticResource FontAwesomeSolid}"
+                                Glyph="&#xf058;"
+                                Size="18"
+                                Color="White" />
+                        </Button.ImageSource>
+
+                    </Button>
+
+                </VerticalStackLayout>
+
             </Frame>
 
             <!--  phone verify page  -->
-            <Frame
+            <!--<Frame
                 x:Name="PhoneVerifyPage"
                 Padding="{StaticResource FramePaddingLeftRightTop}"
                 HorizontalOptions="FillAndExpand"
@@ -194,6 +317,129 @@
                         </StackLayout>
                     </StackLayout>
                 </ScrollView>
+            </Frame>-->
+            <Frame
+                x:Name="PhoneVerifyPage"
+                Margin="20"
+                Padding="25"
+                CornerRadius="12"
+                HasShadow="True"
+                IsVisible="{Binding IsPhoneVerifyPage}"
+                VerticalOptions="Center">
+
+                <VerticalStackLayout Spacing="25">
+
+                    <!--  Title  -->
+                    <Label
+                        FontFamily="{StaticResource FontAwesomeSolid}"
+                        FontSize="100"
+                        HorizontalTextAlignment="Center"
+                        Text="&#xf095;"
+                        TextColor="{StaticResource OvaBackgroundColor}" />
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="22"
+                        HorizontalOptions="Center"
+                        Text="{Binding Source={ext:LanguageExtension Key=frame.Register.lbl.PhoneVerification}, Path=Value}"
+                        TextColor="{StaticResource OvaSignupTextColor}" />
+
+                    <!--  Instruction  -->
+                    <Label
+                        x:Name="lblPhoneOTPInstruction"
+                        FontSize="14"
+                        HorizontalTextAlignment="Center"
+                        Text=""
+                        TextColor="{StaticResource OvaSignupTextColor}" />
+
+                    <!--  Phone  -->
+                    <Label
+                        x:Name="lblPhonePrefix"
+                        FontAttributes="Bold"
+                        HorizontalOptions="Center"
+                        TextColor="{StaticResource OvaSignupTextColor}" />
+
+                    <!--  OTP Boxes  -->
+                    <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+
+                        <Entry
+                            x:Name="phoneOTP1"
+                            HorizontalTextAlignment="Center"
+                            Keyboard="Numeric"
+                            MaxLength="1"
+                            WidthRequest="45" />
+                        <Entry
+                            x:Name="phoneOTP2"
+                            HorizontalTextAlignment="Center"
+                            Keyboard="Numeric"
+                            MaxLength="1"
+                            WidthRequest="45" />
+                        <Entry
+                            x:Name="phoneOTP3"
+                            HorizontalTextAlignment="Center"
+                            Keyboard="Numeric"
+                            MaxLength="1"
+                            WidthRequest="45" />
+                        <Entry
+                            x:Name="phoneOTP4"
+                            HorizontalTextAlignment="Center"
+                            Keyboard="Numeric"
+                            MaxLength="1"
+                            WidthRequest="45" />
+                        <Entry
+                            x:Name="phoneOTP5"
+                            HorizontalTextAlignment="Center"
+                            Keyboard="Numeric"
+                            MaxLength="1"
+                            WidthRequest="45" />
+                        <Entry
+                            x:Name="phoneOTP6"
+                            HorizontalTextAlignment="Center"
+                            Keyboard="Numeric"
+                            MaxLength="1"
+                            WidthRequest="45" />
+
+                    </HorizontalStackLayout>
+
+                    <!--  Resend  -->
+                    <Button
+                        x:Name="btnPhoneResend"
+                        BackgroundColor="{StaticResource OvaBackgroundColor}"
+                        Clicked="btnResend_onClicked"
+                        HorizontalOptions="FillAndExpand"
+                        Text="Resend"
+                        TextTransform="None">
+
+                        <Button.ImageSource>
+                            <FontImageSource
+                                FontFamily="{StaticResource FontAwesomeSolid}"
+                                Glyph="&#xf2f1;"
+                                Size="18"
+                                Color="White" />
+                        </Button.ImageSource>
+
+                    </Button>
+
+                    <!--  Verify Button  -->
+                    <Button
+                        x:Name="btnPhoneActivate"
+                        BackgroundColor="{StaticResource OvaBackgroundColor}"
+                        Clicked="btnVerifyPhone_onClicked"
+                        HorizontalOptions="FillAndExpand"
+                        Text="Verify"
+                        TextTransform="None">
+
+                        <Button.ImageSource>
+                            <FontImageSource
+                                FontFamily="{StaticResource FontAwesomeSolid}"
+                                Glyph="&#xf058;"
+                                Size="18"
+                                Color="White" />
+                        </Button.ImageSource>
+
+                    </Button>
+
+                </VerticalStackLayout>
+
             </Frame>
         </StackLayout>
     </ContentView.Content>

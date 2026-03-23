@@ -31,6 +31,19 @@ namespace CS.ERP_MOB.ViewsModel.Frame
                 NotifyPropertyChanged("IsActivatePage");
             }
         }
+        private bool mIsPhoneActivatePage;
+        public bool IsPhoneActivatePage
+        {
+            get
+            {
+                return mIsPhoneActivatePage;
+            }
+            set
+            {
+                mIsPhoneActivatePage = value;
+                NotifyPropertyChanged("IsPhoneActivatePage");
+            }
+        }
 
         private bool mIsOtherServicePage;
         public bool IsOtherServicePage

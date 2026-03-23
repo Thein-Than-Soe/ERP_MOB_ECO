@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rg:PopupPage
+    x:Class="CS.ERP_MOB.Views.Frame.PopConfirmEmailOTP"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:animation="clr-namespace:RGPopup.Maui.Animations;assembly=RGPopup.Maui"
+    xmlns:ext="clr-namespace:CS.ERP_MOB.Extensions"
+    xmlns:general="clr-namespace:CS.ERP_MOB.General"
+    xmlns:local="clr-namespace:CS.ERP_MOB.Views.Frame"
+    xmlns:rg="clr-namespace:RGPopup.Maui.Pages;assembly=RGPopup.Maui"
+    CloseWhenBackgroundIsClicked="true"
+    HasSystemPadding="true"
+    SystemPaddingSides="All">
+
+    <rg:PopupPage.Animation>
+        <animation:MoveAnimation
+            DurationIn="400"
+            DurationOut="300"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="true"
+            PositionIn="Center"
+            PositionOut="Center" />
+    </rg:PopupPage.Animation>
+    <Grid
+        x:Name="NotiGrid"
+        Padding="0"
+        ColumnSpacing="0"
+        HorizontalOptions="Center"
+        VerticalOptions="Center"
+        WidthRequest="350">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Frame
+            x:Name="PopupFrame"
+            Grid.Row="0"
+            Grid.Column="0"
+            Padding="0"
+            CornerRadius="3"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+            <StackLayout
+                BackgroundColor="White"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand">
+                <!--  Header  -->
+                <StackLayout
+                    Padding="{StaticResource padding}"
+                    BackgroundColor="{Binding ThemeSettingConfirmationHeader.PropertiesBgColor, Source={Static Member=general:Common.mCommon}}"
+                    HeightRequest="30"
+                    HorizontalOptions="FillAndExpand"
+                    Orientation="Vertical"
+                    VerticalOptions="Start">
+
+                    <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                        <Label
+                            AbsoluteLayout.LayoutBounds="0.5, 0.5, AutoSize, AutoSize"
+                            AbsoluteLayout.LayoutFlags="PositionProportional"
+                            HorizontalTextAlignment="Center"
+                            Text="{Binding Source={ext:LanguageExtension Key=POS.Common.lbl.Confirmation}, Path=Value}"
+                            TextColor="{Binding ThemeSettingConfirmationHeader.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}"
+                            VerticalOptions="Center" />
+                        <Label
+                            AbsoluteLayout.LayoutBounds="1, 0, AutoSize, AutoSize"
+                            AbsoluteLayout.LayoutFlags="PositionProportional"
+                            FontFamily="{StaticResource FontAwesomeSolid}"
+                            HorizontalTextAlignment="Center"
+                            Text="&#xf00d;"
+                            TextColor="{Binding ThemeSettingConfirmationHeader.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}"
+                            VerticalOptions="Center">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnCancelClicked" />
+                            </Label.GestureRecognizers>
+                        </Label>
+
+                    </AbsoluteLayout>
+                </StackLayout>
+                <!--  Body  -->
+                <VerticalStackLayout
+                    Padding="3"
+                    BackgroundColor="{Binding ThemeSettingConfirmationBody.PropertiesBgColor, Source={Static Member=general:Common.mCommon}}"
+                    Spacing="12">
+                    <Label
+                        Padding="0"
+                        HorizontalOptions="Start"
+                        Text="{Binding Source={ext:LanguageExtension Key=POS.Common.lbl.VerificationCode}, Path=Value}"
+                        TextColor="{Binding ThemeSettingConfirmationBody.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}"
+                        VerticalOptions="CenterAndExpand" />
+
+                    <Grid ColumnSpacing="5" HorizontalOptions="FillAndExpand">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label
+                            x:Name="lblPrefix"
+                            Grid.Column="0"
+                            Text=""
+                            TextColor="{Binding ThemeSettingConfirmationBody.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}"
+                            VerticalOptions="Center" />
+
+                        <Entry
+                            x:Name="EntCode"
+                            Grid.Column="1"
+                            BackgroundColor="{Binding ThemeSettingConfirmationBody.PropertiesBgColor, Source={Static Member=general:Common.mCommon}}"
+                            HeightRequest="45"
+                            HorizontalOptions="FillAndExpand"
+                            Keyboard="Default"
+                            Placeholder="{Binding Source={ext:LanguageExtension Key=POS.Common.plh.Code}, Path=Value}"
+                            TextColor="{Binding ThemeSettingConfirmationBody.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" />
+                        <!--  Resend Button  -->
+                        <Frame
+                            Grid.Column="2"
+                            Padding="10"
+                            BackgroundColor="{Binding ThemeSettingButton.PropertiesBgColor, Source={Static Member=general:Common.mCommon}}"
+                            CornerRadius="6">
+
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnResendClicked" />
+                            </Frame.GestureRecognizers>
+
+                            <HorizontalStackLayout
+                                HorizontalOptions="Center"
+                                Spacing="6"
+                                VerticalOptions="Center">
+
+                                <Label
+                                    FontFamily="{StaticResource FontAwesomeSolid}"
+                                    FontSize="{Binding ThemeSettingButton.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
+                                    Text="&#xf01e;"
+                                    TextColor="{Binding ThemeSettingButton.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" />
+
+                                <Label
+                                    FontSize="{Binding ThemeSettingButton.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
+                                    Text="{Binding Source={ext:LanguageExtension Key=POS.Common.btnName.Resend}, Path=Value}"
+                                    TextColor="{Binding ThemeSettingButton.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" />
+
+                            </HorizontalStackLayout>
+                        </Frame>
+                    </Grid>
+                </VerticalStackLayout>
+                <!--  Footer  -->
+                <Grid BackgroundColor="{Binding ThemeSettingConfirmationFooter.PropertiesBgColor, Source={Static Member=general:Common.mCommon}}" ColumnSpacing="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!--  Cancel Button  -->
+                    <Frame
+                        Grid.Column="0"
+                        Padding="10"
+                        BackgroundColor="{Binding ThemeSettingButton.PropertiesBgColor, Source={Static Member=general:Common.mCommon}}"
+                        CornerRadius="6">
+
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnCancelClicked" />
+                        </Frame.GestureRecognizers>
+
+                        <HorizontalStackLayout
+                            HorizontalOptions="Center"
+                            Spacing="6"
+                            VerticalOptions="Center">
+
+                            <Label
+                                FontFamily="{StaticResource FontAwesomeSolid}"
+                                FontSize="{Binding ThemeSettingButton.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
+                                Text="&#xf00d;"
+                                TextColor="{Binding ThemeSettingButton.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" />
+
+                            <Label
+                                FontSize="{Binding ThemeSettingButton.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
+                                Text="{Binding Source={ext:LanguageExtension Key=POS.Common.btnName.Cancel}, Path=Value}"
+                                TextColor="{Binding ThemeSettingButton.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" />
+
+                        </HorizontalStackLayout>
+                    </Frame>
+                    <!--  OK Button  -->
+                    <Frame
+                        Grid.Column="1"
+                        Padding="10"
+                        BackgroundColor="{Binding ThemeSettingButton.PropertiesBgColor, Source={Static Member=general:Common.mCommon}}"
+                        CornerRadius="6">
+
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnOkClicked" />
+                        </Frame.GestureRecognizers>
+
+                        <HorizontalStackLayout
+                            HorizontalOptions="Center"
+                            Spacing="6"
+                            VerticalOptions="Center">
+
+                            <Label
+                                FontFamily="{StaticResource FontAwesomeSolid}"
+                                FontSize="{Binding ThemeSettingButton.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
+                                Text="&#xf00c;"
+                                TextColor="{Binding ThemeSettingButton.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" />
+
+                            <Label
+                                FontSize="{Binding ThemeSettingButton.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
+                                Text="{Binding Source={ext:LanguageExtension Key=POS.Common.btnName.OK}, Path=Value}"
+                                TextColor="{Binding ThemeSettingButton.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" />
+
+                        </HorizontalStackLayout>
+                    </Frame>
+
+                </Grid>
+            </StackLayout>
+        </Frame>
+    </Grid>
+</rg:PopupPage>

@@ -5,6 +5,7 @@ using CS.ERP.PL.SYS.REQ;
 using CS.ERP.PL.SYS.RES;
 using CS.ERP_MOB.Data;
 using CS.ERP_MOB.General;
+using CS.ERP_MOB.Views.Frame;
 using System.Diagnostics;
 
 
@@ -283,6 +284,63 @@ namespace CS.ERP_MOB
             if (sender is Label label && label.BindingContext is DAT_FLOAT item)
             {
                 Common.mCommon.FloatLeftList.Remove(item);
+            }
+        }
+        private async void TgrSearch_Tapped(object sender, EventArgs e)
+        {
+            try
+            {
+                await Shell.Current.GoToAsync(nameof(FrmSearchPage));
+            }
+            catch (Exception ex)
+            {
+                throw ex.InnerException;
+            }
+        }
+
+        private void TgrWishlist_Tapped(object sender, TappedEventArgs e)
+        {
+            try
+            {
+                if (!Common.bindMenu("mywishlist-lst"))
+                {
+                    Common.mCommon.SelectedMenu = new RES_MENU { ProductAsk = "1", Text = "Wishlist", MenuUrl = "mywishlist-lst", logoImg = "" };
+                }
+                Common.routeMenu(Common.mCommon.SelectedMenu);
+            }
+            catch (Exception ex)
+            {
+                throw ex.InnerException;
+            }
+        }
+        private void TgrShoppingCart_Tapped(object sender, TappedEventArgs e)
+        {
+            try
+            {
+                if (!Common.bindMenu("myshoppingcart-lst"))
+                {
+                    Common.mCommon.SelectedMenu = new RES_MENU { ProductAsk = "1", Text = "Shopping Cart", MenuUrl = "myshoppingcart-lst", logoImg = "" };
+                }
+                Common.routeMenu(Common.mCommon.SelectedMenu);
+            }
+            catch (Exception ex)
+            {
+                throw ex.InnerException;
+            }
+        }
+        private void TgrMyOrder_Tapped(object sender, TappedEventArgs e)
+        {
+            try
+            {
+                if (!Common.bindMenu("myorder-lst"))
+                {
+                    Common.mCommon.SelectedMenu = new RES_MENU { ProductAsk = "1", Text = "My Order", MenuUrl = "myorder-lst", logoImg = "" };
+                }
+                Common.routeMenu(Common.mCommon.SelectedMenu);
+            }
+            catch (Exception ex)
+            {
+                throw ex.InnerException;
             }
         }
     }

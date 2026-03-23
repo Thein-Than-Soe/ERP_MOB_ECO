@@ -190,6 +190,7 @@
 		<Folder Include="Resources\Messages\" />
 		<Folder Include="Services\ACC\" />
 		<Folder Include="DB\" />
+		<Folder Include="Views\ECO\" />
 	</ItemGroup>
 
 	<ItemGroup>

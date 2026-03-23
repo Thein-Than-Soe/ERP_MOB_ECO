@@ -107,6 +107,7 @@ namespace CS.ERP_MOB.General
         public static ObservableCollection<RES_MENU> RES_MENU_LST = new ObservableCollection<RES_MENU>();
         private RES_PRODUCT mRES_PRODUCT = new RES_PRODUCT();
         private RES_MENU mRES_MENU = new RES_MENU();
+        private DAT_CONFIRMATION_USER_JUN mDAT_CONFIRMATION_USER_JUN = new DAT_CONFIRMATION_USER_JUN();
         public REQ_AUTHORIZATION mREQ_AUTHORIZATION = new REQ_AUTHORIZATION();
         public RES_MESSAGE mRES_MESSAGE = new RES_MESSAGE();
         //public static JSN_PROFILE mJSN_PROFILE = new JSN_PROFILE();
@@ -767,6 +768,15 @@ namespace CS.ERP_MOB.General
             {
                 mRES_MENU = value;
                 OnPropertyChanged("SelectedMenu");
+            }
+        }
+        public DAT_CONFIRMATION_USER_JUN ConfirmationUserJun
+        {
+            get { return mDAT_CONFIRMATION_USER_JUN; }
+            set
+            {
+                mDAT_CONFIRMATION_USER_JUN = value;
+                OnPropertyChanged("ConfirmationUserJun");
             }
         }
 
@@ -2228,6 +2238,9 @@ namespace CS.ERP_MOB.General
                     //case "8"://WMS
                     //    L_RouteList = Wms_Route.DicRouteList;
                     //break;
+                    case "10"://ECO
+                        L_RouteList = Eco_Route.DicRouteList;
+                        break;
                     default:
                         L_RouteList = Sys_Route.DicRouteList;
                         break;
@@ -2366,8 +2379,7 @@ namespace CS.ERP_MOB.General
                 await Launcher.OpenAsync(argPlaystoreURL);
             }
         }
-
-        public async void saveNoti(RES_CONTROL argRES_CONTROL)
+        public async void saveNoti(RES_CONTROL argRES_CONTROL, string argLink = "")
         {
             try
             {
@@ -2377,11 +2389,12 @@ namespace CS.ERP_MOB.General
                     mRES_NOTI_LST_DATA = new RES_NOTI_LST();
                     mRES_NOTI_LST_DATA.ControlAsk = argRES_CONTROL.ID;
                     mRES_NOTI_LST_DATA.MenuAsk = Common.mCommon.SelectedMenu.Id;
-                    mRES_NOTI_LST_DATA.LinkAsk1 = argRES_CONTROL.link;
+                    mRES_NOTI_LST_DATA.LinkAsk1 = argLink;
                     await ntfSocketService.saveNoti(mRES_NOTI_LST_DATA);
                 }
             }
-            catch (Exception ex){
+            catch (Exception ex)
+            {
             }
         }
         public async void updateDefaultCompanyUser(RES_COMPANY_USER argRES_COMPANY_USER)
@@ -2418,6 +2431,58 @@ namespace CS.ERP_MOB.General
             {
                 
             }
+        }
+
+        public void getConfirmation(RES_CONTROL argRES_CONTROL)
+        {
+            foreach (DAT_CONFIRMATION_USER_JUN l_DAT_CONFIRMATION_USER_JUN in this.JSN_RES_ECOMANCE.DAT_CONFIRMATION_USER_JUN)
+            {
+                if (l_DAT_CONFIRMATION_USER_JUN.MenuAsk == Common.mCommon.SelectedMenu.Id)
+                {
+                    foreach (DAT_CONFIRMATION_USER_JUN l_DAT_CONFIRMATION_USER_JUN_DETAIL in l_DAT_CONFIRMATION_USER_JUN.DAT_CONFIRMATION_USER_JUN_DETAIL)
+                    {
+                        if (l_DAT_CONFIRMATION_USER_JUN_DETAIL.ControlAsk == argRES_CONTROL.ID)
+                        {
+                            ConfirmationUserJun = l_DAT_CONFIRMATION_USER_JUN_DETAIL;
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+        public string maskEmail(string email)
+        {
+            if (string.IsNullOrEmpty(email))
+                return "";
+
+            var parts = email.Split('@');
+
+            if (parts.Length != 2)
+                return email;
+
+            string name = parts[0];
+            string domain = parts[1];
+
+            if (name.Length <= 3)
+                return name[0] + "***@" + domain;
+
+            string start = name.Substring(0, 1);
+            string end = name.Substring(name.Length - 3);
+
+            return $"{start}***{end}@{domain}";
+        }
+        public string maskPhone(string phone)
+        {
+            if (string.IsNullOrEmpty(phone))
+                return "";
+
+            if (phone.Length <= 6)
+                return phone;
+
+            string start = phone.Substring(0, 2);
+            string end = phone.Substring(phone.Length - 4);
+
+            return $"{start}***{end}";
         }
         #endregion
 

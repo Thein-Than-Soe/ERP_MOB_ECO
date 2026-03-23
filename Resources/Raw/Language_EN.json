@@ -21960,6 +21960,76 @@
                 "NoReviewsYet": "No reviews yet.",
                 "NoDescriptionAvailable": "No description available."
             }
+        },
+        
+        "MyShopping": {
+            "lbl": {
+                "Total": "Total",
+                "DiscountAmount": "Dis. Amt.",
+                "GrandTotal": "Grand Total",
+                "Delivery": "Delivery",
+                "SelfPickup": "Self Pickup",
+                "Phone": "Phone",
+                "Email": "Email ",
+                "Country": "Country",
+                "StateProvince": "State/Province",
+                "City": "City",
+                "ZipPostalCode": "Zip/PostalCode",
+                "Retrieve": "Retrieve",
+                "Floor": "Floor",
+                "UnitNumber": "Unit Number",
+                "ShippingAddress": "Shipping Address",
+                "Installation": "Installation",
+                "DeliveryInstallation": "Delivery and Installation",
+                "ChoosePaymentType": "Choose Payment Type",
+                "Back": "Back",
+                "Next": "Next",
+                "Pay": "Pay",
+                "Finish": "Finish",
+                "Price": "This is Price, Optional.",
+                "Qty": "Qty.",
+                "UOM": "UOM",
+                "DisAmt": "Dis. Amt.",
+                "Amount": "Amount",
+                "PaymentType": "Payment Type",
+                "DepositAmt": "Deposit Amt.",
+                "RemainingBalance": "Remaining Balance"
+            }
+        },
+        "MyWishlist": {
+            "lbl": {
+                "Code": "Code",
+                "Date": "Date",
+                "SalesPerson": "Sales Person",
+                "StartDate": "Start Date",
+                "EndDate": "End Date",
+                "SubTotal": "Sub Total",
+                "DisAmt": "Dis. Amt.",
+                "GSTAmt": "GST Amt.",
+                "Total": "Total",
+                "Status": "Status"
+            }
+        },
+        "MyOrder": {
+            "lbl": {
+                "Code": "Code",
+                "Date": "Date",
+                "SalesPerson": "Sales Person",
+                "StartDate": "Start Date",
+                "EndDate": "End Date",
+                "Type": "Type",
+                "DiscountAmount": "Dis. Amt.",
+                "GSTAmount": "GST Amt.",
+                "Total": "Total",
+                "Discount": "Discount",
+                "NewPrice": "New Price",
+                "OldPrice": "Old Price",
+                "Qty": "Qty.",
+                "UOM": "UOM",
+                "T": "T",
+                "R": "R",
+                "Amount": "Amount"
+            }
         }
     }
 }

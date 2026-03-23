@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using CS.ERP_MOB.Views.ECO;
 using CS.ERP_MOB.Views.Frame;
 using CS.ERP_MOB.Views.POS;
 using CS.ERP_MOB.Views.SYS;
@@ -40,7 +41,7 @@ namespace CS.ERP_MOB.Route
 
             //test temporary
             //DicRouteList.Add("profile", typeof(AccessSetPage));
-            
+
             DicRouteList.Add("access-lst", typeof(FrmAccessLst));
             DicRouteList.Add("sys-country-lst", typeof(FrmCountryLst));
             DicRouteList.Add("sys-country-set", typeof(FrmCountrySet));

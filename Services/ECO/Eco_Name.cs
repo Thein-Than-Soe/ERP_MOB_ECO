@@ -106,7 +106,10 @@ namespace CS.ERP_MOB.Services.ECO
         public static string wsloadSaleTransHis =  "loadSaleTranHis";
         public static string wsgetSaleBillJun = "getSaleBillJun";
         public static string wsloadSalePayHis = "loadSalePayHis";
-       
+        public static string wsgetMyWishlist = "getMyWishlist";
+        public static string wsgetShopping = "getShopping";
+        public static string wsgetMyOrder = "getMyOrder";
+
         #endregion
         #region "Save"
         public static string wsSaveCity = "/saveCity";

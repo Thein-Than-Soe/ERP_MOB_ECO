@@ -85,6 +85,7 @@
                         Orientation="Horizontal"
                         Spacing="10"
                         VerticalOptions="Center">
+                        <!--  Search Icon for guest  -->
                         <StackLayout
                             HorizontalOptions="StartAndExpand"
                             Orientation="Horizontal"
@@ -92,14 +93,30 @@
                             VerticalOptions="FillAndExpand">
                             <Label
                                 FontFamily="{StaticResource FontAwesomeSolid}"
+                                FontSize="{StaticResource HomeTitleFontSize}"
+                                Text="&#xf002;"
+                                TextColor="{StaticResource OvaFrontColor}"
+                                VerticalOptions="Center" />
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TgrSearch_Tapped" />
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <StackLayout
+                            HorizontalOptions="StartAndExpand"
+                            Orientation="Horizontal"
+                            Spacing="5"
+                            VerticalOptions="FillAndExpand">
+                            <Label
+                                FontFamily="{StaticResource FontAwesomeSolid}"
+                                FontSize="{StaticResource HomeTitleFontSize}"
                                 Text="&#xf234;"
                                 TextColor="{StaticResource OvaFrontColor}"
                                 VerticalOptions="Center" />
-                            <Label
+                            <!--<Label
                                 x:Name="SignUp"
                                 Text="Sign up"
                                 TextColor="{StaticResource OvaFrontColor}"
-                                VerticalOptions="Center" />
+                                VerticalOptions="Center" />-->
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="TgrSignUp_Tapped" />
                             </StackLayout.GestureRecognizers>
@@ -111,14 +128,15 @@
                             VerticalOptions="FillAndExpand">
                             <Label
                                 FontFamily="{StaticResource FontAwesomeSolid}"
+                                FontSize="{StaticResource HomeTitleFontSize}"
                                 Text="&#xf2f6;"
                                 TextColor="{StaticResource OvaFrontColor}"
                                 VerticalOptions="Center" />
-                            <Label
+                            <!--<Label
                                 x:Name="SignIn"
                                 Text="Sign in"
                                 TextColor="{StaticResource OvaFrontColor}"
-                                VerticalOptions="Center" />
+                                VerticalOptions="Center" />-->
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="TgrSignIn_Tapped" />
                             </StackLayout.GestureRecognizers>
@@ -216,7 +234,11 @@
                                 HorizontalOptions="Center"
                                 Text="&#xf49e;"
                                 TextColor="{StaticResource OvaFrontColor}"
-                                VerticalOptions="Center" />
+                                VerticalOptions="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TgrMyOrder_Tapped" />
+                                </Label.GestureRecognizers>
+                            </Label>
                         </Frame>
                         <!--  Shopping Cart  -->
                         <Frame
@@ -230,7 +252,11 @@
                                 HorizontalOptions="Center"
                                 Text="&#xf217;"
                                 TextColor="{StaticResource OvaFrontColor}"
-                                VerticalOptions="Center" />
+                                VerticalOptions="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TgrShoppingCart_Tapped" />
+                                </Label.GestureRecognizers>
+                            </Label>
                         </Frame>
                         <!--  Wishlist  -->
                         <Frame
@@ -244,7 +270,11 @@
                                 HorizontalOptions="Center"
                                 Text="&#xf004;"
                                 TextColor="{StaticResource OvaFrontColor}"
-                                VerticalOptions="Center" />
+                                VerticalOptions="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TgrWishlist_Tapped" />
+                                </Label.GestureRecognizers>
+                            </Label>
                         </Frame>
                         <StackLayout IsVisible="{Binding RegionSettingBannerProfile.RegionVisibilityAsk, Converter={StaticResource StringToBoolConverter}, Source={x:Static general:Common.mCommon}}" VerticalOptions="Center">
                             <Frame Padding="0" CornerRadius="40">

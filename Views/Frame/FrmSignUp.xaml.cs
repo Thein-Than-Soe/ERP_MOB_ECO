@@ -10,6 +10,7 @@ using CS.ERP_MOB.ViewsModel.Frame;
 using Newtonsoft.Json;
 using RGPopup.Maui.Extensions;
 using static CS.ERP_MOB.General.Utility;
+using static SQLite.SQLite3;
 using ApplicationMessage = CS.ERP_MOB.General.ApplicationMessage;
 
 namespace CS.ERP_MOB.Views.Frame
@@ -25,6 +26,8 @@ namespace CS.ERP_MOB.Views.Frame
         JSN_REQ_SUBSCRIBER mJSN_REQ_SUBSCRIBER = new JSN_REQ_SUBSCRIBER();
         JSN_SUBSCRIBER mJSN_SUBSCRIBER = new JSN_SUBSCRIBER();
         SignUpState mSignUpState = SignUpState.SignUp;
+
+        int seconds = 30;
         #endregion
         #region "Constructor"
         public FrmSignUp()
@@ -34,6 +37,8 @@ namespace CS.ERP_MOB.Views.Frame
                 InitializeComponent();
                 BindingContext = mVmlSignUp = new VmlSignUp();
                 mVmlSignUp.IsSignupPage = true;
+                emailOTPBox();
+                phoneOTPBox();
 
                 // Application.Current.MainPage.Navigation.PushPopupAsync(new SubscriptionPaymentPopup(new RES_SUB_PAYMENT(), new RES_SUB_PLAN()));
 
@@ -60,6 +65,84 @@ namespace CS.ERP_MOB.Views.Frame
         #region "Property"
         #endregion
         #region "Private Method"
+        private void emailOTPBox()
+        {
+            otp1.TextChanged += (s, e) => { if (otp1.Text.Length == 1) otp2.Focus(); };
+            otp2.TextChanged += (s, e) =>
+            {
+                if (otp2.Text?.Length == 1)
+                    otp3.Focus();
+                else if (string.IsNullOrEmpty(otp2.Text))
+                    otp1.Focus();
+            };
+            otp3.TextChanged += (s, e) =>
+            {
+                if (otp3.Text?.Length == 1)
+                    otp4.Focus();
+                else if (string.IsNullOrEmpty(otp3.Text))
+                    otp2.Focus();
+            };
+            otp4.TextChanged += (s, e) =>
+            {
+                if (otp4.Text?.Length == 1)
+                    otp5.Focus();
+                else if (string.IsNullOrEmpty(otp4.Text))
+                    otp3.Focus();
+            };
+            otp5.TextChanged += (s, e) =>
+            {
+                if (otp5.Text?.Length == 1)
+                    otp6.Focus();
+                else if (string.IsNullOrEmpty(otp5.Text))
+                    otp4.Focus();
+            };
+            otp6.TextChanged += (s, e) =>
+            {
+                if (otp6.Text?.Length == 1)
+                    otp6.Focus();
+                else if (string.IsNullOrEmpty(otp6.Text))
+                    otp5.Focus();
+            };
+        }
+        private void phoneOTPBox()
+        {
+            phoneOTP1.TextChanged += (s, e) => { if (phoneOTP1.Text.Length == 1) phoneOTP2.Focus(); };
+            phoneOTP2.TextChanged += (s, e) =>
+            {
+                if (phoneOTP2.Text?.Length == 1)
+                    phoneOTP3.Focus();
+                else if (string.IsNullOrEmpty(phoneOTP2.Text))
+                    phoneOTP1.Focus();
+            };
+            phoneOTP3.TextChanged += (s, e) =>
+            {
+                if (phoneOTP3.Text?.Length == 1)
+                    phoneOTP4.Focus();
+                else if (string.IsNullOrEmpty(phoneOTP3.Text))
+                    phoneOTP2.Focus();
+            };
+            phoneOTP4.TextChanged += (s, e) =>
+            {
+                if (phoneOTP4.Text?.Length == 1)
+                    phoneOTP5.Focus();
+                else if (string.IsNullOrEmpty(phoneOTP4.Text))
+                    phoneOTP3.Focus();
+            };
+            phoneOTP5.TextChanged += (s, e) =>
+            {
+                if (phoneOTP5.Text?.Length == 1)
+                    phoneOTP6.Focus();
+                else if (string.IsNullOrEmpty(phoneOTP5.Text))
+                    phoneOTP4.Focus();
+            };
+            phoneOTP6.TextChanged += (s, e) =>
+            {
+                if (phoneOTP6.Text?.Length == 1)
+                    phoneOTP6.Focus();
+                else if (string.IsNullOrEmpty(phoneOTP6.Text))
+                    phoneOTP5.Focus();
+            };
+        }
         #region "Bind Object"
         private bool bindRegistration()
         {
@@ -109,23 +192,32 @@ namespace CS.ERP_MOB.Views.Frame
                     entPhone.Focus();
                 }
                 //Password
+
                 if (!string.IsNullOrWhiteSpace(entPassword.Text))
                 {
-                    ml_JSN_REQ_CUSTOMER_REG.RES_CUSTOMER.CustomerPwd = entPassword.Text.Trim();
+                    if (!string.IsNullOrWhiteSpace(entConfirmPassword.Text))
+                    {
+                        if (entPassword.Text == entConfirmPassword.Text)
+                        {
+                            ml_JSN_REQ_CUSTOMER_REG.RES_CUSTOMER.CustomerPwd = entPassword.Text.Trim();
+                        }
+                        else
+                        {
+                            flag = false;
+                            entConfirmPassword.Focus();
+                            WeakReferenceMessenger.Default.Send(Common.mCommon.GetMessageValueByKey("MsgRegisterPWDNotSame"));
+                        }
+                    }
+                    else
+                    {
+                        flag = false;
+                        entConfirmPassword.Focus();
+                    }
                 }
                 else
                 {
                     flag = false;
                     entPassword.Focus();
-                }
-                if (!string.IsNullOrWhiteSpace(entConfirmPassword.Text))
-                {
-                    
-                }
-                else
-                {
-                    flag = false;
-                    entConfirmPassword.Focus();
                 }
                 return flag;
 
@@ -156,15 +248,45 @@ namespace CS.ERP_MOB.Views.Frame
             {
                 ml_JSN_REQ_CUSTOMER_REG.REQ_AUTHORIZATION = Common.mCommon.REQ_AUTHORIZATION;
                 //Name
-                if (mJSN_CUSTOMER_REG.RES_CUSTOMER.Ask!="0" && !string.IsNullOrWhiteSpace(entActivationCode.Text))
+                string code = otp1.Text + otp2.Text + otp3.Text + otp4.Text + otp5.Text + otp6.Text;
+                if (mJSN_CUSTOMER_REG.RES_CUSTOMER.Ask != "0" && !string.IsNullOrWhiteSpace(code))
                 {
-                    ml_JSN_REQ_CUSTOMER_REG.RES_CUSTOMER= mJSN_CUSTOMER_REG.RES_CUSTOMER;
-                    ml_JSN_REQ_CUSTOMER_REG.RES_CUSTOMER.CustomerDescription_0_500 = entActivationCode.Text;
+                    ml_JSN_REQ_CUSTOMER_REG.RES_CUSTOMER = mJSN_CUSTOMER_REG.RES_CUSTOMER;
+                    ml_JSN_REQ_CUSTOMER_REG.RES_CUSTOMER.CustomerDescription_0_500 = lblEmailPrefix.Text + code;
                 }
                 else
                 {
                     flag = false;
-                    entActivationCode.Focus();
+                    //entActivationCode.Focus();
+                    otp1.Focus();
+
+                }
+                return flag;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex.InnerException;
+            }
+        }
+        private bool bindPhoneActivationCode()
+        {
+            bool flag = true;
+            try
+            {
+                ml_JSN_REQ_CUSTOMER_REG.REQ_AUTHORIZATION = Common.mCommon.REQ_AUTHORIZATION;
+                //Name
+                string code = phoneOTP1.Text + phoneOTP2.Text + phoneOTP3.Text + phoneOTP4.Text + phoneOTP5.Text + phoneOTP6.Text;
+                if (mJSN_CUSTOMER_REG.RES_CUSTOMER.Ask != "0" && !string.IsNullOrWhiteSpace(code))
+                {
+                    ml_JSN_REQ_CUSTOMER_REG.RES_CUSTOMER = mJSN_CUSTOMER_REG.RES_CUSTOMER;
+                    ml_JSN_REQ_CUSTOMER_REG.RES_CUSTOMER.CustomerDescription_0_500 = lblPhonePrefix.Text + code;
+                }
+                else
+                {
+                    flag = false;
+                    //entActivationCode.Focus();
+                    phoneOTP1.Focus();
 
                 }
                 return flag;
@@ -221,15 +343,22 @@ namespace CS.ERP_MOB.Views.Frame
                 l_Response = await Sys_Service.ApiCall(l_Request, Sys_Name.wsSaveRegistration);
                 if (l_Response != null)
                 {
-                    if (JsonConvert.DeserializeObject<JSN_CUSTOMER_REG>(l_Response).Message.Code == "7")
+                    this.mJSN_CUSTOMER_REG = JsonConvert.DeserializeObject<JSN_CUSTOMER_REG>(l_Response);
+                    if (mJSN_CUSTOMER_REG.Message.Code == "7")
                     {
-                        this.mJSN_CUSTOMER_REG = JsonConvert.DeserializeObject<JSN_CUSTOMER_REG>(l_Response);
-                        showActivation();
-                        WeakReferenceMessenger.Default.Send(this.mJSN_LOAD_SUBSCRIBER?.Message?.Message);
+                        if (Common.mCommon.UserSetting.VerifiedByEmail == "1")
+                        {
+                            showVerifyEmail();
+                        }
+                        else if (Common.mCommon.UserSetting.VerifiedByPhoneNo == "1")
+                        {
+                            showVerifyPhone();
+                        }
+                        WeakReferenceMessenger.Default.Send(this.mJSN_CUSTOMER_REG?.Message?.Message);
                     }
                     else
                     {
-                        WeakReferenceMessenger.Default.Send(this.mJSN_LOAD_SUBSCRIBER?.Message?.Message);
+                        WeakReferenceMessenger.Default.Send(this.mJSN_CUSTOMER_REG?.Message?.Message);
                     }
                 }
                 else
@@ -256,11 +385,18 @@ namespace CS.ERP_MOB.Views.Frame
                 l_Response = await Sys_Service.ApiCall(l_Request, Sys_Name.wsgetActivationCode);
                 if (l_Response != null)
                 {
-                   
+
                     if (JsonConvert.DeserializeObject<JSN_CUSTOMER_REG>(l_Response).Message.Code == "7")
                     {
                         this.mJSN_CUSTOMER_REG = JsonConvert.DeserializeObject<JSN_CUSTOMER_REG>(l_Response);
-                        showActivation();
+                        if (Common.mCommon.UserSetting.VerifiedByEmail == "1")
+                        {
+                            showVerifyEmail();
+                        }
+                        else if (Common.mCommon.UserSetting.VerifiedByPhoneNo == "1")
+                        {
+                            showVerifyPhone();
+                        }
                         MessagingCenter.Send<Application, string>(Application.Current, "ToastMessage", this.mJSN_CUSTOMER_REG.Message.Message);
                     }
                     else
@@ -330,7 +466,7 @@ namespace CS.ERP_MOB.Views.Frame
                 l_Response = await Sys_Service.ApiCall(l_Request, Sys_Name.wsLoadSubscriber);
                 if (l_Response != null)
                 {
-                    
+
                     if (JsonConvert.DeserializeObject<JSN_LOAD_SUBSCRIBER>(l_Response).Message.Code == "7")
                     {
                         this.mJSN_LOAD_SUBSCRIBER = JsonConvert.DeserializeObject<JSN_LOAD_SUBSCRIBER>(l_Response);
@@ -365,11 +501,13 @@ namespace CS.ERP_MOB.Views.Frame
                 l_Response = await Sys_Service.ApiCall(l_Request, Sys_Name.wsSaveSubscriber);
                 if (l_Response != null)
                 {
-                    if (JsonConvert.DeserializeObject<JSN_SUBSCRIBER>(l_Response).Message.Code == "7")
+                    this.mJSN_SUBSCRIBER = JsonConvert.DeserializeObject<JSN_SUBSCRIBER>(l_Response);
+                    if (mJSN_SUBSCRIBER?.Message.Code == "7")
                     {
-                        this.mJSN_SUBSCRIBER = JsonConvert.DeserializeObject<JSN_SUBSCRIBER>(l_Response);
                         if (Convert.ToDecimal(this.mJSN_REQ_SUBSCRIBER.RES_SUBSCRIBER.SubscriberFee) == 0)
                         {
+                            if (this.mJSN_SUBSCRIBER.RES_SUBSCRIBER.Count > 0)
+                                mJSN_REQ_SUBSCRIBER.RES_SUBSCRIBER = this.mJSN_SUBSCRIBER.RES_SUBSCRIBER[0];
                             Utility.closeLoader();
                             this.activateSubscriber();
                         }
@@ -378,17 +516,16 @@ namespace CS.ERP_MOB.Views.Frame
                             Utility.closeLoader();
                             showSubscriptionPayment();
                         }
-                        MessagingCenter.Send<Application, string>(Application.Current, "ToastMessage", "We are ready to support your business grow!");
-
+                        WeakReferenceMessenger.Default.Send(Common.mCommon.GetMessageValueByKey("MsgSubscribeSuccess"));
                     }
                     else
                     {
-                        MessagingCenter.Send<Application, string>(Application.Current, "ToastMessage", this.mJSN_SUBSCRIBER.Message.Message);
+                        WeakReferenceMessenger.Default.Send(this.mJSN_SUBSCRIBER.Message.Message);
                     }
                 }
                 else
                 {
-                    MessagingCenter.Send<Application, string>(Application.Current, "ToastMessage", "Server Err");
+                    WeakReferenceMessenger.Default.Send(Common.mCommon.GetMessageValueByKey("ErrWebService"));
                 }
                 Utility.closeLoader();
             }
@@ -409,7 +546,8 @@ namespace CS.ERP_MOB.Views.Frame
                 l_Response = await Sys_Service.ApiCall(l_Request, Sys_Name.wsActivateSubscriber);
                 if (l_Response != null)
                 {
-                    if (JsonConvert.DeserializeObject<JSN_SUBSCRIBER>(l_Response).Message.Code == "7")
+                    this.mJSN_SUBSCRIBER = JsonConvert.DeserializeObject<JSN_SUBSCRIBER>(l_Response);
+                    if (mJSN_SUBSCRIBER?.Message.Code == "7")
                     {
                         Utility.closeLoader();
                         Common.mCommon.SelectedMenu = new RES_MENU { ProductAsk = "1", Text = "Sign In", MenuUrl = "signin", logoImg = "" };
@@ -437,13 +575,40 @@ namespace CS.ERP_MOB.Views.Frame
         }
         #endregion
         #region "Show View"
-        private void showActivation()
+        private void showVerifyEmail()
         {
             try
             {
-                switchSignUpState(SignUpState.Activate);
-                entActivationCode.Text =this.mJSN_CUSTOMER_REG.RES_CUSTOMER.CustomerDescription_0_500;
-                entActivationCode.Focus();
+                switchSignUpState(SignUpState.EmailActivate);
+                lblEmailPrefix.Text = this.mJSN_CUSTOMER_REG.RES_CUSTOMER.CustomerDescription_0_500;
+                lblEmailOTPInstruction.Text = Common.mCommon.GetLanguageValueByKey("frame.Register.lbl.ActivationCode") + Common.mCommon.maskEmail(this.mJSN_CUSTOMER_REG.RES_CUSTOMER.CustomerEmail);
+                otp1.Focus();
+            }
+            catch (Exception ex)
+            {
+                throw ex.InnerException;
+            }
+        }
+        private async Task showVerifyPhone()
+        {
+            try
+            {
+                string result = "";
+                RES_MESSAGE? response = await Common.mCommon.getSMSOTP();
+                if (response != null && response.Code == "7")
+                {
+                    var parts = response.Message.Split(',');
+
+                    if (parts.Length > 1)
+                    {
+                        result = parts[1];
+                    }
+                }
+                switchSignUpState(SignUpState.PhoneActivate);
+                lblPhonePrefix.Text = result;
+                lblPhoneOTPInstruction.Text = Common.mCommon.GetLanguageValueByKey("frame.Register.lbl.PhoneActivationCode") + Common.mCommon.maskPhone(this.mJSN_CUSTOMER_REG.RES_CUSTOMER.CustomerMobilePhone);
+                phoneOTP1.Focus();
+
             }
             catch (Exception ex)
             {
@@ -455,8 +620,8 @@ namespace CS.ERP_MOB.Views.Frame
             try
             {
                 switchSignUpState(SignUpState.Subscribe);
-                entActivationCode.Text =this.mJSN_CUSTOMER_REG.RES_CUSTOMER.CustomerDescription_0_500;
-                entActivationCode.Focus();
+                //entActivationCode.Text = this.mJSN_CUSTOMER_REG.RES_CUSTOMER.CustomerDescription_0_500;
+                //entActivationCode.Focus();
             }
             catch (Exception ex)
             {
@@ -493,7 +658,7 @@ namespace CS.ERP_MOB.Views.Frame
         {
             try
             {
-                if (this.mJSN_SUBSCRIBER.RES_SUBSCRIBER[0].Ask != "0"  && this.mJSN_SUBSCRIBER.RES_SUB_PAYMENT.Ask != "0")
+                if (this.mJSN_SUBSCRIBER.RES_SUBSCRIBER[0].Ask != "0" && this.mJSN_SUBSCRIBER.RES_SUB_PAYMENT.Ask != "0")
                 {
                     await Application.Current.MainPage.Navigation.PushPopupAsync(new FrmSubscriptionPayment(mJSN_SUBSCRIBER.RES_SUB_PAYMENT, mJSN_SUBSCRIBER.RES_SUB_PLAN[0]));
                 }
@@ -509,6 +674,7 @@ namespace CS.ERP_MOB.Views.Frame
             {
                 mVmlSignUp.IsSignupPage = false;
                 mVmlSignUp.IsActivatePage = false;
+                mVmlSignUp.IsPhoneActivatePage = false;
                 mVmlSignUp.IsOtherServicePage = false;
                 mVmlSignUp.IsChooseTypePage = false;
                 mVmlSignUp.IsChoosePlanPage = false;
@@ -518,8 +684,15 @@ namespace CS.ERP_MOB.Views.Frame
                     case SignUpState.SignUp:
                         mVmlSignUp.IsSignupPage = true;
                         break;
-                    case SignUpState.Activate:
-                        mVmlSignUp.IsActivatePage = true;
+                    case SignUpState.EmailActivate:
+                        {
+                            mVmlSignUp.IsActivatePage = true;
+                            StartEmailResendTimer();
+                            break;
+                        }
+                    case SignUpState.PhoneActivate:
+                        mVmlSignUp.IsPhoneActivatePage = true;
+                        StartPhoneResendTimer();
                         break;
                     case SignUpState.Subscribe:
                         mVmlSignUp.IsOtherServicePage = true;
@@ -552,7 +725,7 @@ namespace CS.ERP_MOB.Views.Frame
                 }
                 else
                 {
-                    MessagingCenter.Send<Application, string>(Application.Current, "ToastMessage", "(*) Fields can't be blaked");
+                    WeakReferenceMessenger.Default.Send(Common.mCommon.GetMessageValueByKey("MsgBlanked"));
                 }
             }
             catch (Exception ex)
@@ -576,6 +749,49 @@ namespace CS.ERP_MOB.Views.Frame
                 throw ex.InnerException;
             }
         }
+
+        void StartEmailResendTimer()
+        {
+            seconds = 30;
+            btnEmailResend.IsEnabled = false;
+
+            Device.StartTimer(TimeSpan.FromSeconds(1), () =>
+            {
+                seconds--;
+
+                btnEmailResend.Text = $"Resend ({seconds})";
+
+                if (seconds <= 0)
+                {
+                    btnEmailResend.Text = "Resend";
+                    btnEmailResend.IsEnabled = true;
+                    return false;
+                }
+
+                return true;
+            });
+        }
+        void StartPhoneResendTimer()
+        {
+            seconds = 30;
+            btnPhoneResend.IsEnabled = false;
+
+            Device.StartTimer(TimeSpan.FromSeconds(1), () =>
+            {
+                seconds--;
+
+                btnPhoneResend.Text = $"Resend ({seconds})";
+
+                if (seconds <= 0)
+                {
+                    btnPhoneResend.Text = "Resend";
+                    btnPhoneResend.IsEnabled = true;
+                    return false;
+                }
+
+                return true;
+            });
+        }
         private void btnResend_onClicked(object sender, EventArgs e)
         {
             try
@@ -594,17 +810,60 @@ namespace CS.ERP_MOB.Views.Frame
                 throw ex.InnerException;
             }
         }
-        private void btnActivate_onClicked(object sender, EventArgs e)
+        private void btnPhoneResend_onClicked(object sender, EventArgs e)
         {
             try
             {
                 if (bindActivationCode())
                 {
+                    getActivationCode();
+                }
+                else
+                {
+                    MessagingCenter.Send<Application, string>(Application.Current, "ToastMessage", ApplicationMessage.Message.MandatoryField);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex.InnerException;
+            }
+        }
+        private void btnEmailVerify_onClicked(object sender, EventArgs e)
+        {
+            try
+            {
+                if (bindActivationCode())
+                {
+                    if (Common.mCommon.UserSetting.VerifiedByPhoneNo == "1")
+                    {
+                        showVerifyPhone();
+                    }
+                    else
+                    {
+                        activateRegistration();
+                    }
+                }
+                else
+                {
+                    WeakReferenceMessenger.Default.Send(Common.mCommon.GetMessageValueByKey("MsgBlanked"));
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex.InnerException;
+            }
+        }
+        private void btnPhoneVerify_onClicked(object sender, EventArgs e)
+        {
+            try
+            {
+                if (bindPhoneActivationCode())
+                {
                     activateRegistration();
                 }
                 else
                 {
-                    MessagingCenter.Send<Application, string>(Application.Current, "ToastMessage", "(*) Fields can't be blaked");
+                    WeakReferenceMessenger.Default.Send(Common.mCommon.GetMessageValueByKey("MsgBlanked"));
                 }
             }
             catch (Exception ex)
@@ -761,20 +1020,20 @@ namespace CS.ERP_MOB.Views.Frame
         {
             try
             {
-                stlSignUp.Margin = new Thickness(0, 0, 0, 250);
+                //stlSignUp.Margin = new Thickness(0, 0, 0, 250);
             }
             catch (Exception ex)
             {
                 throw ex.InnerException;
             }
 
-            
+
         }
         private void Input_Unfocused(object sender, FocusEventArgs e)
         {
             try
             {
-                stlSignUp.Margin = new Thickness(0, 0, 0, 0);
+                //stlSignUp.Margin = new Thickness(0, 0, 0, 0);
             }
             catch (Exception ex)
             {

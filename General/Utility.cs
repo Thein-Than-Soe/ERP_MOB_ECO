@@ -19,7 +19,8 @@ namespace CS.ERP_MOB.General
         public enum SignUpState
         {
             SignUp,
-            Activate,
+            EmailActivate,
+            PhoneActivate,
             Subscribe,
             SubscriptionType,
             SubscriptionPlan
