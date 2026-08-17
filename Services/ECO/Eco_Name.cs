@@ -110,6 +110,10 @@ namespace CS.ERP_MOB.Services.ECO
         public static string wsgetShopping = "getShopping";
         public static string wsgetMyOrder = "getMyOrder";
 
+        public static string wsgetInventoryStock = "getInventoryStock";
+        public static string wsgetInventoryStockDetail = "getInventoryStockDetail";
+        public static string wsgetInventoryStockSales = "getInventoryStockSales";
+
         #endregion
         #region "Save"
         public static string wsSaveCity = "/saveCity";
@@ -170,6 +174,13 @@ namespace CS.ERP_MOB.Services.ECO
         public static string wssaveProductCompanyMail = "/saveProductCompanyMail";
         public static string wssaveStockMovement = "/saveStockMovement";
         public static string wssaveModule = "/saveModule";
+
+        public static string wssaveCheckOut = "saveCheckOut";
+        public static string wssaveShopping = "saveShopping";
+        public static string wssaveWishlist = "saveWishlist";
+        public static string wssaveCustomerContact = "saveCustomerContact";
+
+
         #endregion
         #region "Load"
         public static string wsLoadCity = "/loadCity";
@@ -191,6 +202,8 @@ namespace CS.ERP_MOB.Services.ECO
         public static string wsLoadCategory = "/loadCategory";
         public static string wsloadProductCompanyMail = "/loadProductCompanyMail";
         public static string wsloadStockMovement = "/loadStockMovement";
+
+        public static string wsloadCheckOut = "loadCheckOut";
         #endregion
     }
 }

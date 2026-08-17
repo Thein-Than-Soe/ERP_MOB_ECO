@@ -539,7 +539,7 @@ namespace CS.ERP_MOB.Views.Frame
         //        if (e.IsAuthenticated)
         //        {
         //            // If the user is authenticated, request their basic user data from Google
-        //            // UserInfoUrl = https://www.googleapis.com/oauth2/v2/userinfo
+        //            // UserInfoUrl = http://www.googleapis.com/oauth2/v2/userinfo
         //            var request = new OAuth2Request("GET", new Uri(Constants.UserInfoUrl), null, e.Account);
         //            var response = await request.GetResponseAsync();
         //            if (response != null)

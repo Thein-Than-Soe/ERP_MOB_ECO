@@ -46,10 +46,10 @@ namespace CS.ERP_MOB.Services.NTF
         {
             Ask = 1,
             ProductCode = "NTF",
-            UploadURL = "https://updqasrv.kumudr.com",
-            APIURL = "https://ntfqaapi.kumudr.com/Service.svc",
+            UploadURL = "http://upddevsrv.kumudr.com",
+            APIURL = "http://ntfdevapi.kumudr.com/Service.svc",
             APIProtocol = "wss://",
-            APIServer = "ntfqasrv.kumudr.com",
+            APIServer = "ntfdevsrv.kumudr.com",
             APIPort = "",
             APIServiceName = "/Ntf",
             ApiContentType = "application/json",

@@ -100,7 +100,7 @@ namespace CS.ERP_MOB.General
         {
             var customer = values[0]?.ToString();
             var contact = values[1]?.ToString();
-            if(contact == "")
+            if (contact == "")
                 return customer;
             return $"{customer} ({contact})";
         }
@@ -215,7 +215,7 @@ namespace CS.ERP_MOB.General
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-           
+
             if (value is string statusAsk && statusAsk != "0")
             {
                 return Colors.Transparent;
@@ -251,6 +251,29 @@ namespace CS.ERP_MOB.General
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
             => throw new NotImplementedException();
+    }
+
+    public class NoDecimalAmountConverter : IValueConverter
+    {
+        public object Convert(
+            object value,Type targetType, object parameter,CultureInfo culture)
+        {
+            if (value == null)
+                return "0";
+
+            string text = value.ToString();
+
+            if (decimal.TryParse(text,NumberStyles.Any,CultureInfo.InvariantCulture,out decimal amount))
+            {
+                return amount.ToString("0",CultureInfo.InvariantCulture);
+            }
+            return "0";
+        }
+
+        public object ConvertBack(object value, Type targetType,object parameter,CultureInfo culture)
+        {
+            return value;
+        }
     }
 
 }

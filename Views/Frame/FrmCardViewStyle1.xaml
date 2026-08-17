@@ -9,11 +9,16 @@
     x:Name="RootView">
     <ContentView.Content>
         <Frame
+            Margin="5"
             Padding="10"
             BackgroundColor="{Binding ThemeSettingCardView.PropertiesBgColor, Source={x:Static general:Common.mCommon}}"
             BorderColor="#dddddd"
             CornerRadius="15"
             HasShadow="True">
+
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="Product_Card_Tapped" />
+            </Frame.GestureRecognizers>
 
             <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto, Auto">
 
@@ -68,7 +73,7 @@
                         HeightRequest="35"
                         HorizontalOptions="Center"
                         Text="&#xf004;"
-                        TextColor="#ff3344"
+                        TextColor="Grey"
                         WidthRequest="35" />
 
                     <!--  Add to Cart Button  -->

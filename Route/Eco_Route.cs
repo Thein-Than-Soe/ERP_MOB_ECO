@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CS.ERP_MOB.Views.ECO;
 using CS.ERP_MOB.Views.Frame;
+using CS.ERP_MOB_ECO.Views.ECO;
 namespace CS.ERP_MOB.Route
 {
     public class Eco_Route
@@ -19,6 +20,10 @@ namespace CS.ERP_MOB.Route
             DicRouteList.Add("change-password", typeof(ChangePasswordPage));
             DicRouteList.Add("search", typeof(FrmSearchPage));
             DicRouteList.Add("shelf", typeof(FrmShelf));
+
+            DicRouteList.Add("eco-dashboard", typeof(FrmShelf));
+            DicRouteList.Add("eco-product-lst", typeof(FrmShelf));
+            DicRouteList.Add("eco-checkout", typeof(FrmEcoCheckOut));
 
             DicRouteList.Add("eco-my-wishlist", typeof(FrmWishlistLst));
             DicRouteList.Add("eco-my-shopping-cart", typeof(FrmShoppingCartLst));

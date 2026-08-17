@@ -43,10 +43,10 @@ namespace CS.ERP_MOB.Services.CHT
         {
             Ask = 1,
             ProductCode = "CHT",
-            UploadURL = "https://updqasrv.kumudr.com",
-            APIURL = "https://chtqaapi.kumudr.com/Service.svc",
+            UploadURL = "http://upddevsrv.kumudr.com",
+            APIURL = "http://chtdevapi.kumudr.com/Service.svc",
             APIProtocol = "wss://",
-            APIServer = "chtqasrv.kumudr.com",
+            APIServer = "chtdevsrv.kumudr.com",
             APIPort = "",
             APIServiceName = "/ws",
             ApiContentType = "application/json",

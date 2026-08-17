@@ -5,7 +5,7 @@ The contents below are needed because of APIs that are used in the .NET framewor
 
 You are responsible for adding extra entries as needed for your application.
 
-More information: https://aka.ms/maui-privacy-manifest
+More information: http://aka.ms/maui-privacy-manifest
 -->
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">

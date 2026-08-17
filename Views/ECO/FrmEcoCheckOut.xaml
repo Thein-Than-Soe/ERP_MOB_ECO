@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentView
+    x:Class="CS.ERP_MOB_ECO.Views.ECO.FrmEcoCheckOut"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:general="clr-namespace:CS.ERP_MOB.General"
+    xmlns:local="clr-namespace:CS.ERP_MOB.Views.ECO"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
+
+
+    <ScrollView>
+
+        <VerticalStackLayout Padding="12" Spacing="10">
+
+
+            <!--  ORDER SUMMARY  -->
+            <Label
+                FontAttributes="Bold"
+                FontSize="18"
+                Text="CheckOut List" />
+
+            <!--  Item list  -->
+            <VerticalStackLayout Spacing="5">
+                <CollectionView ItemsSource="{Binding ShoppingList}" SelectionMode="None">
+
+                    <CollectionView.ItemTemplate>
+
+                        <DataTemplate>
+
+                            <Frame
+                                Margin="10,5"
+                                Padding="8"
+                                BorderColor="LightGray"
+                                CornerRadius="10"
+                                HasShadow="False">
+
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="ShoppingCard_Tapped" />
+                                </Frame.GestureRecognizers>
+
+                                <Grid ColumnDefinitions="35,70,*,90" ColumnSpacing="8">
+
+                                    <!--  Check Box  -->
+                                    <CheckBox
+                                        Grid.Column="0"
+                                        BindingContext="{Binding}"
+                                        CheckedChanged="CheckBox_CheckedChanged"
+                                        HeightRequest="30"
+                                        HorizontalOptions="Center"
+                                        VerticalOptions="Center"
+                                        WidthRequest="30" />
+
+                                    <!--  Product Image  -->
+                                    <Image
+                                        Grid.Column="1"
+                                        Aspect="AspectFill"
+                                        BackgroundColor="LightGray"
+                                        HeightRequest="60"
+                                        Source="{Binding StockPhotoURL, Converter={StaticResource ImageURLConverter}}"
+                                        WidthRequest="60" />
+
+                                    <!--  Product Details  -->
+                                    <VerticalStackLayout Grid.Column="2" Spacing="3">
+
+                                        <!--  Product Name  -->
+                                        <Label
+                                            FontAttributes="Bold"
+                                            LineBreakMode="TailTruncation"
+                                            Text="{Binding StockName_0_255}" />
+
+                                        <!--  UOM  -->
+                                        <HorizontalStackLayout Spacing="5">
+
+                                            <Label FontSize="13" Text="UOM:" />
+
+                                            <Label FontSize="13" Text="{Binding UOMName_0_255}" />
+
+                                        </HorizontalStackLayout>
+
+                                        <!--  Unit Price  -->
+                                        <Label>
+                                            <Label.Text>
+                                                <MultiBinding Converter="{StaticResource AmountCurrencyConverter}">
+                                                    <Binding Path="CurrencyCode_0_50" />
+                                                    <Binding Path="Price" />
+                                                </MultiBinding>
+                                            </Label.Text>
+                                        </Label>
+
+                                        <!--  Quantity  -->
+                                        <HorizontalStackLayout Spacing="5">
+
+                                            <Label FontSize="13" Text="QTY:" />
+                                            <Label FontSize="13" Text="{Binding QTY, Converter={StaticResource NoDecimalAmountConverter}}" />
+
+                                        </HorizontalStackLayout>
+
+                                    </VerticalStackLayout>
+
+                                    <!--  Total  -->
+                                    <Label
+                                        Grid.Column="3"
+                                        HorizontalOptions="End"
+                                        TextColor="Green"
+                                        VerticalOptions="Center">
+                                        <Label.Text>
+                                            <MultiBinding Converter="{StaticResource AmountCurrencyConverter}">
+                                                <Binding Path="CurrencyCode_0_50" />
+                                                <Binding Path="TotalAmount" />
+                                            </MultiBinding>
+                                        </Label.Text>
+                                    </Label>
+
+                                </Grid>
+
+                            </Frame>
+
+                        </DataTemplate>
+
+                    </CollectionView.ItemTemplate>
+
+                </CollectionView>
+                <BoxView
+                    Margin="0,10,0,10"
+                    BackgroundColor="#DDDDDD"
+                    HeightRequest="1" />
+            </VerticalStackLayout>
+
+
+
+
+            <!--  Sub Total Amount  -->
+            <Grid ColumnDefinitions="*,Auto">
+
+                <Label Grid.Column="0" Text="Total Amount" />
+                <Label Grid.Column="1">
+                    <Label.Text>
+                        <MultiBinding Converter="{StaticResource AmountCurrencyConverter}">
+                            <Binding Path="CurrencyCode_0_50" />
+                            <Binding Path="SubTotal" />
+                        </MultiBinding>
+                    </Label.Text>
+                </Label>
+
+            </Grid>
+
+
+            <!--  Discount  -->
+            <Grid
+                Margin="0,5,0,0"
+                ColumnDefinitions="*,Auto"
+                IsVisible="{Binding HasDiscount}">
+
+                <Label Grid.Column="0" Text="Discount" />
+                <Label Grid.Column="1">
+                    <Label.Text>
+                        <MultiBinding Converter="{StaticResource AmountCurrencyConverter}">
+                            <Binding Path="CurrencyCode" />
+                            <Binding Path="DiscountAmount" />
+                        </MultiBinding>
+                    </Label.Text>
+                </Label>
+
+            </Grid>
+
+
+
+
+            <!--  DELIVERY ADDRESS  -->
+            <VerticalStackLayout Spacing="5">
+
+                <BoxView
+                    Margin="0,10,0,10"
+                    BackgroundColor="#DDDDDD"
+                    HeightRequest="1" />
+
+                <!--  Location icon  -->
+                <HorizontalStackLayout>
+                    <Label
+                        Grid.Column="0"
+                        FontFamily="{StaticResource FontAwesomeSolid}"
+                        FontSize="22"
+                        Text="&#xf3c5;" />
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        Text="Delivery Address" />
+                </HorizontalStackLayout>
+
+
+                <Frame
+                    Padding="10"
+                    BorderColor="LightGray"
+                    CornerRadius="10"
+                    HasShadow="False">
+
+                    <!--  Delivery Address  -->
+                    <Grid
+                        Grid.Column="1"
+                        ColumnDefinitions="*,Auto,Auto"
+                        ColumnSpacing="5">
+
+                        <!--  Contact Picker  -->
+                        <Picker
+                            Title="Select Delivery Address"
+                            Grid.Column="0"
+                            ItemsSource="{Binding CustomerContactList}"
+                            SelectedItem="{Binding SelectedCustomerContact, Mode=TwoWay}">
+
+                            <Picker.ItemDisplayBinding>
+                                <MultiBinding Converter="{StaticResource CustomerContactConverter}">
+                                    <Binding Path="ContactName_0_255" />
+                                    <Binding Path="ContactAddress" />
+                                </MultiBinding>
+                            </Picker.ItemDisplayBinding>
+
+                        </Picker>
+
+                        <!--  Edit  -->
+                        <Button
+                            Grid.Column="1"
+                            Padding="0"
+                            BackgroundColor="{Binding ThemeSettingCardView.PropertiesBgColor, Source={x:Static general:Common.mCommon}}"
+                            Clicked="EditCustomerContact_Clicked"
+                            CornerRadius="8"
+                            FontFamily="{StaticResource FontAwesomeSolid}"
+                            FontSize="18"
+                            HeightRequest="40"
+                            Text="&#xf044;"
+                            TextColor="White"
+                            WidthRequest="40" />
+
+                        <!--  Add New  -->
+                        <Button
+                            Grid.Column="2"
+                            Padding="0"
+                            BackgroundColor="{Binding ThemeSettingCardView.PropertiesBgColor, Source={x:Static general:Common.mCommon}}"
+                            Clicked="AddCustomerContact_Clicked"
+                            CornerRadius="8"
+                            FontFamily="{StaticResource FontAwesomeSolid}"
+                            FontSize="18"
+                            HeightRequest="40"
+                            Text="&#x2b;"
+                            TextColor="White"
+                            WidthRequest="40" />
+
+                    </Grid>
+                </Frame>
+
+            </VerticalStackLayout>
+
+
+            <!--  SHIPPING  -->
+            <VerticalStackLayout x:Name="ShippingSection" Spacing="0">
+
+                <BoxView
+                    Margin="0,10,0,10"
+                    BackgroundColor="#DDDDDD"
+                    HeightRequest="1" />
+
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="18"
+                    Text="Shipping Information" />
+
+
+                <!--  =====================================================  -->
+                <!--  SUBSCRIBERS  -->
+                <!--  =====================================================  -->
+
+                <CollectionView
+                    x:Name="DeliverySubscriberCollection"
+                    Margin="0,5,0,0"
+                    ItemsSource="{Binding DeliverySubscribers}"
+                    SelectionMode="None">
+
+                    <CollectionView.ItemTemplate>
+
+                        <DataTemplate>
+
+                            <!--  Subscriber  -->
+                            <Frame
+                                Margin="0,5"
+                                Padding="8"
+                                BackgroundColor="Transparent"
+                                BorderColor="LightGray"
+                                CornerRadius="10"
+                                HasShadow="False">
+
+                                <VerticalStackLayout Spacing="5">
+
+                                    <!--  Subscriber Name  -->
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="16"
+                                        Text="{Binding SubscriberName_0_255}" />
+
+
+                                    <!--  DELIVERY OPTIONS FOR THIS SUBSCRIBER  -->
+                                    <!--  =================================================  -->
+
+                                    <CollectionView ItemsSource="{Binding RES_STOCK_DELIVERY}" SelectionMode="None">
+
+                                        <CollectionView.ItemTemplate>
+
+                                            <DataTemplate>
+
+                                                <Grid Padding="2,5" ColumnDefinitions="Auto,*">
+
+                                                    <!--  Radio Button  -->
+                                                    <CheckBox
+                                                        Grid.Column="0"
+                                                        CheckedChanged="DeliveryCheckBox_CheckedChanged"
+                                                        IsChecked="{Binding IsChecked, Converter={StaticResource StringToBoolConverter}}"
+                                                        VerticalOptions="Center" />
+
+                                                    <!--  Delivery Information  -->
+                                                    <VerticalStackLayout
+                                                        Grid.Column="1"
+                                                        Padding="5,0,0,0"
+                                                        Spacing="1">
+
+                                                        <!--  City + Price  -->
+                                                        <HorizontalStackLayout Spacing="5">
+
+                                                            <Label FontSize="14" Text="{Binding CityName_0_255}" />
+                                                            <Label
+                                                                FontSize="13"
+                                                                Text="("
+                                                                TextColor="Gray" />
+
+                                                            <Label
+                                                                FontSize="13"
+                                                                Text="{Binding DeliveryEstimate, Converter={StaticResource NoDecimalAmountConverter}}"
+                                                                TextColor="Gray" />
+
+                                                            <Label
+                                                                FontSize="13"
+                                                                Text="{Binding DeliveryUOMName_0_255}"
+                                                                TextColor="Gray" />
+
+                                                            <Label
+                                                                FontSize="13"
+                                                                Text=")"
+                                                                TextColor="Gray" />
+
+
+                                                        </HorizontalStackLayout>
+
+
+                                                        <!--  Delivery Time  -->
+                                                        <Label>
+                                                            <Label.Text>
+                                                                <MultiBinding Converter="{StaticResource AmountCurrencyConverter}">
+                                                                    <Binding Path="DeliveryCurrencyCode_0_50" />
+                                                                    <Binding Path="DeliveryFee" />
+                                                                </MultiBinding>
+                                                            </Label.Text>
+                                                        </Label>
+
+                                                    </VerticalStackLayout>
+
+                                                </Grid>
+
+                                            </DataTemplate>
+
+                                        </CollectionView.ItemTemplate>
+
+                                    </CollectionView>
+
+                                </VerticalStackLayout>
+
+                            </Frame>
+
+                        </DataTemplate>
+
+                    </CollectionView.ItemTemplate>
+
+                </CollectionView>
+
+            </VerticalStackLayout>
+
+
+
+            <!--  PAYMENT SECTION  -->
+            <BoxView
+                Margin="0,10,0,10"
+                BackgroundColor="#DDDDDD"
+                HeightRequest="1" />
+
+            <!--  Tax  -->
+            <Grid Margin="0,5,0,0" ColumnDefinitions="*,Auto">
+
+                <!--  Left: TAX (9%)  -->
+                <HorizontalStackLayout
+                    Grid.Column="0"
+                    Spacing="3"
+                    VerticalOptions="Center">
+
+                    <Label Text="{Binding TaxInformation.GSTDescription_0_500}" />
+                    <Label Text="{Binding TaxInformation.GSTName_0_255}" />
+
+                </HorizontalStackLayout>
+
+                <!--  Right: SGD 300.00  -->
+                <HorizontalStackLayout
+                    Grid.Column="1"
+                    HorizontalOptions="End"
+                    Spacing="3"
+                    VerticalOptions="Center">
+                    <Label Text="-" />
+                    <Label>
+                        <Label.Text>
+                            <MultiBinding Converter="{StaticResource AmountCurrencyConverter}">
+                                <Binding Path="TaxInformation.CurrencyCode_0_50" />
+                                <Binding Path="TaxAmount" />
+                            </MultiBinding>
+                        </Label.Text>
+                    </Label>
+
+                </HorizontalStackLayout>
+
+            </Grid>
+
+
+            <!--  Grand TOTAL  -->
+            <Grid
+                Margin="0,5"
+                ColumnDefinitions="*,Auto"
+                RowDefinitions="Auto">
+
+                <Label
+                    Grid.Row="0"
+                    FontAttributes="Bold"
+                    FontSize="18"
+                    Text="Grand Total" />
+
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    FontAttributes="Bold"
+                    FontSize="18"
+                    TextColor="Green">
+                    <Label.Text>
+                        <MultiBinding Converter="{StaticResource AmountCurrencyConverter}">
+                            <Binding Path="CurrencyCode_0_50" />
+                            <Binding Path="GrandTotal" />
+                        </MultiBinding>
+                    </Label.Text>
+                </Label>
+
+            </Grid>
+
+
+            <!--  Proceed to Payment  -->
+            <VerticalStackLayout x:Name="PaymentSection" Spacing="10">
+
+                <!--  Main / Default Payment  -->
+                <Button
+                    Margin="0,15,0,5"
+                    BackgroundColor="{Binding ThemeSettingCardView.PropertiesBgColor, Source={x:Static general:Common.mCommon}}"
+                    Clicked="btn_Payment_Clicked"
+                    CornerRadius="10"
+                    FontAttributes="Bold"
+                    HeightRequest="50"
+                    Text="{Binding FirstPaymentTypeName, StringFormat='Proceed to Payment ({0})'}"
+                    TextColor="White" />
+
+
+                <!--  Other Payment Title  -->
+                <Label
+                    Margin="0,10,0,5"
+                    FontAttributes="Bold"
+                    FontSize="16"
+                    HorizontalOptions="Center"
+                    Text="-- Other Payments --" />
+
+
+                <!--  Other Payment Types  -->
+                <CollectionView ItemsSource="{Binding OtherPaymentTypes}" SelectionMode="None">
+
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout
+                            HorizontalItemSpacing="10"
+                            Orientation="Vertical"
+                            Span="3"
+                            VerticalItemSpacing="10" />
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+
+                            <Button
+                                BackgroundColor="{Binding ThemeSettingCardView.PropertiesBgColor, Source={x:Static general:Common.mCommon}}"
+                                Clicked="btn_OtherPayment_Clicked"
+                                CornerRadius="10"
+                                HeightRequest="45"
+                                Text="{Binding PaymentTypeName_0_255}" />
+
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+
+                </CollectionView>
+
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+
+    </ScrollView>
+
+</ContentView>

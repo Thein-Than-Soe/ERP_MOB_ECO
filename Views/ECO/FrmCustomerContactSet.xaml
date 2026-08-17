@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="CS.ERP_MOB_ECO.Views.ECO.FrmCustomerContactSet"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:general="clr-namespace:CS.ERP_MOB.General"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    Title="Customer Contacts">
+
+    <Grid
+        Padding="15"
+        RowDefinitions="*,Auto,Auto"
+        RowSpacing="10">
+
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout Padding="20" Spacing="25">
+
+                <!--  ContactTypeName_0_255  -->
+                <VerticalStackLayout>
+                    <Label FontAttributes="Bold">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Contact Type" />
+                                <Span Text=" *" TextColor="Red" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Picker
+                        x:Name="Picker_ContactType"
+                        Title="Contact Type"
+                        ItemDisplayBinding="{Binding ContactTypeName_0_255}"
+                        ItemsSource="{Binding ContactTypeList}" />
+                </VerticalStackLayout>
+
+                <!--  ContactTypeName_0_255  -->
+                <VerticalStackLayout>
+                    <Label FontAttributes="Bold">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Contact Name" />
+                                <Span Text=" *" TextColor="Red" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <!--  🔹 Entry with Validation Behavior  -->
+                    <Entry x:Name="Ent_ContactName" Placeholder="Enter contact name">
+                        <Entry.Behaviors>
+                            <toolkit:TextValidationBehavior
+                                x:Name="ContactNameValidator"
+                                Flags="ValidateOnValueChanged"
+                                InvalidStyle="{StaticResource InvalidEntryStyle}"
+                                MaximumLength="255"
+                                MinimumLength="1" />
+                        </Entry.Behaviors>
+                    </Entry>
+                </VerticalStackLayout>
+
+                <!--  User Phone (Country Code + Number)  -->
+                <VerticalStackLayout>
+                    <!--  🔹 Field Label (Localized)  -->
+                    <Label FontAttributes="Bold">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Contact Number" />
+                                <Span Text=" *" TextColor="Red" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                    <!--  🔹 Entry with Validation Behavior  -->
+                    <Grid ColumnDefinitions="Auto,*" VerticalOptions="Center">
+                        <Picker
+                            x:Name="Picker_CountryMobileCode"
+                            Title="+45"
+                            Grid.Column="0"
+                            FontSize="14"
+                            HeightRequest="40"
+                            ItemDisplayBinding="{Binding CountryMobileCode_0_50}"
+                            ItemsSource="{Binding CountryList}"
+                            WidthRequest="60" />
+                        <Entry
+                            x:Name="Ent_ContactMobilePhone"
+                            Grid.Column="1"
+                            FontSize="14"
+                            HeightRequest="40"
+                            Keyboard="Telephone"
+                            Placeholder="Phone Number" />
+                    </Grid>
+
+                </VerticalStackLayout>
+
+                <!--  Location Address  -->
+                <VerticalStackLayout Spacing="2">
+                    <!--  🔹 Field Label (Localized)  -->
+                    <Label FontAttributes="Bold">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Location Address" />
+                                <Span Text=" *" TextColor="Red" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                    <!--  🔹 Entry with Validation Behavior  -->
+                    <Grid ColumnDefinitions="*,*,*">
+                        <Picker
+                            x:Name="PickerCountry"
+                            Title="Country"
+                            Grid.Column="0"
+                            ItemDisplayBinding="{Binding CountryName_0_255}"
+                            ItemsSource="{Binding CountryList}"
+                            SelectedItem="{Binding SelectedCountry, Mode=TwoWay}" />
+
+                        <Picker
+                            x:Name="PickerState"
+                            Title="State"
+                            Grid.Column="1"
+                            ItemDisplayBinding="{Binding StateName_0_255}"
+                            ItemsSource="{Binding SelectedCountry.RES_STATE_DTL}"
+                            SelectedItem="{Binding SelectedState, Mode=TwoWay}" />
+
+                        <Picker
+                            x:Name="PickerCity"
+                            Title="City"
+                            Grid.Column="2"
+                            ItemDisplayBinding="{Binding CityName_0_255}"
+                            ItemsSource="{Binding SelectedState.RES_CITY}"
+                            SelectedItem="{Binding SelectedCity, Mode=TwoWay}" />
+
+                    </Grid>
+                </VerticalStackLayout>
+
+
+                <!--  Address  -->
+                <VerticalStackLayout>
+                    <!--  🔹 Field Label (Localized)  -->
+                    <Label FontAttributes="Bold" Text="Address Detail" />
+
+                    <!--  🔹 Entry with Validation Behavior  -->
+                    <Entry x:Name="Ent_ContactAddress" Placeholder="Enter Address">
+                        <Entry.Behaviors>
+                            <toolkit:TextValidationBehavior
+                                x:Name="AddressValidator"
+                                Flags="ValidateOnValueChanged"
+                                InvalidStyle="{StaticResource InvalidEntryStyle}"
+                                MaximumLength="255"
+                                MinimumLength="0" />
+                        </Entry.Behaviors>
+                    </Entry>
+
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!--  Buttons  -->
+        <HorizontalStackLayout Grid.Row="1" Margin="0,5,0,0">
+            <Button
+                Margin="0,5,0,0"
+                BackgroundColor="{Binding ThemeSettingCardView.PropertiesBgColor, Source={x:Static general:Common.mCommon}}"
+                Clicked="SaveContact_Clicked"
+                CornerRadius="10"
+                FontAttributes="Bold"
+                HeightRequest="50"
+                Text="Save"
+                TextColor="White" />
+
+            <Button
+                Margin="0,5,0,0"
+                BackgroundColor="{Binding ThemeSettingCardView.PropertiesBgColor, Source={x:Static general:Common.mCommon}}"
+                Clicked="OnDeleteBtn_Clicked"
+                CornerRadius="10"
+                FontAttributes="Bold"
+                HeightRequest="50"
+                Text="Delete"
+                TextColor="White" />
+        </HorizontalStackLayout>
+
+
+    </Grid>
+
+</ContentPage>

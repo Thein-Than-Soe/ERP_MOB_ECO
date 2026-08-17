@@ -1,0 +1,601 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="CS.ERP_MOB_ECO.Views.ECO.FrmEcoProductDtl"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:card="clr-namespace:CS.ERP_MOB.Views.Frame"
+    xmlns:general="clr-namespace:CS.ERP_MOB.General"
+    xmlns:local="clr-namespace:CS.ERP_MOB.Views.ECO"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    Title="FrmEcoProductDtl">
+
+    <!--  Whole page scroll  -->
+    <ScrollView>
+
+        <VerticalStackLayout Padding="10" Spacing="15">
+
+            <!--  PRODUCT IMAGE GALLERY  -->
+            <!--  =====================================================  -->
+
+
+            <VerticalStackLayout Padding="0" IsVisible="{Binding HasPhotos}">
+
+                <Grid HeightRequest="280">
+
+                    <!--  Product Image Carousel  -->
+                    <CarouselView
+                        x:Name="ProductCarousel"
+                        IndicatorView="ImageIndicator"
+                        ItemsSource="{Binding ProductPhotos}">
+
+                        <CarouselView.ItemTemplate>
+                            <DataTemplate>
+
+                                <Image
+                                    Margin="15"
+                                    Aspect="AspectFit"
+                                    Source="{Binding StockPhotoURL, Converter={StaticResource ImageURLConverter}}" />
+
+                            </DataTemplate>
+                        </CarouselView.ItemTemplate>
+
+                    </CarouselView>
+
+                    <!--  Previous  -->
+                    <Border
+                        BackgroundColor="#80000000"
+                        HeightRequest="45"
+                        HorizontalOptions="Start"
+                        StrokeShape="RoundRectangle 22"
+                        StrokeThickness="0"
+                        WidthRequest="45">
+
+                        <Label
+                            FontFamily="{StaticResource FontAwesomeSolid}"
+                            FontSize="20"
+                            HorizontalOptions="Center"
+                            Text="&#xf053;"
+                            TextColor="White"
+                            VerticalOptions="Center" />
+
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="PreviousImage_Clicked" />
+                        </Border.GestureRecognizers>
+
+                    </Border>
+
+                    <!--  Next  -->
+                    <Border
+                        BackgroundColor="#80000000"
+                        HeightRequest="45"
+                        HorizontalOptions="End"
+                        StrokeShape="RoundRectangle 22"
+                        StrokeThickness="0"
+                        WidthRequest="45">
+
+                        <Label
+                            FontFamily="{StaticResource FontAwesomeSolid}"
+                            FontSize="20"
+                            HorizontalOptions="Center"
+                            Text="&#xf054;"
+                            TextColor="White"
+                            VerticalOptions="Center" />
+
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="NextImage_Clicked" />
+                        </Border.GestureRecognizers>
+
+                    </Border>
+
+                </Grid>
+                <!--  Indicator  -->
+
+                <IndicatorView
+                    x:Name="ImageIndicator"
+                    HorizontalOptions="Center"
+                    IndicatorColor="LightGray"
+                    SelectedIndicatorColor="#2196F3" />
+            </VerticalStackLayout>
+
+
+
+            <!--  PRODUCT INFORMATION  -->
+            <!--  =====================================================  -->
+
+            <Frame
+                Padding="10"
+                BackgroundColor="Transparent"
+                HasShadow="False">
+
+                <VerticalStackLayout Spacing="10">
+
+                    <!--  Product Name + Wishlist Button  -->
+
+                    <Grid ColumnDefinitions="*,Auto">
+
+                        <!--  Product Name  -->
+                        <Label
+                            Grid.Column="0"
+                            FontAttributes="Bold"
+                            FontSize="22"
+                            LineBreakMode="TailTruncation"
+                            Text="{Binding Product.StockName_0_255}"
+                            VerticalOptions="Center" />
+
+
+                        <!--  Wishlist Heart  -->
+                        <Button
+                            Grid.Column="1"
+                            Padding="0"
+                            BackgroundColor="Transparent"
+                            Clicked="WishlistButton_Clicked"
+                            FontFamily="{StaticResource FontAwesomeSolid}"
+                            FontSize="24"
+                            HeightRequest="45"
+                            Text="&#xf004;"
+                            TextColor="Gray"
+                            WidthRequest="45" />
+
+                    </Grid>
+
+                    <!--  Rating  -->
+                    <HorizontalStackLayout>
+
+                        <Label Text="⭐" />
+
+                        <Label
+                            Margin="10,0,0,0"
+                            FontSize="13"
+                            Text="{Binding RatingSummary}" />
+
+                    </HorizontalStackLayout>
+
+
+                    <!--  Product Price Section(No customize block)  -->
+                    <VerticalStackLayout
+                        IsVisible="{Binding HasNoCustomized}"
+                        Spacing="5"
+                        VerticalOptions="Center">
+
+                        <!--  Current Price  -->
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="26"
+                            TextColor="Red">
+                            <Label.Text>
+                                <MultiBinding Converter="{StaticResource AmountCurrencyConverter}">
+                                    <Binding Path="CurrencyCode_0_50" />
+                                    <Binding Path="CurrentPrice" />
+                                </MultiBinding>
+                            </Label.Text>
+                        </Label>
+
+                        <!--  Original Price + Discount  -->
+                        <HorizontalStackLayout
+                            IsVisible="{Binding HasOldPrice}"
+                            Spacing="10"
+                            VerticalOptions="Center">
+
+                            <!--  Original Price  -->
+
+                            <Label
+                                FontSize="16"
+                                TextColor="Gray"
+                                TextDecorations="Strikethrough"
+                                VerticalOptions="Center">
+                                <Label.Text>
+                                    <MultiBinding Converter="{StaticResource AmountCurrencyConverter}">
+                                        <Binding Path="CurrencyCode_0_50" />
+                                        <Binding Path="OldPrice" />
+                                    </MultiBinding>
+                                </Label.Text>
+                            </Label>
+
+                            <!--  Discount Badge  -->
+                            <Frame
+                                Padding="8,3"
+                                BackgroundColor="#FFE5E5"
+                                BorderColor="Transparent"
+                                CornerRadius="8"
+                                HasShadow="False"
+                                IsVisible="{Binding HasDiscount}">
+
+                                <HorizontalStackLayout Spacing="0">
+
+                                    <!--  Minus sign  -->
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="14"
+                                        Text="-"
+                                        TextColor="Red" />
+
+                                    <!--  Discount amount  -->
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="14"
+                                        TextColor="Red">
+
+                                        <Label.Text>
+                                            <MultiBinding Converter="{StaticResource AmountCurrencyConverter}">
+                                                <Binding Path="CurrencyCode_0_50" />
+                                                <Binding Path="DiscountAmount" />
+                                            </MultiBinding>
+                                        </Label.Text>
+
+                                    </Label>
+
+                                </HorizontalStackLayout>
+
+                            </Frame>
+
+                        </HorizontalStackLayout>
+
+
+
+                    </VerticalStackLayout>
+
+                    <!--  Variation (Customized block)  -->
+                    <Frame
+                        Padding="8"
+                        BorderColor="LightGray"
+                        CornerRadius="8"
+                        HasShadow="False"
+                        IsVisible="{Binding HasCustomized}">
+
+                        <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+
+                            <FlexLayout
+                                Grid.Column="0"
+                                AlignContent="Start"
+                                AlignItems="Center"
+                                BindableLayout.ItemsSource="{Binding SelectedAttributeDisplay}"
+                                Direction="Row"
+                                Wrap="Wrap">
+
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
+
+                                        <HorizontalStackLayout Margin="0,2,10,2" Spacing="2">
+
+                                            <Label FontSize="13" Text="{Binding AttributeName_0_255}" />
+
+                                            <Label FontSize="13" Text=":" />
+
+                                            <Label FontSize="13" Text="{Binding AttributeTermName_0_255}" />
+
+                                        </HorizontalStackLayout>
+
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
+
+                            </FlexLayout>
+
+                            <!--  Arrow  -->
+                            <Label
+                                Grid.Column="1"
+                                FontFamily="{StaticResource FontAwesomeSolid}"
+                                FontSize="18"
+                                Text="&#xf107;"
+                                VerticalOptions="Center" />
+
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Variation_Clicked" />
+                            </Grid.GestureRecognizers>
+
+                        </Grid>
+                    </Frame>
+
+
+
+                    <!--  Quantity Selector  -->
+                    <HorizontalStackLayout
+                        HeightRequest="40"
+                        HorizontalOptions="Start"
+                        Spacing="2"
+                        VerticalOptions="Center">
+
+                        <Button
+                            Padding="0"
+                            BackgroundColor="{Binding ThemeSettingCardView.PropertiesBgColor, Source={x:Static general:Common.mCommon}}"
+                            Clicked="Minus_Clicked"
+                            FontSize="16"
+                            HeightRequest="32"
+                            Text="-"
+                            WidthRequest="32" />
+
+                        <Entry
+                            x:Name="QtyEntry"
+                            FontSize="15"
+                            HeightRequest="40"
+                            HorizontalTextAlignment="Center"
+                            Keyboard="Numeric"
+                            Text="1"
+                            TextChanged="QtyEntry_TextChanged"
+                            VerticalTextAlignment="Center"
+                            WidthRequest="45" />
+
+                        <Button
+                            Padding="0"
+                            BackgroundColor="{Binding ThemeSettingCardView.PropertiesBgColor, Source={x:Static general:Common.mCommon}}"
+                            Clicked="Plus_Clicked"
+                            FontSize="16"
+                            HeightRequest="32"
+                            Text="+"
+                            WidthRequest="32" />
+
+                    </HorizontalStackLayout>
+
+                    <!--  Total Price (calculated)  -->
+                    <Grid ColumnDefinitions="Auto,*" ColumnSpacing="15">
+
+                        <!--  Total Price (calculated)  -->
+                        <Label
+                            Grid.Column="0"
+                            FontAttributes="Bold"
+                            FontSize="16"
+                            Text="Total price "
+                            TextColor="Black"
+                            VerticalOptions="Center" />
+                        <Label
+                            Grid.Column="1"
+                            FontAttributes="Bold"
+                            FontSize="16"
+                            HorizontalOptions="End"
+                            TextColor="DarkOrange">
+
+                            <Label.Text>
+                                <MultiBinding Converter="{StaticResource AmountCurrencyConverter}">
+                                    <Binding Path="CurrencyCode_0_50" />
+                                    <Binding Path="TotalPrice" />
+                                </MultiBinding>
+                            </Label.Text>
+
+                        </Label>
+                    </Grid>
+
+                    <!--  Add Cart Button  -->
+                    <Border
+                        BackgroundColor="{Binding ThemeSettingCardView.PropertiesBgColor, Source={x:Static general:Common.mCommon}}"
+                        HeightRequest="50"
+                        StrokeShape="RoundRectangle 12">
+
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="CartButton_Clicked" />
+                        </Border.GestureRecognizers>
+
+                        <Grid
+                            BackgroundColor="{Binding ThemeSettingCardView.PropertiesBgColor, Source={x:Static general:Common.mCommon}}"
+                            ColumnDefinitions="Auto,*"
+                            ColumnSpacing="8"
+                            HorizontalOptions="Center">
+
+                            <!--  Cart Icon  -->
+                            <Label
+                                Grid.Column="0"
+                                FontFamily="{StaticResource FontAwesomeSolid}"
+                                FontSize="20"
+                                Text="&#xf07a;"
+                                TextColor="White"
+                                VerticalOptions="Center" />
+
+
+                            <!--  Button Text  -->
+                            <Label
+                                Grid.Column="1"
+                                FontAttributes="Bold"
+                                FontSize="16"
+                                Text="Add To Cart"
+                                TextColor="White"
+                                VerticalOptions="Center" />
+
+
+                        </Grid>
+
+                    </Border>
+
+
+                </VerticalStackLayout>
+
+            </Frame>
+
+
+            <!--  PRODUCT DESCRIPTION  -->
+            <VerticalStackLayout IsVisible="{Binding HasDescription}" Spacing="0">
+
+                <!--  Separator  -->
+                <BoxView BackgroundColor="#DDDDDD" HeightRequest="1" />
+
+                <toolkit:Expander>
+
+                    <toolkit:Expander.Header>
+
+                        <Grid Padding="15" ColumnDefinitions="*,Auto">
+
+                            <Label
+                                Grid.Column="0"
+                                FontAttributes="Bold"
+                                FontSize="18"
+                                Text="Description"
+                                VerticalOptions="Center" />
+
+                            <Label
+                                Grid.Column="1"
+                                FontFamily="{StaticResource FontAwesomeSolid}"
+                                FontSize="16"
+                                HorizontalOptions="End"
+                                Text="&#xf078;"
+                                TextColor="Gray"
+                                VerticalOptions="Center" />
+
+                        </Grid>
+
+                    </toolkit:Expander.Header>
+
+                    <VerticalStackLayout Padding="15">
+
+                        <Label LineBreakMode="WordWrap" Text="{Binding Product.StockDescription_0_500}" />
+
+                    </VerticalStackLayout>
+
+                </toolkit:Expander>
+
+            </VerticalStackLayout>
+
+
+
+            <!--  REVIEWS  -->
+            <!--  =====================================================  -->
+            <VerticalStackLayout
+                HorizontalOptions="Fill"
+                IsVisible="{Binding HasReviews}"
+                Spacing="0">
+
+                <!--  Separator  -->
+                <BoxView
+                    BackgroundColor="#DDDDDD"
+                    HeightRequest="1"
+                    HorizontalOptions="Fill" />
+
+                <toolkit:Expander HorizontalOptions="Fill">
+
+                    <toolkit:Expander.Header>
+
+                        <Grid
+                            Padding="15"
+                            ColumnDefinitions="*,Auto"
+                            HorizontalOptions="Fill">
+
+                            <Label
+                                Grid.Column="0"
+                                FontAttributes="Bold"
+                                FontSize="18"
+                                Text="Reviews"
+                                VerticalOptions="Center" />
+
+                            <Label
+                                Grid.Column="1"
+                                FontFamily="{StaticResource FontAwesomeSolid}"
+                                FontSize="16"
+                                HorizontalOptions="End"
+                                Text="&#xf078;"
+                                TextColor="Gray"
+                                VerticalOptions="Center" />
+
+                        </Grid>
+
+                    </toolkit:Expander.Header>
+
+                    <!--  IMPORTANT: Give the Expander content a full-width Grid  -->
+                    <Grid HorizontalOptions="Fill" WidthRequest="{OnPlatform Android=-1, iOS=-1}">
+
+                        <CollectionView
+                            HorizontalOptions="Fill"
+                            ItemsSource="{Binding ProductReviewsDisplay}"
+                            SelectionMode="None"
+                            VerticalOptions="Start">
+
+                            <CollectionView.ItemTemplate>
+
+                                <DataTemplate>
+
+                                    <Frame
+                                        Margin="10,5"
+                                        Padding="15"
+                                        BorderColor="#DDDDDD"
+                                        CornerRadius="10"
+                                        HasShadow="False"
+                                        HorizontalOptions="Fill">
+
+                                        <Grid
+                                            ColumnDefinitions="60,*"
+                                            ColumnSpacing="10"
+                                            HorizontalOptions="Fill">
+
+                                            <Image
+                                                Grid.Column="0"
+                                                Aspect="AspectFill"
+                                                HeightRequest="50"
+                                                Source="{Binding UserProfile, Converter={StaticResource ImageURLConverter}}"
+                                                WidthRequest="50" />
+
+                                            <VerticalStackLayout
+                                                Grid.Column="1"
+                                                HorizontalOptions="Fill"
+                                                Spacing="3">
+
+                                                <Label FontAttributes="Bold" Text="{Binding UserName}" />
+
+                                                <Label Text="{Binding Rate}" />
+
+                                                <Label
+                                                    HorizontalOptions="Fill"
+                                                    LineBreakMode="WordWrap"
+                                                    Text="{Binding Review}" />
+
+                                            </VerticalStackLayout>
+
+                                        </Grid>
+
+                                    </Frame>
+
+                                </DataTemplate>
+
+                            </CollectionView.ItemTemplate>
+
+                        </CollectionView>
+
+                    </Grid>
+
+                </toolkit:Expander>
+
+            </VerticalStackLayout>
+
+
+
+            <!--  =====================================================  -->
+            <!--  RELATED PRODUCTS  -->
+            <!--  =====================================================  -->
+
+
+            <!--  Separator  -->
+            <BoxView BackgroundColor="#DDDDDD" HeightRequest="1" />
+            <Label
+                FontAttributes="Bold"
+                FontSize="22"
+                Text="Related Products" />
+
+            <CollectionView
+                Margin="10"
+                HorizontalScrollBarVisibility="Never"
+                ItemsSource="{Binding RelatedProducts}">
+
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal" />
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+
+                        <card:FrmCardViewStyle1
+                            Name="{Binding StockName_0_255}"
+                            Image="{Binding PhotoURL, Converter={StaticResource ImageURLConverter}}"
+                            WidthRequest="170">
+
+                            <card:FrmCardViewStyle1.Price>
+                                <MultiBinding Converter="{StaticResource AmountCurrencyConverter}">
+                                    <Binding Path="CurrencyDescription_0_500" />
+                                    <Binding Path="StockRetailPrice" />
+                                </MultiBinding>
+                            </card:FrmCardViewStyle1.Price>
+
+                        </card:FrmCardViewStyle1>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+        </VerticalStackLayout>
+
+    </ScrollView>
+
+</ContentPage>

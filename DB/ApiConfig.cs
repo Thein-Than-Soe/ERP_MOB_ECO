@@ -8,10 +8,10 @@ namespace CS.ERP_MOB.DB
         [PrimaryKey, AutoIncrement]
         public int Ask { get; set; }
         public string ProductCode { get; set; } = "SYS";
-        public string UploadURL { get; set; } = "https://updqasrv.kumudr.com";
-        public string APIURL { get; set; } = "https://sysqaapi.kumudr.com/Service.svc";
-        public string APIProtocol { get; set; } = "https://";//http or https
-        public string APIServer { get; set; } = "sysqaapi.kumudr.com/"; //IP
+        public string UploadURL { get; set; } = "http://upddevsrv.kumudr.com";
+        public string APIURL { get; set; } = "http://sysdevapi.kumudr.com/Service.svc";
+        public string APIProtocol { get; set; } = "http://";//http or http
+        public string APIServer { get; set; } = "sysdevapi.kumudr.com/"; //IP
         public string APIPort { get; set; } = "";
         public string APIServiceName { get; set; } = "Service.svc/";
         public string ApiContentType { get; set; } = "application/json";

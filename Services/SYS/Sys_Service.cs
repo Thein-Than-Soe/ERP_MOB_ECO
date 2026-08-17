@@ -10,7 +10,7 @@ namespace CS.ERP_MOB.Services.SYS
     {
         public Sys_Service()
         {
-            //mApiConfig.APIProtocol = "https://";
+            //mApiConfig.APIProtocol = "http://";
         }
         public static ApiConfig mApiConfig = new ApiConfig();
         public static string mResponse = "";

@@ -11,16 +11,16 @@ namespace CS.ERP_MOB.Services.ECO
     {
         public Eco_Service()
         {
-            //mApiConfig.APIProtocol = "https://";
+            //mApiConfig.APIProtocol = "http://";
         }
         public static ApiConfig mApiConfig = new ApiConfig
         {
             Ask = 1,
             ProductCode = "ECO",
-            UploadURL = "https://updqasrv.kumudr.com",
-            APIURL = "https://ecoqaapi.kumudr.com/Service.svc",
-            APIProtocol = "https://",
-            APIServer = "ecoqaapi.kumudr.com/",
+            UploadURL = "http://upddevsrv.kumudr.com",
+            APIURL = "http://ecodevapi.kumudr.com/Service.svc",
+            APIProtocol = "http://",
+            APIServer = "ecodevapi.kumudr.com/",
             APIPort = "",
             APIServiceName = "Service.svc/",
             ApiContentType = "application/json",
@@ -43,7 +43,7 @@ namespace CS.ERP_MOB.Services.ECO
                     //client.BaseAddress = new Uri(mAPIProtocol + mAPIServer + mAPIPort + mAPIServiceName);
                     client.BaseAddress = new Uri(mApiConfig.APIProtocol + mApiConfig.APIServer + mApiConfig.APIPort + mApiConfig.APIServiceName);
                     HttpResponseMessage response = await client.PostAsync(argApiName, content);
-                    
+
                     if (response.IsSuccessStatusCode)
                     {
                         mResponse = await response.Content.ReadAsStringAsync();

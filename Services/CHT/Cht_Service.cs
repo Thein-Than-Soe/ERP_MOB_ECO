@@ -13,16 +13,16 @@ namespace CS.ERP_MOB.Services.CHT
     {
         public Cht_Service()
         {
-            //mApiConfig.APIProtocol = "https://";
+            //mApiConfig.APIProtocol = "http://";
         }
         public static ApiConfig mApiConfig = new ApiConfig
         {
             Ask = 1,
             ProductCode = "CHT",
-            UploadURL = "https://updqasrv.kumudr.com",
-            APIURL = "https://chtqaapi.kumudr.com/Service.svc",
-            APIProtocol = "https://",
-            APIServer = "chtqaapi.kumudr.com/",
+            UploadURL = "http://upddevsrv.kumudr.com",
+            APIURL = "http://chtdevapi.kumudr.com/Service.svc",
+            APIProtocol = "http://",
+            APIServer = "chtdevapi.kumudr.com/",
             APIPort = "",
             APIServiceName = "Service.svc/",
             ApiContentType = "application/json",

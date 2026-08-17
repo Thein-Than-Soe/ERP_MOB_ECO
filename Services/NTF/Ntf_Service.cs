@@ -11,7 +11,7 @@ namespace CS.ERP_MOB.Services.NTF
     {
         public Cht_Service()
         {
-            //mApiConfig.APIProtocol = "https://";
+            //mApiConfig.APIProtocol = "http://";
         }
         public static ApiConfig mApiConfig = new ApiConfig();
         public static string mResponse = "";

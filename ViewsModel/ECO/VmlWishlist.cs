@@ -659,6 +659,46 @@ namespace CS.ERP_MOB.ViewsModel.ECO
                 throw ex.InnerException;
             }
         }
+        public async Task<bool> saveWishlist()
+        {
+            try
+            {
+                Utility.openLoader();
+                mJSN_REQ_WISHLIST.REQ_AUTHORIZATION = Common.mCommon.REQ_AUTHORIZATION;
+                mJSN_REQ_WISHLIST.DAT_WISHLIST.WishlistDate = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss.fffZ");
+
+                mRequest = JsonConvert.SerializeObject(mJSN_REQ_WISHLIST);
+                mResponse = await Eco_Service.ApiCall(mRequest, Eco_Name.wssaveWishlist);
+                if (mResponse != null && mResponse != "")
+                {
+                    this.mJSN_RES_WISHLIST = JsonConvert.DeserializeObject<JSN_RES_WISHLIST>(mResponse);
+                    if (this.mJSN_RES_WISHLIST.Message.Code == "7")
+                    {
+                        await Application.Current.MainPage.DisplayAlert( "Success",this.mJSN_RES_WISHLIST.Message.Message,"OK");
+                        Utility.closeLoader();
+                        return true;
+                    }
+                    else
+                    {
+                        WeakReferenceMessenger.Default.Send(this.mJSN_RES_WISHLIST.Message.Message);
+                        Utility.closeLoader();
+                        return false;
+                    }
+                }
+                else
+                {
+                    Utility.closeLoader();
+                    WeakReferenceMessenger.Default.Send(Common.mCommon.GetMessageValueByKey("ErrWebService"));
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Utility.closeLoader();
+                throw ex.InnerException;
+            }
+
+        }
 
         public async void saveInvoice()
         {

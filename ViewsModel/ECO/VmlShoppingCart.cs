@@ -30,6 +30,8 @@ namespace CS.ERP_MOB.ViewsModel.ECO
         string mRequest = "";
         string mResponse = "";
         
+
+
         public JSN_REQ_SHOPPING mJSN_REQ_SHOPPING = new JSN_REQ_SHOPPING();
         public JSN_SHOPPING mJSN_SHOPPING = new JSN_SHOPPING();
         public JSN_LOAD_SALE_INVOICE mJSN_LOAD_SALE_INVOICE = new JSN_LOAD_SALE_INVOICE();
@@ -622,6 +624,7 @@ namespace CS.ERP_MOB.ViewsModel.ECO
             try
             {
                 Utility.openLoader();
+                mJSN_REQ_SHOPPING.REQ_AUTHORIZATION = Common.mCommon.REQ_AUTHORIZATION;
                 mRequest = JsonConvert.SerializeObject(mJSN_REQ_SHOPPING);
                 mResponse = await Eco_Service.ApiCall(mRequest, Eco_Name.wsgetShopping);
                 if (mResponse != null && mResponse != "")
@@ -660,34 +663,46 @@ namespace CS.ERP_MOB.ViewsModel.ECO
             }
         }
 
-        public async void saveShoppingCart()
+        public async Task<bool> saveShoppingCart()
         {
             try
             {
-                //mRequest = JsonConvert.SerializeObject(mJSN_REQ_WISHLIST);
-                //mResponse = await Eco_Service.ApiCall(mRequest, Eco_Name.wssaveSaleInvoice);
-                //if (mResponse != null && mResponse != "")
-                //{
-                //    this.mJSN_RES_WISHLIST = JsonConvert.DeserializeObject<JSN_RES_WISHLIST>(mResponse);
-                //    if (mJSN_RES_WISHLIST.Message.Code == "7")
-                //    {
-                //        mJSN_REQ_WISHLIST.DAT_WISHLIST = new DAT_WISHLIST();
-                //        getWishlist();
-                //    }
-                //    else
-                //    {
-                //        WeakReferenceMessenger.Default.Send(this.mJSN_RES_WISHLIST.Message.Message);
-                //    }
-                //}
-                //else
-                //{
-                //    WeakReferenceMessenger.Default.Send(Common.mCommon.GetMessageValueByKey("ErrWebService"));
-                //}
+                Utility.openLoader();
+                mJSN_REQ_SHOPPING.REQ_AUTHORIZATION = Common.mCommon.REQ_AUTHORIZATION;
+                mJSN_REQ_SHOPPING.RES_SHOPPING.SD = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss.fffZ");
+                mJSN_REQ_SHOPPING.RES_SHOPPING.ED = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss.fffZ");
+
+                mRequest = JsonConvert.SerializeObject(mJSN_REQ_SHOPPING);
+                mResponse = await Eco_Service.ApiCall(mRequest, Eco_Name.wssaveShopping);
+                if (mResponse != null && mResponse != "")
+                {
+                    this.mJSN_SHOPPING = JsonConvert.DeserializeObject<JSN_SHOPPING>(mResponse);
+                    if (this.mJSN_SHOPPING.Message.Code == "7")
+                    {
+                        await Application.Current.MainPage.DisplayAlert("Success", this.mJSN_SHOPPING.Message.Message, "OK");
+                        Utility.closeLoader();
+                        return true;
+                    }
+                    else
+                    {
+                        WeakReferenceMessenger.Default.Send(this.mJSN_SHOPPING.Message.Message);
+                        Utility.closeLoader();
+                        return false;
+                    }
+                }
+                else
+                {
+                    Utility.closeLoader();
+                    WeakReferenceMessenger.Default.Send(Common.mCommon.GetMessageValueByKey("ErrWebService"));
+                    return false;
+                }
             }
             catch (Exception ex)
             {
+                Utility.closeLoader();
                 throw ex.InnerException;
             }
+
         }
 
         public async void loadInvoice()

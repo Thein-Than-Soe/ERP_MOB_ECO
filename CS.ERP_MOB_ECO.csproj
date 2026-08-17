@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<TargetFrameworks>net8.0-android;net8.0-ios;net8.0-maccatalyst</TargetFrameworks>
 		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net8.0-windows10.0.19041.0</TargetFrameworks>
-		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
+		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: http://github.com/Samsung/Tizen.NET -->
 		<!-- <TargetFrameworks>$(TargetFrameworks);net9.0-tizen</TargetFrameworks> -->
 
 		<!-- Note for MacCatalyst:
@@ -26,10 +26,10 @@
 		<!-- App Identifier -->
 		<ApplicationId>com.ovaerp.cs.erp_mob_eco</ApplicationId>
 		<!-- Versions -->
-		<ApplicationDisplayVersion>1.0.1</ApplicationDisplayVersion>
+		<ApplicationDisplayVersion>1.0.0</ApplicationDisplayVersion>
 		<ApplicationVersion>2</ApplicationVersion>
 
-		<!-- To develop, package, and publish an app to the Microsoft Store, see: https://aka.ms/MauiTemplateUnpackaged -->
+		<!-- To develop, package, and publish an app to the Microsoft Store, see: http://aka.ms/MauiTemplateUnpackaged -->
 		<WindowsPackageType>None</WindowsPackageType>
 
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">15.0</SupportedOSPlatformVersion>
@@ -190,7 +190,6 @@
 		<Folder Include="Resources\Messages\" />
 		<Folder Include="Services\ACC\" />
 		<Folder Include="DB\" />
-		<Folder Include="Views\ECO\" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -258,6 +257,20 @@
 			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</MauiXaml>
 		<Compile Include="Views\POS\FrmPosSaleQuotationSet.xaml.cs" />		
+	</ItemGroup>
+	<ItemGroup>
+	  <Compile Update="Views\ECO\FrmEcoProductDtl.xaml.cs">
+	    <DependentUpon>FrmEcoProductDtl.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\ECO\FrmEcoCheckOut.xaml.cs">
+	    <DependentUpon>FrmEcoCheckOut.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\ECO\FrmEcoProductAttributePop.xaml.cs">
+	    <DependentUpon>FrmEcoProductAttributePop.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\ECO\FrmCustomerContactSet.xaml.cs">
+	    <DependentUpon>FrmCustomerContactSet.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -350,6 +363,18 @@
 		</MauiXaml>
 		<MauiXaml Update="Views\CHT\FrmChtVBoardSet.xaml">
 			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\ECO\FrmEcoProductDtl.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\ECO\FrmEcoCheckOut.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\ECO\FrmEcoProductAttributePop.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\ECO\FrmCustomerContactSet.xaml">
+		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<!--<MauiXaml Update="Views\Frame\FrmSubscriptionPayment.xaml">
 		  <Generator>MSBuild:Compile</Generator>

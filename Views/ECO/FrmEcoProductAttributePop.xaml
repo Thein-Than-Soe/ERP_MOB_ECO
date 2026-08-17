@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="CS.ERP_MOB_ECO.Views.ECO.FrmEcoProductAttributePop"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:general="clr-namespace:CS.ERP_MOB.General"
+    xmlns:local="clr-namespace:CS.ERP_MOB.Views.ECO"
+    Title="Select Options">
+
+    <Grid Padding="15" RowDefinitions="*,Auto">
+
+        <!--  ATTRIBUTE LIST  -->
+        <CollectionView
+            Grid.Row="0"
+            ItemsSource="{Binding Attributes}"
+            SelectionMode="None">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+
+                    <VerticalStackLayout Margin="0,0,0,15" Spacing="8">
+
+                        <!--  Attribute name  -->
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="16"
+                            Text="{Binding AttributeName_0_255}" />
+
+                        <!--  Attribute values  -->
+                        <Picker
+                            Title="Select"
+                            ItemDisplayBinding="{Binding AttributeTermName_0_255}"
+                            ItemsSource="{Binding DAT_STOCK_ATTRIBUTE_TERM}"
+                            Loaded="AttributePicker_Loaded"
+                            SelectedIndexChanged="AttributePicker_SelectedIndexChanged" />
+
+                    </VerticalStackLayout>
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+
+        <!--  APPLY BUTTON  -->
+        <Button
+            Grid.Row="1"
+            Margin="0,10,0,0"
+            BackgroundColor="{Binding ThemeSettingCardView.PropertiesBgColor, Source={x:Static general:Common.mCommon}}"
+            Clicked="Apply_Clicked"
+            HeightRequest="50"
+            Text="Apply" />
+
+    </Grid>
+
+</ContentPage>
