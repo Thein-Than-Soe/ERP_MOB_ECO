@@ -4,10 +4,12 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:card="clr-namespace:CS.ERP_MOB.Views.Frame"
+    xmlns:ext="clr-namespace:CS.ERP_MOB.Extensions"
+    xmlns:footer="clr-namespace:CS.ERP_MOB.Views.SYS"
     xmlns:general="clr-namespace:CS.ERP_MOB.General"
     xmlns:local="clr-namespace:CS.ERP_MOB.Views.ECO"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-    Title="FrmEcoProductDtl">
+    Title="Product Detail">
 
     <!--  Whole page scroll  -->
     <ScrollView>
@@ -55,7 +57,7 @@
                             FontSize="20"
                             HorizontalOptions="Center"
                             Text="&#xf053;"
-                            TextColor="White"
+                            TextColor="{Binding ThemeSettingButton.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}"
                             VerticalOptions="Center" />
 
                         <Border.GestureRecognizers>
@@ -78,7 +80,7 @@
                             FontSize="20"
                             HorizontalOptions="Center"
                             Text="&#xf054;"
-                            TextColor="White"
+                            TextColor="{Binding ThemeSettingButton.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}"
                             VerticalOptions="Center" />
 
                         <Border.GestureRecognizers>
@@ -94,7 +96,7 @@
                     x:Name="ImageIndicator"
                     HorizontalOptions="Center"
                     IndicatorColor="LightGray"
-                    SelectedIndicatorColor="#2196F3" />
+                    SelectedIndicatorColor="{Binding ThemeSettingContent.HighlightColor, Source={Static Member=general:Common.mCommon}}" />
             </VerticalStackLayout>
 
 
@@ -117,9 +119,11 @@
                         <Label
                             Grid.Column="0"
                             FontAttributes="Bold"
-                            FontSize="22"
+                            FontFamily="{Binding ThemeSettingContent.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                            FontSize="{Binding ThemeSettingContent.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
                             LineBreakMode="TailTruncation"
                             Text="{Binding Product.StockName_0_255}"
+                            TextColor="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}"
                             VerticalOptions="Center" />
 
 
@@ -141,12 +145,14 @@
                     <!--  Rating  -->
                     <HorizontalStackLayout>
 
-                        <Label Text="⭐" />
+                        <Label FontSize="{Binding ThemeSettingContent.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}" Text="⭐" />
 
                         <Label
                             Margin="10,0,0,0"
-                            FontSize="13"
-                            Text="{Binding RatingSummary}" />
+                            FontFamily="{Binding ThemeSettingContent.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                            FontSize="{Binding ThemeSettingContent.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
+                            Text="{Binding RatingSummary}"
+                            TextColor="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" />
 
                     </HorizontalStackLayout>
 
@@ -159,8 +165,8 @@
 
                         <!--  Current Price  -->
                         <Label
-                            FontAttributes="Bold"
-                            FontSize="26"
+                            FontFamily="{Binding ThemeSettingContent.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                            FontSize="{Binding ThemeSettingContent.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
                             TextColor="Red">
                             <Label.Text>
                                 <MultiBinding Converter="{StaticResource AmountCurrencyConverter}">
@@ -179,7 +185,8 @@
                             <!--  Original Price  -->
 
                             <Label
-                                FontSize="16"
+                                FontFamily="{Binding ThemeSettingContent.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                                FontSize="{Binding ThemeSettingContent.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
                                 TextColor="Gray"
                                 TextDecorations="Strikethrough"
                                 VerticalOptions="Center">
@@ -205,14 +212,16 @@
                                     <!--  Minus sign  -->
                                     <Label
                                         FontAttributes="Bold"
-                                        FontSize="14"
+                                        FontFamily="{Binding ThemeSettingContent.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                                        FontSize="{Binding ThemeSettingContent.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
                                         Text="-"
                                         TextColor="Red" />
 
                                     <!--  Discount amount  -->
                                     <Label
                                         FontAttributes="Bold"
-                                        FontSize="14"
+                                        FontFamily="{Binding ThemeSettingContent.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                                        FontSize="{Binding ThemeSettingContent.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
                                         TextColor="Red">
 
                                         <Label.Text>
@@ -257,11 +266,23 @@
 
                                         <HorizontalStackLayout Margin="0,2,10,2" Spacing="2">
 
-                                            <Label FontSize="13" Text="{Binding AttributeName_0_255}" />
+                                            <Label
+                                                FontFamily="{Binding ThemeSettingContent.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                                                FontSize="{Binding ThemeSettingContent.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
+                                                Text="{Binding AttributeName_0_255}"
+                                                TextColor="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" />
 
-                                            <Label FontSize="13" Text=":" />
+                                            <Label
+                                                FontFamily="{Binding ThemeSettingContent.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                                                FontSize="{Binding ThemeSettingContent.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
+                                                Text=":"
+                                                TextColor="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" />
 
-                                            <Label FontSize="13" Text="{Binding AttributeTermName_0_255}" />
+                                            <Label
+                                                FontFamily="{Binding ThemeSettingContent.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                                                FontSize="{Binding ThemeSettingContent.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
+                                                Text="{Binding AttributeTermName_0_255}"
+                                                TextColor="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" />
 
                                         </HorizontalStackLayout>
 
@@ -305,12 +326,14 @@
 
                         <Entry
                             x:Name="QtyEntry"
-                            FontSize="15"
+                            FontFamily="{Binding ThemeSettingContent.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                            FontSize="{Binding ThemeSettingContent.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
                             HeightRequest="40"
                             HorizontalTextAlignment="Center"
                             Keyboard="Numeric"
                             Text="1"
                             TextChanged="QtyEntry_TextChanged"
+                            TextColor="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}"
                             VerticalTextAlignment="Center"
                             WidthRequest="45" />
 
@@ -332,14 +355,16 @@
                         <Label
                             Grid.Column="0"
                             FontAttributes="Bold"
-                            FontSize="16"
+                            FontFamily="{Binding ThemeSettingContent.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                            FontSize="{Binding ThemeSettingContent.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
                             Text="Total price "
-                            TextColor="Black"
+                            TextColor="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}"
                             VerticalOptions="Center" />
                         <Label
                             Grid.Column="1"
                             FontAttributes="Bold"
-                            FontSize="16"
+                            FontFamily="{Binding ThemeSettingContent.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                            FontSize="{Binding ThemeSettingContent.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
                             HorizontalOptions="End"
                             TextColor="DarkOrange">
 
@@ -357,7 +382,8 @@
                     <Border
                         BackgroundColor="{Binding ThemeSettingCardView.PropertiesBgColor, Source={x:Static general:Common.mCommon}}"
                         HeightRequest="50"
-                        StrokeShape="RoundRectangle 12">
+                        StrokeShape="RoundRectangle 12"
+                        ToolTipProperties.Text="{Binding Source={ext:LanguageExtension Key=ECO.Common.btnTooltip.AddToCart}, Path=Value}">
 
                         <Border.GestureRecognizers>
                             <TapGestureRecognizer Tapped="CartButton_Clicked" />
@@ -373,9 +399,9 @@
                             <Label
                                 Grid.Column="0"
                                 FontFamily="{StaticResource FontAwesomeSolid}"
-                                FontSize="20"
+                                FontSize="{Binding ThemeSettingButton.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
                                 Text="&#xf07a;"
-                                TextColor="White"
+                                TextColor="{Binding ThemeSettingButton.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}"
                                 VerticalOptions="Center" />
 
 
@@ -383,9 +409,9 @@
                             <Label
                                 Grid.Column="1"
                                 FontAttributes="Bold"
-                                FontSize="16"
-                                Text="Add To Cart"
-                                TextColor="White"
+                                FontSize="{Binding ThemeSettingButton.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
+                                Text="{Binding Source={ext:LanguageExtension Key=ECO.Common.btnName.AddToCart}, Path=Value}"
+                                TextColor="{Binding ThemeSettingButton.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}"
                                 VerticalOptions="Center" />
 
 
@@ -414,8 +440,10 @@
                             <Label
                                 Grid.Column="0"
                                 FontAttributes="Bold"
-                                FontSize="18"
-                                Text="Description"
+                                FontFamily="{Binding ThemeSettingHeader.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                                FontSize="{Binding ThemeSettingHeader.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
+                                Text="{Binding Source={ext:LanguageExtension Key=ECO.StockDtl.lbl.Description}, Path=Value}"
+                                TextColor="{Binding ThemeSettingHeader.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}"
                                 VerticalOptions="Center" />
 
                             <Label
@@ -433,7 +461,12 @@
 
                     <VerticalStackLayout Padding="15">
 
-                        <Label LineBreakMode="WordWrap" Text="{Binding Product.StockDescription_0_500}" />
+                        <Label
+                            FontFamily="{Binding ThemeSettingContent.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                            FontSize="{Binding ThemeSettingContent.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
+                            LineBreakMode="WordWrap"
+                            Text="{Binding Product.StockDescription_0_500}"
+                            TextColor="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" />
 
                     </VerticalStackLayout>
 
@@ -468,10 +501,11 @@
                             <Label
                                 Grid.Column="0"
                                 FontAttributes="Bold"
-                                FontSize="18"
-                                Text="Reviews"
+                                FontFamily="{Binding ThemeSettingHeader.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                                FontSize="{Binding ThemeSettingHeader.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
+                                Text="{Binding Source={ext:LanguageExtension Key=ECO.StockDtl.lbl.Reviews}, Path=Value}"
+                                TextColor="{Binding ThemeSettingHeader.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}"
                                 VerticalOptions="Center" />
-
                             <Label
                                 Grid.Column="1"
                                 FontFamily="{StaticResource FontAwesomeSolid}"
@@ -500,7 +534,7 @@
 
                                     <Frame
                                         Margin="10,5"
-                                        Padding="15"
+                                        Padding="10"
                                         BorderColor="#DDDDDD"
                                         CornerRadius="10"
                                         HasShadow="False"
@@ -514,23 +548,36 @@
                                             <Image
                                                 Grid.Column="0"
                                                 Aspect="AspectFill"
-                                                HeightRequest="50"
+                                                Background="DarkGray"
+                                                HeightRequest="60"
                                                 Source="{Binding UserProfile, Converter={StaticResource ImageURLConverter}}"
-                                                WidthRequest="50" />
+                                                WidthRequest="60" />
 
                                             <VerticalStackLayout
                                                 Grid.Column="1"
                                                 HorizontalOptions="Fill"
                                                 Spacing="3">
 
-                                                <Label FontAttributes="Bold" Text="{Binding UserName}" />
-
-                                                <Label Text="{Binding Rate}" />
+                                                <Label
+                                                    FontAttributes="Bold"
+                                                    FontFamily="{Binding ThemeSettingCardViewHeader.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                                                    FontSize="{Binding ThemeSettingCardViewHeader.PropertiesFontSize, Source={x:Static general:Common.mCommon}}"
+                                                    Text="{Binding UserName}"
+                                                    TextColor="{Binding ThemeSettingCardViewHeader.PropertiesFontColor, Source={x:Static general:Common.mCommon}}" />
 
                                                 <Label
+                                                    FontFamily="{Binding ThemeSettingContent.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                                                    FontSize="{Binding ThemeSettingContent.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
+                                                    Text="{Binding Rate}"
+                                                    TextColor="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" />
+
+                                                <Label
+                                                    FontFamily="{Binding ThemeSettingContent.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                                                    FontSize="{Binding ThemeSettingContent.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
                                                     HorizontalOptions="Fill"
                                                     LineBreakMode="WordWrap"
-                                                    Text="{Binding Review}" />
+                                                    Text="{Binding Review}"
+                                                    TextColor="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" />
 
                                             </VerticalStackLayout>
 
@@ -561,8 +608,11 @@
             <BoxView BackgroundColor="#DDDDDD" HeightRequest="1" />
             <Label
                 FontAttributes="Bold"
-                FontSize="22"
-                Text="Related Products" />
+                FontFamily="{Binding ThemeSettingHeader.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                FontSize="{Binding ThemeSettingHeader.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
+                Text="{Binding Source={ext:LanguageExtension Key=ECO.StockDtl.lbl.RelatedProducts}, Path=Value}"
+                TextColor="{Binding ThemeSettingHeader.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}"
+                VerticalOptions="Center" />
 
             <CollectionView
                 Margin="10"

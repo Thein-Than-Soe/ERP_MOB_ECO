@@ -2,6 +2,7 @@ namespace CS.ERP_MOB_ECO.Views.ECO;
 
 using CS.ERP.PL.ECO.DAT;
 using CS.ERP.PL.POS.DAT;
+using CS.ERP_MOB.General;
 using CS.ERP_MOB.ViewsModel.ECO;
 using Syncfusion.Maui.Core.Carousel;
 using System.Linq;
@@ -12,14 +13,7 @@ public partial class FrmEcoProductDtl : ContentPage
     private readonly VmlProductDtlLst vm;
     private bool _isLoaded;
 
-    //public FrmEcoProductDtl(RES_STOCK item)
-    //{
-    //    InitializeComponent();
-
-    //    vm = new VmlProductDtlLst(item);
-
-    //    BindingContext = vm;
-    //}
+    
     public FrmEcoProductDtl(RES_STOCK item)
     {
         try
@@ -49,6 +43,10 @@ public partial class FrmEcoProductDtl : ContentPage
             throw;
         }
     }
+
+    #region "Method"
+
+
     private async void FrmEcoProductDtl_Loaded(object sender, EventArgs e)
     {
         if (_isLoaded)
@@ -233,4 +231,5 @@ public partial class FrmEcoProductDtl : ContentPage
     }
 
 
+    #endregion
 }

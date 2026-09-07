@@ -3,6 +3,7 @@
     x:Class="CS.ERP_MOB_ECO.Views.ECO.FrmCustomerContactSet"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ext="clr-namespace:CS.ERP_MOB.Extensions"
     xmlns:general="clr-namespace:CS.ERP_MOB.General"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Title="Customer Contacts">
@@ -17,33 +18,49 @@
 
                 <!--  ContactTypeName_0_255  -->
                 <VerticalStackLayout>
-                    <Label FontAttributes="Bold">
+                    <Label
+                        FontAttributes="Bold"
+                        FontFamily="{Binding ThemeSettingContent.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                        FontSize="{Binding ThemeSettingContent.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
+                        TextColor="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}">
                         <Label.FormattedText>
                             <FormattedString>
-                                <Span Text="Contact Type" />
+                                <Span Text="{Binding Source={ext:LanguageExtension Key=POS.SupplierContactDl.lbl.ContactType}, Path=Value}" />
                                 <Span Text=" *" TextColor="Red" />
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
                     <Picker
                         x:Name="Picker_ContactType"
-                        Title="Contact Type"
+                        Title="{Binding Source={ext:LanguageExtension Key=POS.SupplierContactDl.lbl.ContactType}, Path=Value}"
+                        FontFamily="{Binding ThemeSettingContent.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                        FontSize="{Binding ThemeSettingContent.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
                         ItemDisplayBinding="{Binding ContactTypeName_0_255}"
-                        ItemsSource="{Binding ContactTypeList}" />
+                        ItemsSource="{Binding ContactTypeList}"
+                        TextColor="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" />
                 </VerticalStackLayout>
 
                 <!--  ContactTypeName_0_255  -->
                 <VerticalStackLayout>
-                    <Label FontAttributes="Bold">
+                    <Label
+                        FontAttributes="Bold"
+                        FontFamily="{Binding ThemeSettingContent.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                        FontSize="{Binding ThemeSettingContent.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
+                        TextColor="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}">
                         <Label.FormattedText>
                             <FormattedString>
-                                <Span Text="Contact Name" />
+                                <Span Text="{Binding Source={ext:LanguageExtension Key=frame.CustomerContactDl.lbl.ContactName}, Path=Value}" />
                                 <Span Text=" *" TextColor="Red" />
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
                     <!--  🔹 Entry with Validation Behavior  -->
-                    <Entry x:Name="Ent_ContactName" Placeholder="Enter contact name">
+                    <Entry
+                        x:Name="Ent_ContactName"
+                        FontFamily="{Binding ThemeSettingContent.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                        FontSize="{Binding ThemeSettingContent.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
+                        Placeholder="{Binding Source={ext:LanguageExtension Key=frame.CustomerContactDl.lbl.ContactName}, Path=Value}"
+                        TextColor="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}">
                         <Entry.Behaviors>
                             <toolkit:TextValidationBehavior
                                 x:Name="ContactNameValidator"
@@ -58,10 +75,14 @@
                 <!--  User Phone (Country Code + Number)  -->
                 <VerticalStackLayout>
                     <!--  🔹 Field Label (Localized)  -->
-                    <Label FontAttributes="Bold">
+                    <Label
+                        FontAttributes="Bold"
+                        FontFamily="{Binding ThemeSettingContent.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                        FontSize="{Binding ThemeSettingContent.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
+                        TextColor="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}">
                         <Label.FormattedText>
                             <FormattedString>
-                                <Span Text="Contact Number" />
+                                <Span Text="{Binding Source={ext:LanguageExtension Key=frame.CustomerContactDl.lbl.Mobile}, Path=Value}" />
                                 <Span Text=" *" TextColor="Red" />
                             </FormattedString>
                         </Label.FormattedText>
@@ -73,18 +94,22 @@
                             x:Name="Picker_CountryMobileCode"
                             Title="+45"
                             Grid.Column="0"
-                            FontSize="14"
+                            FontFamily="{Binding ThemeSettingContent.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                            FontSize="{Binding ThemeSettingContent.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
                             HeightRequest="40"
                             ItemDisplayBinding="{Binding CountryMobileCode_0_50}"
                             ItemsSource="{Binding CountryList}"
+                            TextColor="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}"
                             WidthRequest="60" />
                         <Entry
                             x:Name="Ent_ContactMobilePhone"
                             Grid.Column="1"
-                            FontSize="14"
+                            FontFamily="{Binding ThemeSettingContent.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                            FontSize="{Binding ThemeSettingContent.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
                             HeightRequest="40"
                             Keyboard="Telephone"
-                            Placeholder="Phone Number" />
+                            Placeholder="Phone Number"
+                            TextColor="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" />
                     </Grid>
 
                 </VerticalStackLayout>
@@ -92,7 +117,11 @@
                 <!--  Location Address  -->
                 <VerticalStackLayout Spacing="2">
                     <!--  🔹 Field Label (Localized)  -->
-                    <Label FontAttributes="Bold">
+                    <Label
+                        FontAttributes="Bold"
+                        FontFamily="{Binding ThemeSettingContent.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                        FontSize="{Binding ThemeSettingContent.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
+                        TextColor="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}">
                         <Label.FormattedText>
                             <FormattedString>
                                 <Span Text="Location Address" />
@@ -105,27 +134,36 @@
                     <Grid ColumnDefinitions="*,*,*">
                         <Picker
                             x:Name="PickerCountry"
-                            Title="Country"
+                            Title="{Binding Source={ext:LanguageExtension Key=frame.CustomerContactDl.lbl.Country}, Path=Value}"
                             Grid.Column="0"
+                            FontFamily="{Binding ThemeSettingContent.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                            FontSize="{Binding ThemeSettingContent.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
                             ItemDisplayBinding="{Binding CountryName_0_255}"
                             ItemsSource="{Binding CountryList}"
-                            SelectedItem="{Binding SelectedCountry, Mode=TwoWay}" />
+                            SelectedItem="{Binding SelectedCountry, Mode=TwoWay}"
+                            TextColor="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" />
 
                         <Picker
                             x:Name="PickerState"
-                            Title="State"
+                            Title="{Binding Source={ext:LanguageExtension Key=frame.CustomerContactDl.lbl.State}, Path=Value}"
                             Grid.Column="1"
+                            FontFamily="{Binding ThemeSettingContent.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                            FontSize="{Binding ThemeSettingContent.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
                             ItemDisplayBinding="{Binding StateName_0_255}"
                             ItemsSource="{Binding SelectedCountry.RES_STATE_DTL}"
-                            SelectedItem="{Binding SelectedState, Mode=TwoWay}" />
+                            SelectedItem="{Binding SelectedState, Mode=TwoWay}"
+                            TextColor="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" />
 
                         <Picker
                             x:Name="PickerCity"
-                            Title="City"
+                            Title="{Binding Source={ext:LanguageExtension Key=frame.CustomerContactDl.lbl.City}, Path=Value}"
                             Grid.Column="2"
+                            FontFamily="{Binding ThemeSettingContent.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                            FontSize="{Binding ThemeSettingContent.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
                             ItemDisplayBinding="{Binding CityName_0_255}"
                             ItemsSource="{Binding SelectedState.RES_CITY}"
-                            SelectedItem="{Binding SelectedCity, Mode=TwoWay}" />
+                            SelectedItem="{Binding SelectedCity, Mode=TwoWay}"
+                            TextColor="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" />
 
                     </Grid>
                 </VerticalStackLayout>
@@ -134,10 +172,19 @@
                 <!--  Address  -->
                 <VerticalStackLayout>
                     <!--  🔹 Field Label (Localized)  -->
-                    <Label FontAttributes="Bold" Text="Address Detail" />
+                    <Label
+                        FontFamily="{Binding ThemeSettingContent.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                        FontSize="{Binding ThemeSettingContent.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
+                        Text="{Binding Source={ext:LanguageExtension Key=POS.SupplierContactDl.lbl.Address}, Path=Value}"
+                        TextColor="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" />
 
                     <!--  🔹 Entry with Validation Behavior  -->
-                    <Entry x:Name="Ent_ContactAddress" Placeholder="Enter Address">
+                    <Entry
+                        x:Name="Ent_ContactAddress"
+                        FontFamily="{Binding ThemeSettingContent.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                        FontSize="{Binding ThemeSettingContent.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
+                        Placeholder="Enter Address"
+                        TextColor="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}">
                         <Entry.Behaviors>
                             <toolkit:TextValidationBehavior
                                 x:Name="AddressValidator"
@@ -153,26 +200,34 @@
         </ScrollView>
 
         <!--  Buttons  -->
-        <HorizontalStackLayout Grid.Row="1" Margin="0,5,0,0">
+        <HorizontalStackLayout
+            Grid.Row="1"
+            Margin="0,5,0,0"
+            HorizontalOptions="Center"
+            Spacing="10">
             <Button
                 Margin="0,5,0,0"
-                BackgroundColor="{Binding ThemeSettingCardView.PropertiesBgColor, Source={x:Static general:Common.mCommon}}"
+                BackgroundColor="{Binding ThemeSettingButton.PropertiesBgColor, Source={Static Member=general:Common.mCommon}}"
                 Clicked="SaveContact_Clicked"
                 CornerRadius="10"
                 FontAttributes="Bold"
-                HeightRequest="50"
-                Text="Save"
-                TextColor="White" />
+                FontFamily="{Binding ThemeSettingButton.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                FontSize="{Binding ThemeSettingButton.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
+                HeightRequest="40"
+                Text="{Binding Source={ext:LanguageExtension Key=CRM.UserGuide.lbl.Save}, Path=Value}"
+                TextColor="{Binding ThemeSettingButton.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" />
 
             <Button
                 Margin="0,5,0,0"
-                BackgroundColor="{Binding ThemeSettingCardView.PropertiesBgColor, Source={x:Static general:Common.mCommon}}"
+                BackgroundColor="{Binding ThemeSettingButton.PropertiesBgColor, Source={Static Member=general:Common.mCommon}}"
                 Clicked="OnDeleteBtn_Clicked"
                 CornerRadius="10"
                 FontAttributes="Bold"
-                HeightRequest="50"
-                Text="Delete"
-                TextColor="White" />
+                FontFamily="{Binding ThemeSettingButton.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                FontSize="{Binding ThemeSettingButton.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
+                HeightRequest="40"
+                Text="{Binding Source={ext:LanguageExtension Key=POS.Common.btnName.Delete}, Path=Value}"
+                TextColor="{Binding ThemeSettingButton.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" />
         </HorizontalStackLayout>
 
 

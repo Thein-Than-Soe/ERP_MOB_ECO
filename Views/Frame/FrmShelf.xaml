@@ -13,7 +13,11 @@
         <CollectionView.ItemTemplate>
             <DataTemplate>
                 <StackLayout>
-                    <Label Text="{Binding ShelfName_0_255}" />
+                    <Label
+                        FontFamily="{Binding ThemeSettingHeader.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                        FontSize="{Binding ThemeSettingHeader.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
+                        Text="{Binding ShelfName_0_255}"
+                        TextColor="{Binding ThemeSettingHeader.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" />
                     <CollectionView
                         Margin="10"
                         BackgroundColor="Transparent"

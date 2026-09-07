@@ -394,6 +394,19 @@ namespace CS.ERP_MOB.ViewsModel.Frame
         }
 
 
+        private string _CurrencyCode;
+        public string CurrencyCode
+        {
+            get => _CurrencyCode;
+            set
+            {
+                if (_CurrencyCode != value)
+                {
+                    _CurrencyCode = value;
+                    NotifyPropertyChanged("CurrencyCode");
+                }
+            }
+        }
         private decimal _subTotal;
         public decimal SubTotal
         {
@@ -1015,8 +1028,11 @@ namespace CS.ERP_MOB.ViewsModel.Frame
                     {
                         //ShoppingList = mJSN_RES_LOAD_CHECKOUT.RES_SHOPPING_DETAIL;
                         TaxInformation = mJSN_RES_LOAD_CHECKOUT.RES_GST.FirstOrDefault();
+                        
                         CustomerDetails = mJSN_RES_LOAD_CHECKOUT.RES_CUSTOMER_DTL;
                         StockList = mJSN_RES_LOAD_CHECKOUT.RES_STOCK;
+                        CurrencyCode = StockList[0].CurrencyCode_0_50;
+
                         CustomerContactList = mJSN_RES_LOAD_CHECKOUT.RES_CUSTOMER_DTL.RES_CUSTOMER_CONTACT;
                         SelectedCustomerContact = mJSN_RES_LOAD_CHECKOUT.RES_CUSTOMER_DTL.RES_CUSTOMER_CONTACT.FirstOrDefault();
                         PaymentTypeList = mJSN_RES_LOAD_CHECKOUT.RES_PAYMENT_TYPE;

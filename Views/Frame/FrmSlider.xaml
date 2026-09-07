@@ -28,7 +28,11 @@
         </CarouselView>
 
         <!--  Dots indicator  -->
-        <IndicatorView x:Name="indicator" HorizontalOptions="Center" />
+        <IndicatorView
+            x:Name="indicator"
+            HorizontalOptions="Center"
+            IndicatorColor="LightGray"
+            SelectedIndicatorColor="{Binding ThemeSettingButton.PropertiesBgColor, Source={Static Member=general:Common.mCommon}}" />
 
     </VerticalStackLayout>
 

@@ -37,9 +37,10 @@
                     x:Name="StockName"
                     Grid.Row="1"
                     FontAttributes="Bold"
-                    FontSize="{Binding ThemeSettingCardView.PropertiesFontSize, Source={x:Static general:Common.mCommon}}"
+                    FontFamily="{Binding ThemeSettingCardViewHeader.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                    FontSize="{Binding ThemeSettingCardViewHeader.PropertiesFontSize, Source={x:Static general:Common.mCommon}}"
                     Text="{Binding Name, Source={RelativeSource AncestorType={x:Type local:FrmCardViewStyle1}}}"
-                    TextColor="{Binding ThemeSettingCardView.PropertiesFontColor, Source={x:Static general:Common.mCommon}}" />
+                    TextColor="{Binding ThemeSettingCardViewHeader.PropertiesFontColor, Source={x:Static general:Common.mCommon}}" />
 
                 <!--  Price + Buttons Row  -->
                 <Grid
@@ -52,6 +53,7 @@
                         x:Name="StockPrice"
                         Grid.Column="0"
                         FontAttributes="Bold"
+                        FontFamily="{Binding ThemeSettingCardView.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
                         FontSize="{Binding ThemeSettingCardView.PropertiesFontSize, Source={x:Static general:Common.mCommon}}"
                         Text="{Binding Price, Source={RelativeSource AncestorType={x:Type local:FrmCardViewStyle1}}}"
                         TextColor="{Binding ThemeSettingCardView.PropertiesFontColor, Source={x:Static general:Common.mCommon}}"
