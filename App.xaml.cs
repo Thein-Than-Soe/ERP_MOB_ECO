@@ -72,13 +72,43 @@ namespace CS.ERP_MOB
                 var basicNavContainer = new FreshNavigationContainer(page);
                 MainPage = basicNavContainer;
 
-                General.Common.mCommon.signInAuto();
+                //General.Common.mCommon.signInAuto();
+                MainPage.Loaded += MainPage_Loaded; //load builder and packages first
 
             }
             catch (Exception ex)
             {
                 //ex.InnerException.Message;
                 throw ex.InnerException;
+            }
+        }
+
+        private async void MainPage_Loaded(object sender, EventArgs e)
+        {
+            try
+            {
+                MainPage.Loaded -= MainPage_Loaded;
+                await General.Common.mCommon.signInAuto();
+                // Login + ThemeSetting + required API initialization completed
+                if (MainPage is NavigationPage navigationPage)
+                {
+                    if (navigationPage.CurrentPage?.BindingContext is MainPageModel model)
+                    {
+                        model.IsAppReady = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // If startup fails, allow the page to become visible
+                if (MainPage is NavigationPage navigationPage)
+                {
+                    if (navigationPage.CurrentPage?.BindingContext is MainPageModel model)
+                    {
+                        model.IsAppReady = true;
+                    }
+                }
+                System.Diagnostics.Debug.WriteLine($"Auto Sign In Error: {ex}");
             }
         }
 

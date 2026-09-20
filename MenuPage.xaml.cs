@@ -73,6 +73,7 @@ namespace CS.ERP_MOB
                         //Create new MenuGroup so we do not alter original list
                         ObservableProperty newGroup = new ObservableProperty();
                         newGroup.Text = l_RES_MENU.Text;
+                        newGroup.LogoImg = l_RES_MENU.LogoImg;
                         if (l_RES_MENU.Count > 0)
                         {
                             if (l_RES_MENU.Expanded)
@@ -129,6 +130,7 @@ namespace CS.ERP_MOB
                     l_RES_MENU.MenuUrl = mRES_MENU_PRO[selectedIndex].MenuUrl;
                     l_RES_MENU.button = mRES_MENU_PRO[selectedIndex].button;
                     l_RES_MENU.Text = mRES_MENU_PRO[selectedIndex].Text;
+                    l_RES_MENU.logoImg = mRES_MENU_PRO[selectedIndex].LogoImg;
 
                     if (l_RES_MENU != null)
                     {
@@ -159,6 +161,7 @@ namespace CS.ERP_MOB
                     l_RES_MENU.MenuUrl = selectedItem.MenuUrl;
                     l_RES_MENU.button = selectedItem.button;
                     l_RES_MENU.Text = selectedItem.Text;
+                    l_RES_MENU.logoImg = selectedItem.LogoImg;
                     if (!Common.bindMenu(l_RES_MENU.MenuUrl))
                     {
                         WeakReferenceMessenger.Default.Send("No access menu - " + l_RES_MENU.Text);
@@ -188,6 +191,7 @@ namespace CS.ERP_MOB
                     l_RES_MENU.MenuUrl = selectedItem.MenuUrl;
                     l_RES_MENU.button = selectedItem.button;
                     l_RES_MENU.Text = selectedItem.Text;
+                    l_RES_MENU.logoImg = selectedItem.LogoImg;
 
                     if (!Common.bindMenu(l_RES_MENU.MenuUrl))
                     {

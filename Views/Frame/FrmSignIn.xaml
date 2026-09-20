@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:ext="clr-namespace:CS.ERP_MOB.Extensions"
+    xmlns:general="clr-namespace:CS.ERP_MOB.General"
     Visual="Material">
     <ContentView.Content>
         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Center">
@@ -28,10 +29,14 @@
                         Text="Sign in" />
                     <Entry
                         x:Name="entUserName"
+                        FontFamily="{Binding ThemeSettingContent.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                        FontSize="{Binding ThemeSettingContent.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
                         Placeholder="Username"
                         TextChanged="entUserName_TextChanged" />
                     <Entry
                         x:Name="entPassword"
+                        FontFamily="{Binding ThemeSettingContent.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                        FontSize="{Binding ThemeSettingContent.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
                         IsPassword="True"
                         Placeholder="Password" />
                     <StackLayout Orientation="Horizontal" Spacing="10">
@@ -59,9 +64,11 @@
                             </Grid>
                         </StackLayout>
                         <Label
+                            FontFamily="{Binding ThemeSettingButton.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                            FontSize="{Binding ThemeSettingButton.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
                             HorizontalOptions="End"
                             Text="Forgot Password?"
-                            TextColor="{StaticResource OvaColor}"
+                            TextColor="{Binding ThemeSettingContent.ClickableLinkColor, Source={Static Member=general:Common.mCommon}}"
                             TextDecorations="Underline"
                             VerticalOptions="Center">
                             <Label.GestureRecognizers>
@@ -73,82 +80,50 @@
                         <StackLayout Orientation="Horizontal" Spacing="10">
                             <Button
                                 x:Name="btnSignUp"
-                                BackgroundColor="{StaticResource OvaBackgroundColor}"
+                                BackgroundColor="{Binding ThemeSettingButton.PropertiesBgColor, Source={Static Member=general:Common.mCommon}}"
                                 Clicked="btnSignUp_onClicked"
+                                FontFamily="{Binding ThemeSettingButton.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                                FontSize="{Binding ThemeSettingButton.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
                                 HorizontalOptions="FillAndExpand"
                                 Text="Sign up"
+                                TextColor="{Binding ThemeSettingButton.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}"
                                 TextTransform="None" />
                             <Button
                                 x:Name="btnSignIn"
-                                BackgroundColor="{StaticResource OvaBackgroundColor}"
+                                BackgroundColor="{Binding ThemeSettingButton.PropertiesBgColor, Source={Static Member=general:Common.mCommon}}"
                                 Clicked="btnSignIn_onClicked"
+                                FontFamily="{Binding ThemeSettingButton.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                                FontSize="{Binding ThemeSettingButton.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
                                 HorizontalOptions="FillAndExpand"
                                 Text="Sign in"
+                                TextColor="{Binding ThemeSettingButton.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}"
                                 TextTransform="None" />
                         </StackLayout>
                         <Button
                             x:Name="btnSignInFb"
-                            BackgroundColor="Blue"
+                            BackgroundColor="{Binding ThemeSettingButton.PropertiesBgColor, Source={Static Member=general:Common.mCommon}}"
                             Clicked="btnSignInFb_onClick"
+                            FontFamily="{Binding ThemeSettingButton.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                            FontSize="{Binding ThemeSettingButton.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
                             HorizontalOptions="FillAndExpand"
                             Text="Sign in with Facebook"
+                            TextColor="{Binding ThemeSettingButton.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}"
                             TextTransform="None" />
                         <Button
                             x:Name="btnSignInGoogle"
-                            BackgroundColor="Red"
+                            BackgroundColor="{Binding ThemeSettingButton.PropertiesBgColor, Source={Static Member=general:Common.mCommon}}"
                             Clicked="btnSignInGoogle_onClick"
+                            FontFamily="{Binding ThemeSettingButton.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                            FontSize="{Binding ThemeSettingButton.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
                             HorizontalOptions="FillAndExpand"
                             Text="Sign in with Google"
+                            TextColor="{Binding ThemeSettingButton.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}"
                             TextTransform="None" />
                     </StackLayout>
                 </StackLayout>
             </Frame>
 
             <!--  email verify page  -->
-            <!--<Frame
-                x:Name="EmailVerifyPage"
-                Padding="{StaticResource FramePaddingLeftRightTop}"
-                HorizontalOptions="FillAndExpand"
-                IsVisible="{Binding IsEmailVerifyPage}"
-                VerticalOptions="FillAndExpand">
-                <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                    <StackLayout
-                        HorizontalOptions="FillAndExpand"
-                        Orientation="Vertical"
-                        VerticalOptions="CenterAndExpand">
-                        <Label
-                            x:Name="lblPrefix"
-                            Text="{Binding Source={ext:LanguageExtension Key=frame.Register.lbl.ActivationCode}, Path=Value}"
-                            TextColor="{StaticResource OvaSignupTextColor}" />
-                        <StackLayout Orientation="Horizontal">
-                            <Entry x:Name="entVerifyCodeEmail" HorizontalOptions="FillAndExpand" />
-                            <Button
-                                x:Name="btnResend"
-                                BackgroundColor="{StaticResource OvaBackgroundColor}"
-                                Clicked="btnResend_onClicked"
-                                HorizontalOptions="FillAndExpand"
-                                Text="Resend"
-                                TextTransform="None" />
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal">
-                            <Button
-                                x:Name="btnBack"
-                                BackgroundColor="{StaticResource OvaBackgroundColor}"
-                                Clicked="btnBack_onClicked"
-                                HorizontalOptions="FillAndExpand"
-                                Text="Back"
-                                TextTransform="None" />
-                            <Button
-                                x:Name="btnOk"
-                                BackgroundColor="{StaticResource OvaBackgroundColor}"
-                                Clicked="btnVerifyEmail_onClicked"
-                                HorizontalOptions="FillAndExpand"
-                                Text="Verify"
-                                TextTransform="None" />
-                        </StackLayout>
-                    </StackLayout>
-                </ScrollView>
-            </Frame>-->
             <Frame
                 x:Name="EmailVerifyPage"
                 Margin="20"
@@ -190,44 +165,44 @@
                         TextColor="{StaticResource OvaSignupTextColor}" />
 
                     <!--  OTP Boxes  -->
-                    <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+                    <HorizontalStackLayout HorizontalOptions="Center" Spacing="5">
 
                         <Entry
                             x:Name="otp1"
                             HorizontalTextAlignment="Center"
                             Keyboard="Numeric"
                             MaxLength="1"
-                            WidthRequest="45" />
+                            WidthRequest="35" />
                         <Entry
                             x:Name="otp2"
                             HorizontalTextAlignment="Center"
                             Keyboard="Numeric"
                             MaxLength="1"
-                            WidthRequest="45" />
+                            WidthRequest="35" />
                         <Entry
                             x:Name="otp3"
                             HorizontalTextAlignment="Center"
                             Keyboard="Numeric"
                             MaxLength="1"
-                            WidthRequest="45" />
+                            WidthRequest="35" />
                         <Entry
                             x:Name="otp4"
                             HorizontalTextAlignment="Center"
                             Keyboard="Numeric"
                             MaxLength="1"
-                            WidthRequest="45" />
+                            WidthRequest="35" />
                         <Entry
                             x:Name="otp5"
                             HorizontalTextAlignment="Center"
                             Keyboard="Numeric"
                             MaxLength="1"
-                            WidthRequest="45" />
+                            WidthRequest="35" />
                         <Entry
                             x:Name="otp6"
                             HorizontalTextAlignment="Center"
                             Keyboard="Numeric"
                             MaxLength="1"
-                            WidthRequest="45" />
+                            WidthRequest="35" />
 
                     </HorizontalStackLayout>
 
@@ -274,50 +249,6 @@
             </Frame>
 
             <!--  phone verify page  -->
-            <!--<Frame
-                x:Name="PhoneVerifyPage"
-                Padding="{StaticResource FramePaddingLeftRightTop}"
-                HorizontalOptions="FillAndExpand"
-                IsVisible="{Binding IsPhoneVerifyPage}"
-                VerticalOptions="FillAndExpand">
-                <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                    <StackLayout
-                        HorizontalOptions="FillAndExpand"
-                        Orientation="Vertical"
-                        VerticalOptions="CenterAndExpand">
-                        <Label
-                            x:Name="lblPrefixPhone"
-                            Text="{Binding Source={ext:LanguageExtension Key=frame.Register.lbl.PhoneActivationCode}, Path=Value}"
-                            TextColor="{StaticResource OvaSignupTextColor}" />
-                        <StackLayout Orientation="Horizontal">
-                            <Entry x:Name="entVerifyCodePhone" HorizontalOptions="FillAndExpand" />
-                            <Button
-                                x:Name="btnResendPhone"
-                                BackgroundColor="{StaticResource OvaBackgroundColor}"
-                                Clicked="btnResend_onClicked"
-                                HorizontalOptions="FillAndExpand"
-                                Text="Resend"
-                                TextTransform="None" />
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal">
-                            <Button
-                                x:Name="btnBackPhone"
-                                BackgroundColor="{StaticResource OvaBackgroundColor}"
-                                Clicked="btnBack_onClicked"
-                                HorizontalOptions="FillAndExpand"
-                                Text="Back"
-                                TextTransform="None" />
-                            <Button
-                                x:Name="btnOkPhone"
-                                BackgroundColor="{StaticResource OvaBackgroundColor}"
-                                Clicked="btnVerifyPhone_onClicked"
-                                HorizontalOptions="FillAndExpand"
-                                Text="Verify"
-                                TextTransform="None" />
-                        </StackLayout>
-                    </StackLayout>
-                </ScrollView>
-            </Frame>-->
             <Frame
                 x:Name="PhoneVerifyPage"
                 Margin="20"

@@ -11,16 +11,19 @@
     xmlns:views="clr-namespace:CS.ERP_MOB.Views.Frame"
     NavigationPage.HasNavigationBar="False">
 
-    <ContentPage.Padding>
+    <!--<ContentPage.Padding>
         <OnPlatform x:TypeArguments="Thickness">
-            <On Platform="iOS" Value="0,0,0,0" />
-            <On Platform="Android" Value="0,0,0,0" />
+            <On Platform="iOS" Value="0,40,0,0" />
+            <On Platform="Android" Value="0,40,0,40" />
         </OnPlatform>
-    </ContentPage.Padding>
-    <ContentView>
-        <ContentView.GestureRecognizers>
+    </ContentPage.Padding>-->
+    <Grid
+        HorizontalOptions="Fill"
+        RowSpacing="0"
+        VerticalOptions="Fill">
+        <Grid.GestureRecognizers>
             <TapGestureRecognizer Tapped="Page_Tapped" />
-        </ContentView.GestureRecognizers>
+        </Grid.GestureRecognizers>
         <Grid RowSpacing="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50" />
@@ -32,7 +35,7 @@
                 Grid.Row="0"
                 Grid.Column="0"
                 Padding="{StaticResource padding}"
-                BackgroundColor="{Binding ThemeSettingBanner.PropertiesBgColor, Source={x:Static general:Common.mCommon}}"
+                BackgroundColor="{Binding ThemeSettingBanner.PropertiesBgColor, Source={Static Member=general:Common.mCommon}}"
                 VerticalOptions="FillAndExpand">
                 <Grid
                     x:Name="PublicTitleView"
@@ -49,7 +52,7 @@
                         FontFamily="{StaticResource FontAwesomeSolid}"
                         FontSize="{StaticResource HomeTitleFontSize}"
                         Text="&#xf0c9;"
-                        TextColor="White"
+                        TextColor="{Binding ThemeSettingBanner.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}"
                         VerticalOptions="Center">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding MenuCommand}" NumberOfTapsRequired="1" />
@@ -73,10 +76,11 @@
                     <Label
                         Grid.Row="0"
                         Grid.Column="1"
+                        FontFamily="{Binding ThemeSettingBanner.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
                         FontSize="{StaticResource HomeTitleFontSize}"
                         HorizontalOptions="StartAndExpand"
                         Text="{Binding Title}"
-                        TextColor="{StaticResource OvaFrontColor}"
+                        TextColor="{Binding ThemeSettingBanner.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}"
                         VerticalOptions="Center" />
                     <StackLayout
                         Grid.Row="0"
@@ -85,7 +89,6 @@
                         Orientation="Horizontal"
                         Spacing="10"
                         VerticalOptions="Center">
-                        <!--  Search Icon for guest  -->
                         <StackLayout
                             HorizontalOptions="StartAndExpand"
                             Orientation="Horizontal"
@@ -93,24 +96,9 @@
                             VerticalOptions="FillAndExpand">
                             <Label
                                 FontFamily="{StaticResource FontAwesomeSolid}"
-                                FontSize="{StaticResource HomeTitleFontSize}"
-                                Text="&#xf002;"
-                                TextColor="{StaticResource OvaFrontColor}"
-                                VerticalOptions="Center" />
-                            <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="TgrSearch_Tapped" />
-                            </StackLayout.GestureRecognizers>
-                        </StackLayout>
-                        <StackLayout
-                            HorizontalOptions="StartAndExpand"
-                            Orientation="Horizontal"
-                            Spacing="5"
-                            VerticalOptions="FillAndExpand">
-                            <Label
-                                FontFamily="{StaticResource FontAwesomeSolid}"
-                                FontSize="{StaticResource HomeTitleFontSize}"
+                                FontSize="20"
                                 Text="&#xf234;"
-                                TextColor="{StaticResource OvaFrontColor}"
+                                TextColor="{Binding ThemeSettingBanner.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}"
                                 VerticalOptions="Center" />
                             <!--<Label
                                 x:Name="SignUp"
@@ -128,9 +116,9 @@
                             VerticalOptions="FillAndExpand">
                             <Label
                                 FontFamily="{StaticResource FontAwesomeSolid}"
-                                FontSize="{StaticResource HomeTitleFontSize}"
+                                FontSize="20"
                                 Text="&#xf2f6;"
-                                TextColor="{StaticResource OvaFrontColor}"
+                                TextColor="{Binding ThemeSettingBanner.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}"
                                 VerticalOptions="Center" />
                             <!--<Label
                                 x:Name="SignIn"
@@ -159,7 +147,7 @@
                         FontFamily="{StaticResource FontAwesomeSolid}"
                         FontSize="{StaticResource HomeTitleFontSize}"
                         Text="&#xf0c9;"
-                        TextColor="White"
+                        TextColor="{Binding ThemeSettingBanner.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}"
                         VerticalOptions="Center">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding MenuCommand}" NumberOfTapsRequired="1" />
@@ -185,7 +173,7 @@
                         FontSize="{StaticResource HomeTitleFontSize}"
                         HorizontalOptions="StartAndExpand"
                         Text="{Binding Title}"
-                        TextColor="{StaticResource OvaFrontColor}"
+                        TextColor="{Binding ThemeSettingBanner.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}"
                         VerticalOptions="Center" />
                     <StackLayout
                         Grid.Row="0"
@@ -205,7 +193,7 @@
                                 FontSize="{StaticResource HomeTitleFontSize}"
                                 HorizontalOptions="Center"
                                 Text="&#xf002;"
-                                TextColor="{StaticResource OvaFrontColor}"
+                                TextColor="{Binding ThemeSettingBanner.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}"
                                 VerticalOptions="Center" />
                         </Frame>
                         <!--  AI  -->
@@ -219,7 +207,7 @@
                                 FontSize="{StaticResource HomeTitleFontSize}"
                                 HorizontalOptions="Center"
                                 Text="&#xf544;"
-                                TextColor="{StaticResource OvaFrontColor}"
+                                TextColor="{Binding ThemeSettingBanner.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}"
                                 VerticalOptions="Center" />
                         </Frame>
                         <!--  Order  -->
@@ -234,11 +222,7 @@
                                 HorizontalOptions="Center"
                                 Text="&#xf49e;"
                                 TextColor="{StaticResource OvaFrontColor}"
-                                VerticalOptions="Center">
-                                <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="TgrMyOrder_Tapped" />
-                                </Label.GestureRecognizers>
-                            </Label>
+                                VerticalOptions="Center" />
                         </Frame>
                         <!--  Shopping Cart  -->
                         <Frame
@@ -252,11 +236,7 @@
                                 HorizontalOptions="Center"
                                 Text="&#xf217;"
                                 TextColor="{StaticResource OvaFrontColor}"
-                                VerticalOptions="Center">
-                                <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="TgrShoppingCart_Tapped" />
-                                </Label.GestureRecognizers>
-                            </Label>
+                                VerticalOptions="Center" />
                         </Frame>
                         <!--  Wishlist  -->
                         <Frame
@@ -270,11 +250,7 @@
                                 HorizontalOptions="Center"
                                 Text="&#xf004;"
                                 TextColor="{StaticResource OvaFrontColor}"
-                                VerticalOptions="Center">
-                                <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="TgrWishlist_Tapped" />
-                                </Label.GestureRecognizers>
-                            </Label>
+                                VerticalOptions="Center" />
                         </Frame>
                         <StackLayout IsVisible="{Binding RegionSettingBannerProfile.RegionVisibilityAsk, Converter={StaticResource StringToBoolConverter}, Source={x:Static general:Common.mCommon}}" VerticalOptions="Center">
                             <Frame Padding="0" CornerRadius="40">
@@ -326,7 +302,7 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="auto" />
-                                <ColumnDefinition Width="auto" />
+                                <!--<ColumnDefinition Width="auto" />-->
                             </Grid.ColumnDefinitions>
                             <Frame
                                 Grid.Row="0"
@@ -342,7 +318,7 @@
                                     TextColor="{Binding ThemeSettingAlert.PropertiesFontColor, Source={x:Static general:Common.mCommon}}"
                                     VerticalOptions="CenterAndExpand" />
                             </Frame>
-                            <Button
+                            <!--<Button
                                 Grid.Row="0"
                                 Grid.Column="1"
                                 BackgroundColor="Transparent"
@@ -350,10 +326,10 @@
                                 HorizontalOptions="End"
                                 Text="{Binding Source={ext:LanguageExtension Key=frame.Banner.btnName.RaiseTicket}, Path=Value}"
                                 TextColor="{Binding ThemeSettingAlert.PropertiesFontColor, Source={x:Static general:Common.mCommon}}"
-                                VerticalOptions="Center" />
+                                VerticalOptions="Center" />-->
                             <Label
                                 Grid.Row="0"
-                                Grid.Column="2"
+                                Grid.Column="1"
                                 FontFamily="{StaticResource Key=FontAwesomeSolid}"
                                 HorizontalOptions="End"
                                 HorizontalTextAlignment="Center"
@@ -582,15 +558,15 @@
             <tabbar:TabBarPub
                 Grid.Row="2"
                 Grid.Column="0"
-                BackgroundColor="{Binding UserSetting.ActionBarBgColor, Source={x:Static general:Common.mCommon}}"
+                BackgroundColor="{Binding ThemeSettingTaskbar.PropertiesBgColor, Source={Static Member=general:Common.mCommon}}"
                 IsVisible="{Binding UserLoggedOut, Source={x:Static general:Common.mCommon}}" />
             <tabbar:TabBar
                 Grid.Row="2"
                 Grid.Column="0"
-                BackgroundColor="{Binding UserSetting.ActionBarBgColor, Source={x:Static general:Common.mCommon}}"
+                BackgroundColor="{Binding ThemeSettingTaskbar.PropertiesBgColor, Source={Static Member=general:Common.mCommon}}"
                 IsVisible="{Binding UserLoggedIn, Source={x:Static general:Common.mCommon}}" />
 
         </Grid>
-    </ContentView>
+    </Grid>
 
 </ContentPage>

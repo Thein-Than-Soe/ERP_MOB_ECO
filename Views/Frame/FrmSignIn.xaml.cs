@@ -382,13 +382,13 @@ namespace CS.ERP_MOB.Views.Frame
                 throw ex.InnerException;
             }
         }
-        private void btnSignIn_onClicked(object sender, EventArgs e)
+        private async void btnSignIn_onClicked(object sender, EventArgs e)
         {
             try
             {
                 if (bindAuthorization())
                 {
-                    Common.mCommon.signIn(mREQ_AUTHORIZATION);
+                    await Common.mCommon.signIn(mREQ_AUTHORIZATION);
                     //if (chbRememberPassword.IsChecked && Common.mCommon.UserLoggedIn)
                     //{
                     //    Common.saveDbUser();

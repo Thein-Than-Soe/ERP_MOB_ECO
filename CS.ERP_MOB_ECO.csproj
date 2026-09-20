@@ -26,9 +26,11 @@
 		<!-- App Identifier -->
 		<ApplicationId>com.ovaerp.cs.erp_mob_eco</ApplicationId>
 		<!-- Versions -->
-		<ApplicationDisplayVersion>1.0.0</ApplicationDisplayVersion>
-		<ApplicationVersion>2</ApplicationVersion>
-
+		<Version>1.0.4</Version>
+		<PackageVersion>1.0.4</PackageVersion>
+		<ApplicationDisplayVersion>1.0.4</ApplicationDisplayVersion>
+		<ApplicationVersion>4</ApplicationVersion>
+		
 		<!-- To develop, package, and publish an app to the Microsoft Store, see: http://aka.ms/MauiTemplateUnpackaged -->
 		<WindowsPackageType>None</WindowsPackageType>
 

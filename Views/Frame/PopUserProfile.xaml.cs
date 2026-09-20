@@ -225,7 +225,7 @@ namespace CS.ERP_MOB.Views.Frame
 
         
 
-        private void TgrOtherUser_Tapped(object sender, EventArgs e)
+        private async void TgrOtherUser_Tapped(object sender, EventArgs e)
         {
             try
             {
@@ -234,7 +234,7 @@ namespace CS.ERP_MOB.Views.Frame
                 Common.mCommon.REQ_AUTHORIZATION.UserID= mDbUser[index].UserID;
                 Common.mCommon.REQ_AUTHORIZATION.UserPassword = mDbUser[index].UserPassword;
                 Common.mCommon.REQ_AUTHORIZATION.TransactionName = "1";
-                Common.mCommon.signIn(Common.mCommon.REQ_AUTHORIZATION);
+                await Common.mCommon.signIn(Common.mCommon.REQ_AUTHORIZATION);
             }
             catch (Exception ex)
             {

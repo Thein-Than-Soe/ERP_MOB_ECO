@@ -20,6 +20,7 @@
             <!--  Tab Items  -->
             <Grid
                 Grid.Row="0"
+                BackgroundColor="{StaticResource OvaColor}"
                 HorizontalOptions="FillAndExpand"
                 VerticalOptions="FillAndExpand">
                 <Grid.ColumnDefinitions>

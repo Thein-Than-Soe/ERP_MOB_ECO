@@ -101,6 +101,20 @@ namespace CS.ERP_MOB
         #endregion
 
         #region Public Properties
+        private bool mIsAppReady = false;
+
+        public bool IsAppReady
+        {
+            get => mIsAppReady;
+            set
+            {
+                if (mIsAppReady == value)
+                    return;
+
+                mIsAppReady = value;
+                RaisePropertyChanged(nameof(IsAppReady));
+            }
+        }
         public ContentView CvWorkingArea
         {
             get { return mContentView; }

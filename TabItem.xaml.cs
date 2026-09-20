@@ -13,7 +13,7 @@ namespace CS.ERP_MOB
         // Retrieve the colours so that we're only doing this once, not when the item is selected/unselected
         private static Color SelectedItemBackgroundColor = (Color)Application.Current.Resources["ToolbarItemSelectedBackground"];
         //private static Color SelectedItemBackgroundColor = (Color)Common.mCommon.ThemeSettingTaskbar.HighlightColor;
-        private static Color UnselecteItemBackgroundcolor = (Color)Application.Current.Resources["ToolbarItemUnselectedBackground"];
+        private static Color UnselecteItemBackgroundcolor => Color.FromArgb(Common.mCommon.ThemeSettingTaskbar.PropertiesBgColor);
 
         public TabItem()
         {

@@ -15,10 +15,10 @@ namespace CS.ERP_MOB.Services.POS
                                             {
                                                 Ask = 1,
                                                 ProductCode = "POS",
-                                                UploadURL = "http://upddevsrv.kumudr.com",
-                                                APIURL = "http://posdevapi.kumudr.com/Service.svc",
+                                                UploadURL = "http://updqasrv.kumudr.com",
+                                                APIURL = "http://posqaapi.kumudr.com/Service.svc",
                                                 APIProtocol = "http://",
-                                                APIServer = "posdevapi.kumudr.com/",
+                                                APIServer = "posqaapi.kumudr.com/",
                                                 APIPort = "",
                                                 APIServiceName = "Service.svc/",
                                                 ApiContentType = "application/json",

@@ -1,27 +1,28 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <rg:PopupPage
-    xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
-    xmlns:rg="clr-namespace:RGPopup.Maui.Pages;assembly=RGPopup.Maui"
-    xmlns:animation="clr-namespace:RGPopup.Maui.Animations;assembly=RGPopup.Maui"
+    x:Class="CS.ERP_MOB.MenuPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class ="CS.ERP_MOB.MenuPage"
+    xmlns:animation="clr-namespace:RGPopup.Maui.Animations;assembly=RGPopup.Maui"
+    xmlns:general="clr-namespace:CS.ERP_MOB.General"
+    xmlns:rg="clr-namespace:RGPopup.Maui.Pages;assembly=RGPopup.Maui"
+    CloseWhenBackgroundIsClicked="true"
     HasSystemPadding="true"
-    SystemPaddingSides ="All"
-    CloseWhenBackgroundIsClicked="true">
+    SystemPaddingSides="All">
     <rg:PopupPage.Animation>
         <animation:MoveAnimation
-            PositionIn ="Left"
-            PositionOut="Left"
-            DurationIn ="400"
-            DurationOut ="300"
+            DurationIn="400"
+            DurationOut="300"
             EasingIn="SinOut"
-            EasingOut ="SinIn"
-            HasBackgroundAnimation="true" />
+            EasingOut="SinIn"
+            HasBackgroundAnimation="true"
+            PositionIn="Left"
+            PositionOut="Left" />
     </rg:PopupPage.Animation>
     <Grid
+        ColumnSpacing="0"
         HorizontalOptions="StartAndExpand"
-        VerticalOptions ="FillAndExpand"
-        ColumnSpacing  ="0">
+        VerticalOptions="FillAndExpand">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
@@ -30,40 +31,40 @@
             <ColumnDefinition Width="280" />
         </Grid.ColumnDefinitions>
         <AbsoluteLayout
-            BackgroundColor="White"
             Grid.Row="0"
-            Grid.Column ="1"
+            Grid.Column="1"
+            BackgroundColor="White"
             VerticalOptions="Fill">
-            <!--Header Info-->
-            <StackLayout 
-                HorizontalOptions="Fill"
-                VerticalOptions="Start"
+            <!--  Header Info  -->
+            <StackLayout
                 AbsoluteLayout.LayoutBounds="0,0,1,0.1"
-                AbsoluteLayout.LayoutFlags="All">
-                <Frame 
-                    Padding="{StaticResource padding}">
+                AbsoluteLayout.LayoutFlags="All"
+                HorizontalOptions="Fill"
+                VerticalOptions="Start">
+                <Frame Padding="{StaticResource padding}">
                     <StackLayout>
                         <StackLayout Orientation="Horizontal">
-                            <Image Source="{Binding SelectedProduct.logoImg}" 
-                            WidthRequest="40"
-                            HeightRequest="40"
-                            HorizontalOptions="Start"
-                            VerticalOptions="Center" />
+                            <Image
+                                HeightRequest="40"
+                                HorizontalOptions="Start"
+                                Source="{Binding SelectedProduct.logoImg}"
+                                VerticalOptions="Center"
+                                WidthRequest="40" />
                             <Label
-                            Text="{Binding SelectedProduct.ProductCode_0_50}"
-                            LineBreakMode="TailTruncation"
-                            HorizontalOptions="StartAndExpand"
-                            FontSize="Medium"
-                            FontAttributes="Bold"
-                            VerticalOptions="Center"
-                            TextColor="#333333"
-                            Margin="5, 0, 0, 0"/>
+                                Margin="5,0,0,0"
+                                FontAttributes="Bold"
+                                FontSize="Medium"
+                                HorizontalOptions="StartAndExpand"
+                                LineBreakMode="TailTruncation"
+                                Text="{Binding SelectedProduct.ProductCode_0_50}"
+                                TextColor="#333333"
+                                VerticalOptions="Center" />
                             <Label
-                            Text="{Binding DropDownIcon}"
-                            FontFamily="{StaticResource FontAwesomeSolid}"
-                            FontSize="20"
-                            HorizontalOptions="End"
-                            VerticalOptions="Center" />
+                                FontFamily="{StaticResource FontAwesomeSolid}"
+                                FontSize="20"
+                                HorizontalOptions="End"
+                                Text="{Binding DropDownIcon}"
+                                VerticalOptions="Center" />
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding ToggleDropdownCommand}" />
                             </StackLayout.GestureRecognizers>
@@ -72,41 +73,41 @@
                 </Frame>
             </StackLayout>
 
-            <!--Content Info-->
-            <StackLayout 
-                HorizontalOptions="Fill"
-                VerticalOptions="Start"
-                Margin="0, 50, 0, 30"
-                Padding="0, 0, 0, 30"
+            <!--  Content Info  -->
+            <StackLayout
+                Margin="0,50,0,30"
+                Padding="0,0,0,30"
                 AbsoluteLayout.LayoutBounds="0,0,1,1"
-                AbsoluteLayout.LayoutFlags="All">
-                <ListView  
+                AbsoluteLayout.LayoutFlags="All"
+                HorizontalOptions="Fill"
+                VerticalOptions="Start">
+                <ListView
                     x:Name="MenuListView"
+                    Margin="{StaticResource margin}"
                     GroupDisplayBinding="{Binding Text}"
-                    RowHeight="35"
                     IsGroupingEnabled="true"
                     ItemSelected="MenuList_ItemSelected"
-                    Margin="{StaticResource margin}">
+                    RowHeight="35">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
                                 <StackLayout
-                                    Orientation="Horizontal"
-                                    VerticalOptions="CenterAndExpand"
+                                    Padding="{StaticResource paddingMenuGroupCell}"
                                     HorizontalOptions="FillAndExpand"
-                                    Padding="{StaticResource paddingMenuGroupCell}">
+                                    Orientation="Horizontal"
+                                    VerticalOptions="CenterAndExpand">
                                     <Label
-                                        Text="&#xf07a;"
+                                        Margin="0,0,10,0"
                                         FontFamily="{StaticResource FontAwesomeSolid}"
-                                        VerticalOptions="Center"
                                         HorizontalOptions="Center"
-                                        Margin="0,0,10,0"/>
+                                        Text="&#xf07a;"
+                                        VerticalOptions="Center" />
                                     <Label
+                                        HorizontalOptions="StartAndExpand"
                                         Text="{Binding Text}"
-                                        VerticalOptions="CenterAndExpand"
-                                        HorizontalOptions="StartAndExpand"/>
+                                        VerticalOptions="CenterAndExpand" />
                                     <StackLayout.GestureRecognizers>
-                                        <TapGestureRecognizer  Tapped="MenuTapped"  NumberOfTapsRequired="1"/>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="MenuTapped" />
                                     </StackLayout.GestureRecognizers>
                                 </StackLayout>
                             </ViewCell>
@@ -115,39 +116,41 @@
                     <ListView.GroupHeaderTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <StackLayout 
-                                        Orientation="Horizontal"  
-                                        BackgroundColor="{StaticResource OvaListViewBackgroundColor}"
-                                        Padding="{StaticResource paddingMenuGroupHeader}"
-                                        HorizontalOptions="FillAndExpand"
-                                        VerticalOptions="FillAndExpand">
+                                <StackLayout
+                                    Padding="{StaticResource paddingMenuGroupHeader}"
+                                    BackgroundColor="{Binding ThemeSettingMenu.PropertiesBgColor, Source={Static Member=general:Common.mCommon}}"
+                                    HorizontalOptions="FillAndExpand"
+                                    Orientation="Horizontal"
+                                    VerticalOptions="FillAndExpand">
                                     <StackLayout
-                                            Orientation="Horizontal"
-                                            HorizontalOptions="StartAndExpand"
-                                            VerticalOptions="CenterAndExpand"
-                                            Margin="0,0,5,0">
+                                        Margin="0,0,5,0"
+                                        HorizontalOptions="StartAndExpand"
+                                        Orientation="Horizontal"
+                                        Spacing="10"
+                                        VerticalOptions="CenterAndExpand">
                                         <Label
-                                            Text="&#xf07a;"
                                             FontFamily="{StaticResource FontAwesomeSolid}"
-                                            VerticalOptions="Center" 
-                                            TextColor="{StaticResource OvaListViewTextColor}"
-                                            Margin="0,0,2,0"/>
-                                        <Label
-                                            Text="{Binding Text}"
-                                            FontSize="15"
+                                            HorizontalOptions="Center"
+                                            Text="{Binding LogoImg, Converter={StaticResource IconConverter}}"
+                                            TextColor="{Binding ThemeSettingMenu.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}"
                                             VerticalOptions="Center"
-                                            TextColor="{StaticResource OvaListViewTextColor}"/>
+                                            WidthRequest="25" />
+                                        <Label
+                                            FontSize="{Binding ThemeSettingMenu.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
+                                            Text="{Binding Text}"
+                                            TextColor="{Binding ThemeSettingMenu.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}"
+                                            VerticalOptions="Center" />
                                     </StackLayout>
                                     <Label
-                                            Text="{Binding StateIcon}"
-                                            FontFamily="{StaticResource FontAwesomeSolid}"
-                                            FontSize="30"
-                                            VerticalOptions="Center"
-                                            HorizontalOptions="End"
-                                            Padding="0,0,5,0"
-                                            TextColor="{StaticResource OvaListViewStateIconColor}"/>
+                                        Padding="0,0,5,0"
+                                        FontFamily="{StaticResource FontAwesomeSolid}"
+                                        FontSize="30"
+                                        HorizontalOptions="End"
+                                        Text="{Binding StateIcon, Converter={StaticResource IconConverter}}"
+                                        TextColor="{Binding ThemeSettingMenu.PropertiesBgColor, Source={Static Member=general:Common.mCommon}}"
+                                        VerticalOptions="Center" />
                                     <StackLayout.GestureRecognizers>
-                                        <TapGestureRecognizer   Tapped="TgrMenuHeader_onTapped"   NumberOfTapsRequired="1"/>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TgrMenuHeader_onTapped" />
                                     </StackLayout.GestureRecognizers>
                                 </StackLayout>
                             </ViewCell>
@@ -156,67 +159,66 @@
                 </ListView>
             </StackLayout>
 
-            <!-- Dropdown Content (Overlay) -->
+            <!--  Dropdown Content (Overlay)  -->
             <StackLayout
-            x:Name="DropdownContent"
-            IsVisible="{Binding ProductDropdownVisible}"
-            AbsoluteLayout.LayoutBounds="0,0,1,0.8"
-            AbsoluteLayout.LayoutFlags="All"
-            Padding="0"
-            Margin="10, 52, 10, 0">
+                x:Name="DropdownContent"
+                Margin="10,52,10,0"
+                Padding="0"
+                AbsoluteLayout.LayoutBounds="0,0,1,0.8"
+                AbsoluteLayout.LayoutFlags="All"
+                IsVisible="{Binding ProductDropdownVisible}">
                 <Frame
-                CornerRadius="5"
-                BackgroundColor="White"
-                Margin="0"
-                Padding="5"
-                HasShadow="True">
-                    <ScrollView
-                        HeightRequest="350">
+                    Margin="0"
+                    Padding="5"
+                    BackgroundColor="White"
+                    CornerRadius="5"
+                    HasShadow="True">
+                    <ScrollView HeightRequest="350">
                         <StackLayout>
                             <ListView
-                            x:Name="ProductList"
-                            ItemsSource="{Binding ProductList}"
-                            ItemSelected="lstProduct_ItemSelected"
-                            RowHeight="70"
-                            SeparatorColor="#E0E0E0"
-                            Margin="0">
+                                x:Name="ProductList"
+                                Margin="0"
+                                ItemSelected="lstProduct_ItemSelected"
+                                ItemsSource="{Binding ProductList}"
+                                RowHeight="70"
+                                SeparatorColor="#E0E0E0">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <ViewCell>
                                             <Frame
-                                            CornerRadius="8"
-                                            Margin="0"
-                                            Padding="0"
-                                            BackgroundColor="#F9F9F9"
-                                            HasShadow="False">
-                                                <StackLayout
-                                                Orientation="Horizontal"
-                                                VerticalOptions="Center"
                                                 Margin="0"
-                                                Padding="0">
+                                                Padding="0"
+                                                BackgroundColor="#F9F9F9"
+                                                CornerRadius="8"
+                                                HasShadow="False">
+                                                <StackLayout
+                                                    Margin="0"
+                                                    Padding="0"
+                                                    Orientation="Horizontal"
+                                                    VerticalOptions="Center">
                                                     <Image
-                                                    Source="{Binding logoImg}"
-                                                    WidthRequest="50"
-                                                    HeightRequest="50"
-                                                    HorizontalOptions="Start"
-                                                    VerticalOptions="Center"
-                                                    Margin="0" />
+                                                        Margin="0"
+                                                        HeightRequest="50"
+                                                        HorizontalOptions="Start"
+                                                        Source="{Binding logoImg}"
+                                                        VerticalOptions="Center"
+                                                        WidthRequest="50" />
                                                     <StackLayout
-                                                    Orientation="Vertical"
-                                                    VerticalOptions="Center"
-                                                    Margin="5, 0, 0, 0"
-                                                    Spacing="5">
+                                                        Margin="5,0,0,0"
+                                                        Orientation="Vertical"
+                                                        Spacing="5"
+                                                        VerticalOptions="Center">
                                                         <Label
-                                                    Text="{Binding ProductCode_0_50}"
-                                                    FontAttributes="Bold"
-                                                    FontSize="Medium"
-                                                    HorizontalOptions="StartAndExpand"
-                                                    TextColor="#333333" />
+                                                            FontAttributes="Bold"
+                                                            FontSize="Medium"
+                                                            HorizontalOptions="StartAndExpand"
+                                                            Text="{Binding ProductCode_0_50}"
+                                                            TextColor="#333333" />
                                                         <Label
-                                                    Text="{Binding ProductName_0_255}"
-                                                    FontSize="Small"
-                                                    HorizontalOptions="StartAndExpand"
-                                                    TextColor="#666666" />
+                                                            FontSize="Small"
+                                                            HorizontalOptions="StartAndExpand"
+                                                            Text="{Binding ProductName_0_255}"
+                                                            TextColor="#666666" />
                                                     </StackLayout>
                                                 </StackLayout>
                                             </Frame>
@@ -230,80 +232,77 @@
             </StackLayout>
 
 
-            <!--Footer Info-->
+            <!--  Footer Info  -->
             <StackLayout
-                HeightRequest="30"
-                BackgroundColor="Gray"
-                VerticalOptions="End"
                 AbsoluteLayout.LayoutBounds="0,1,1,0.1"
-                AbsoluteLayout.LayoutFlags="All">
+                AbsoluteLayout.LayoutFlags="All"
+                BackgroundColor="Gray"
+                HeightRequest="30"
+                VerticalOptions="End">
                 <Grid
+                    ColumnSpacing="0"
                     HorizontalOptions="FillAndExpand"
-                    VerticalOptions  ="FillAndExpand"
-                    ColumnSpacing ="0">
+                    VerticalOptions="FillAndExpand">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition  Width="*" />
+                        <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <StackLayout 
+                    <StackLayout
                         Grid.Row="0"
                         Grid.Column="0"
                         HorizontalOptions="FillAndExpand"
                         VerticalOptions="Center">
                         <Label
+                            FontFamily="{StaticResource FontAwesomeBrands}"
                             HorizontalOptions="Center"
                             Text="&#xf39e;"
-                            FontFamily="{StaticResource FontAwesomeBrands}"
                             VerticalOptions="Center">
                             <Label.GestureRecognizers>
-                                <TapGestureRecognizer 
-                                    Tapped="FacebookTapped"  NumberOfTapsRequired="1"  />
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="FacebookTapped" />
                             </Label.GestureRecognizers>
                         </Label>
                         <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer 
-                                    Tapped="FacebookTapped"
-                                    NumberOfTapsRequired="1"  />
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="FacebookTapped" />
                         </StackLayout.GestureRecognizers>
                     </StackLayout>
-                    <StackLayout 
+                    <StackLayout
                         Grid.Row="0"
                         Grid.Column="1"
                         HorizontalOptions="FillAndExpand"
                         VerticalOptions="Center">
                         <Label
+                            FontFamily="{StaticResource FontAwesomeBrands}"
                             HorizontalOptions="Center"
                             Text="&#xf099;"
-                            FontFamily="{StaticResource FontAwesomeBrands}"
                             VerticalOptions="Center">
                             <Label.GestureRecognizers>
-                                <TapGestureRecognizer  Tapped="TwitterTapped" NumberOfTapsRequired="1"  />
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TwitterTapped" />
                             </Label.GestureRecognizers>
                         </Label>
                         <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer  Tapped="TwitterTapped"  NumberOfTapsRequired="1"  />
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TwitterTapped" />
                         </StackLayout.GestureRecognizers>
                     </StackLayout>
-                    <StackLayout 
+                    <StackLayout
                         Grid.Row="0"
                         Grid.Column="2"
                         HorizontalOptions="FillAndExpand"
                         VerticalOptions="Center">
                         <Label
+                            FontFamily="{StaticResource FontAwesomeBrands}"
                             HorizontalOptions="Center"
                             Text="&#xf167;"
-                            FontFamily="{StaticResource FontAwesomeBrands}"
                             VerticalOptions="Center">
                             <Label.GestureRecognizers>
-                                <TapGestureRecognizer  Tapped="YoutubeTapped"  NumberOfTapsRequired="1"  />
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="YoutubeTapped" />
                             </Label.GestureRecognizers>
                         </Label>
                         <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer  Tapped="YoutubeTapped" NumberOfTapsRequired="1"  />
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="YoutubeTapped" />
                         </StackLayout.GestureRecognizers>
                     </StackLayout>
                 </Grid>

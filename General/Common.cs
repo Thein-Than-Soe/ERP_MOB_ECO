@@ -1237,6 +1237,7 @@ namespace CS.ERP_MOB.General
                             l_ObservableProperty.MenuUrl = menu.MenuUrl;
                             l_ObservableProperty.button = menu.button;
                             l_ObservableProperty.StateIcon = "";
+                            l_ObservableProperty.LogoImg = menu.logoImg;
                         }
                         l_ObservableProperty.Text = menu.Text;
                         mMenuList.Add(l_ObservableProperty);
@@ -1276,7 +1277,7 @@ namespace CS.ERP_MOB.General
         #endregion
 
         #region "Public Method"
-        public async void signInAuto()
+        public async Task signInAuto()
         {
             try
             {
@@ -1402,7 +1403,7 @@ namespace CS.ERP_MOB.General
                 mCommon.REQ_AUTHORIZATION.UserID = l_DbUser.UserID;
                 mCommon.REQ_AUTHORIZATION.UserPassword = l_DbUser.UserPassword;
                 mCommon.REQ_AUTHORIZATION.TransactionName = "1";
-                mCommon.signIn(mCommon.REQ_AUTHORIZATION);
+                await mCommon.signIn(mCommon.REQ_AUTHORIZATION);
             }
             catch (Exception ex)
             {
@@ -1449,7 +1450,7 @@ namespace CS.ERP_MOB.General
                 mCommon.REQ_AUTHORIZATION.UserID = l_DbUser.UserID;
                 mCommon.REQ_AUTHORIZATION.UserPassword = l_DbUser.UserPassword;
                 mCommon.REQ_AUTHORIZATION.TransactionName = "1";
-                mCommon.signIn(mCommon.REQ_AUTHORIZATION);
+                await mCommon.signIn(mCommon.REQ_AUTHORIZATION);
             }
             catch (Exception ex)
             {
@@ -1572,6 +1573,8 @@ namespace CS.ERP_MOB.General
                     {
                         this.UserLoggedIn = false;
                         this.UserLoggedOut = true;
+                        bindThemeSetting();
+
                         mCommon.SelectedMenu = new RES_MENU { ProductAsk = "1", Text = "Sign In", MenuUrl = "signin", logoImg = "" };
                         Common.routeMenu(Common.mCommon.SelectedMenu);
                         WeakReferenceMessenger.Default.Send(mCommon.JSN_RES_ECOMANCE?.Message?.Message);

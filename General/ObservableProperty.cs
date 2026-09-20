@@ -38,7 +38,17 @@ namespace CS.ERP_MOB.General
                 OnPropertyChanged("StateIcon");
             }
         }
-
+        private string _logoImg;
+        public string LogoImg
+        {
+            //get { return Expanded ? "\uf063" : "\uf061"; }
+            get { return _logoImg; }
+            set
+            {
+                _logoImg = value;
+                OnPropertyChanged("LogoImg");
+            }
+        }
         private string _MenuUrl;
         public string MenuUrl
         {
@@ -65,6 +75,7 @@ namespace CS.ERP_MOB.General
         public ObservableProperty()
         {
             Text = "";
+            LogoImg = "";
             Expanded = false;
             //right arrow state icon
             StateIcon = "\uf105";

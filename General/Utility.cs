@@ -1,16 +1,17 @@
-﻿using System;
-using System.Globalization;
-using System.IO;
-using System.Threading.Tasks;
+﻿using CS.ERP.PL.POS.DAT;
+using CS.ERP.PL.SYS.DAT;
 using CS.ERP_MOB.Views.Frame;
-using Newtonsoft.Json;
 //using Plugin.Connectivity;
 //using Rg.Plugins.Popup.Services;
 using Microsoft.Maui.Networking;
-using RGPopup.Maui.Services;
+using Newtonsoft.Json;
 using RGPopup.Maui;
+using RGPopup.Maui.Services;
+using System;
 using System.Diagnostics;
-using CS.ERP.PL.POS.DAT;
+using System.Globalization;
+using System.IO;
+using System.Threading.Tasks;
 namespace CS.ERP_MOB.General
 {
     public class Utility
@@ -29,7 +30,8 @@ namespace CS.ERP_MOB.General
         {
             Card,
             List,
-            Grid
+            Grid,
+            Schedule
         }
         public enum SignInState
         {
@@ -58,12 +60,13 @@ namespace CS.ERP_MOB.General
             }
             catch (Exception ex)
             {
-                //throw ex.InnerException;
+                throw;
             }
 
         }
         public static async void closeLoader()
         {
+            // Existing code that actually hides loader
             try
             {
                 await PopupNavigation.Instance.PopAsync();
@@ -142,8 +145,10 @@ namespace CS.ERP_MOB.General
                 }
                 else
                 {
-                    //return getStartPeriod(Common.mCommon.UserSetting.TLPeriodTypeAsk, (int)double.Parse(Common.mCommon.UserSetting.TLDiplayPeriod));
-                    return getStartPeriod("4", 6);
+                    //int displayPeriod = (int)double.Parse(Common.mCommon.UserSetting.TLDiplayPeriod, CultureInfo.InvariantCulture);
+                    //return getStartPeriod(Common.mCommon.UserSetting.TLPeriodTypeAsk, displayPeriod);
+                    return getStartPeriod(Common.mCommon.UserSetting.TLPeriodTypeAsk, (int)double.Parse(Common.mCommon.UserSetting.TLDiplayPeriod));
+                    //return getStartPeriod("4", 6);
                 }
             }
             catch (Exception ex)
@@ -164,7 +169,8 @@ namespace CS.ERP_MOB.General
                 }
                 else
                 {
-                    return DateTime.UtcNow.ToString("o");
+                    //return DateTime.UtcNow.ToString("o");
+                    return DateTime.UtcNow.ToString("yyyy-MM-dd'T'HH:mm:ss.fff'Z'");
                 }
             }
             catch (Exception ex)
@@ -196,7 +202,8 @@ namespace CS.ERP_MOB.General
                     break;
             }
 
-            return date.ToString("o"); // ISO 8601 format (e.g., 2025-07-10T11:35:00.0000000Z)
+            //return date.ToString("o"); // ISO 8601 format (e.g., 2025-07-10T11:35:00.0000000Z)
+            return date.ToString("yyyy-MM-dd'T'HH:mm:ss.fff'Z'");
         }
 
         public static string getDateTimeString(string argUTCDate)
@@ -218,22 +225,442 @@ namespace CS.ERP_MOB.General
             }
         }
 
+        //public static DateTime getDateTime(string argUTCDate)
+        //{
+        //    try
+        //    {
+        //        if (argUTCDate != null && argUTCDate != "")
+        //        {
+        //            return DateTime.ParseExact(DateTime.Parse(argUTCDate).ToLocalTime().ToString(), Common.mCommon.UserSetting.DateTimeFormatName_0_255, CultureInfo.InvariantCulture);
+        //        }
+        //        else
+        //        {
+        //            return DateTime.ParseExact((DateTime.Now).ToString(), Common.mCommon.UserSetting.DateTimeFormatName_0_255, CultureInfo.InvariantCulture);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex.InnerException;
+        //    }
+        //}
         public static DateTime getDateTime(string argUTCDate)
+        {
+            if (string.IsNullOrWhiteSpace(argUTCDate))
+            {
+                return DateTime.Now;
+            }
+
+            if (DateTime.TryParse(
+                argUTCDate,
+                CultureInfo.InvariantCulture,
+                DateTimeStyles.AssumeUniversal |
+                DateTimeStyles.AdjustToUniversal,
+                out DateTime utcDateTime))
+            {
+                return utcDateTime.ToLocalTime();
+            }
+
+            Debug.WriteLine(
+                $"getDateTime() invalid date: '{argUTCDate}'");
+
+            return DateTime.Now;
+        }
+
+        //Filter range
+
+        public class DateRange
+        {
+            public DateTime StartDate { get; set; }
+            public DateTime EndDate { get; set; }
+        }
+
+        public static DateRange CalendarFormat(DAT_FILTER_RANGE filterRangeData)
+        {
+            DateTime today = DateTime.Today;
+            double count = double.Parse(filterRangeData.Count);
+
+            DateTime startDate;
+            DateTime endDate;
+
+            switch (filterRangeData.PeriodTypeAsk)
+            {
+                // ===== Day =====
+                case "3":
+                    startDate = today.AddDays(-(count - 1)).Date;
+                    endDate = today.Date.AddDays(1).AddTicks(-1);
+                    break;
+
+                // ===== Week (Mon–Sun) =====
+                case "8":
+                    int dayOfWeek = (int)today.DayOfWeek;
+
+                    // Sunday = 0, Monday = 1
+                    int diffToMonday = dayOfWeek == 0
+                        ? -6
+                        : 1 - dayOfWeek;
+
+                    DateTime currentWeekStart = today.AddDays(diffToMonday);
+
+                    startDate = currentWeekStart.Date;
+
+                    endDate = currentWeekStart
+                        .AddDays(6)
+                        .Date
+                        .AddDays(1)
+                        .AddTicks(-1);
+
+                    break;
+
+                // ===== Month =====
+                case "4":
+                    startDate = new DateTime(
+                        today.Year,
+                        today.Month,
+                        1
+                    );
+
+                    endDate = new DateTime(
+                        today.Year,
+                        today.Month,
+                        DateTime.DaysInMonth(today.Year, today.Month)
+                    )
+                    .Date
+                    .AddDays(1)
+                    .AddTicks(-1);
+
+                    break;
+
+                // ===== Quarter =====
+                case "7":
+                    int currentQuarter = (today.Month - 1) / 3;
+                    int quarterStartMonth = currentQuarter * 3 + 1;
+
+                    startDate = new DateTime(
+                        today.Year,
+                        quarterStartMonth,
+                        1
+                    ).AddMonths(-(int)((count - 1) * 3));
+
+                    endDate = new DateTime(
+                        today.Year,
+                        quarterStartMonth,
+                        1
+                    )
+                    .AddMonths(3)
+                    .AddTicks(-1);
+
+                    break;
+
+                // ===== Year =====
+                case "5":
+                    startDate = new DateTime(
+                        today.Year - (int)(count - 1),
+                        1,
+                        1
+                    );
+
+                    endDate = new DateTime(
+                        today.Year,
+                        12,
+                        31
+                    )
+                    .Date
+                    .AddDays(1)
+                    .AddTicks(-1);
+
+                    break;
+
+                default:
+                    return null;
+            }
+
+            return new DateRange
+            {
+                StartDate = startDate,
+                EndDate = endDate
+            };
+        }
+
+        //public static DateRange CalendarFormat(DAT_FILTER_RANGE filterRangeData)
+        //{
+        //    DateTime today = DateTime.Today;
+        //    double count = double.Parse(filterRangeData.Count);
+
+        //    DateTime startDate;
+        //    DateTime endDate;
+
+        //    switch (filterRangeData.PeriodTypeAsk)
+        //    {
+        //        // Day
+        //        case "3":
+        //            // Count 0 = today
+        //            // Count 1 = yesterday + today
+        //            startDate = today.AddDays(-count);
+        //            endDate = today.AddDays(1).AddTicks(-1);
+        //            break;
+
+        //        // Week (Monday - Sunday)
+        //        case "8":
+        //            int dayOfWeek = (int)today.DayOfWeek;
+        //            int diffToMonday = dayOfWeek == 0 ? -6 : 1 - dayOfWeek;
+
+        //            DateTime currentWeekStart =
+        //                today.AddDays(diffToMonday).Date;
+
+        //            // Count 0 = current week
+        //            // Count 1 = previous week + current week
+        //            startDate = currentWeekStart.AddDays(-(count * 7));
+        //            endDate = currentWeekStart.AddDays(7).AddTicks(-1);
+        //            break;
+
+        //        // Month
+        //        case "4":
+        //            DateTime currentMonthStart =
+        //                new DateTime(today.Year, today.Month, 1);
+
+        //            // Count 0 = current month
+        //            // Count 1 = previous month + current month
+        //            startDate = currentMonthStart.AddMonths(-count);
+        //            endDate = currentMonthStart.AddMonths(1).AddTicks(-1);
+        //            break;
+
+        //        // Quarter
+        //        case "7":
+        //            int currentQuarter =
+        //                (today.Month - 1) / 3;
+
+        //            int quarterStartMonth =
+        //                currentQuarter * 3 + 1;
+
+        //            DateTime currentQuarterStart =
+        //                new DateTime(today.Year, quarterStartMonth, 1);
+
+        //            // Count 0 = current quarter
+        //            // Count 1 = previous quarter + current quarter
+        //            startDate =
+        //                currentQuarterStart.AddMonths(-(count * 3));
+
+        //            endDate =
+        //                currentQuarterStart.AddMonths(3).AddTicks(-1);
+        //            break;
+
+        //        // Year
+        //        case "5":
+        //            DateTime currentYearStart =
+        //                new DateTime(today.Year, 1, 1);
+
+        //            // Count 0 = current year
+        //            // Count 1 = previous year + current year
+        //            startDate =
+        //                currentYearStart.AddYears(-count);
+
+        //            endDate =
+        //                currentYearStart.AddYears(1).AddTicks(-1);
+        //            break;
+
+        //        default:
+        //            return null;
+        //    }
+
+        //    return new DateRange
+        //    {
+        //        StartDate = startDate,
+        //        EndDate = endDate
+        //    };
+        //}
+
+        public static DateRange CurrentFormat(DAT_FILTER_RANGE filterRangeData)
+        {
+            DateTime today = DateTime.Now;
+            double count = double.Parse(filterRangeData.Count);
+
+            DateTime startDate;
+            DateTime endDate;
+
+            switch (filterRangeData.PeriodTypeAsk)
+            {
+                // ===== Day (rolling) =====
+                case "3":
+                    startDate = today.Date.AddDays(-count);
+                    endDate = today;
+                    break;
+
+                // ===== Week (rolling) =====
+                case "8":
+                    startDate = today.AddDays(-count * 7);
+                    endDate = today;
+                    break;
+
+                // ===== Month (rolling) =====
+                case "4":
+                    startDate = today.AddMonths(-(int)count);
+                    endDate = today;
+                    break;
+
+                // ===== Quarter (rolling) =====
+                case "7":
+                    startDate = today.AddMonths(-(int)(count * 3));
+                    endDate = today;
+                    break;
+
+                // ===== Year (rolling) =====
+                case "5":
+                    startDate = today.AddYears(-(int)count);
+                    endDate = today;
+                    break;
+
+                default:
+                    return null;
+            }
+
+            return new DateRange
+            {
+                StartDate = startDate,
+                EndDate = endDate
+            };
+        }
+
+        public static DateRange OnFilterRangeChanged(DAT_FILTER_RANGE filterRangeData)
+        {
+            if (filterRangeData == null)
+                return null;
+
+            DateRange range = null;
+
+            // 1 = Calendar Format
+            if (filterRangeData.FilterRangeTypeAsk == "1")
+            {
+                range = CalendarFormat(filterRangeData);
+            }
+            // 2 = Current Format
+            else if (filterRangeData.FilterRangeTypeAsk == "2")
+            {
+                range = CurrentFormat(filterRangeData);
+            }
+
+            return range;
+        }
+
+        //User setting's Selected Filter range 
+        public static DAT_FILTER_RANGE GetUserSettingFilterRange(List<DAT_FILTER_RANGE> RangeList)
+        {
+            DAT_FILTER_RANGE mDAT_FILTER_RANGE = new DAT_FILTER_RANGE();
+
+            string periodType = Common.mCommon.UserSetting.LFPeriodTypeAsk;
+            mDAT_FILTER_RANGE = RangeList.FirstOrDefault(x => x.PeriodTypeAsk == periodType);
+            return mDAT_FILTER_RANGE;
+        }
+
+
+        // date range of initial user setting before range list
+        public static DateRange GetInitialScheduleDateRange()
         {
             try
             {
-                if (argUTCDate != null && argUTCDate != "")
+                DateTime today = DateTime.Today;
+
+                string periodTypeAsk =
+                    Common.mCommon.UserSetting.LFPeriodTypeAsk;
+
+                DateTime startDate;
+                DateTime endDate;
+
+                switch (periodTypeAsk)
                 {
-                    return DateTime.ParseExact(DateTime.Parse(argUTCDate).ToLocalTime().ToString(), Common.mCommon.UserSetting.DateTimeFormatName_0_255, CultureInfo.InvariantCulture);
+                    // ===== Day =====
+                    case "3":
+                        startDate = today.Date;
+                        endDate = today.Date
+                            .AddDays(1)
+                            .AddTicks(-1);
+                        break;
+
+                    // ===== Week (Monday - Sunday) =====
+                    case "8":
+                        int dayOfWeek = (int)today.DayOfWeek;
+
+                        // Sunday = 0, Monday = 1
+                        int diffToMonday = dayOfWeek == 0
+                            ? -6
+                            : 1 - dayOfWeek;
+
+                        startDate = today
+                            .AddDays(diffToMonday)
+                            .Date;
+
+                        endDate = startDate
+                            .AddDays(7)
+                            .AddTicks(-1);
+                        break;
+
+                    // ===== Month =====
+                    case "4":
+                        startDate = new DateTime(
+                            today.Year,
+                            today.Month,
+                            1);
+
+                        endDate = startDate
+                            .AddMonths(1)
+                            .AddTicks(-1);
+                        break;
+
+                    // ===== Quarter =====
+                    case "7":
+                        int currentQuarter =
+                            (today.Month - 1) / 3;
+
+                        int quarterStartMonth =
+                            currentQuarter * 3 + 1;
+
+                        startDate = new DateTime(
+                            today.Year,
+                            quarterStartMonth,
+                            1);
+
+                        endDate = startDate
+                            .AddMonths(3)
+                            .AddTicks(-1);
+                        break;
+
+                    // ===== Year =====
+                    case "5":
+                        startDate = new DateTime(
+                            today.Year,
+                            1,
+                            1);
+
+                        endDate = startDate
+                            .AddYears(1)
+                            .AddTicks(-1);
+                        break;
+
+                    default:
+                        startDate = today.Date;
+
+                        endDate = today.Date
+                            .AddDays(1)
+                            .AddTicks(-1);
+                        break;
                 }
-                else
+
+                return new DateRange
                 {
-                    return DateTime.ParseExact((DateTime.Now).ToString(), Common.mCommon.UserSetting.DateTimeFormatName_0_255, CultureInfo.InvariantCulture);
-                }
+                    StartDate = startDate,
+                    EndDate = endDate
+                };
             }
             catch (Exception ex)
             {
-                throw ex.InnerException;
+                Debug.WriteLine(ex);
+
+                DateTime today = DateTime.Today;
+
+                return new DateRange
+                {
+                    StartDate = today,
+                    EndDate = today.AddDays(1).AddTicks(-1)
+                };
             }
         }
         #endregion
@@ -262,6 +689,7 @@ namespace CS.ERP_MOB.General
             }
         }
         #region "DecimalFormat"
+        //roundoffamount, usersetting decimal place, amount after dis
         public static string getDecimalFormatString(string argDecimal, string argDecimalPlace, string argDecimaRounding)
         {
             try
@@ -723,6 +1151,168 @@ namespace CS.ERP_MOB.General
         }
         #endregion
 
+        #region "Discount"
+        //call for finding maching discount rule
+        public static DAT_DISCOUNT_RULE FindMatchingDiscountRule(List<DAT_DISCOUNT_RULE> DiscountRules, string discountCalculationFigureAsk, decimal calculationValue, DateTime discountDate, string currencyAsk)
+        {
+            if (DiscountRules == null || DiscountRules.Count == 0)
+                return null;
+
+            var matchedRules = DiscountRules
+                .Where(rule =>
+                    rule.DiscountCalculationFigureAsk == discountCalculationFigureAsk &&
+                    IsDiscountDateMatched(
+                        discountDate,
+                        DateTime.Parse(rule.SD),
+                        DateTime.Parse(rule.ED)) &&
+                    IsDiscountCurrencyMatched(rule, currencyAsk) &&
+                    IsDiscountConditionMatched(rule, calculationValue))
+                .OrderByDescending(rule =>
+                    decimal.Parse(rule.DiscountCalculationAmount))
+                .ToList();
+
+            return matchedRules.FirstOrDefault();
+        }
+        private static bool IsDiscountDateMatched(DateTime discountDate, DateTime startDate, DateTime endDate)
+        {
+            if (startDate.Kind == DateTimeKind.Utc)
+                startDate = startDate.ToLocalTime();
+
+            if (endDate.Kind == DateTimeKind.Utc)
+                endDate = endDate.ToLocalTime();
+
+            if (discountDate.Kind == DateTimeKind.Utc)
+                discountDate = discountDate.ToLocalTime();
+
+            discountDate = discountDate.Date;
+            startDate = startDate.Date;
+            endDate = endDate.Date;
+
+            return discountDate >= startDate &&
+                   discountDate <= endDate;
+        }
+        private static bool IsDiscountCurrencyMatched(DAT_DISCOUNT_RULE rule, string currencyAsk)
+        {
+            if (rule == null)
+                return false;
+
+            // Only fixed amount needs currency matching.
+            // Percentage does not need it.
+            if (rule.DiscountTypeAsk != "2")
+                return true;
+
+            return rule.CurrencyAsk == currencyAsk;
+        }
+        private static bool IsDiscountConditionMatched(DAT_DISCOUNT_RULE rule, decimal calculationValue)
+        {
+            decimal conditionAmount =
+                decimal.Parse(rule.DiscountCalculationAmount);
+
+            switch (rule.DiscountConditionTypeAsk)
+            {
+                // >=
+                case "1":
+                    return calculationValue >= conditionAmount;
+                // <=
+                case "2":
+                    return calculationValue <= conditionAmount;
+                // >
+                case "3":
+                    return calculationValue > conditionAmount;
+                // Between
+                case "4":
+
+                    // Between requires a minimum and maximum value.
+                    // DAT_DISCOUNT_RULE currently only shows
+                    // DiscountCalculationAmount.
+                    //
+                    // So this needs the actual upper-bound field
+                    // from your API/model before implementing.
+                    return false;
+
+
+                default:
+
+                    return false;
+            }
+        }
+
+        //call for discount after selected rule
+        public static decimal CalculateDiscount(DAT_DISCOUNT_RULE SelectedRule, decimal calculationValue)
+        {
+            if (calculationValue <= 0)
+                return 0;
+
+            // At this point:
+            // SelectedDiscountTypeAsk can come from the matched rule
+            // OR from user selection.
+            //
+            // DiscountRate can come from the matched rule
+            // OR from user input.
+
+            string discountTypeAsk = SelectedRule.DiscountTypeAsk;
+            decimal rate = decimal.Parse(SelectedRule.Rate);
+
+            decimal discount = 0;
+
+            switch (discountTypeAsk)
+            {
+                case "0": // NA
+                    discount = 0;
+                    break;
+                case "1": // %
+                    discount = calculationValue * rate / 100m;
+                    break;
+
+                case "2": // $
+                    discount = rate;
+                    break;
+
+                case "3": // Coupon
+                    discount = CalculateCouponDiscount(
+                        SelectedRule,
+                        rate,
+                        calculationValue);
+                    break;
+
+                case "4": // By X get X
+                case "5": // By X get Y
+                          // Handle later when item/tier logic is added
+                    discount = 0;
+                    break;
+
+                default:
+                    discount = 0;
+                    break;
+            }
+
+            if (discount < 0)
+                discount = 0;
+
+            if (discount > calculationValue)
+                discount = calculationValue;
+
+            return discount;
+        }
+        private static decimal CalculateCouponDiscount(DAT_DISCOUNT_RULE rule, decimal rate, decimal calculationValue)
+        {
+            if (rule == null || rate <= 0)
+                return 0;
+
+            switch (rule.ValueTypeAsk)
+            {
+                case "1": // Fixed
+                    return rate;
+
+                case "2": // Percentage
+                    return calculationValue * rate / 100m;
+
+                default:
+                    return 0;
+            }
+        }
+
+        #endregion
 
         #region "GrandTotal"
         public static string getGrandTotalString(string argGrandTotal, string argGrandTotalDecimalPlace, string argGrandTotalRoundAsking)

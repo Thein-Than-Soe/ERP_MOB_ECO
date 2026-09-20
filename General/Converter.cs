@@ -16,6 +16,21 @@ namespace CS.ERP_MOB.General
             throw new NotImplementedException();
         }
     }
+
+    public class CompanyImageURLConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value is string url)
+                return Sys_Service.getUploadURL() + url;
+            return "product_logo.png";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
     public class ProfileConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -79,7 +94,26 @@ namespace CS.ERP_MOB.General
         }
     }
 
+    public class NoDecimalConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null)
+                return "0";
 
+            if (decimal.TryParse(value.ToString(), NumberStyles.Any, CultureInfo.InvariantCulture, out decimal number))
+            {
+                return number.ToString("0", CultureInfo.InvariantCulture);
+            }
+
+            return "0";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return value;
+        }
+    }
     public class AmountCurrencyConverter : IMultiValueConverter
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
@@ -252,28 +286,4 @@ namespace CS.ERP_MOB.General
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
             => throw new NotImplementedException();
     }
-
-    public class NoDecimalAmountConverter : IValueConverter
-    {
-        public object Convert(
-            object value,Type targetType, object parameter,CultureInfo culture)
-        {
-            if (value == null)
-                return "0";
-
-            string text = value.ToString();
-
-            if (decimal.TryParse(text,NumberStyles.Any,CultureInfo.InvariantCulture,out decimal amount))
-            {
-                return amount.ToString("0",CultureInfo.InvariantCulture);
-            }
-            return "0";
-        }
-
-        public object ConvertBack(object value, Type targetType,object parameter,CultureInfo culture)
-        {
-            return value;
-        }
-    }
-
 }

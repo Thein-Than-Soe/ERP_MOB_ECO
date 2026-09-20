@@ -871,11 +871,11 @@ namespace CS.ERP_MOB.Views.Frame
                 throw ex.InnerException;
             }
         }
-        private void btnUnSubscribeService_onClicked(object sender, EventArgs e)
+        private async void btnUnSubscribeService_onClicked(object sender, EventArgs e)
         {
             try
             {
-                Common.mCommon.signIn(Common.mCommon.REQ_AUTHORIZATION);
+                await Common.mCommon.signIn(Common.mCommon.REQ_AUTHORIZATION);
                 //if (Common.bindMenu("signin"))
                 //{
                 //    Common.routeMenu("signin", "Sign in");

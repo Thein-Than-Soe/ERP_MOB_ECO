@@ -17,10 +17,10 @@ namespace CS.ERP_MOB.Services.ECO
         {
             Ask = 1,
             ProductCode = "ECO",
-            UploadURL = "http://upddevsrv.kumudr.com",
-            APIURL = "http://ecodevapi.kumudr.com/Service.svc",
+            UploadURL = "http://updqasrv.kumudr.com",
+            APIURL = "http://ecoqaapi.kumudr.com/Service.svc",
             APIProtocol = "http://",
-            APIServer = "ecodevapi.kumudr.com/",
+            APIServer = "ecoqaapi.kumudr.com/",
             APIPort = "",
             APIServiceName = "Service.svc/",
             ApiContentType = "application/json",

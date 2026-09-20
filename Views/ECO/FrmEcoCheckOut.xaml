@@ -110,7 +110,7 @@
                                             <Label
                                                 FontFamily="{Binding ThemeSettingCardViewBody.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
                                                 FontSize="{Binding ThemeSettingCardViewBody.PropertiesFontSize, Source={x:Static general:Common.mCommon}}"
-                                                Text="{Binding QTY, Converter={StaticResource NoDecimalAmountConverter}}"
+                                                Text="{Binding QTY, Converter={StaticResource NoDecimalConverter}}"
                                                 TextColor="{Binding ThemeSettingCardViewBody.PropertiesFontColor, Source={x:Static general:Common.mCommon}}" />
 
                                         </HorizontalStackLayout>
@@ -386,7 +386,7 @@
                                                             <Label
                                                                 FontFamily="{Binding ThemeSettingContent.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
                                                                 FontSize="{Binding ThemeSettingContent.PropertiesFontSize, Source={x:Static general:Common.mCommon}}"
-                                                                Text="{Binding DeliveryEstimate, Converter={StaticResource NoDecimalAmountConverter}}"
+                                                                Text="{Binding DeliveryEstimate, Converter={StaticResource NoDecimalConverter}}"
                                                                 TextColor="{Binding ThemeSettingContent.PropertiesFontColor, Source={x:Static general:Common.mCommon}}" />
 
                                                             <Label
