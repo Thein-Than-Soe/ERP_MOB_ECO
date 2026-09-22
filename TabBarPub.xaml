@@ -4,7 +4,8 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:CS.ERP_MOB"
-    xmlns:ext="clr-namespace:CS.ERP_MOB.Extensions">
+    xmlns:ext="clr-namespace:CS.ERP_MOB.Extensions"
+    xmlns:general="clr-namespace:CS.ERP_MOB.General">
     <ContentView.Content>
         <Grid
             Padding="0"
@@ -20,7 +21,7 @@
             <!--  Tab Items  -->
             <Grid
                 Grid.Row="0"
-                BackgroundColor="{StaticResource OvaColor}"
+                BackgroundColor="{Binding ThemeSettingTaskbar.PropertiesBgColor, Source={Static Member=general:Common.mCommon}}"
                 HorizontalOptions="FillAndExpand"
                 VerticalOptions="FillAndExpand">
                 <Grid.ColumnDefinitions>

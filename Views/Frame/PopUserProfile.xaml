@@ -35,21 +35,17 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="300" />
         </Grid.ColumnDefinitions>
-        <Frame
+        <Border
             Grid.Row="0"
             Grid.Column="1"
             Padding="{StaticResource padding}"
-            BackgroundColor="{Binding ThemeSettingBannerProfile.PropertiesBgColor, Source={Static Member=general:Common.mCommon}}"
-            CornerRadius="3">
+            BackgroundColor="{Binding ThemeSettingCardView.PropertiesBgColor, Source={Static Member=general:Common.mCommon}}">
             <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
                 <StackLayout.GestureRecognizers>
                     <SwipeGestureRecognizer Direction="Right" Swiped="OnSwipeRight" />
                 </StackLayout.GestureRecognizers>
                 <!--  title area  -->
-                <StackLayout
-                    BackgroundColor="White"
-                    HorizontalOptions="FillAndExpand"
-                    VerticalOptions="Start">
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Start">
                     <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="60" />
@@ -80,6 +76,7 @@
                                 <StackLayout
                                     Grid.Row="0"
                                     Grid.Column="1"
+                                    Margin="10,0,0,0"
                                     HorizontalOptions="FillAndExpand"
                                     Orientation="Vertical"
                                     VerticalOptions="Center">
@@ -142,8 +139,8 @@
 
                 <!--  content area  -->
                 <StackLayout
-                    BackgroundColor="White"
                     x:Name="sltContent"
+                    BackgroundColor="{Binding ThemeSettingCardViewBody.PropertiesBgColor, Source={Static Member=general:Common.mCommon}}"
                     HorizontalOptions="FillAndExpand"
                     Orientation="Vertical"
                     VerticalOptions="StartAndExpand">
@@ -156,7 +153,7 @@
                                             <SwipeItems>
                                                 <SwipeItem
                                                     x:Name="simSignOut"
-                                                    BackgroundColor="{StaticResource SwipeColor}"
+                                                    BackgroundColor="{Binding ThemeSettingButton.PropertiesBgColor, Source={Static Member=general:Common.mCommon}}"
                                                     Invoked="simSignOut_Invoked"
                                                     PropertyChanged="simSignOut_PropertyChanged"
                                                     Text="Sign out" />
@@ -166,7 +163,7 @@
                                             <SwipeItems>
                                                 <SwipeItem
                                                     x:Name="simSwitch"
-                                                    BackgroundColor="{StaticResource SwipeColor}"
+                                                    BackgroundColor="{Binding ThemeSettingButton.PropertiesBgColor, Source={Static Member=general:Common.mCommon}}"
                                                     Invoked="simSwitch_Invoked"
                                                     Text="Switch" />
                                             </SwipeItems>
@@ -213,15 +210,23 @@
                                                             VerticalOptions="Center">
                                                             <Label
                                                                 FontAttributes="Bold"
+                                                                FontFamily="{Binding ThemeSettingHeader.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                                                                FontSize="{Binding ThemeSettingHeader.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
                                                                 LineBreakMode="TailTruncation"
-                                                                Text="{Binding UserDescription}" />
+                                                                Text="{Binding UserDescription}"
+                                                                TextColor="{Binding ThemeSettingHeader.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" />
                                                             <Label />
                                                         </StackLayout>
                                                         <StackLayout
                                                             HorizontalOptions="StartAndExpand"
                                                             Orientation="Horizontal"
                                                             VerticalOptions="Center">
-                                                            <Label LineBreakMode="TailTruncation" Text="{Binding UserEmail}" />
+                                                            <Label
+                                                                FontFamily="{Binding ThemeSettingContent.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                                                                FontSize="{Binding ThemeSettingContent.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
+                                                                LineBreakMode="TailTruncation"
+                                                                Text="{Binding UserEmail}"
+                                                                TextColor="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" />
                                                             <Label />
                                                         </StackLayout>
                                                     </StackLayout>
@@ -240,16 +245,15 @@
                 </StackLayout>
 
                 <!--  footer area  -->
-                <StackLayout BackgroundColor="{StaticResource OvaPopupFooterColor}" VerticalOptions="StartAndExpand">
+                <StackLayout VerticalOptions="StartAndExpand">
                     <Frame
                         Padding="5"
-                        BackgroundColor="{StaticResource OvaBackgroundColor}"
+                        BackgroundColor="{Binding ThemeSettingCardViewFooter.PropertiesBgColor, Source={Static Member=general:Common.mCommon}}"
                         CornerRadius="{Binding RegionSettingButton.BorderRadius, Source={Static Member=general:Common.mCommon}}"
                         HorizontalOptions="FillAndExpand"
                         VerticalOptions="FillAndExpand">
                         <Label
                             Margin="1"
-                            BackgroundColor="{Binding ThemeSettingButton.PropertiesBgColor, Source={Static Member=general:Common.mCommon}}"
                             HorizontalOptions="CenterAndExpand"
                             Text="Add another account"
                             TextColor="{Binding ThemeSettingButton.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" />
@@ -259,14 +263,14 @@
                     </Frame>
                     <Frame
                         Padding="5"
-                        BackgroundColor="{StaticResource OvaBackgroundColor}"
+                        BackgroundColor="{Binding ThemeSettingButton.PropertiesBgColor, Source={Static Member=general:Common.mCommon}}"
                         CornerRadius="3"
                         HorizontalOptions="FillAndExpand"
                         VerticalOptions="FillAndExpand">
                         <Label
                             HorizontalOptions="CenterAndExpand"
                             Text="Sign out of all accounts"
-                            TextColor="{StaticResource OvaTextColor}" />
+                            TextColor="{Binding ThemeSettingButton.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}" />
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer
                                 x:Name="TgrSignoutAllAccount"
@@ -276,6 +280,6 @@
                     </Frame>
                 </StackLayout>
             </StackLayout>
-        </Frame>
+        </Border>
     </Grid>
 </rg:PopupPage>
