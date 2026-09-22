@@ -16,7 +16,6 @@
                     <Grid Padding="1">
                         <Frame
                             Padding="0"
-                            BackgroundColor="Green"
                             CornerRadius="20"
                             HasShadow="True">
                             <Image Aspect="AspectFill" Source="{Binding Image, Converter={StaticResource ImageURLConverter}}" />
@@ -32,7 +31,7 @@
             x:Name="indicator"
             HorizontalOptions="Center"
             IndicatorColor="LightGray"
-            SelectedIndicatorColor="{Binding ThemeSettingButton.PropertiesBgColor, Source={Static Member=general:Common.mCommon}}" />
+            SelectedIndicatorColor="{Binding ThemeSettingContent.PropertiesBgColor, Source={Static Member=general:Common.mCommon}}" />
 
     </VerticalStackLayout>
 

@@ -394,6 +394,19 @@ namespace CS.ERP_MOB.ViewsModel.Frame
         }
 
 
+        private string _SelectedCurrencyAsk;
+        public string SelectedCurrencyAsk
+        {
+            get => _SelectedCurrencyAsk;
+            set
+            {
+                if (_SelectedCurrencyAsk != value)
+                {
+                    _SelectedCurrencyAsk = value;
+                    NotifyPropertyChanged("SelectedCurrencyAsk");
+                }
+            }
+        }
         private string _CurrencyCode;
         public string CurrencyCode
         {
@@ -548,62 +561,13 @@ namespace CS.ERP_MOB.ViewsModel.Frame
                 return;
 
             // FIND ALL RULES THAT MATCH CURRENT SUBTOTAL
-            var matchedRules = DiscountRule
-                .Where(rule => IsDiscountRuleMatched(rule, SubTotal))
-                .OrderByDescending(rule =>
-                    ParseDecimal(rule.DiscountCalculationAmount))
-                .ToList();
-
-
-            // No matching rule
-            if (matchedRules.Count == 0)
-                return;
-
-            SelectedRule = matchedRules.First();
+            var matchedRule = Utility.FindMatchingDiscountRule(DiscountRule, "4", SubTotal, DateTime.UtcNow, SelectedCurrencyAsk);
+            SelectedRule = matchedRule;
 
             decimal rate = ParseDecimal(SelectedRule.Rate);
+            
+            DiscountAmount = Utility.CalculateDiscount(SelectedRule, SubTotal);
 
-
-            // DiscountTypeAsk:
-            //
-            // 1 = Percentage
-            // 2 = Fixed amount
-            // 3 = Coupon
-            //
-            // Based on your sample:
-            //
-            // R4 -> 1 -> %
-            // R5 -> 2 -> $
-            // R6 -> 3 -> Coupon
-            //
-
-            switch (SelectedRule.DiscountTypeAsk)
-            {
-                // Percentage
-                case "1":
-                    DiscountAmount = SubTotal * rate / 100m;
-                    break;
-
-                // Fixed amount
-                case "2":
-                    DiscountAmount = rate;
-                    break;
-
-
-                // Coupon
-                case "3":
-                    // Your API has "Cu" as the type.
-                    // If this coupon is already a fixed amount:
-                    DiscountAmount = rate;
-                    break;
-
-
-                default:
-
-                    DiscountAmount = 0;
-
-                    break;
-            }
             NotifyPropertyChanged("HasDiscount");
 
             // Never allow discount greater than subtotal
@@ -614,33 +578,6 @@ namespace CS.ERP_MOB.ViewsModel.Frame
 
             NotifyPropertyChanged(nameof(DiscountAmount));
             NotifyPropertyChanged(nameof(HasDiscount));
-        }
-        private bool IsDiscountRuleMatched( DAT_DISCOUNT_RULE rule,decimal subtotal)
-        {
-            decimal conditionAmount = ParseDecimal(rule.DiscountCalculationAmount);
-
-
-            switch (rule.DiscountConditionTypeName_0_255?.Trim())
-            {
-                case ">=":
-                    return subtotal >= conditionAmount;
-
-                case ">":
-                    return subtotal > conditionAmount;
-
-                case "=":
-                case "==":
-                    return subtotal == conditionAmount;
-
-                case "<=":
-                    return subtotal <= conditionAmount;
-
-                case "<":
-                    return subtotal < conditionAmount;
-
-                default:
-                    return false;
-            }
         }
         private void CalculateTax()
         {
@@ -1032,6 +969,7 @@ namespace CS.ERP_MOB.ViewsModel.Frame
                         CustomerDetails = mJSN_RES_LOAD_CHECKOUT.RES_CUSTOMER_DTL;
                         StockList = mJSN_RES_LOAD_CHECKOUT.RES_STOCK;
                         CurrencyCode = StockList[0].CurrencyCode_0_50;
+                        SelectedCurrencyAsk = StockList[0].CurrencyAsk;
 
                         CustomerContactList = mJSN_RES_LOAD_CHECKOUT.RES_CUSTOMER_DTL.RES_CUSTOMER_CONTACT;
                         SelectedCustomerContact = mJSN_RES_LOAD_CHECKOUT.RES_CUSTOMER_DTL.RES_CUSTOMER_CONTACT.FirstOrDefault();

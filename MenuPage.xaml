@@ -6,9 +6,8 @@
     xmlns:animation="clr-namespace:RGPopup.Maui.Animations;assembly=RGPopup.Maui"
     xmlns:general="clr-namespace:CS.ERP_MOB.General"
     xmlns:rg="clr-namespace:RGPopup.Maui.Pages;assembly=RGPopup.Maui"
-    CloseWhenBackgroundIsClicked="true"
-    HasSystemPadding="true"
-    SystemPaddingSides="All">
+    CloseWhenBackgroundIsClicked="True"
+    HasSystemPadding="False">
     <rg:PopupPage.Animation>
         <animation:MoveAnimation
             DurationIn="400"
@@ -20,6 +19,7 @@
             PositionOut="Left" />
     </rg:PopupPage.Animation>
     <Grid
+        x:Name="MenuPageRootGrid"
         ColumnSpacing="0"
         HorizontalOptions="StartAndExpand"
         VerticalOptions="FillAndExpand">
@@ -33,7 +33,7 @@
         <AbsoluteLayout
             Grid.Row="0"
             Grid.Column="1"
-            BackgroundColor="White"
+            BackgroundColor="{Binding ThemeSettingContent.PropertiesBgColor, Source={Static Member=general:Common.mCommon}}"
             VerticalOptions="Fill">
             <!--  Header Info  -->
             <StackLayout
@@ -41,7 +41,7 @@
                 AbsoluteLayout.LayoutFlags="All"
                 HorizontalOptions="Fill"
                 VerticalOptions="Start">
-                <Frame Padding="{StaticResource padding}">
+                <Frame Padding="{StaticResource padding}" BackgroundColor="{Binding ThemeSettingBanner.PropertiesBgColor, Source={Static Member=general:Common.mCommon}}">
                     <StackLayout>
                         <StackLayout Orientation="Horizontal">
                             <Image
@@ -53,11 +53,12 @@
                             <Label
                                 Margin="5,0,0,0"
                                 FontAttributes="Bold"
-                                FontSize="Medium"
+                                FontFamily="{Binding ThemeSettingBanner.PropertiesFontName_0_255, Source={Static Member=general:Common.mCommon}}"
+                                FontSize="{Binding ThemeSettingBanner.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
                                 HorizontalOptions="StartAndExpand"
                                 LineBreakMode="TailTruncation"
                                 Text="{Binding SelectedProduct.ProductCode_0_50}"
-                                TextColor="#333333"
+                                TextColor="{Binding ThemeSettingBanner.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}"
                                 VerticalOptions="Center" />
                             <Label
                                 FontFamily="{StaticResource FontAwesomeSolid}"
@@ -118,7 +119,7 @@
                             <ViewCell>
                                 <StackLayout
                                     Padding="{StaticResource paddingMenuGroupHeader}"
-                                    BackgroundColor="{Binding ThemeSettingMenu.PropertiesBgColor, Source={Static Member=general:Common.mCommon}}"
+                                    BackgroundColor="{Binding ThemeSettingContent.PropertiesBgColor, Source={Static Member=general:Common.mCommon}}"
                                     HorizontalOptions="FillAndExpand"
                                     Orientation="Horizontal"
                                     VerticalOptions="FillAndExpand">
@@ -132,22 +133,21 @@
                                             FontFamily="{StaticResource FontAwesomeSolid}"
                                             HorizontalOptions="Center"
                                             Text="{Binding LogoImg, Converter={StaticResource IconConverter}}"
-                                            TextColor="{Binding ThemeSettingMenu.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}"
+                                            TextColor="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}"
                                             VerticalOptions="Center"
                                             WidthRequest="25" />
                                         <Label
-                                            FontSize="{Binding ThemeSettingMenu.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
+                                            FontSize="{Binding ThemeSettingContent.PropertiesFontSize, Source={Static Member=general:Common.mCommon}}"
                                             Text="{Binding Text}"
-                                            TextColor="{Binding ThemeSettingMenu.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}"
+                                            TextColor="{Binding ThemeSettingContent.PropertiesFontColor, Source={Static Member=general:Common.mCommon}}"
                                             VerticalOptions="Center" />
                                     </StackLayout>
                                     <Label
                                         Padding="0,0,5,0"
-                                        FontFamily="{StaticResource FontAwesomeSolid}"
                                         FontSize="30"
                                         HorizontalOptions="End"
                                         Text="{Binding StateIcon, Converter={StaticResource IconConverter}}"
-                                        TextColor="{Binding ThemeSettingMenu.PropertiesBgColor, Source={Static Member=general:Common.mCommon}}"
+                                        TextColor="{Binding ThemeSettingContent.PropertiesBgColor, Source={Static Member=general:Common.mCommon}}"
                                         VerticalOptions="Center" />
                                     <StackLayout.GestureRecognizers>
                                         <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TgrMenuHeader_onTapped" />
@@ -170,7 +170,7 @@
                 <Frame
                     Margin="0"
                     Padding="5"
-                    BackgroundColor="White"
+                    BackgroundColor="{Binding ThemeSettingContent.PropertiesBgColor, Source={Static Member=general:Common.mCommon}}"
                     CornerRadius="5"
                     HasShadow="True">
                     <ScrollView HeightRequest="350">
@@ -181,14 +181,13 @@
                                 ItemSelected="lstProduct_ItemSelected"
                                 ItemsSource="{Binding ProductList}"
                                 RowHeight="70"
-                                SeparatorColor="#E0E0E0">
+                                SeparatorColor="Black">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <ViewCell>
                                             <Frame
                                                 Margin="0"
                                                 Padding="0"
-                                                BackgroundColor="#F9F9F9"
                                                 CornerRadius="8"
                                                 HasShadow="False">
                                                 <StackLayout
@@ -232,11 +231,26 @@
             </StackLayout>
 
 
+            <!--<StackLayout
+                        Grid.Row="0"
+                        Grid.Column="3"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="Center">
+                <Label
+                            HorizontalOptions="Center"
+                            Text="Privacy Policy"
+                            TextColor="Blue"
+                            TextDecorations="Underline"
+                            VerticalOptions="Center" />
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="PrivacyPolicyTapped" />
+                </StackLayout.GestureRecognizers>
+            </StackLayout>-->
             <!--  Footer Info  -->
             <StackLayout
                 AbsoluteLayout.LayoutBounds="0,1,1,0.1"
                 AbsoluteLayout.LayoutFlags="All"
-                BackgroundColor="Gray"
+                BackgroundColor="{Binding ThemeSettingTaskbar.PropertiesBgColor, Source={Static Member=general:Common.mCommon}}"
                 HeightRequest="30"
                 VerticalOptions="End">
                 <Grid
